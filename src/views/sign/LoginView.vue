@@ -1,10 +1,11 @@
 <template>
-  <Button type="primary">Add</Button>
+  <div class="container">
+    <ElButton type="primary">登录</ElButton>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { Button } from 'ant-design-vue'
-import 'ant-design-vue/lib/button/style/css'
+import { ElButton } from 'element-plus'
 </script>
 
 <script lang="ts">
@@ -13,5 +14,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>
