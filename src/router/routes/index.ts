@@ -1,5 +1,6 @@
 import { AddRouteRecordRaw } from '../types'
 import sign from './sign'
+import home from './home'
 
 const routes: Array<AddRouteRecordRaw> = [
   {
@@ -18,7 +19,8 @@ const routes: Array<AddRouteRecordRaw> = [
       title: '404'
     }
   },
-  ...sign
+  ...sign,
+  ...home
 ]
 
 export default routes
