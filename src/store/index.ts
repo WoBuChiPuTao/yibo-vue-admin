@@ -1,3 +1,3 @@
-import useStore from './modules/user'
+import useAuthStore from './modules/user'
 
-export { useStore }
+export { useAuthStore }

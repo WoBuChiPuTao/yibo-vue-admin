@@ -5,7 +5,7 @@ import type {
   AxiosRequestConfig,
   AxiosResponse
 } from 'axios'
-import { Message } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import { Header, TIME_OUT, BASEURL } from './config'
 
 const service: AxiosInstance = axios.create({
@@ -17,10 +17,11 @@ const service: AxiosInstance = axios.create({
 /* 请求拦截器 */
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    console.log(config)
     return config
   },
   (error: AxiosError) => {
-    Message.error(error.message)
+    ElMessage.error(error.message)
     return Promise.reject(error)
   }
 )
@@ -28,14 +29,14 @@ service.interceptors.request.use(
 /* 响应拦截器 */
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, message, data } = response.data // 根据自定义错误码判断请求是否成功
-    if (code === 0) {
+    const { code, msg, result } = response.data // 根据自定义错误码判断请求是否成功
+    if (code === '1') {
       // 将组件用的数据返回
-      return data
+      return result
     } else {
       // 处理业务错误。
-      Message.error(message)
-      return Promise.reject(new Error(message))
+      ElMessage.error(msg)
+      return Promise.reject(msg)
     }
   },
   (error: AxiosError) => {
@@ -60,31 +61,31 @@ service.interceptors.response.use(
       default:
         message = '网络连接故障'
     }
-    Message.error(message)
+    ElMessage.error(message)
     return Promise.reject(error)
   }
 )
 
 /* 导出封装的请求方法 */
 export const http = {
-  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
     return service.get(url, config)
   },
-  post<T = any>(
+  post<T = unknown>(
     url: string,
     data?: object,
     config?: AxiosRequestConfig
   ): Promise<T> {
     return service.post(url, data, config)
   },
-  put<T = any>(
+  put<T = unknown>(
     url: string,
     data?: object,
     config?: AxiosRequestConfig
   ): Promise<T> {
     return service.put(url, data, config)
   },
-  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  delete<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
     return service.delete(url, config)
   }
 }
