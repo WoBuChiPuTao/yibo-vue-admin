@@ -10,6 +10,8 @@ const routes: Array<AddRouteRecordRaw> = [
       title: '首页入口'
     }
   },
+  ...sign,
+  ...home,
   {
     path: '/:catchAll(.*)',
     name: 'notFound',
@@ -18,9 +20,7 @@ const routes: Array<AddRouteRecordRaw> = [
     meta: {
       title: '404'
     }
-  },
-  ...sign,
-  ...home
+  }
 ]
 
 export default routes

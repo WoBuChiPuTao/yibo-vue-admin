@@ -2,12 +2,22 @@ import { AddRouteRecordRaw } from '../types'
 
 const layout: Array<AddRouteRecordRaw> = [
   {
-    path: '/layout',
-    name: 'layout',
+    path: '/home',
+    name: 'home',
     component: () => import('@/views/layout/LayoutView.vue'),
     meta: {
-      title: '主页'
-    }
+      title: '系统布局'
+    },
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/home/index.vue'),
+        meta: {
+          title: '主页'
+        }
+      }
+    ]
   }
 ]
 
