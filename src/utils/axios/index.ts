@@ -12,12 +12,13 @@ const service: AxiosInstance = axios.create({
   baseURL: BASEURL,
   timeout: TIME_OUT,
   headers: Header
+  // withCredentials: true // 需配置为true，使请求体携带cookie
 })
 
 /* 请求拦截器 */
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log(config)
+    console.log('reqHeader', config)
     return config
   },
   (error: AxiosError) => {
@@ -29,14 +30,15 @@ service.interceptors.request.use(
 /* 响应拦截器 */
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, msg, result } = response.data // 根据自定义错误码判断请求是否成功
-    if (code === '1') {
+    // const { code, msg, result } = response.data // 根据自定义错误码判断请求是否成功
+    console.log('resHeader', response.headers)
+    if (response.status === 200) {
       // 将组件用的数据返回
-      return result
+      return response.data
     } else {
       // 处理业务错误。
-      ElMessage.error(msg)
-      return Promise.reject(msg)
+      ElMessage.error('错误')
+      return Promise.reject(new Error('错误'))
     }
   },
   (error: AxiosError) => {
