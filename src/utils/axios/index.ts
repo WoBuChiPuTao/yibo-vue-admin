@@ -7,6 +7,7 @@ import type {
 } from 'axios'
 import { ElMessage } from 'element-plus'
 import { Header, TIME_OUT, BASEURL } from './config'
+import { Result } from './types'
 
 const service: AxiosInstance = axios.create({
   baseURL: BASEURL,
@@ -30,15 +31,15 @@ service.interceptors.request.use(
 /* 响应拦截器 */
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    // const { code, msg, result } = response.data // 根据自定义错误码判断请求是否成功
+    const { code, message, data } = response.data // 根据自定义错误码判断请求是否成功
     console.log('resHeader', response.headers)
-    if (response.status === 200) {
+    if (code === 1) {
       // 将组件用的数据返回
-      return response.data
+      return data
     } else {
       // 处理业务错误。
-      ElMessage.error('错误')
-      return Promise.reject(new Error('错误'))
+      ElMessage.error(message)
+      return Promise.reject(new Error(message))
     }
   },
   (error: AxiosError) => {

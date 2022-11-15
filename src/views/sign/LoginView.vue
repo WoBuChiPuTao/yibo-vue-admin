@@ -21,7 +21,7 @@ function getFile() {
     })
     .then((res) => {
       console.log(res)
-      const blob = new Blob([res as unknown as string], {
+      const blob = new Blob([res as string], {
         type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
       })
       const a = document.createElement('a')
