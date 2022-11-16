@@ -1,40 +1,60 @@
 <template>
   <div class="container">
-    <ElButton type="primary" class="btn" @click="getFile">下载</ElButton>
+    <ElForm :model="loginData" label-width="120px">
+      <ElFormItem label="用户名">
+        <ElInput v-model="loginData.username" type="text"> </ElInput>
+      </ElFormItem>
+      <ElFormItem label="密码">
+        <ElInput v-model="loginData.password" type="password"> </ElInput>
+      </ElFormItem>
+      <ElFormItem>
+        <ElButton type="primary" @click="handlerLogin">登录</ElButton>
+      </ElFormItem>
+    </ElForm>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ElButton } from 'element-plus'
-import { http } from '@/utils/axios'
-const obj = {
-  asOfDate: '2022-01-04 00:00:00',
-  cursor: '0',
-  instCode: 'FR_001',
-  pageSize: 10
-}
+import { reactive } from 'vue'
+import {} from 'vue-router'
+import { ElForm, ElButton, ElInput, ElFormItem } from 'element-plus'
+import { login, getUserInfo } from '@/api/login'
+import '@/mock/login'
 
-function getFile() {
-  http
-    .post('/dqengine-ir/hist/ibor/export', obj, {
-      responseType: 'arraybuffer'
-    })
+const loginData = reactive({
+  username: '',
+  password: ''
+})
+
+const getUSerInfo = async () => {
+  const resData = await getUserInfo()
     .then((res) => {
-      console.log(res)
-      const blob = new Blob([res as string], {
-        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
-      })
-      const a = document.createElement('a')
-      a.setAttribute('download', 'aaaa')
-      const url = window.URL.createObjectURL(blob)
-      a.href = url
-      a.click()
-      window.URL.revokeObjectURL(url)
+      return res
     })
     .catch((err) => {
       console.log(err)
     })
+  console.log(resData)
+}
+
+async function handlerLogin() {
+  const resData = await login(loginData)
+    .then((res) => {
+      return res
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  console.log(resData)
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

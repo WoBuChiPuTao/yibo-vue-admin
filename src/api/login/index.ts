@@ -1,6 +1,6 @@
 import { http } from '@/utils/axios/index'
 
-import type { LoginData, LoginRes, UserInfoRes } from './types'
+import type { LoginData, LoginRes, UserInfoRes } from '@/types'
 
 /**
  * 登录

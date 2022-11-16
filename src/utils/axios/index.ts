@@ -7,7 +7,6 @@ import type {
 } from 'axios'
 import { ElMessage } from 'element-plus'
 import { Header, TIME_OUT, BASEURL } from './config'
-import { Result } from './types'
 
 const service: AxiosInstance = axios.create({
   baseURL: BASEURL,
