@@ -4,7 +4,7 @@ const sign: Array<AddRouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/sign/LoginView.vue'),
+    component: () => import('@/views/login/LoginView.vue'),
     meta: {
       title: '登录'
     }
@@ -12,7 +12,7 @@ const sign: Array<AddRouteRecordRaw> = [
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/sign/RegisterView.vue'),
+    component: () => import('@/views/login/RegisterForm.vue'),
     meta: {
       title: '注册'
     }
