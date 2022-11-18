@@ -13,7 +13,7 @@
           <ElInput v-model="loginData.password" type="password"> </ElInput>
         </ElFormItem>
         <ElFormItem>
-          <ElButton type="primary" @click="getUSerInfo">登录</ElButton>
+          <ElButton type="primary" @click="handlerLogin">登录</ElButton>
         </ElFormItem>
         <ElFormItem>
           <a href="">注册账号</a>
@@ -27,7 +27,7 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElForm, ElButton, ElInput, ElFormItem } from 'element-plus'
-import { login, getUserInfo } from '@/api/login'
+import { login } from '@/api/login'
 import '@/mock/login'
 
 const router = useRouter()
@@ -37,17 +37,17 @@ const loginData = reactive({
   password: ''
 })
 
-const getUSerInfo = async () => {
-  const resData = await getUserInfo()
-    .then((res) => {
-      router.replace(`/home/${res.id}/${res.username}`)
-      return res
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  console.log(resData)
-}
+// const getUSerInfo = async () => {
+//   const resData = await getUserInfo()
+//     .then((res) => {
+//       router.replace(`/home/${res.id}/${res.username}`)
+//       return res
+//     })
+//     .catch((err) => {
+//       console.log(err)
+//     })
+//   console.log(resData)
+// }
 
 async function handlerLogin() {
   const resData = await login(loginData)

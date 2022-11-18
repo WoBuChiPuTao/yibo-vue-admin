@@ -10,7 +10,7 @@ const layout: Array<AddRouteRecordRaw> = [
     },
     children: [
       {
-        path: '/home/:id/:username',
+        path: '/home',
         name: 'home',
         props: true,
         component: () => import('@/views/home/index.vue'),

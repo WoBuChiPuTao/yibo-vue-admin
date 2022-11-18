@@ -1,9 +1,14 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import route from './routes/index'
+import type { App } from 'vue'
 
-const router = createRouter({
+// router配置
+export const router = createRouter({
   history: createWebHashHistory(),
   routes: route as unknown as RouteRecordRaw[]
 })
 
-export default router
+// 创建router实例方法
+export function setupRouter(app: App<Element>) {
+  app.use(router)
+}
