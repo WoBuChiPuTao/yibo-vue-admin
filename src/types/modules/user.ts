@@ -1,3 +1,25 @@
+import { RoleInfo } from './sys'
+/**
+ * @description: 用户信息
+ */
+export interface UserInfo {
+  userId: string | number
+  username: string
+  realName: string
+  avatar: string
+  desc?: string
+  homePath?: string
+  roles: RoleInfo[]
+}
+
+/**
+ * @description: 用户状态信息
+ *
+ */
+export interface UserState {
+  userInfo: Nullabel<UserInfo>
+}
+
 /* 登录接口参数类型 */
 export interface LoginData {
   username: string

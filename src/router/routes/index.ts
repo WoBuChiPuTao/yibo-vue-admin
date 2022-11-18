@@ -1,5 +1,5 @@
 import { AddRouteRecordRaw } from '../types'
-import sign from './sign'
+import login from './login'
 import home from './home'
 
 const routes: Array<AddRouteRecordRaw> = [
@@ -10,7 +10,7 @@ const routes: Array<AddRouteRecordRaw> = [
       title: '首页入口'
     }
   },
-  ...sign,
+  ...login,
   ...home,
   {
     path: '/:catchAll(.*)',
