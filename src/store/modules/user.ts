@@ -54,26 +54,28 @@ export const userStore = defineStore({
     /**
      * @description: login
      */
-    async toLogin(
-      params: LoginParam & { goHome?: boolean }
-    ): Promise<UserInfoRes | null> {
+    async toLogin(params: LoginParam): Promise<UserInfoRes | null> {
       try {
-        const { goHome = true, ...loginParam } = params
+        const { ...loginParam } = params
         const data = await login(loginParam)
         const { token } = data
         // save token
         this.setToken(token)
-        return this.afterLogin(goHome)
+        return this.afterLogin()
       } catch (error) {
         return Promise.reject(error)
       }
     },
-    async afterLogin(goHome?: boolean): Promise<UserInfoRes | null> {
+    async afterLogin(): Promise<UserInfoRes | null> {
       if (!this.token) return null
       const userInfo = await this.getUserInfoApi()
       const sessionTimeout = this.sessionTimeout
       if (sessionTimeout) {
         this.setSessionTimeout(false)
+      } else {
+        // 可以动态添加路由
+        console.log(router.getRoutes())
+        await router.replace('/layout')
       }
       return userInfo
     },

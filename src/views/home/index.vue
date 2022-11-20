@@ -1,11 +1,9 @@
 <template>
   <div>主页</div>
-  <div>{{ props.id }}</div>
-  <div>{{ props.username }}</div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ id: string; username: string }>()
+// const props = defineProps<{ id: string; username: string }>()
 </script>
 
 <script lang="ts">

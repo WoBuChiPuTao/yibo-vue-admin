@@ -7,7 +7,7 @@ const LoginBack: Result<LoginRes> = {
   code: 1,
   message: 'success',
   data: {
-    token: '222222222',
+    token: '666666666',
     role: {
       roleName: '老总',
       value: 'super'
@@ -37,7 +37,7 @@ Mock.mock('/user/login', 'post', (params) => {
   const queryString = params.body
   const queryObj = JSON.parse(queryString)
   console.log('queryObj', queryObj)
-  if (queryObj.username === 'lyb01' && queryObj.password === '9TA5GD') {
+  if (queryObj.username === 'lyb01' && queryObj.password === '123') {
     return LoginBack
   } else {
     LoginBack.code = 0

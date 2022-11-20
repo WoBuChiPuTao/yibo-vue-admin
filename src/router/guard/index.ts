@@ -3,21 +3,30 @@ import { useUserStore } from '@/store/modules/user'
 
 export function setupRouteGuard(router: Router) {
   createPageGuard(router)
+ // createLoginGuard(router)
 }
 
 function createPageGuard(router: Router) {
-  router.beforeEach((to, from, next) => {
+  router.beforeEach((to) => {
     const userStore = useUserStore()
     const token = userStore.getToken
     if (!token) {
       if (to.path !== '/login') {
         router.replace('/login')
-      } else {
-        next()
       }
     }
+    return true
   })
 }
+
+// function createLoginGuard(router: Router) {
+//   router.beforeEach((to, from) => {
+//     if (to.path !== '/login' && from.path === '/login') {
+//       router.replace(to.path)
+//     }
+//     return true
+//   })
+// }
 
 // // Routing switch back to the top
 // function createScrollGuard(router: Router) {

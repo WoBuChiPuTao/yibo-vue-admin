@@ -5,7 +5,8 @@ import type { App } from 'vue'
 // router配置
 export const router = createRouter({
   history: createWebHashHistory(),
-  routes: basicRoutes as unknown as RouteRecordRaw[]
+  routes: basicRoutes as unknown as RouteRecordRaw[],
+  scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
 // 创建router实例方法

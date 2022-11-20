@@ -18,7 +18,6 @@ const service: AxiosInstance = axios.create({
 /* 请求拦截器 */
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log('reqHeader', config)
     return config
   },
   (error: AxiosError) => {
@@ -31,7 +30,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, message, data } = response.data // 根据自定义错误码判断请求是否成功
-    console.log('resHeader', response.headers)
+    console.log(response.data)
     if (code === 1) {
       // 将组件用的数据返回
       return data

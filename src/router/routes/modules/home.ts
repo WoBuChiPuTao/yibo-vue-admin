@@ -1,16 +1,17 @@
 import { AddRouteRecordRaw } from '../../types'
 
-const layout: Array<AddRouteRecordRaw> = [
+export const home: Array<AddRouteRecordRaw> = [
   {
-    path: '/home',
-    name: 'home',
+    path: '/layout',
+    name: 'layout',
     component: () => import('@/views/layout/LayoutView.vue'),
+    redirect: '/layout/home',
     meta: {
       title: '系统布局'
     },
     children: [
       {
-        path: '/home',
+        path: 'home',
         name: 'home',
         props: true,
         component: () => import('@/views/home/index.vue'),
@@ -21,5 +22,3 @@ const layout: Array<AddRouteRecordRaw> = [
     ]
   }
 ]
-
-export default layout

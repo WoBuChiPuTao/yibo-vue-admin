@@ -10,7 +10,7 @@ import {
 export const RootRoute: AddRouteRecordRaw = {
   path: '/',
   name: 'Root',
-  redirect: '/home',
+  redirect: '/layout',
   meta: {
     title: 'Root'
   }
@@ -20,5 +20,24 @@ export const basicRoutes: Array<AddRouteRecordRaw> = [
   LOGIN_ROUTE,
   PAGE_NOT_FOUND_ROUTE,
   REDIRECT_ROUTE,
-  ERROR_LOG_ROUTE
+  ERROR_LOG_ROUTE,
+  {
+    path: '/layout',
+    name: 'layout',
+    component: () => import('@/views/layout/LayoutView.vue'),
+    redirect: '/layout/home',
+    meta: {
+      title: '系统布局'
+    },
+    children: [
+      {
+        path: 'home',
+        name: 'home',
+        component: () => import('@/views/home/index.vue'),
+        meta: {
+          title: '主页'
+        }
+      }
+    ]
+  }
 ]

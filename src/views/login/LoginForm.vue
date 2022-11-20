@@ -24,7 +24,7 @@
             </div>
         </div>
         <a>没有账户？去注册</a>
-        <button type="submit" class="sub">登录</button>
+        <button type="submit" class="sub" @click="handleLogin">登录</button>
     </form>
 </template>
 
@@ -32,13 +32,16 @@
 import { ElIcon } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref, reactive, onMounted } from 'vue'
+// mock
+import '@/mock/login'
+import { useUserStore } from '@/store/modules/user'
 const userBox = ref('input-box')
 const passBox = ref('input-box')
 const userRef = ref<HTMLInputElement | null>()
 const passRef = ref<HTMLInputElement | null>()
 
 onMounted(() => {
-    userRef?.value?.addEventListener('focus', () => { userBox.value = 'input-box focus'; console.log(userBox) })
+    userRef?.value?.addEventListener('focus', () => { userBox.value = 'input-box focus' })
     userRef?.value?.addEventListener('blur', () => {
         if (userRef?.value?.value === '') {
             userBox.value = 'input-box'
@@ -56,6 +59,34 @@ const loginForm = reactive<{ username: string, password: string }>({
     username: '',
     password: ''
 })
+
+const userStore = useUserStore()
+
+function handleLogin() {
+    // 防抖
+    function debounce() {
+        type TimeoutHandle = ReturnType<typeof setTimeout>
+        let time: TimeoutHandle
+        return function () {
+            if (time) {
+                clearTimeout(time)
+            }
+            time = setTimeout(async () => {
+                try {
+                    const userInfo = await userStore.toLogin({
+                        username: loginForm.username,
+                        password: loginForm.password
+                    })
+                    console.log('userInfo', userInfo)
+                    console.log('token', userStore.getToken)
+                } catch (error) {
+                    console.log(error)
+                }
+            }, 1000)
+        }
+    }
+    return debounce()()
+}
 
 </script>
 
