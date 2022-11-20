@@ -1,8 +1,9 @@
+import { RoleEnum } from '@/enums/roleEnm'
 import { RoleInfo } from './sys'
 /**
  * @description: 用户信息
  */
-export interface UserInfo {
+export interface UserInfoRes {
   userId: string | number
   username: string
   realName: string
@@ -17,22 +18,20 @@ export interface UserInfo {
  *
  */
 export interface UserState {
-  userInfo: Nullabel<UserInfo>
+  userInfo: Nullable<UserInfoRes>
+  token?: string
+  roleList: RoleEnum[]
+  sessionTimeout?: boolean
+  lastUpdateTime: number
 }
 
 /* 登录接口参数类型 */
-export interface LoginData {
+export interface LoginParam {
   username: string
   password: string
 }
 /* 登录接口返回值类型 */
 export interface LoginRes {
   token: string
-}
-/* 用户信息接口返回值类型 */
-export interface UserInfoRes {
-  id: string
-  username: string
-  avatar: string
-  description: string
+  role: RoleInfo
 }

@@ -1,26 +1,24 @@
 import { AddRouteRecordRaw } from '../types'
-import login from './login'
-import home from './home'
+import {
+  LOGIN_ROUTE,
+  PAGE_NOT_FOUND_ROUTE,
+  REDIRECT_ROUTE,
+  ERROR_LOG_ROUTE
+} from './basic'
 
-const routes: Array<AddRouteRecordRaw> = [
-  {
-    path: '/',
-    redirect: '/login',
-    meta: {
-      title: '首页入口'
-    }
-  },
-  ...login,
-  ...home,
-  {
-    path: '/:catchAll(.*)',
-    name: 'notFound',
-    hidden: true,
-    component: () => import('@/views/error/404.vue'),
-    meta: {
-      title: '404'
-    }
+// 根路由
+export const RootRoute: AddRouteRecordRaw = {
+  path: '/',
+  name: 'Root',
+  redirect: '/home',
+  meta: {
+    title: 'Root'
   }
-]
+}
 
-export default routes
+export const basicRoutes: Array<AddRouteRecordRaw> = [
+  LOGIN_ROUTE,
+  PAGE_NOT_FOUND_ROUTE,
+  REDIRECT_ROUTE,
+  ERROR_LOG_ROUTE
+]

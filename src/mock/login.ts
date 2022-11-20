@@ -1,12 +1,17 @@
 import Mock from 'mockjs' // 引入mockjs
 // import qs from 'qs'
-import { Result, LoginRes, UserInfoRes } from '@/types'
+import { LoginRes, UserInfoRes } from '@/types/user'
+import { Result } from '@/utils/axios/types'
 
 const LoginBack: Result<LoginRes> = {
   code: 1,
   message: 'success',
   data: {
-    token: '222222222'
+    token: '222222222',
+    role: {
+      roleName: '老总',
+      value: 'super'
+    }
   }
 }
 
@@ -14,10 +19,17 @@ const userInfoBack: Result<UserInfoRes> = {
   code: 1,
   message: 'success',
   data: {
-    id: '111111',
+    userId: '111111',
     username: 'nibaba',
     avatar: 'sssss',
-    description: 'sb'
+    desc: 'sb',
+    realName: 'SB',
+    roles: [
+      {
+        roleName: '老总',
+        value: 'super'
+      }
+    ]
   }
 }
 

@@ -1,4 +1,4 @@
-import { AddRouteRecordRaw } from '../types'
+import { AddRouteRecordRaw } from '../../types'
 
 const layout: Array<AddRouteRecordRaw> = [
   {

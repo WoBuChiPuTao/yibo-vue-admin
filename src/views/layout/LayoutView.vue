@@ -3,4 +3,12 @@
   <router-view></router-view>
 </template>
 
-<style lang="less" scoped></style>
+<script>
+export default {
+  name: 'layoutView'
+}
+</script>
+
+<style lang="less" scoped>
+
+</style>
