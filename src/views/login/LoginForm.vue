@@ -96,7 +96,7 @@ function handleLogin() {
         } catch (error) {
           console.log(error)
         }
-      }, 300)
+      }, 1)
     }
   }
   return debounce()()

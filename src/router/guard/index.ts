@@ -16,13 +16,7 @@ function createPageGuard(router: Router) {
         return
       }
     }
-    // next()
-
-    if (from.path === '/login' && to.path !== '/login') {
-      next({ path: to.path, replace: true })
-    } else {
-      next()
-    }
+    next()
   })
 }
 
