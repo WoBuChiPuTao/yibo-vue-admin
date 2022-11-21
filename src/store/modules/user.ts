@@ -4,6 +4,7 @@ import { RoleEnum } from '@/enums/roleEnm'
 import { login, getUserInfo } from '@/api/sys/user'
 import { router } from '@/router'
 import { store } from '../index'
+import { WebCache } from '@/utils/cache'
 
 export const userStore = defineStore({
   id: 'app-user',
@@ -18,8 +19,8 @@ export const userStore = defineStore({
     getUserInfo(): UserInfoRes {
       return this.userInfo || ({} as UserInfoRes)
     },
-    getToken(): string {
-      return this.token || ''
+    getToken(): string | undefined {
+      return this.token || WebCache.getLocal('TOKEN_') || undefined
     },
     getRoleList(): RoleEnum[] {
       return this.roleList.length > 0 ? this.roleList : []
@@ -39,7 +40,8 @@ export const userStore = defineStore({
       this.sessionTimeout = false
     },
     setToken(info: string | undefined) {
-      this.token = typeof info !== undefined ? info : '' // for null or undefined value
+      this.token = info || '' // for null or undefined value
+      WebCache.setLocal('TOKEN_', info as string)
     },
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList
@@ -60,7 +62,9 @@ export const userStore = defineStore({
         const data = await login(loginParam)
         const { token } = data
         // save token
+        console.log('1111')
         this.setToken(token)
+        console.log('token', this.getToken)
         return this.afterLogin()
       } catch (error) {
         return Promise.reject(error)
@@ -74,7 +78,6 @@ export const userStore = defineStore({
         this.setSessionTimeout(false)
       } else {
         // 可以动态添加路由
-        console.log(router.getRoutes())
         await router.replace('/layout')
       }
       return userInfo
