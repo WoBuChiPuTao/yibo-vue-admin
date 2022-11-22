@@ -34,7 +34,7 @@
       </div>
     </div>
     <a>没有账户？去注册</a>
-    <button type="submit" class="sub" @click="handleLogin">登录</button>
+    <button type="button" class="sub" @click="handleLogin">登录</button>
   </form>
 </template>
 
