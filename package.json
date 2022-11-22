@@ -17,7 +17,7 @@
     "qs": "^6.11.0",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.7",

@@ -19,8 +19,9 @@ export const userStore = defineStore({
     getUserInfo(): UserInfoRes {
       return this.userInfo || ({} as UserInfoRes)
     },
-    getToken(): string | undefined {
-      return this.token || WebCache.getLocal('TOKEN_') || undefined
+    getToken(): string {
+      console.log('TOKEN', WebCache.getLocal('TOKEN_'))
+      return this.token || (WebCache.getLocal('TOKEN_') as unknown as string)
     },
     getRoleList(): RoleEnum[] {
       return this.roleList.length > 0 ? this.roleList : []
@@ -40,7 +41,11 @@ export const userStore = defineStore({
       this.sessionTimeout = false
     },
     setToken(info: string | undefined) {
-      this.token = info || '' // for null or undefined value
+      if (info) {
+        this.token = info
+      } else {
+        this.token = ''
+      }
       WebCache.setLocal('TOKEN_', info as string)
     },
     setRoleList(roleList: RoleEnum[]) {

@@ -10,6 +10,6 @@ export class WebStorage {
   }
 
   get(key: string) {
-    this.storage.getItem(key)
+    return this.storage.getItem(key)
   }
 }

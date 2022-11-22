@@ -6,32 +6,32 @@ export function setupRouteGuard(router: Router) {
 }
 
 function createPageGuard(router: Router) {
-  router.beforeEach((to, from, next) => {
+  router.beforeEach((to, _, next) => {
     const userStore = useUserStore()
     const token = userStore.getToken
     console.log('token', token)
+    // 判断登录页
+    if (to.path === '/login') {
+      next()
+      return
+    }
+
     if (!token) {
-      if (to.path !== '/login') {
-        next({ path: '/login', replace: true })
-        return
+      const redirectData: {
+        path: string
+        replace: boolean
+        query?: Record<string, string>
+      } = {
+        path: '/login',
+        replace: true
       }
+      redirectData.query = {
+        ...redirectData.query,
+        redirect: to.path
+      }
+      next(redirectData)
+      return
     }
     next()
   })
 }
-
-// // Routing switch back to the top
-// function createScrollGuard(router: Router) {
-//   const isHash = (href: string) => {
-//     return /^#/.test(href)
-//   }
-
-//   const body = document.body
-
-//   router.afterEach(async (to) => {
-//     // scroll top
-//     isHash((to as RouteLocationNormalized & { href: string })?.href) &&
-//       body.scrollTo(0, 0)
-//     return true
-//   })
-// }
