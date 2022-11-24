@@ -12,7 +12,7 @@ export const LOGIN_ROUTE: AddRouteRecordRaw = {
 export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
   path: '/:path(.*)*',
   name: 'not found',
-  component: () => import('@/views/layout/LayoutView.vue'),
+  component: () => import('@/views/layout/index.vue'),
   meta: {
     title: 'ErrorPage',
     hideBreadcrumb: true,
@@ -34,7 +34,7 @@ export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
 
 export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   path: '/redirect',
-  component: () => import('@/views/layout/LayoutView.vue'),
+  component: () => import('@/views/layout/index.vue'),
   name: 'RedirectTo',
   meta: {
     title: 'redirect',
@@ -45,7 +45,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
     {
       path: '/redirect/:path(.*)',
       name: 'redirect',
-      component: () => import('@/views/layout/LayoutView.vue'),
+      component: () => import('@/views/layout/index.vue'),
       meta: {
         title: 'redirect'
       }

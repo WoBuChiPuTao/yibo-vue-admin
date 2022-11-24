@@ -1,5 +1,5 @@
 <template>
-  <form :model="loginForm" class="login-content">
+  <form :model="loginForm" class="login-content" @keypress.enter="handleLogin">
     <h2>sign in</h2>
     <div :class="userBox">
       <div class="i">
@@ -76,30 +76,17 @@ const loginForm = reactive<{ username: string; password: string }>({
 
 const userStore = useUserStore()
 
-function handleLogin() {
-  // 防抖
-  function debounce() {
-    type TimeoutHandle = ReturnType<typeof setTimeout>
-    let time: TimeoutHandle
-    return function () {
-      if (time) {
-        clearTimeout(time)
-      }
-      time = setTimeout(async () => {
-        try {
-          const userInfo = await userStore.toLogin({
-            username: loginForm.username,
-            password: loginForm.password
-          })
-          console.log('userInfo', userInfo)
-          console.log('token', userStore.getToken)
-        } catch (error) {
-          console.log(error)
-        }
-      }, 1)
-    }
+async function handleLogin() {
+  try {
+    const userInfo = await userStore.toLogin({
+      username: loginForm.username,
+      password: loginForm.password
+    })
+    console.log('userInfo', userInfo)
+    console.log('token', userStore.getToken)
+  } catch (error) {
+    console.log(error)
   }
-  return debounce()()
 }
 </script>
 

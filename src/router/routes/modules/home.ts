@@ -4,7 +4,7 @@ export const home: Array<AddRouteRecordRaw> = [
   {
     path: '/layout',
     name: 'layout',
-    component: () => import('@/views/layout/LayoutView.vue'),
+    component: () => import('@/views/layout/index.vue'),
     redirect: '/layout/home',
     meta: {
       title: '系统布局'
