@@ -1,32 +1,51 @@
 <template>
-  <MenuItem></MenuItem>
-  <SubMenuItem>
+  <ElSubMenu v-if="hasChildrenMenu(item)" :index="item.path">
+    <template #title>
+      <span> {{ item.name }}</span>
+    </template>
     <template
       v-for="childrenItem in item.children || []"
-      :key="childrenItem.name"
+      :key="childrenItem.path"
     >
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
-  </SubMenuItem>
+  </ElSubMenu>
+  <ElMenuItem v-else :index="item.path"
+    ><template #title>
+      <span> {{ item.name }}</span>
+    </template></ElMenuItem
+  >
 </template>
 
 <script lang="ts">
+import { ElSubMenu, ElMenuItem } from 'element-plus'
 import { SimpleMenu } from '@/types/menu'
 import { defineComponent, PropType } from 'vue'
-import MenuItem from './MenuItem.vue'
-import SubMenuItem from './SubMenuItem.vue'
+// import SubMenuItem from './SubMenuItem.vue'
+// import MenuItem from './MenuItem.vue'
 
 export default defineComponent({
   name: 'SubMenu',
-  components: { MenuItem, SubMenuItem },
+  inheritAttrs: false,
+  components: { ElSubMenu, ElMenuItem },
   props: {
     item: {
       type: Object as PropType<SimpleMenu>,
       default: () => ({})
     }
   },
-  setup() {
-    return {}
+  setup(props) {
+    console.log(props.item)
+    function hasChildrenMenu(item: SimpleMenu): boolean {
+      if (item.children) {
+        return true
+      } else {
+        return false
+      }
+    }
+    return {
+      hasChildrenMenu
+    }
   }
 })
 </script>

@@ -5,7 +5,9 @@
     </ElAside>
     <ElContainer>
       <ElHeader></ElHeader>
-      <ElMain></ElMain>
+      <ElMain>
+        <router-view></router-view>
+      </ElMain>
       <ElFooter></ElFooter>
     </ElContainer>
   </ElContainer>
@@ -15,5 +17,3 @@
 import { ElContainer, ElAside, ElHeader, ElFooter, ElMain } from 'element-plus'
 import Side from '@/views/side/index.vue'
 </script>
-
-<style lang="less" scoped></style>

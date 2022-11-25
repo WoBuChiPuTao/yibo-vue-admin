@@ -56,7 +56,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
 export const ERROR_LOG_ROUTE: AddRouteRecordRaw = {
   path: '/error-log',
   name: 'ErrorLog',
-  component: () => import('@/views/layout/LayoutView.vue'),
+  component: () => import('@/views/layout/index.vue'),
   redirect: '/error-log/list',
   meta: {
     title: 'ErrorLog'

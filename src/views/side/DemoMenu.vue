@@ -1,6 +1,6 @@
 <template>
-  <div>logo</div>
-  <ElMenu>
+  <ElMenu :collapse="isCollapse">
+    <div>logo</div>
     <template v-for="item in items" :key="item.path">
       <SubMenu :item="item"></SubMenu>
     </template>
@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import { ElMenu } from 'element-plus'
-import SubMenu from '@/components/SubMenu.vue'
+import SubMenu from '@/components/menu/SubMenu.vue'
 import { SimpleMenu } from '@/types/menu'
 
 export default defineComponent({
@@ -22,8 +22,13 @@ export default defineComponent({
       default: () => []
     }
   },
-  setup(props) {
-    return {}
+  setup() {
+    const isCollapse = ref(false)
+    return {
+      isCollapse
+    }
   }
 })
 </script>
+
+<style lang="less"></style>

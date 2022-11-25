@@ -1,5 +1,4 @@
 <template>
-  <div>logo</div>
   <DemoMenu :items="menus"></DemoMenu>
 </template>
 
@@ -18,5 +17,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style></style>
