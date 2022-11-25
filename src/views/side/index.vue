@@ -1,16 +1,20 @@
 <template>
   <div>logo</div>
-  <DemoMenu></DemoMenu>
+  <DemoMenu :items="menus"></DemoMenu>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import DemoMenu from './DemoMenu.vue'
+import { useSplitMenu } from './useMenu'
 export default defineComponent({
   name: 'AppSide',
   components: { DemoMenu },
   setup() {
-    return {}
+    const menus = useSplitMenu()
+    return {
+      menus
+    }
   }
 })
 </script>

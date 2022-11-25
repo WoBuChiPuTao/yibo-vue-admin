@@ -1,21 +1,28 @@
 <template>
   <div>logo</div>
   <ElMenu>
-    <template>
-      <MenuItem></MenuItem>
+    <template v-for="item in items" :key="item.path">
+      <SubMenu :item="item"></SubMenu>
     </template>
   </ElMenu>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { ElMenu } from 'element-plus'
-import MenuItem from './MenuItem.vue'
+import SubMenu from '@/components/SubMenu.vue'
+import { SimpleMenu } from '@/types/menu'
 
 export default defineComponent({
   name: 'DemoMenu',
-  components: { ElMenu, MenuItem },
-  setup() {
+  components: { ElMenu, SubMenu },
+  props: {
+    items: {
+      type: Array as PropType<SimpleMenu[]>,
+      default: () => []
+    }
+  },
+  setup(props) {
     return {}
   }
 })

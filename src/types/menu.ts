@@ -1,6 +1,12 @@
 import { RoleEnum } from '@/enums/roleEnm'
 import type { RouteMeta } from 'vue-router'
 
+export interface MenuTag {
+  type?: 'primary' | 'error' | 'warn' | 'success'
+  content?: string
+  dot?: boolean
+}
+
 export interface Menu {
   name: string
 
@@ -26,8 +32,7 @@ export interface Menu {
   hideMenu?: boolean
 }
 
-export interface MenuTag {
-  type?: 'primary' | 'error' | 'warn' | 'success'
-  content?: string
-  dot?: boolean
+export interface SimpleMenu {
+  name: string
+  children?: SimpleMenu[]
 }
