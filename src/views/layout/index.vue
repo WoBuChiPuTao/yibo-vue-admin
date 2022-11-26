@@ -1,10 +1,10 @@
 <template>
   <ElContainer>
-    <ElAside>
+    <ElAside class="sider">
       <Side></Side>
     </ElAside>
     <ElContainer>
-      <ElHeader></ElHeader>
+      <ElHeader class="header"></ElHeader>
       <ElMain>
         <router-view></router-view>
       </ElMain>
@@ -17,3 +17,9 @@
 import { ElContainer, ElAside, ElHeader, ElFooter, ElMain } from 'element-plus'
 import Side from '@/views/side/index.vue'
 </script>
+
+<style lang="less" scoped>
+.sider {
+  width: 200px;
+}
+</style>

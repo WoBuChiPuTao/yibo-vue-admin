@@ -1,20 +1,15 @@
 <template>
   <ElSubMenu v-if="hasChildrenMenu(item)" :index="item.path">
     <template #title>
-      <span> {{ item.name }}</span>
+      {{ item.name }}
     </template>
-    <template
-      v-for="childrenItem in item.children || []"
-      :key="childrenItem.path"
-    >
+    <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
   </ElSubMenu>
-  <ElMenuItem v-else :index="item.path"
-    ><template #title>
-      <span> {{ item.name }}</span>
-    </template></ElMenuItem
-  >
+  <ElMenuItem v-else :index="item.path"><template #title>
+      {{ item.name }}
+    </template></ElMenuItem>
 </template>
 
 <script lang="ts">

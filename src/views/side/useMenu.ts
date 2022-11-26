@@ -2,7 +2,7 @@ export function useSplitMenu() {
   return [
     {
       path: '/home',
-      name: '首页',
+      name: '首页AAAA',
       children: [
         {
           path: '/home/ww',
