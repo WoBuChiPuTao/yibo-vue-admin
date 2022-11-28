@@ -3,8 +3,10 @@ import { LoginParam, UserState, UserInfoRes } from '@/types/user'
 import { RoleEnum } from '@/enums/roleEnm'
 import { login, getUserInfo } from '@/api/sys/user'
 import { router } from '@/router'
+import { asyncRoutes } from '@/router/routes/modules/index'
 import { store } from '../index'
 import { WebCache } from '@/utils/cache'
+import type { RouteRecordRaw } from 'vue-router'
 
 export const userStore = defineStore({
   id: 'app-user',
@@ -83,7 +85,11 @@ export const userStore = defineStore({
         this.setSessionTimeout(false)
       } else {
         // 可以动态添加路由
-        await router.replace('/layout')
+        asyncRoutes.forEach((route) => {
+          router.addRoute(route as unknown as RouteRecordRaw)
+        })
+        await router.replace('/home')
+        console.log('router', router.getRoutes())
       }
       return userInfo
     },

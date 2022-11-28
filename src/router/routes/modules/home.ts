@@ -1,24 +1,25 @@
 import { AddRouteRecordRaw } from '../../types'
+const Layout = () => import('@/views/layout/index.vue')
 
-export const home: Array<AddRouteRecordRaw> = [
-  {
-    path: '/layout',
-    name: 'layout',
-    component: () => import('@/views/layout/index.vue'),
-    redirect: '/layout/home',
-    meta: {
-      title: '系统布局'
-    },
-    children: [
-      {
-        path: 'home',
-        name: 'home',
-        props: true,
-        component: () => import('@/views/home/index.vue'),
-        meta: {
-          title: '主页'
-        }
+const home: AddRouteRecordRaw = {
+  path: '/home',
+  name: 'home',
+  component: Layout,
+  redirect: '/home/homepage',
+  meta: {
+    title: '系统'
+  },
+  children: [
+    {
+      path: 'homepage',
+      name: 'HomePage',
+      props: true,
+      component: () => import('@/views/home/index.vue'),
+      meta: {
+        title: '主页'
       }
-    ]
-  }
-]
+    }
+  ]
+}
+
+export default home

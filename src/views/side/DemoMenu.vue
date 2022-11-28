@@ -1,6 +1,7 @@
 <template>
   <ElMenu :collapse="isCollapse">
     <div>logo</div>
+    <component :is="iconName"></component>
     <template v-for="item in items" :key="item.path">
       <SubMenu :item="item"></SubMenu>
     </template>
@@ -23,9 +24,11 @@ export default defineComponent({
     }
   },
   setup() {
+    const iconName = ref('Search')
     const isCollapse = ref(false)
     return {
-      isCollapse
+      isCollapse,
+      iconName
     }
   }
 })

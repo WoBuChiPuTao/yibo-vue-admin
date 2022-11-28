@@ -1,5 +1,5 @@
 <template>
-  <ElSubMenu v-if="hasChildrenMenu(item)" :index="item.path">
+  <SubMenuItem v-if="hasChildrenMenu(item)" :index="item.path">
     <template #title>
       <span> {{ item.name }}</span>
     </template>
@@ -9,25 +9,25 @@
     >
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
-  </ElSubMenu>
-  <ElMenuItem v-else :index="item.path"
+  </SubMenuItem>
+  <MenuItem v-else :index="item.path"
     ><template #title>
       <span> {{ item.name }}</span>
-    </template></ElMenuItem
+    </template></MenuItem
   >
 </template>
 
 <script lang="ts">
-import { ElSubMenu, ElMenuItem } from 'element-plus'
+// import { ElSubMenu, ElMenuItem } from 'element-plus'
 import { SimpleMenu } from '@/types/menu'
 import { defineComponent, PropType } from 'vue'
-// import SubMenuItem from './SubMenuItem.vue'
-// import MenuItem from './MenuItem.vue'
+import SubMenuItem from './SubMenuItem.vue'
+import MenuItem from './MenuItem.vue'
 
 export default defineComponent({
   name: 'SubMenu',
   inheritAttrs: false,
-  components: { ElSubMenu, ElMenuItem },
+  components: { SubMenuItem, MenuItem },
   props: {
     item: {
       type: Object as PropType<SimpleMenu>,

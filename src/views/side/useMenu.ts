@@ -3,6 +3,7 @@ export function useSplitMenu() {
     {
       path: '/home',
       name: '首页',
+      icon: '',
       children: [
         {
           path: '/home/ww',
@@ -23,6 +24,7 @@ export function useSplitMenu() {
     {
       path: '/page/aa',
       name: 'haha',
+      icon: '',
       children: [
         {
           path: '/page/dd',
@@ -32,7 +34,8 @@ export function useSplitMenu() {
     },
     {
       path: '/about',
-      name: '关于'
+      name: '关于',
+      icon: ''
     }
   ]
 }

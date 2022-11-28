@@ -1,9 +1,11 @@
 <template>
-  <img src="/resource/img/bg.jpeg" alt="" class="bg" />
-  <div class="container">
-    <div class="cover-box"></div>
-    <RegisterForm></RegisterForm>
-    <LoginForm></LoginForm>
+  <div class="body">
+    <img src="/resource/img/bg.jpeg" alt="" class="bg" />
+    <div class="container">
+      <div class="cover-box"></div>
+      <RegisterForm></RegisterForm>
+      <LoginForm></LoginForm>
+    </div>
   </div>
 </template>
 
@@ -49,7 +51,7 @@ import RegisterForm from './RegisterForm.vue'
 </script>
 
 <style lang="less">
-body {
+.body {
   width: 100vw;
   height: 100vh;
   display: flex;
