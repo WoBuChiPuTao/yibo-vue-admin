@@ -1,10 +1,10 @@
 <template>
   <ElContainer>
-    <ElAside>
+    <ElAside class="sider">
       <Side></Side>
     </ElAside>
     <ElContainer>
-      <ElHeader></ElHeader>
+      <ElHeader class="header"></ElHeader>
       <ElMain>
         <router-view></router-view>
       </ElMain>
@@ -22,3 +22,9 @@ const router = useRouter()
 
 console.log('currentRoute ', router.getRoutes())
 </script>
+
+<style lang="less" scoped>
+.sider {
+  width: 200px;
+}
+</style>

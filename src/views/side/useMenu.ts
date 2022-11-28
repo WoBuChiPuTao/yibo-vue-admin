@@ -2,8 +2,12 @@ export function useSplitMenu() {
   return [
     {
       path: '/home',
+<<<<<<< HEAD
       name: '首页',
       icon: '',
+=======
+      name: '首页AAAA',
+>>>>>>> 55dbfaf492b31d614904b4766737f95daa50310f
       children: [
         {
           path: '/home/ww',
