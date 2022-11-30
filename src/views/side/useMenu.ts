@@ -2,12 +2,8 @@ export function useSplitMenu() {
   return [
     {
       path: '/home',
-<<<<<<< HEAD
       name: '首页',
-      icon: '',
-=======
-      name: '首页AAAA',
->>>>>>> 55dbfaf492b31d614904b4766737f95daa50310f
+      icon: 'material-symbols:bar-chart',
       children: [
         {
           path: '/home/ww',
@@ -28,7 +24,7 @@ export function useSplitMenu() {
     {
       path: '/page/aa',
       name: 'haha',
-      icon: '',
+      icon: 'mdi:about-circle-outline',
       children: [
         {
           path: '/page/dd',
@@ -39,7 +35,7 @@ export function useSplitMenu() {
     {
       path: '/about',
       name: '关于',
-      icon: ''
+      icon: 'simple-icons:aboutdotme'
     }
   ]
 }

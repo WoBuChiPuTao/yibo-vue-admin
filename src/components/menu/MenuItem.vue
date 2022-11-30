@@ -1,5 +1,7 @@
 <template>
-  <slot></slot>
+  <li>
+    <slot name="title"></slot>
+  </li>
 </template>
 
 <script lang="ts">

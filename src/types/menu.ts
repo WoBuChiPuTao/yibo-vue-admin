@@ -35,5 +35,6 @@ export interface Menu {
 export interface SimpleMenu {
   path: string
   name: string
+  icon?: string
   children?: SimpleMenu[]
 }

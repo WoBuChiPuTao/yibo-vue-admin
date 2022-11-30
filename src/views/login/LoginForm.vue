@@ -39,7 +39,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElIcon } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref, reactive, onMounted } from 'vue'
 // mock

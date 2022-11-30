@@ -1,24 +1,22 @@
 <template>
-  <SubMenuItem v-if="hasChildrenMenu(item)" :index="item.path">
+  <SubMenuItem v-if="hasChildrenMenu(item)">
     <template #title>
-      {{ item.name }}
+      <EIcon :icon="item.icon"></EIcon>
+      <span> {{ item.name }}</span>
     </template>
-    <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
+    <template
+      v-for="childrenItem in item.children || []"
+      :key="childrenItem.path"
+    >
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
-<<<<<<< HEAD
   </SubMenuItem>
-  <MenuItem v-else :index="item.path"
+  <MenuItem v-else
     ><template #title>
+      <EIcon :icon="item.icon"></EIcon>
       <span> {{ item.name }}</span>
     </template></MenuItem
   >
-=======
-  </ElSubMenu>
-  <ElMenuItem v-else :index="item.path"><template #title>
-      {{ item.name }}
-    </template></ElMenuItem>
->>>>>>> 55dbfaf492b31d614904b4766737f95daa50310f
 </template>
 
 <script lang="ts">
@@ -27,11 +25,11 @@ import { SimpleMenu } from '@/types/menu'
 import { defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
 import MenuItem from './MenuItem.vue'
+import EIcon from '@/components/icons/EIcon.vue'
 
 export default defineComponent({
   name: 'SubMenu',
-  inheritAttrs: false,
-  components: { SubMenuItem, MenuItem },
+  components: { SubMenuItem, MenuItem, EIcon },
   props: {
     item: {
       type: Object as PropType<SimpleMenu>,
@@ -42,6 +40,7 @@ export default defineComponent({
     console.log(props.item)
     function hasChildrenMenu(item: SimpleMenu): boolean {
       if (item.children) {
+        console.log('111')
         return true
       } else {
         return false
