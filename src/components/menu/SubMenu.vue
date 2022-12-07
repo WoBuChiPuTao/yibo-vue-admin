@@ -1,8 +1,8 @@
 <template>
   <SubMenuItem v-if="hasChildrenMenu(item)">
     <template #title>
-      <EIcon :icon="item.icon"></EIcon>
-      <span> {{ item.name }}</span>
+      <EIcon class="iconfont" :icon="item.icon"></EIcon>
+      <span class="item-name"> {{ item.name }}</span>
     </template>
     <template
       v-for="childrenItem in item.children || []"
@@ -11,16 +11,13 @@
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
   </SubMenuItem>
-  <MenuItem v-else
-    ><template #title>
-      <EIcon :icon="item.icon"></EIcon>
-      <span> {{ item.name }}</span>
-    </template></MenuItem
-  >
+  <MenuItem v-else>
+    <EIcon class="iconfont" :icon="item.icon"></EIcon>
+    <span class="item-name">{{ item.name }}</span>
+  </MenuItem>
 </template>
 
 <script lang="ts">
-// import { ElSubMenu, ElMenuItem } from 'element-plus'
 import { SimpleMenu } from '@/types/menu'
 import { defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
@@ -29,7 +26,7 @@ import EIcon from '@/components/icons/EIcon.vue'
 
 export default defineComponent({
   name: 'SubMenu',
-  components: { SubMenuItem, MenuItem, EIcon },
+  components: { MenuItem, EIcon, SubMenuItem },
   props: {
     item: {
       type: Object as PropType<SimpleMenu>,

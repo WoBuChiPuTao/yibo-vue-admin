@@ -23,8 +23,10 @@ const router = useRouter()
 console.log('currentRoute ', router.getRoutes())
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .sider {
-  width: 200px;
+  height: 100vh;
+  width: 210px;
+  background-color: rgb(105, 105, 105);
 }
 </style>

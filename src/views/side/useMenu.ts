@@ -8,6 +8,7 @@ export function useSplitMenu() {
         {
           path: '/home/ww',
           name: '第一',
+          icon: 'material-symbols:bar-chart',
           children: [
             {
               path: '/home/ww/e',

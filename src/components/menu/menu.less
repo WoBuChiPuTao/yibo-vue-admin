@@ -1,0 +1,43 @@
+.menu-list{
+   &-item{
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 10px;
+    padding-left: 16px;
+    white-space: nowrap;
+    position: relative;
+    box-sizing: border-box;
+
+    .iconfont {
+        font-family: "iconfont" !important;
+        font-style: normal;
+        font-size: 20px;
+        color:rgb(95, 0, 184);
+        vertical-align: middle;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+    .item-name {
+        line-height: 50px;
+        margin-left: 10px;
+        font-size: 16px;
+        color: black;
+        font-weight: 100;
+        transition: 0.6s;
+        opacity: 1;
+    }
+
+    .submenu-open-icon{
+       font-size: 14px;
+       position: absolute;
+       top: 18px;
+       right: 15px;
+    }
+   }
+   
+   &-item:hover{
+    background-color:rgb(255, 255, 0)
+   }
+}

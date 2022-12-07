@@ -1,22 +1,20 @@
 <template>
   <div>logo</div>
-  <ElContainer>
-    <ElMenu :collapse="isCollapse">
-      <template v-for="item in items" :key="item.path">
-        <SubMenu :item="item"></SubMenu>
-      </template>
-    </ElMenu>
-  </ElContainer>
+  <Menu :collapse="isCollapse">
+    <template v-for="item in items" :key="item.path">
+      <SubMenu :item="item"></SubMenu>
+    </template>
+  </Menu>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue'
-import { ElMenu, ElContainer } from 'element-plus'
+import Menu from '@/components/menu/Menu.vue'
 import SubMenu from '@/components/menu/SubMenu.vue'
 import { SimpleMenu } from '@/types/menu'
 export default defineComponent({
   name: 'DemoMenu',
-  components: { ElMenu, SubMenu, ElContainer },
+  components: { Menu, SubMenu },
   props: {
     items: {
       type: Array as PropType<SimpleMenu[]>,
