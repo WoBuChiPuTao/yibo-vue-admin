@@ -37,7 +37,6 @@ export default defineComponent({
     console.log(props.item)
     function hasChildrenMenu(item: SimpleMenu): boolean {
       if (item.children) {
-        console.log('111')
         return true
       } else {
         return false
