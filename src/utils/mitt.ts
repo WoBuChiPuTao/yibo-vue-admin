@@ -7,6 +7,7 @@ export type EventType = string | symbol
 
 // An event handler can take an optional event argument
 // and should not return a value
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Handler<T = any> = (event?: T) => void
 export type WildcardHandler = (type: EventType, event?: any) => void
 
@@ -86,12 +87,14 @@ export default function mitt(all?: EventHandlerMap): Emitter {
      * @memberOf mitt
      */
     emit<T = any>(type: EventType, evt: T) {
-      ((all?.get(type) || []) as EventHandlerList).slice().forEach((handler) => {
+      // eslint-disable-next-line array-callback-return
+      ((all?.get(type) || []) as EventHandlerList).slice().map((handler) => {
         handler(evt)
       })
       ;((all?.get('*') || []) as WildCardEventHandlerList)
         .slice()
-        .forEach((handler) => {
+        // eslint-disable-next-line array-callback-return
+        .map((handler) => {
           handler(type, evt)
         })
     },

@@ -17,12 +17,14 @@ import {
   computed,
   defineComponent,
   getCurrentInstance,
+  onBeforeMount,
   reactive,
   toRefs
 } from 'vue'
 import { useMenuItem } from './useMenu'
 import EIcon from '@/components/icons/EIcon.vue'
 import CollapseTransition from '@/components/Transition/CollapseTransition.vue'
+import { useRootMenuContext } from './useMenuContext'
 
 export default defineComponent({
   name: 'SubMenuItem',
@@ -32,9 +34,12 @@ export default defineComponent({
     const instance = getCurrentInstance()
     const { getItemStyle } = useMenuItem(instance)
 
+    const { rootMenuEmitter } = useRootMenuContext()
+
     // 打开下级菜单
     function handleClick() {
       const opened = state.opened
+      rootMenuEmitter.emit('on-update-opened')
       state.opened = !opened
     }
 
@@ -49,6 +54,13 @@ export default defineComponent({
         }
       ]
     })
+
+    onBeforeMount(() => {
+      rootMenuEmitter.on('on-update-opened', () => {
+        state.opened = false
+      })
+    })
+
     return {
       getItemStyle,
       getClass,
