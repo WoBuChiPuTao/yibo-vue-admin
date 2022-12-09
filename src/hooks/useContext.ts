@@ -41,6 +41,5 @@ export function useContext<T>(
   key: InjectionKey<T> = Symbol(),
   defaultValue?: any
 ): ShallowUnwrap<T> {
-  console.log('key', key)
   return inject(key, defaultValue || {})
 }

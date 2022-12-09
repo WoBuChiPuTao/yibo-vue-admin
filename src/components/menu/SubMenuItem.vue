@@ -32,14 +32,18 @@ export default defineComponent({
   setup() {
     // 多级菜单样式
     const instance = getCurrentInstance()
-    const { getItemStyle } = useMenuItem(instance)
+    const { getItemStyle, getParentList } = useMenuItem(instance)
 
     const { rootMenuEmitter } = useRootMenuContext()
 
     // 打开下级菜单
     function handleClick() {
       const opened = state.opened
-      rootMenuEmitter.emit('on-update-opened')
+      const { uidList } = getParentList()
+      rootMenuEmitter.emit('on-update-opened', {
+        opend: false,
+        uidList: uidList
+      })
       state.opened = !opened
     }
 
@@ -56,8 +60,11 @@ export default defineComponent({
     })
 
     onBeforeMount(() => {
-      rootMenuEmitter.on('on-update-opened', () => {
-        state.opened = false
+      rootMenuEmitter.on('on-update-opened', (data: Record<string, any> | undefined) => {
+        const { opend, uidList } = data as { opend: boolean; uidList: number[] }
+        if (!uidList.includes(instance?.uid as number)) {
+          state.opened = opend
+        }
       })
     })
 
