@@ -27,6 +27,6 @@ console.log('currentRoute ', router.getRoutes())
 .sider {
   height: 100vh;
   width: 210px;
-  background-color: rgb(105, 105, 105);
+  background-color: rgb(123, 0, 0);
 }
 </style>

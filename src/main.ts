@@ -5,7 +5,7 @@ import { router, setupRouter } from './router'
 import { setupRouteGuard } from './router/guard'
 import { setupStore } from './store'
 import 'element-plus/dist/index.css'
-import './style/whole.less'
+import './style/index.less'
 
 // 创建app实例
 const app = createApp(App)
