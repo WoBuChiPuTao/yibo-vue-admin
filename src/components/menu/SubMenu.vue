@@ -1,5 +1,5 @@
 <template>
-  <SubMenuItem v-if="hasChildrenMenu(item)">
+  <SubMenuItem v-if="hasChildrenMenu(item)" :class="getLevelClass">
     <template #title>
       <EIcon class="iconfont" :icon="item.icon"></EIcon>
       <span class="item-name"> {{ item.name }}</span>
@@ -11,7 +11,7 @@
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
   </SubMenuItem>
-  <MenuItem v-else>
+  <MenuItem v-else :class="getLevelClass">
     <EIcon class="iconfont" :icon="item.icon"></EIcon>
     <span class="item-name">{{ item.name }}</span>
   </MenuItem>
@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { SimpleMenu } from '@/types/menu'
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
 import MenuItem from './MenuItem.vue'
 import EIcon from '@/components/icons/EIcon.vue'
@@ -31,10 +31,20 @@ export default defineComponent({
     item: {
       type: Object as PropType<SimpleMenu>,
       default: () => ({})
-    }
+    },
+    parent: Boolean
   },
   setup(props) {
-    console.log(props.item)
+    // 菜单层次样式
+    const getLevelClass = computed(() => {
+      return [
+        {
+          'menu-parent': props.parent,
+          'menu-children': !props.parent
+        }
+      ]
+    })
+
     function hasChildrenMenu(item: SimpleMenu): boolean {
       if (item.children) {
         return true
@@ -43,7 +53,8 @@ export default defineComponent({
       }
     }
     return {
-      hasChildrenMenu
+      hasChildrenMenu,
+      getLevelClass
     }
   }
 })

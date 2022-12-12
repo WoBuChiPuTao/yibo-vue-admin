@@ -4,6 +4,10 @@ ul{
 }
 
 .menu-list {
+  .menu-children{
+    background-color:rgb(12, 33, 53);
+  }
+
   &-item {
     cursor: pointer;
     width: 100%;
@@ -47,9 +51,5 @@ ul{
     &-opend > * > .submenu-open-icon {
       transform: translateY(-50%) rotate(180deg);
     }
-  }
-
-  &-item:hover {
-    background-color: rgb(255, 255, 0);
   }
 }

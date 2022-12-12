@@ -4,7 +4,7 @@
       <Side></Side>
     </ElAside>
     <ElContainer>
-      <ElHeader class="header"></ElHeader>
+      <Header></Header>
       <ElMain>
         <router-view></router-view>
       </ElMain>
@@ -14,7 +14,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ElContainer, ElAside, ElHeader, ElFooter, ElMain } from 'element-plus'
+import { ElContainer, ElAside, ElFooter, ElMain } from 'element-plus'
+import Header from '@/views/header/index.vue'
 import Side from '@/views/side/index.vue'
 import { useRouter } from 'vue-router'
 

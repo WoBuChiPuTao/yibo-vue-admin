@@ -3,7 +3,7 @@
     <div>logo</div>
     <Menu :collapse="isCollapse">
       <template v-for="item in items" :key="item.path">
-        <SubMenu :item="item"></SubMenu>
+        <SubMenu :item="item" :parent="true"></SubMenu>
       </template>
     </Menu>
   </ElScrollbar>

@@ -53,6 +53,7 @@ export default defineComponent({
 
     const getClass = computed(() => {
       return [
+        'menu-list-submenu',
         {
           'menu-list-item-opend': state.opened
         }
@@ -60,12 +61,18 @@ export default defineComponent({
     })
 
     onBeforeMount(() => {
-      rootMenuEmitter.on('on-update-opened', (data: Record<string, any> | undefined) => {
-        const { opend, uidList } = data as { opend: boolean; uidList: number[] }
-        if (!uidList.includes(instance?.uid as number)) {
-          state.opened = opend
+      rootMenuEmitter.on(
+        'on-update-opened',
+        (data: Record<string, any> | undefined) => {
+          const { opend, uidList } = data as {
+            opend: boolean
+            uidList: number[]
+          }
+          if (!uidList.includes(instance?.uid as number)) {
+            state.opened = opend
+          }
         }
-      })
+      )
     })
 
     return {
