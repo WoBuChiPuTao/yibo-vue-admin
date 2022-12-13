@@ -7,16 +7,19 @@ const about: AddRouteRecordRaw = {
   component: Layout,
   redirect: '/about/page',
   meta: {
-    title: '关于'
+    title: '关于',
+    orderNo: 100000,
+    icon: 'simple-icons:aboutdotme'
   },
   children: [
     {
-      path: 'page',
+      path: 'index',
       name: 'AboutPage',
       component: () => import('@/views/about/index.vue'),
       meta: {
         title: '关于',
-        icon: 'ion:bar-chart-outline'
+        icon: 'simple-icons:aboutdotme',
+        hidden: true
       }
     }
   ]

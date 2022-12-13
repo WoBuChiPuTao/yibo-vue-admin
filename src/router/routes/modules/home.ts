@@ -7,16 +7,19 @@ const home: AddRouteRecordRaw = {
   component: Layout,
   redirect: '/home/homepage',
   meta: {
-    title: '系统'
+    title: '主页',
+    icon: 'material-symbols:home-outline',
+    orderNo: 10
   },
   children: [
     {
       path: 'homepage',
       name: 'HomePage',
-      props: true,
       component: () => import('@/views/home/index.vue'),
       meta: {
-        title: '主页'
+        title: '主页',
+        icon: 'material-symbols:home-outline',
+        hidden: true
       }
     }
   ]
