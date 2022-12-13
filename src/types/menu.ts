@@ -1,5 +1,5 @@
-import { RoleEnum } from '@/enums/roleEnm'
-import type { RouteMeta } from 'vue-router'
+// import { RoleEnum } from '@/enums/roleEnm'
+// import type { RouteMeta } from 'vue-router'
 
 export interface MenuTag {
   type?: 'primary' | 'error' | 'warn' | 'success'
@@ -23,18 +23,5 @@ export interface Menu {
 
   orderNo?: number
 
-  roles?: RoleEnum[]
-
-  meta?: Partial<RouteMeta>
-
-  tag?: MenuTag
-
   hideMenu?: boolean
-}
-
-export interface SimpleMenu {
-  path: string
-  name: string
-  icon?: string
-  children?: SimpleMenu[]
 }

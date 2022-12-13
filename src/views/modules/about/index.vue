@@ -1,5 +1,5 @@
 <template>
     <div>
-        menu_management
+        about
     </div>
 </template>

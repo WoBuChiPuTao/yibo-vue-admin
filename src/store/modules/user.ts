@@ -89,7 +89,6 @@ export const userStore = defineStore({
           router.addRoute(route as unknown as RouteRecordRaw)
         })
         await router.replace('/home')
-        console.log('router', router.getRoutes())
       }
       return userInfo
     },

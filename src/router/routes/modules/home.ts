@@ -9,7 +9,7 @@ const home: AddRouteRecordRaw = {
   meta: {
     title: '主页',
     icon: 'material-symbols:home-outline',
-    orderNo: 10
+    orderNo: 1
   },
   children: [
     {
@@ -19,7 +19,7 @@ const home: AddRouteRecordRaw = {
       meta: {
         title: '主页',
         icon: 'material-symbols:home-outline',
-        hidden: true
+        hideRoute: true
       }
     }
   ]

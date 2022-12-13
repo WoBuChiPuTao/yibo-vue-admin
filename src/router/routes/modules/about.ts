@@ -15,11 +15,11 @@ const about: AddRouteRecordRaw = {
     {
       path: 'index',
       name: 'AboutPage',
-      component: () => import('@/views/about/index.vue'),
+      component: () => import('@/views/modules/about/index.vue'),
       meta: {
         title: '关于',
         icon: 'simple-icons:aboutdotme',
-        hidden: true
+        hideRoute: true
       }
     }
   ]

@@ -14,14 +14,14 @@ import { defineComponent, PropType, ref } from 'vue'
 import { ElScrollbar } from 'element-plus'
 import Menu from '@/components/menu/Menu.vue'
 import SubMenu from '@/components/menu/SubMenu.vue'
-import { SimpleMenu } from '@/types/menu'
+import { Menu as MenuType } from '@/types/menu'
 export default defineComponent({
   name: 'DemoMenu',
   components: { Menu, SubMenu, ElScrollbar },
   props: {
     items: {
-      type: Array as PropType<SimpleMenu[]>,
-      default: () => []
+      type: Array as PropType<MenuType[]>,
+      default: () => ([])
     }
   },
   setup() {
