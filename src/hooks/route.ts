@@ -5,6 +5,7 @@ import {
   RouteRecordNormalized,
   RouteRecordRaw
 } from 'vue-router'
+import { cloneDeep, omit } from 'lodash-es'
 
 /**
  * 将多级路由转换为 2 级路由
@@ -25,11 +26,7 @@ export function flatMultiRoutes<T extends RouteRecordRaw>(routes: T[]) {
 // 判断路由级别是否超过2级
 function isMultipleRoute<T extends RouteRecordRaw>(route: T) {
   // Reflect.has 与 in 操作符 相同, 用于检查一个对象(包括它原型链上)是否拥有某个属性
-  if (
-    !route ||
-    !Reflect.has(route, 'children') ||
-    !route.children?.length
-  ) {
+  if (!route || !Reflect.has(route, 'children') || !route.children?.length) {
     return false
   }
 
@@ -61,8 +58,8 @@ function promoteRouteLevel<T extends RouteRecordRaw>(route: T) {
   router = null
 
   // omit lodash的函数 对传入的item对象的children进行删除
-  route.children = route.children?.map((item) =>
-    omit(item, 'children')
+  route.children = route.children?.map(
+    (item) => omit(item, 'children') as RouteRecordNormalized
   )
 }
 
