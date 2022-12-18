@@ -5,14 +5,14 @@ import {
   SessionTimeoutProcessingEnum,
   SettingButtonPositionEnum,
   ThemeEnum
-} from '@/enums/appEnum'
-import { CacheTypeEnum } from '@/enums/cacheEnum'
+} from '@/types/enums/appEnum'
+import { CacheTypeEnum } from '@/types/enums/cacheEnum'
 import {
   MenuModeEnum,
   MenuTypeEnum,
   MixSidebarTriggerEnum,
   TriggerEnum
-} from '@/enums/menuEnum'
+} from '@/types/enums/menuEnum'
 
 export type LocaleType = 'zh_CN' | 'en'
 

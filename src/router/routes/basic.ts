@@ -1,4 +1,5 @@
 import { AddRouteRecordRaw } from '../types'
+const Layout = () => import('@/views/layout/index.vue')
 
 export const LOGIN_ROUTE: AddRouteRecordRaw = {
   path: '/login',
@@ -12,7 +13,7 @@ export const LOGIN_ROUTE: AddRouteRecordRaw = {
 export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
   path: '/:path(.*)*',
   name: 'PageNotFound',
-  component: () => import('@/views/error/404.vue'),
+  component: Layout,
   meta: {
     title: 'ErrorPage',
     hideBreadcrumb: true,
@@ -34,7 +35,7 @@ export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
 
 export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   path: '/redirect',
-  component: () => import('@/views/layout/index.vue'),
+  component: Layout,
   name: 'RedirectTo',
   meta: {
     title: 'redirect',
@@ -43,9 +44,9 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   },
   children: [
     {
-      path: ':path(.*)',
+      path: '/redirect/:path(.*)',
       name: 'redirect',
-      component: () => import('@/views/layout/index.vue'),
+      component: () => import('@/views/error/404.vue'),
       meta: {
         title: 'redirect'
       }
@@ -53,22 +54,24 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   ]
 }
 
-export const ERROR_LOG_ROUTE: AddRouteRecordRaw = {
-  path: '/error-log',
-  name: 'ErrorLog',
-  component: () => import('@/views/layout/index.vue'),
-  redirect: '/error-log/list',
-  meta: {
-    title: 'ErrorLog'
-  },
-  children: [
-    {
-      path: 'list',
-      name: 'ErrorLogList',
-      component: () => import('@/views/error/404.vue'),
-      meta: {
-        title: 'ErrorLogList'
-      }
-    }
-  ]
-}
+// export const ERROR_LOG_ROUTE: AddRouteRecordRaw = {
+//   path: '/error-log',
+//   name: 'ErrorLog',
+//   component: Layout,
+//   redirect: '/error-log/list',
+//   meta: {
+//     title: 'ErrorLog',
+//     hideBreadcrumb: true,
+//     hideMenu: true
+//   },
+//   children: [
+//     {
+//       path: 'list',
+//       name: 'ErrorLogList',
+//       component: () => import('@/views/error/404.vue'),
+//       meta: {
+//         title: 'ErrorLogList'
+//       }
+//     }
+//   ]
+// }

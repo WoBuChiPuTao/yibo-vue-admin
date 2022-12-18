@@ -1,27 +1,12 @@
 import {
   createRouter,
   createWebHashHistory,
+  RouteLocationNormalized,
   Router,
   RouteRecordNormalized,
   RouteRecordRaw
 } from 'vue-router'
 import { cloneDeep, omit } from 'lodash-es'
-
-/**
- * 将多级路由转换为 2 级路由
- */
-export function flatMultiRoutes<T extends RouteRecordRaw>(routes: T[]) {
-  // 深拷贝
-  const modules: T[] = cloneDeep(routes)
-  for (let i = 0; i < modules.length; i++) {
-    const route = modules[i]
-    if (!isMultipleRoute(route)) {
-      continue
-    }
-    promoteRouteLevel(route)
-  }
-  return modules
-}
 
 // 判断路由级别是否超过2级
 function isMultipleRoute<T extends RouteRecordRaw>(route: T) {
@@ -76,11 +61,48 @@ function addToChildren<T extends RouteRecordRaw>(
       continue
     }
     routeModule.children = routeModule.children || []
+    // 判断chilren是否是2级
     if (!routeModule.children.find((item) => item.name === route.name)) {
-      routeModule.children?.push(route as unknown as T)
+      routeModule.children.push(route as unknown as T)
     }
     if (child.children?.length) {
       addToChildren(routes, child.children, routeModule)
     }
+  }
+}
+
+/**
+ * 将多级路由转换为 2 级路由
+ */
+export function flatMultiRoutes<T extends RouteRecordRaw>(routes: T[]) {
+  // 深拷贝
+  const modules: T[] = cloneDeep(routes)
+  for (let i = 0; i < modules.length; i++) {
+    const route = modules[i]
+    if (!isMultipleRoute(route)) {
+      continue
+    }
+    promoteRouteLevel(route)
+  }
+  return modules
+}
+
+/**
+ * @description: 解构路由的记录
+ */
+export function getRawRoute(
+  route: RouteLocationNormalized
+): RouteLocationNormalized {
+  if (!route) return route
+  const { matched, ...opt } = route
+  return {
+    ...opt,
+    matched: (matched
+      ? matched.map((item) => ({
+          meta: item.meta,
+          name: item.name,
+          path: item.path
+        }))
+      : undefined) as RouteRecordNormalized[]
   }
 }

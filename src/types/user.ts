@@ -1,4 +1,4 @@
-import { RoleEnum } from '@/enums/roleEnm'
+import { RoleEnum } from '@/types/enums/roleEnm'
 import { RoleInfo } from './sys'
 /**
  * @description: 用户信息

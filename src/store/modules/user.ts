@@ -1,14 +1,15 @@
 import { defineStore } from 'pinia'
 import { LoginParam, UserState, UserInfoRes } from '@/types/user'
-import { RoleEnum } from '@/enums/roleEnm'
+import { RoleEnum } from '@/types/enums/roleEnm'
 import { login, getUserInfo } from '@/api/sys/user'
 import { router } from '@/router'
 import { asyncRoutes } from '@/router/routes/modules/index'
 import { store } from '../index'
 import { WebCache } from '@/utils/cache'
 import type { RouteRecordRaw } from 'vue-router'
+import { flatMultiRoutes } from '@/hooks/route'
 
-export const userStore = defineStore({
+export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
     userInfo: null,
@@ -85,7 +86,10 @@ export const userStore = defineStore({
         this.setSessionTimeout(false)
       } else {
         // 可以动态添加路由
-        asyncRoutes.forEach((route) => {
+        // 构建路由
+        const routes = flatMultiRoutes(asyncRoutes as RouteRecordRaw[])
+        console.log('buildroutes', routes)
+        routes.forEach((route) => {
           router.addRoute(route as unknown as RouteRecordRaw)
         })
         await router.replace('/home')
@@ -128,6 +132,6 @@ export const userStore = defineStore({
   }
 })
 
-export function useUserStore() {
-  return userStore(store)
+export function useUserStoreOther() {
+  return useUserStore(store)
 }

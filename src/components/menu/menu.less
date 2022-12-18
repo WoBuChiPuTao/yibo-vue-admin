@@ -1,3 +1,4 @@
+@import "../../style/var/color.less";
 ul{
   list-style-type:none;
   padding-inline-start: 0;
@@ -12,11 +13,16 @@ ul{
     cursor: pointer;
     width: 100%;
     font-size: 16px;
-    border-radius: 10px;
+    // border-radius: 10px;
     padding-left: 16px;
     white-space: nowrap;
     position: relative;
     box-sizing: border-box;
+
+    &-selected {
+      color: #fff !important;
+      background-color: @primary-color !important;
+    }
 
     .iconfont {
       font-family: 'iconfont' !important;

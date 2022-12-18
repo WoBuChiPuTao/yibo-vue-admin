@@ -19,7 +19,7 @@ const home: AddRouteRecordRaw = {
       meta: {
         title: '主页',
         icon: 'material-symbols:home-outline',
-        hideRoute: true
+        hideMenu: true
       }
     }
   ]

@@ -5,7 +5,7 @@ import { getPermCodeList } from '@/api/sys/user'
 import { AddRouteRecordRaw } from '@/router/types'
 import { useUserStore } from './user'
 import { toRaw } from 'vue'
-import { RoleEnum } from '@/enums/roleEnm'
+import { RoleEnum } from '@/types/enums/roleEnm'
 
 export const permissionStore = defineStore({
   id: 'app-permission',

@@ -46,7 +46,7 @@ const system: AddRouteRecordRaw = {
         title: '修改密码',
         icon: 'mdi:key-change'
       },
-      component: () => import('@/views/demo/system/password/index.vue')
+      component: () => import('@/views/modules/system/password/index.vue')
     }
   ]
 }

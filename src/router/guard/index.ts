@@ -1,6 +1,7 @@
 import type { Router, RouteRecordRaw } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { asyncRoutes } from '../routes/modules'
+import { flatMultiRoutes } from '@/hooks/route'
 
 export function setupRouteGuard(router: Router) {
   createPageGuard(router)
@@ -34,7 +35,8 @@ function createPageGuard(router: Router) {
     }
 
     // 页面刷新重新添加动态路由
-    asyncRoutes.forEach((route) => {
+    const routes = flatMultiRoutes(asyncRoutes as RouteRecordRaw[])
+    routes.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw)
     })
 

@@ -1,5 +1,4 @@
-// import { RoleEnum } from '@/enums/roleEnm'
-// import type { RouteMeta } from 'vue-router'
+import type { RouteMeta } from 'vue-router'
 
 export interface MenuTag {
   type?: 'primary' | 'error' | 'warn' | 'success'
@@ -24,4 +23,6 @@ export interface Menu {
   orderNo?: number
 
   hideMenu?: boolean
+
+  meta?: RouteMeta
 }

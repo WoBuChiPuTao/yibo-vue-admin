@@ -29,12 +29,22 @@ import { useRootMenuContext } from './useMenuContext'
 export default defineComponent({
   name: 'SubMenuItem',
   components: { EIcon, CollapseTransition },
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  },
   setup() {
     // 多级菜单样式
     const instance = getCurrentInstance()
     const { getItemStyle, getParentList } = useMenuItem(instance)
 
     const { rootMenuEmitter } = useRootMenuContext()
+    // 菜单是否打开
+    const state = reactive({
+      opened: false
+    })
 
     // 打开下级菜单
     function handleClick() {
@@ -46,10 +56,6 @@ export default defineComponent({
       })
       state.opened = !opened
     }
-
-    const state = reactive({
-      opened: false
-    })
 
     const getClass = computed(() => {
       return [

@@ -35,7 +35,7 @@ const component: AddRouteRecordRaw = {
         {
           path: 'basic',
           name: 'BasicTreeDemo',
-          component: () => import('@/views/modules/tree/index.vue'),
+          component: () => import('@/views/modules/component/tree/index.vue'),
           meta: {
             title: '基础树'
           }
@@ -43,7 +43,8 @@ const component: AddRouteRecordRaw = {
         {
           path: 'editTree',
           name: 'EditTreeDemo',
-          component: () => import('@/views/modules/tree/EditTree.vue'),
+          component: () =>
+            import('@/views/modules/component/tree/EditTree.vue'),
           meta: {
             title: '可搜索/工具栏'
           }
@@ -51,7 +52,8 @@ const component: AddRouteRecordRaw = {
         {
           path: 'actionTree',
           name: 'ActionTreeDemo',
-          component: () => import('@/views/modules/tree/ActionTree.vue'),
+          component: () =>
+            import('@/views/modules/component/tree/ActionTree.vue'),
           meta: {
             title: '树操作示例'
           }

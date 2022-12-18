@@ -5,16 +5,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { createRootMenuContext } from './useMenuContext'
-import mitt from '@/utils/mitt'
+import mitt, { Emitter } from '@/utils/mitt'
 
 export default defineComponent({
   name: 'Menu',
-  setup() {
-    const rootMenuEmitter = mitt()
+  emits: ['selectMenuItem'],
+  setup(props, { emit }) {
+    const currentSelectedName = ref('')
+    const rootMenuEmitter: Emitter<Record<string, any>> = mitt()
     createRootMenuContext({
-      rootMenuEmitter: rootMenuEmitter
+      rootMenuEmitter: rootMenuEmitter,
+      selectedName: currentSelectedName
+    })
+    onMounted(() => {
+      rootMenuEmitter.on('menu-item-selected', (name: string): void => {
+        currentSelectedName.value = name
+        emit('selectMenuItem', name)
+      })
     })
     return {}
   }
