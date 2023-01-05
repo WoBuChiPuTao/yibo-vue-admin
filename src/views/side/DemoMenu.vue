@@ -2,7 +2,7 @@
   <div>logo</div>
   <div>
     <ElScrollbar>
-      <Menu :collapse="isCollapse" @select-menu-item="handleSelected">
+      <Menu :collapse="isCollapse" @select-menu-item="handleSelected" :menus="items">
         <template v-for="item in items" :key="item.path">
           <SubMenu :item="item" :parent="true"></SubMenu>
         </template>

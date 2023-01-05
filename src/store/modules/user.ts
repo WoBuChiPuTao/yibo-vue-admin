@@ -127,6 +127,7 @@ export const useUserStore = defineStore({
       this.setToken(undefined)
       this.setSessionTimeout(false)
       this.setUserInfo(null)
+      WebCache.removeLocal('TOKEN_')
       goLogin && router.push('/login')
     }
   }

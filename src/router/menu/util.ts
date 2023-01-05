@@ -1,8 +1,16 @@
 import { isUrl } from '@/hooks/is'
-import { treeMap } from '@/hooks/tree'
+import { findPath, treeMap } from '@/hooks/tree'
 import { Menu } from '@/types/menu'
 import { cloneDeep } from 'lodash-es'
 import { AddRouteRecordRaw } from '../types'
+
+/**
+ * @description 得到父级菜单路径
+ */
+export function getAllParentPath<T = Recordable>(treeData: T[], path: string) {
+  const menuList = findPath(treeData, (n) => n.path === path) as Menu[]
+  return (menuList || []).map((item) => item.path)
+}
 
 // 拼接父级的路径
 function joinParentPath(menus: Menu[], parentPath = '') {
@@ -21,16 +29,7 @@ function joinParentPath(menus: Menu[], parentPath = '') {
 // 将路由转换为menu
 export function routeToMenu(routes: AddRouteRecordRaw[]) {
   const cloneRouteList = cloneDeep(routes)
-  const routeList: AddRouteRecordRaw[] = []
-  cloneRouteList.forEach((item) => {
-    // 判断子菜单是否显示
-    if (item.meta?.hideChildrenMenu && typeof item.redirect === 'string') {
-      item.path = item.redirect
-    }
-    routeList.push(item)
-  })
-  // 提取树指定结构
-  const list = treeMap(routeList, {
+  const list = treeMap(cloneRouteList, {
     conversion: (node: AddRouteRecordRaw) => {
       const { meta: { title, hideMenu = false } = {} } = node
 
@@ -45,5 +44,11 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
     }
   })
   joinParentPath(list as Menu[])
+  list.forEach((item) => {
+    // 单个不显示子菜单重定向
+    if (item.children?.length === 1 && item.children[0]?.meta.hideMenu === true && typeof item.redirect === 'string') {
+      item.path = item.redirect
+    }
+  })
   return cloneDeep(list) as Menu[]
 }

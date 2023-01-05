@@ -3,12 +3,12 @@
  */
 export function useDebounceFn<T extends Fn>(handle: T, time: number) {
   let timeout: TimeoutHandle
-  return function () {
+  return function (...args: any[]) {
     if (timeout) {
       clearTimeout(timeout)
     }
-    timeout = setTimeout(handle, time)
-  }
+    timeout = setTimeout(() => handle(...args), time)
+  } as any as T
 }
 
 /**
@@ -16,13 +16,13 @@ export function useDebounceFn<T extends Fn>(handle: T, time: number) {
  */
 export function useThrottleFn<T extends Fn>(handle: T, time: number) {
   let toWait = false
-  return function () {
+  return function (...args: any[]) {
     if (!toWait) {
-      handle()
       toWait = true
+      handle(...args)
       setTimeout(() => {
         toWait = false
       }, time)
     }
-  }
+  } as any as T
 }

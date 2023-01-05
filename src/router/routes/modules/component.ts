@@ -18,7 +18,8 @@ const component: AddRouteRecordRaw = {
       name: 'BasicDemo',
       component: () => import('@/views/modules/component/basic/index.vue'),
       meta: {
-        title: '基础组件'
+        title: '基础组件',
+        icon: 'lucide:component'
       }
     },
 
@@ -37,7 +38,8 @@ const component: AddRouteRecordRaw = {
           name: 'BasicTreeDemo',
           component: () => import('@/views/modules/component/tree/index.vue'),
           meta: {
-            title: '基础树'
+            title: '基础树',
+            icon: 'ph:tree-structure-light'
           }
         },
         {
@@ -46,7 +48,8 @@ const component: AddRouteRecordRaw = {
           component: () =>
             import('@/views/modules/component/tree/EditTree.vue'),
           meta: {
-            title: '可搜索/工具栏'
+            title: '可搜索/工具栏',
+            icon: 'material-symbols:rebase-edit-outline-rounded'
           }
         },
         {
@@ -55,7 +58,8 @@ const component: AddRouteRecordRaw = {
           component: () =>
             import('@/views/modules/component/tree/ActionTree.vue'),
           meta: {
-            title: '树操作示例'
+            title: '树操作示例',
+            icon: 'eos-icons:action-chains-outlined'
           }
         }
       ]

@@ -1,27 +1,33 @@
 <template>
   <ElHeader class="header">
-      <div class="header-left">
-        <div>关闭侧边栏</div>
-        <div>面包屑</div>
-      </div>
+    <div class="header-left">
+      <SiderTrigger></SiderTrigger>
+      <div>面包屑</div>
+    </div>
 
-      <div class="header-action">
-        <div>搜索</div>
-        <div>通知</div>
-        <div>全屏</div>
-        <div>用户下拉框</div>
-        <div>设置</div>
-      </div>
+    <div class="header-action">
+      <AppSearch class="header-action-item"></AppSearch>
+      <AppNotice class="header-action-item"></AppNotice>
+      <FullScreen class="header-action-item"></FullScreen>
+      <UserDropdown class="header-action-item"></UserDropdown>
+      <AppSetting class="header-action-item"></AppSetting>
+    </div>
   </ElHeader>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElHeader } from 'element-plus'
+import SiderTrigger from '@/components/header/trigger/SiderTrigger.vue'
+import AppSearch from '@/components/header/search/AppSearch.vue'
+import AppNotice from '@/components/header/notice/AppNotice.vue'
+import FullScreen from '@/components/header/fullScreen/FullScreen.vue'
+import UserDropdown from '@/components/header/user/UserDropdown.vue'
+import AppSetting from '@/components/header/setting/AppSetting.vue'
 
 export default defineComponent({
   name: 'layoutHeader',
-  components: { ElHeader },
+  components: { ElHeader, SiderTrigger, AppSearch, AppNotice, FullScreen, UserDropdown, AppSetting },
   setup() {
     return {}
   }
@@ -30,5 +36,4 @@ export default defineComponent({
 
 <style lang="less">
 @import './header.less';
-
 </style>

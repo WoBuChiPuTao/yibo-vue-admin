@@ -1,7 +1,7 @@
 <template>
   <SubMenuItem v-if="hasChildrenMenu(item)" :class="getLevelClass" :name="item.path">
     <template #title>
-      <EIcon class="iconfont" :icon="item.icon"></EIcon>
+      <EIcon v-if="getCeil" class="iconfont" :icon="item.icon"></EIcon>
       <span class="item-name"> {{ item.name }}</span>
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
@@ -9,7 +9,7 @@
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path">
-  <EIcon class="iconfont" :icon="item.icon"></EIcon>
+  <EIcon v-if="getCeil" class="iconfont" :icon="item.icon"></EIcon>
   <span class="item-name">{{ item.name }}</span>
   </MenuItem>
 </template>
@@ -32,6 +32,10 @@ export default defineComponent({
     parent: Boolean
   },
   setup(props) {
+    // 是否为顶层
+    const getCeil = computed(() => {
+      return !!props.parent
+    })
     // 菜单层次样式
     const getLevelClass = computed(() => {
       return [
@@ -51,7 +55,8 @@ export default defineComponent({
     }
     return {
       hasChildrenMenu,
-      getLevelClass
+      getLevelClass,
+      getCeil
     }
   }
 })

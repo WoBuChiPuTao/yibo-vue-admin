@@ -35,7 +35,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {
+  setup(props) {
     // 多级菜单样式
     const instance = getCurrentInstance()
     const { getItemStyle, getParentList } = useMenuItem(instance)
@@ -69,13 +69,17 @@ export default defineComponent({
     onBeforeMount(() => {
       rootMenuEmitter.on(
         'on-update-opened',
-        (data: Record<string, any> | undefined) => {
-          const { opend, uidList } = data as {
-            opend: boolean
-            uidList: number[]
-          }
-          if (!uidList.includes(instance?.uid as number)) {
-            state.opened = opend
+        (data: Record<string, any> | string[]) => {
+          if (props.name && Array.isArray(data)) {
+            state.opened = (data as (string | number)[]).includes(props.name)
+          } else {
+            const { opend, uidList } = data as {
+              opend: boolean
+              uidList: number[]
+            }
+            if (!uidList.includes(instance?.uid as number)) {
+              state.opened = opend
+            }
           }
         }
       )

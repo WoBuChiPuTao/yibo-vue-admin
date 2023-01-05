@@ -12,11 +12,19 @@ export class WebCache {
     loaclStore.set(key, value)
   }
 
+  static removeLocal(key: string) {
+    return loaclStore.remove(key)
+  }
+
   static getSesssion(key: string) {
     return sessionStore.get(key)
   }
 
   static setSesssion(key: string, value: string): void {
     sessionStore.set(key, value)
+  }
+
+  static removeSesssion(key: string) {
+    return sessionStore.remove(key)
   }
 }

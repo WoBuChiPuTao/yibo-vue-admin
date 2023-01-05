@@ -18,6 +18,7 @@ async function getAsyncMenus() {
       return node
     }
   })
+  // 菜单排序
   filtermenu.sort((a, b) => {
     return (a?.orderNo || 0) - (b?.orderNo || 0)
   })
