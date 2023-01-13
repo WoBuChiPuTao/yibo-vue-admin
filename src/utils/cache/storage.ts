@@ -1,3 +1,5 @@
+import { StorageCache } from '@/types/sys'
+
 export class WebStorage {
   private storage: Storage
 
@@ -5,12 +7,29 @@ export class WebStorage {
     this.storage = storage
   }
 
-  set(key: string, value: string) {
-    this.storage.setItem(key, value)
+  set(key: string, value: any, expire?: number) {
+    const data = JSON.stringify({
+      value,
+      time: Date.now(),
+      expire: expire ? new Date().getTime() + expire * 1000 : null
+    })
+    this.storage.setItem(key, data)
   }
 
   get(key: string) {
-    return this.storage.getItem(key)
+    const stringData = this.storage.getItem(key)
+    // 判断数据是否过期
+    if (stringData && /expire/.test(stringData)) {
+      const { expire, value } = JSON.parse(
+        stringData
+      ) as unknown as StorageCache
+      if (expire && new Date().getTime() > expire) {
+        this.remove(key)
+        return null
+      }
+      return value
+    }
+    return stringData
   }
 
   remove(key: string) {

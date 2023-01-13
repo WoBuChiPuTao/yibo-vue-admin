@@ -4,10 +4,10 @@ import { LoginRes, UserInfoRes } from '@/types/user'
 import { Result } from '@/utils/axios/types'
 
 const LoginBack: Result<LoginRes> = {
-  code: 1,
+  code: 200,
   message: 'success',
   data: {
-    token: '666666666',
+    token: '6666aaa66666',
     role: {
       roleName: '老总',
       value: 'super'
@@ -16,12 +16,12 @@ const LoginBack: Result<LoginRes> = {
 }
 
 const userInfoBack: Result<UserInfoRes> = {
-  code: 1,
+  code: 200,
   message: 'success',
   data: {
     userId: '111111',
     username: 'nibaba',
-    avatar: 'sssss',
+    avatar: '',
     desc: 'sb',
     realName: 'SB',
     roles: [

@@ -8,23 +8,31 @@ export class WebCache {
     return loaclStore.get(key)
   }
 
-  static setLocal(key: string, value: string): void {
-    loaclStore.set(key, value)
+  static setLocal(key: string, value: any, expire?: number): void {
+    loaclStore.set(key, value, expire)
   }
 
   static removeLocal(key: string) {
-    return loaclStore.remove(key)
+    loaclStore.remove(key)
   }
 
-  static getSesssion(key: string) {
+  static clearLocal() {
+    loaclStore.clear()
+  }
+
+  static getSession(key: string) {
     return sessionStore.get(key)
   }
 
-  static setSesssion(key: string, value: string): void {
-    sessionStore.set(key, value)
+  static setSession(key: string, value: any, expire?: number): void {
+    sessionStore.set(key, value, expire)
   }
 
-  static removeSesssion(key: string) {
-    return sessionStore.remove(key)
+  static removeSession(key: string) {
+    sessionStore.remove(key)
+  }
+
+  static clearSession() {
+    sessionStore.clear()
   }
 }

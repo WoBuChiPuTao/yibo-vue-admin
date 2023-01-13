@@ -6,7 +6,7 @@ import { router } from '@/router'
 import { asyncRoutes } from '@/router/routes/modules/index'
 import { store } from '../index'
 import { WebCache } from '@/utils/cache'
-import type { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 import { flatMultiRoutes } from '@/hooks/route'
 
 export const useUserStore = defineStore({
@@ -20,11 +20,12 @@ export const useUserStore = defineStore({
   }),
   getters: {
     getUserInfo(): UserInfoRes {
-      return this.userInfo || ({} as UserInfoRes)
+      return (
+        this.userInfo || WebCache.getLocal('USER_INFO') || ({} as UserInfoRes)
+      )
     },
     getToken(): string {
-      console.log('TOKEN', WebCache.getLocal('TOKEN_'))
-      return this.token || (WebCache.getLocal('TOKEN_') as unknown as string)
+      return this.token || (WebCache.getLocal('TOKEN_') as string)
     },
     getRoleList(): RoleEnum[] {
       return this.roleList.length > 0 ? this.roleList : []
@@ -49,7 +50,7 @@ export const useUserStore = defineStore({
       } else {
         this.token = ''
       }
-      WebCache.setLocal('TOKEN_', info as string)
+      WebCache.setLocal('TOKEN_', info, 500)
     },
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList
@@ -57,6 +58,7 @@ export const useUserStore = defineStore({
     setUserInfo(info: UserInfoRes | null) {
       this.userInfo = info
       this.lastUpdateTime = new Date().getTime()
+      WebCache.setLocal('USER_INFO', info)
     },
     setSessionTimeout(flag: boolean) {
       this.sessionTimeout = flag
@@ -70,9 +72,7 @@ export const useUserStore = defineStore({
         const data = await login(loginParam)
         const { token } = data
         // save token
-        console.log('1111')
         this.setToken(token)
-        console.log('token', this.getToken)
         return this.afterLogin()
       } catch (error) {
         return Promise.reject(error)
@@ -127,7 +127,7 @@ export const useUserStore = defineStore({
       this.setToken(undefined)
       this.setSessionTimeout(false)
       this.setUserInfo(null)
-      WebCache.removeLocal('TOKEN_')
+      WebCache.clearLocal()
       goLogin && router.push('/login')
     }
   }

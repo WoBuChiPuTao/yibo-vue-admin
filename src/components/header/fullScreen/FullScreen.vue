@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, unref } from 'vue'
+import { computed, defineComponent, unref, watchEffect } from 'vue'
 import { ElIcon, ElTooltip } from 'element-plus'
 import { useFullscreen } from '@vueuse/core'
 import { FullScreen } from '@element-plus/icons-vue'
@@ -17,11 +17,16 @@ export default defineComponent({
     components: { ElTooltip, ElIcon, FullScreen },
     setup() {
         const { isFullscreen, toggle } = useFullscreen()
-        // 重新检查全屏状态
-        isFullscreen.value = !!(
-            document.fullscreenElement
-        )
+
         const tooltipContent = computed(() => { return !unref(isFullscreen) ? '全屏模式' : '退出全屏' })
+
+        watchEffect(() => {
+            // 重新检查全屏状态
+            isFullscreen.value = !!(
+                document.fullscreenElement
+            )
+        })
+
         return {
             isFullscreen,
             tooltipContent,
