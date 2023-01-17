@@ -42,7 +42,9 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref, reactive, onMounted } from 'vue'
 // mock
-import '@/mock/login'
+// eslint-disable-next-line import/no-absolute-path
+import '/mock/login'
+
 import { useUserStore } from '@/store/modules/user'
 const userBox = ref('input-box')
 const passBox = ref('input-box')

@@ -41,7 +41,7 @@ Mock.mock('/user/login', 'post', (params) => {
     return LoginBack
   } else {
     LoginBack.code = 0
-    LoginBack.message = 'sb'
+    LoginBack.message = '密码错误'
     return LoginBack
   }
 })

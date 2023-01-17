@@ -1,23 +1,28 @@
-@import "../../style/var/color.less";
-ul{
-  list-style-type:none;
+@import '../../style/var/color.less';
+ul {
+  list-style-type: none;
   padding-inline-start: 0;
+  user-select: none;
 }
 
 .menu-list {
-  .menu-children{
-    background-color:rgb(12, 33, 53);
+  .menu-children {
+    background-color: rgb(12, 33, 53);
   }
 
   &-item {
     cursor: pointer;
     width: 100%;
     font-size: 14px;
-    // border-radius: 10px;
     padding-left: 16px;
     white-space: nowrap;
     position: relative;
     box-sizing: border-box;
+    color: rgb(164, 164, 164);
+
+    &:hover{
+      color: #fff;
+    }
 
     &-selected {
       color: #fff !important;
@@ -28,7 +33,7 @@ ul{
       font-family: 'iconfont' !important;
       font-style: normal;
       font-size: 16px;
-      color: #fff;
+      // color: #fff;
       vertical-align: middle;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -38,7 +43,7 @@ ul{
       line-height: 50px;
       margin-left: 8px;
       font-size: 14px;
-      color:#fff;
+      // color: rgba(187, 187, 187, 0.951);
       //font-weight: 100;
       transition: 0.6s;
       opacity: 1;

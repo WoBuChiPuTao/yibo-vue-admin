@@ -15,8 +15,8 @@
 
 <script lang="ts" setup>
 import { ElContainer, ElAside, ElFooter, ElMain } from 'element-plus'
-import Header from '@/views/header/index.vue'
-import Side from '@/views/side/index.vue'
+import Header from '@/views/layout/header/index.vue'
+import Side from '@/views/layout/side/index.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

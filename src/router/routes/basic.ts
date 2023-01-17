@@ -45,7 +45,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   children: [
     {
       path: '/redirect/:path(.*)',
-      name: 'redirect',
+      name: 'Redirect',
       component: () => import('@/views/error/404.vue'),
       meta: {
         title: 'redirect'

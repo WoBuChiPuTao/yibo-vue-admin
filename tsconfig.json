@@ -35,7 +35,8 @@
     "src/**/*.vue",
     "types/**/*.d.ts",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "mock/**/*.ts"
   ],
   "exclude": [
     "node_modules"

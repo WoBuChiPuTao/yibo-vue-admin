@@ -72,7 +72,7 @@ function addToChildren<T extends RouteRecordRaw>(
 }
 
 /**
- * 将多级路由转换为 2 级路由
+ *  @description: 将多级路由转换为 2 级路由
  */
 export function flatMultiRoutes<T extends RouteRecordRaw>(routes: T[]) {
   // 深拷贝
