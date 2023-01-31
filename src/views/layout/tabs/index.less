@@ -1,0 +1,30 @@
+.multiple-tabs {
+  height: 30px;
+  margin: 0 0 10px;
+  .el-tabs {
+    --el-tabs-header-height: 30px;
+    vertical-align: middle;
+  }
+
+  .el-tabs__header {
+    margin: 0px;
+  }
+
+  .el-tabs__item > .el-tabs__item__content {
+    height: var(--el-tabs-header-height);
+    box-sizing: border-box;
+    line-height: var(--el-tabs-header-height);
+    display: inline-block;
+    list-style: none;
+    font-size: var(--el-font-size-base);
+    font-weight: 500;
+    color: var(--el-text-color-primary);
+    position: relative;
+  }
+
+  .el-tabs__content {
+    height: 0px;
+    width: 0px;
+    padding: 0px;
+  }
+}

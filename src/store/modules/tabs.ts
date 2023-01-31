@@ -75,9 +75,11 @@ export const useTabStore = defineStore({
       const redo = useRedo(router)
       await redo()
     },
+
     clearCacheList() {
       this.cacheList = new Set()
     },
+
     resetState() {
       this.tabList = []
       this.clearCacheList()
@@ -285,6 +287,34 @@ export const useTabStore = defineStore({
       this.bulkRemoveTabs(pathList)
       this.updateCacheTab()
       handleGoPage(router)
+    },
+
+    async removeAllTabs(router: Router) {
+      this.tabList = this.tabList.filter((item) => item?.meta?.affix ?? false)
+      this.clearCacheList()
+      this.goPage(router)
+    },
+
+    /**
+     * Set tab's title
+     */
+    async setTabTitle(title: string, route: RouteLocationNormalized) {
+      const findTab = this.getTabList.find((item) => item === route)
+      if (findTab) {
+        findTab.meta.title = title
+        await this.updateCacheTab()
+      }
+    },
+    /**
+     * replace tab's path
+     */
+    async updateTabPath(fullPath: string, route: RouteLocationNormalized) {
+      const findTab = this.getTabList.find((item) => item === route)
+      if (findTab) {
+        findTab.fullPath = fullPath
+        findTab.path = fullPath
+        await this.updateCacheTab()
+      }
     }
   }
 })

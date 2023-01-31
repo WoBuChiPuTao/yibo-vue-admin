@@ -2,7 +2,7 @@
   <ElHeader class="header">
     <div class="header-left">
       <SiderTrigger></SiderTrigger>
-      <div>面包屑</div>
+      <!-- <span>面包</span> -->
     </div>
 
     <div class="header-action">
