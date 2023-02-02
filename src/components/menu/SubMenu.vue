@@ -1,16 +1,16 @@
 <template>
   <SubMenuItem v-if="hasChildrenMenu(item)" :class="getLevelClass" :name="item.path">
     <template #title>
-      <EIcon v-if="getCeil" class="iconfont" :icon="item.icon"></EIcon>
-      <span class="item-name"> {{ item.name }}</span>
+      <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></EIcon>
+      <span class="menu-list-item-name"> {{ item.name }}</span>
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path">
-  <EIcon v-if="getCeil" class="iconfont" :icon="item.icon"></EIcon>
-  <span class="item-name">{{ item.name }}</span>
+  <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></EIcon>
+  <span class="menu-list-item-name">{{ item.name }}</span>
   </MenuItem>
 </template>
 

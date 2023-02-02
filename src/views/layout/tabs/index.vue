@@ -38,6 +38,7 @@ import { useRouter } from 'vue-router'
 import { useGo } from '@/hooks/web/usePage'
 import { listenerRouteChange } from '@/hooks/mitt/routeChange'
 import TabContent from './components/TabContent.vue'
+import { useTabsDarg } from './useTabsDrag'
 
 const tabStore = useTabStore()
 const userStore = useUserStore()
@@ -60,6 +61,8 @@ function handleChange(tabname: any) {
 function handleEdit(tabname: any) {
   tabStore.removeTabByKey(tabname, router)
 }
+
+useTabsDarg()
 
 listenerRouteChange((route) => {
   const { name } = route

@@ -20,16 +20,12 @@ ul {
     box-sizing: border-box;
     color: rgb(164, 164, 164);
 
-    &:hover{
-      color: #fff;
-    }
-
     &-selected {
       color: #fff !important;
       background-color: @primary-color !important;
     }
 
-    .iconfont {
+    &-iconfont {
       font-family: 'iconfont' !important;
       font-style: normal;
       font-size: 16px;
@@ -39,7 +35,7 @@ ul {
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .item-name {
+    &-name {
       line-height: 50px;
       margin-left: 8px;
       font-size: 14px;
@@ -48,19 +44,64 @@ ul {
       transition: 0.6s;
       opacity: 1;
     }
+  }
+
+  &-submenu {
+    cursor: pointer;
+    width: 100%;
+
+    &-sub-title {
+      font-size: 14px;
+      padding-left: 16px;
+      white-space: nowrap;
+      position: relative;
+      box-sizing: border-box;
+      color: rgb(164, 164, 164);
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    &-child-active > &-sub-title {
+      color: #fff !important;
+    }
 
     .submenu-open-icon {
       font-size: 14px;
       position: absolute;
-      color: #fff;
       top: 50%;
       right: 18px;
       transform: translateY(-50%);
       transition: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      &:hover {
+        color: #fff;
+      }
     }
 
     &-opend > * > .submenu-open-icon {
       transform: translateY(-50%) rotate(180deg);
+    }
+
+    .menu-list-item-iconfont {
+      font-family: 'iconfont' !important;
+      font-style: normal;
+      font-size: 16px;
+      // color: #fff;
+      vertical-align: middle;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .menu-list-item-name {
+      line-height: 50px;
+      margin-left: 8px;
+      font-size: 14px;
+      // color: rgba(187, 187, 187, 0.951);
+      //font-weight: 100;
+      transition: 0.6s;
+      opacity: 1;
     }
   }
 }

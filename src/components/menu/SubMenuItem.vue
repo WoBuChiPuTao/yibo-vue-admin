@@ -1,6 +1,6 @@
 <template>
   <li :class="getClass">
-    <div class="menu-list-item" @click.stop="handleClick" :style="getItemStyle">
+    <div class="menu-list-submenu-sub-title"  @click.stop="handleClick" :style="getItemStyle">
       <slot name="title"></slot>
       <EIcon icon="eva:arrow-ios-downward-outline" class="submenu-open-icon" />
     </div>
@@ -43,7 +43,8 @@ export default defineComponent({
     const { rootMenuEmitter } = useRootMenuContext()
     // 菜单是否打开
     const state = reactive({
-      opened: false
+      opened: false,
+      active: false
     })
 
     // 打开下级菜单
@@ -61,7 +62,8 @@ export default defineComponent({
       return [
         'menu-list-submenu',
         {
-          'menu-list-item-opend': state.opened
+          'menu-list-submenu-opend': state.opened,
+          'menu-list-submenu-child-active': state.active
         }
       ]
     })
@@ -83,6 +85,12 @@ export default defineComponent({
           }
         }
       )
+
+      rootMenuEmitter.on('on-update-active-name:submenu', (data: number[]) => {
+        if (instance?.uid) {
+          state.active = data.includes(instance?.uid)
+        }
+      })
     })
 
     return {

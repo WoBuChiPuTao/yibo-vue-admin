@@ -21,7 +21,8 @@ export function useMenuItem(instance: ComponentInternalInstance | null) {
     let parent = instance?.parent
     if (!parent) {
       return {
-        uidList: []
+        uidList: [],
+        list: []
       }
     }
     const int: ComponentInternalInstance[] = []
@@ -32,7 +33,8 @@ export function useMenuItem(instance: ComponentInternalInstance | null) {
       parent = parent?.parent
     }
     return {
-      uidList: int.map((item) => item.uid)
+      uidList: int.map((item) => item.uid),
+      list: int
     }
   }
   return {

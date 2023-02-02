@@ -5,7 +5,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, ref, unref, watch } from 'vue'
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  ref,
+  unref,
+  watch
+} from 'vue'
 import { useMenuItem } from './useMenu'
 import { useRootMenuContext } from './useMenuContext'
 
@@ -20,18 +27,29 @@ export default defineComponent({
   setup(props) {
     const active = ref(false)
     const instance = getCurrentInstance()
-    const { getItemStyle } = useMenuItem(instance)
+    const { getItemStyle, getParentList } = useMenuItem(instance)
     const { rootMenuEmitter, selectedName } = useRootMenuContext()
 
-    watch(() => selectedName.value, (name: string) => {
-      if (name === props.name) {
-        active.value = true
-      } else {
-        active.value = false
+    watch(
+      () => selectedName.value,
+      (name: string) => {
+        if (name === props.name) {
+          active.value = true
+          const { list, uidList } = getParentList()
+          list.forEach((item) => {
+            if (item.proxy) {
+              (item.proxy as any).active = true
+            }
+          })
+          rootMenuEmitter.emit('on-update-active-name:submenu', uidList)
+        } else {
+          active.value = false
+        }
+      },
+      {
+        immediate: true
       }
-    }, {
-      immediate: true
-    })
+    )
 
     const getClass = computed(() => {
       return [
