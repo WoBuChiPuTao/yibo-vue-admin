@@ -13,6 +13,14 @@ const charts: AddRouteRecordRaw = {
   },
   children: [
     {
+      path: 'gaode',
+      name: 'GaoDe',
+      component: () => import('@/views/modules/charts/GaoDe/index.vue'),
+      meta: {
+        title: '高德地图'
+      }
+    },
+    {
       path: 'echarts',
       name: 'Echarts',
       component: Layout,

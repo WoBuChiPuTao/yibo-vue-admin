@@ -29,5 +29,6 @@ console.log('currentRoute ', router.getRoutes())
   height: 100vh;
   width: 210px;
   background-color: #001529;
+  overflow: hidden;
 }
 </style>

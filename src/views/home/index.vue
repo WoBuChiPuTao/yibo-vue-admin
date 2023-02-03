@@ -2,12 +2,14 @@
   <div>主页</div>
 </template>
 
-<script setup lang="ts">
-// const props = defineProps<{ id: string; username: string }>()
-</script>
-
 <script lang="ts">
-export default {
-  name: 'HomeView'
-}
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'HomeView',
+  setup() {
+    // const props = defineProps<{ id: string; username: string }>()
+    return {}
+  }
+})
 </script>
