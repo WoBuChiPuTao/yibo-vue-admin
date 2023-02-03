@@ -17,11 +17,6 @@
 import { ElContainer, ElAside, ElFooter, ElMain } from 'element-plus'
 import Header from '@/views/layout/header/index.vue'
 import Side from '@/views/layout/side/index.vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-console.log('currentRoute ', router.getRoutes())
 </script>
 
 <style lang="less">
