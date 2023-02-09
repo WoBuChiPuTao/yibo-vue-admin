@@ -36,13 +36,13 @@ const userInfoBack: Result<UserInfoRes> = {
 Mock.mock('/user/login', 'post', (params) => {
   const queryString = params.body
   const queryObj = JSON.parse(queryString)
-  console.log('queryObj', queryObj)
   if (queryObj.username === 'lyb01' && queryObj.password === '123') {
     return LoginBack
   } else {
-    LoginBack.code = 0
-    LoginBack.message = '密码错误'
-    return LoginBack
+    return {
+      code: 0,
+      message: '账户或密码错误'
+    }
   }
 })
 
