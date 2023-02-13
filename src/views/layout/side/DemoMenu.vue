@@ -1,5 +1,5 @@
 <template>
-  <div>logo</div>
+  <div style="color: white">logo</div>
   <ElScrollbar>
     <Menu
       :collapse="isCollapse"

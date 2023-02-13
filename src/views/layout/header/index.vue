@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import LayoutHeader from './LayoutHeader.vue'
-import Tabs from '../tabs/index.vue'
+import Tabs from '@/components/tabs/index.vue'
 export default defineComponent({
   name: 'Header',
   components: { LayoutHeader, Tabs },

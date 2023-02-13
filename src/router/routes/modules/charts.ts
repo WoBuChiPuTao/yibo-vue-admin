@@ -1,4 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
+import { t } from '@/hooks/web/useI18n'
+
 const Layout = () => import('@/views/layout/index.vue')
 
 const charts: AddRouteRecordRaw = {
@@ -9,7 +11,7 @@ const charts: AddRouteRecordRaw = {
   meta: {
     orderNo: 500,
     icon: 'ion:bar-chart-outline',
-    title: '图表'
+    title: t('routes.demo.charts.charts')
   },
   children: [
     {

@@ -10,7 +10,7 @@
         v-for="tab in getTabsList"
         :key="tab.query ? tab.fullPath : tab.path"
       >
-        <ElTabPane :closable="true" :name="tab.query ? tab.fullPath : tab.path">
+        <ElTabPane :closable="!(tab && tab.meta && tab.meta.fixedTab)" :name="tab.query ? tab.fullPath : tab.path">
           <template #label>
             <TabContent
               :tab-item="tab"

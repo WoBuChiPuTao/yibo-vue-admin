@@ -1,4 +1,4 @@
-import { DropMenu } from '@/views/layout/tabs/types'
+import { DropMenu } from '@/components/tabs/types'
 
 export type LocaleType = 'zh_CN' | 'en' | 'ru' | 'ja' | 'ko'
 

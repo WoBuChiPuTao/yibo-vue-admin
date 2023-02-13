@@ -9,6 +9,7 @@ import { useRedo, useGo } from '@/hooks/web/usePage'
 import { unref, toRaw } from 'vue'
 import { PageEnum } from '@/types/enums/pageEnum'
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic'
+import { WebCache } from '@/utils/cache'
 
 interface TabState {
   cacheList: Set<string>
@@ -34,7 +35,7 @@ export const useTabStore = defineStore({
   id: 'app-tabs',
   state: (): TabState => ({
     cacheList: new Set(),
-    tabList: [],
+    tabList: WebCache.getLocal('Tabs') || [],
     lastDragIndex: 0
   }),
   getters: {
@@ -141,12 +142,15 @@ export const useTabStore = defineStore({
         this.tabList.push(route)
       }
       this.updateCacheTab()
-      // cacheTab && Persistent.setLocal(MULTIPLE_TABS_KEY, this.tabList)
+      WebCache.setLocal('Tabs', this.tabList)
     },
 
     async removeTab(tab: RouteLocationNormalized, router: Router) {
       const close = (route: RouteLocationNormalized) => {
-        const { fullPath } = route
+        const { fullPath, meta: { fixedTab } = {} } = route
+        if (fixedTab) {
+          return
+        }
         const index = this.tabList.findIndex(
           (item) => item.fullPath === fullPath
         )
@@ -180,10 +184,10 @@ export const useTabStore = defineStore({
           toTarget = getToTarget(page)
         }
       } else {
-        // Close the current tab
         const page = this.tabList[index - 1]
         toTarget = getToTarget(page)
       }
+      // Close the current tab
       close(currentRoute.value)
       await replace(toTarget)
     },
@@ -244,7 +248,10 @@ export const useTabStore = defineStore({
         const leftTabs = this.tabList.slice(0, index)
         const pathList: string[] = []
         for (const item of leftTabs) {
-          pathList.push(item.fullPath)
+          const fixedTab = item?.meta?.fixedTab ?? false
+          if (!fixedTab) {
+            pathList.push(item.fullPath)
+          }
         }
         this.bulkRemoveTabs(pathList)
       }
@@ -262,7 +269,10 @@ export const useTabStore = defineStore({
 
         const pathList: string[] = []
         for (const item of rightTabs) {
-          pathList.push(item.fullPath)
+          const fixedTab = item?.meta?.fixedTab ?? false
+          if (!fixedTab) {
+            pathList.push(item.fullPath)
+          }
         }
         this.bulkRemoveTabs(pathList)
       }
@@ -281,7 +291,10 @@ export const useTabStore = defineStore({
           if (!closeItem) {
             continue
           }
-          pathList.push(closeItem.fullPath)
+          const fixedTab = closeItem?.meta?.fixedTab ?? false
+          if (!fixedTab) {
+            pathList.push(closeItem.fullPath)
+          }
         }
       }
       this.bulkRemoveTabs(pathList)
@@ -290,7 +303,9 @@ export const useTabStore = defineStore({
     },
 
     async removeAllTabs(router: Router) {
-      this.tabList = this.tabList.filter((item) => item?.meta?.affix ?? false)
+      this.tabList = this.tabList.filter(
+        (item) => item?.meta?.fixedTab ?? false
+      )
       this.clearCacheList()
       this.goPage(router)
     },

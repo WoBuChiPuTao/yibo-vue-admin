@@ -18,8 +18,7 @@ const home: AddRouteRecordRaw = {
       component: () => import('@/views/home/index.vue'),
       meta: {
         title: '主页',
-        icon: 'material-symbols:home-outline',
-        hideMenu: true
+        fixedTab: true
       }
     }
   ]

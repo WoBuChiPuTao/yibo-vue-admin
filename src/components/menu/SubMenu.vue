@@ -1,16 +1,31 @@
 <template>
-  <SubMenuItem v-if="hasChildrenMenu(item)" :class="getLevelClass" :name="item.path">
+  <SubMenuItem
+    v-if="hasChildrenMenu(item)"
+    :class="getLevelClass"
+    :name="item.path"
+  >
     <template #title>
-      <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></EIcon>
-      <span class="menu-list-item-name"> {{ item.name }}</span>
+      <EIcon
+        v-if="getCeil"
+        class="menu-list-item-iconfont"
+        :icon="item.icon"
+      ></EIcon>
+      <span class="menu-list-item-name"> {{ getI18nName }}</span>
     </template>
-    <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
+    <template
+      v-for="childrenItem in item.children || []"
+      :key="childrenItem.path"
+    >
       <SubMenu :item="childrenItem"></SubMenu>
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path">
-  <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></EIcon>
-  <span class="menu-list-item-name">{{ item.name }}</span>
+    <EIcon
+      v-if="getCeil"
+      class="menu-list-item-iconfont"
+      :icon="item.icon"
+    ></EIcon>
+    <span class="menu-list-item-name">{{ getI18nName }}</span>
   </MenuItem>
 </template>
 
@@ -20,6 +35,7 @@ import { computed, defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
 import MenuItem from './MenuItem.vue'
 import EIcon from '@/components/icons/EIcon.vue'
+import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'SubMenu',
@@ -32,6 +48,12 @@ export default defineComponent({
     parent: Boolean
   },
   setup(props) {
+    // 多国语言
+    const { t } = useI18n()
+    const getI18nName = computed(() => {
+      return t(props.item.name)
+    })
+
     // 是否为顶层
     const getCeil = computed(() => {
       return !!props.parent
@@ -56,7 +78,8 @@ export default defineComponent({
     return {
       hasChildrenMenu,
       getLevelClass,
-      getCeil
+      getCeil,
+      getI18nName
     }
   }
 })

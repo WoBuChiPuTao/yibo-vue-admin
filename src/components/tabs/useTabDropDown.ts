@@ -3,7 +3,14 @@ import { useTabStore } from '@/store/modules/tabs'
 import { computed, ComputedRef, reactive, unref } from 'vue'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
 import { DropMenu, MenuEventEnum } from './types'
-import { ArrowLeft, ArrowRight, Close, Minus, Refresh, RemoveFilled } from '@element-plus/icons-vue'
+import {
+  ArrowLeft,
+  ArrowRight,
+  Close,
+  Minus,
+  Refresh,
+  RemoveFilled
+} from '@element-plus/icons-vue'
 
 export function useTabDropdown(
   tabContent: RouteLocationNormalized,
@@ -26,7 +33,7 @@ export function useTabDropdown(
   })
 
   const getTargetTab = computed(() => {
-    return unref(isTab) ? unref(state).presentTab : unref(currentRoute)
+    return unref(isTab) ? tabContent : unref(currentRoute)
   })
 
   /**
@@ -37,6 +44,7 @@ export function useTabDropdown(
       return
     }
 
+    const { meta } = unref(getTargetTab)
     const { path } = unref(currentRoute)
 
     const curItem = state.presentTab
@@ -62,7 +70,7 @@ export function useTabDropdown(
         icon: Close,
         event: MenuEventEnum.CLOSE_CURRENT,
         text: '关闭标签页',
-        disabled: closeAllDisabled,
+        disabled: !!meta.fixedTab || closeAllDisabled,
         divided: true
       },
       {

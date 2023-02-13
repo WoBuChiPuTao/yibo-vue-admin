@@ -30,7 +30,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, message, data } = response.data // 根据自定义错误码判断请求是否成功
-    console.log(response.data)
+    console.log('response.data', response.data)
     if (code === 200) {
       // 将组件用的数据返回
       return data
