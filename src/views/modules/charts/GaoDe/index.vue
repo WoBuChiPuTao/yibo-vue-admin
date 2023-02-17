@@ -15,7 +15,7 @@ export default defineComponent({
   name: 'GaoDeMap',
   setup() {
     const { t } = useI18n()
-    const getDaodeName = computed(() => t('routes.demo.charts.googleMap'))
+    const getDaodeName = computed(() => t('routes.demo.charts.baiduMap'))
 
     const mapRef = ref<HTMLDivElement | null>(null)
     const { toPromise: toMapPromise } = useScript({ src: MAP_URL })
@@ -48,7 +48,8 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .container {
-  height: 100%;
-  width: 100%;
+  height: 900px;
+  width: 900px;
+  z-index: 0;
 }
 </style>

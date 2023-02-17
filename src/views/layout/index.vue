@@ -5,7 +5,7 @@
     </ElAside>
     <ElContainer>
       <Header></Header>
-      <ElMain>
+      <ElMain class="layout-main">
         <router-view></router-view>
       </ElMain>
       <ElFooter></ElFooter>
@@ -23,7 +23,12 @@ import Side from '@/views/layout/side/index.vue'
 .sider {
   height: 100vh;
   width: 210px;
-  background-color: #001529;
   overflow: hidden;
+}
+
+.layout-main {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 </style>
