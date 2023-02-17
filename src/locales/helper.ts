@@ -1,10 +1,14 @@
-import type { LocaleType } from './types'
+import type { LocaleType } from '@/types/locale'
 import { set } from 'lodash-es'
 
-export const loadLocalePool: LocaleType[] = []
+export const loadLocale: LocaleType[] = []
 
 export function setHtmlPageLang(locale: LocaleType) {
   document.querySelector('html')?.setAttribute('lang', locale)
+}
+
+export function setLoadLocale(cb: (loadLocale: LocaleType[]) => void) {
+  cb(loadLocale)
 }
 
 export function spliceMessage(langs: ReturnType<typeof require.context>) {

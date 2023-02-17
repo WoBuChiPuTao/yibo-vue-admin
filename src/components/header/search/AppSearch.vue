@@ -1,6 +1,6 @@
 <template>
     <ElTooltip content="搜索">
-        <ElIcon size="20px" :class="$attrs.class">
+        <ElIcon :class="$attrs.class">
             <Search />
         </ElIcon>
     </ElTooltip>

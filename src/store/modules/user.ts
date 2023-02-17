@@ -88,7 +88,6 @@ export const useUserStore = defineStore({
         // 可以动态添加路由
         // 构建路由
         const routes = flatMultiRoutes(asyncRoutes as RouteRecordRaw[])
-        console.log('buildroutes', routes)
         routes.forEach((route) => {
           router.addRoute(route as unknown as RouteRecordRaw)
         })

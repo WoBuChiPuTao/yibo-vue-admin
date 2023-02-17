@@ -3,18 +3,17 @@
     <ElAside class="sider">
       <Side></Side>
     </ElAside>
-    <ElContainer>
+    <ElContainer class="layout-main">
       <Header></Header>
-      <ElMain class="layout-main">
+      <ElMain class="layout-main-content">
         <router-view></router-view>
       </ElMain>
-      <ElFooter></ElFooter>
     </ElContainer>
   </ElContainer>
 </template>
 
 <script lang="ts" setup>
-import { ElContainer, ElAside, ElFooter, ElMain } from 'element-plus'
+import { ElContainer, ElAside, ElMain } from 'element-plus'
 import Header from '@/views/layout/header/index.vue'
 import Side from '@/views/layout/side/index.vue'
 </script>
@@ -27,8 +26,13 @@ import Side from '@/views/layout/side/index.vue'
 }
 
 .layout-main {
-  position: relative;
-  flex: 1 1 auto;
-  min-height: 0;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  //background: #f0f2f5;
+
+  &-content{
+    padding: 1rem;
+  }
 }
 </style>

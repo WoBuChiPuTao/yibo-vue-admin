@@ -1,6 +1,6 @@
 <template>
         <ElTooltip content="通知">
-            <el-icon size="20px" :class="$attrs.class">
+            <el-icon :class="$attrs.class">
                 <Bell />
             </el-icon>
         </ElTooltip>

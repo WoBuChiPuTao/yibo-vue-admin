@@ -80,14 +80,12 @@ const userStore = useUserStore()
 
 async function handleLogin() {
   try {
-    const userInfo = await userStore.toLogin({
+    await userStore.toLogin({
       username: loginForm.username,
       password: loginForm.password
     })
-    console.log('userInfo', userInfo)
-    console.log('token', userStore.getToken)
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
 </script>

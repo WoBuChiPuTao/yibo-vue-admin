@@ -9,6 +9,7 @@
       <AppSearch class="header-action-item"></AppSearch>
       <AppNotice class="header-action-item"></AppNotice>
       <FullScreen class="header-action-item"></FullScreen>
+      <AppLocalePicker class="header-action-item"></AppLocalePicker>
       <UserDropdown class="header-action-item"></UserDropdown>
       <AppSetting class="header-action-item"></AppSetting>
     </div>
@@ -24,10 +25,20 @@ import AppNotice from '@/components/header/notice/AppNotice.vue'
 import FullScreen from '@/components/header/fullScreen/FullScreen.vue'
 import UserDropdown from '@/components/header/user/UserDropdown.vue'
 import AppSetting from '@/components/header/setting/AppSetting.vue'
+import AppLocalePicker from '@/components/application/AppLocalePicker.vue'
 
 export default defineComponent({
   name: 'layoutHeader',
-  components: { ElHeader, SiderTrigger, AppSearch, AppNotice, FullScreen, UserDropdown, AppSetting },
+  components: {
+    ElHeader,
+    SiderTrigger,
+    AppSearch,
+    AppNotice,
+    FullScreen,
+    UserDropdown,
+    AppSetting,
+    AppLocalePicker
+  },
   setup() {
     return {}
   }

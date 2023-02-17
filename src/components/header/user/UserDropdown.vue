@@ -73,6 +73,7 @@ const toLogout = () => {
 
     &-name {
         font-size: 14px;
+        color: rgb(134, 134, 134);
     }
 }
 </style>

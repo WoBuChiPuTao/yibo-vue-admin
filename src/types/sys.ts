@@ -14,8 +14,6 @@ import {
   TriggerEnum
 } from '@/types/enums/menuEnum'
 
-export type LocaleType = 'zh_CN' | 'en'
-
 /**
  * @description: storage存储格式
  */
@@ -151,16 +149,6 @@ export interface HeaderSetting {
   // Show message center button
   showNotice: boolean
   showSearch: boolean
-}
-
-export interface LocaleSetting {
-  showPicker: boolean
-  // Current language
-  locale: LocaleType
-  // default language
-  fallback: LocaleType
-  // available Locales
-  availableLocales: LocaleType[]
 }
 
 export interface TransitionSetting {

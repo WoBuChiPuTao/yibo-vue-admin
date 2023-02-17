@@ -1,6 +1,6 @@
 <template>
     <ElTooltip :content="tooltipContent">
-        <ElIcon size="20px" :class="$attrs.class" @click="toggle">
+        <ElIcon :class="$attrs.class" @click="toggle">
             <FullScreen></FullScreen>
         </ElIcon>
     </ElTooltip>
