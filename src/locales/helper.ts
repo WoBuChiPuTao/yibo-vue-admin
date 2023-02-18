@@ -21,7 +21,7 @@ export function spliceMessage(langs: ReturnType<typeof require.context>) {
     pathArray.forEach((path, index) => {
       index === pathArray.length - 1
         ? set(modules, path, fileData || {})
-        : set(modules, path, {})
+        : modules[path] === undefined && set(modules, path, {})
       modules = modules[path]
     })
   })

@@ -21,7 +21,6 @@ export function useLeftMenu() {
 
   async function useGetMenu() {
     menuRef.value = await getMenus()
-    console.log(' menuRef.value', menuRef.value)
   }
 
   return { menuRef }

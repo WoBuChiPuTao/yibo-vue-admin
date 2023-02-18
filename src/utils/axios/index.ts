@@ -6,7 +6,10 @@ import type {
   AxiosResponse
 } from 'axios'
 import { ElMessage } from 'element-plus'
+import { useI18n } from '@/hooks/web/useI18n'
 import { Header, TIME_OUT, BASEURL } from './config'
+
+const { t } = useI18n()
 
 const service: AxiosInstance = axios.create({
   baseURL: BASEURL,
@@ -30,7 +33,6 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, message, data } = response.data // 根据自定义错误码判断请求是否成功
-    console.log('response.data', response.data)
     if (code === 200) {
       // 将组件用的数据返回
       return data
@@ -42,27 +44,48 @@ service.interceptors.response.use(
   },
   (error: AxiosError) => {
     // 处理 HTTP 网络错误
-    let message = ''
+    let errMessage = ''
     // HTTP 状态码
     const status = error.response?.status
     switch (status) {
       case 401:
-        message = 'token 失效，请重新登录'
+        errMessage = t('sys.api.errMsg401')
         // 这里可以触发退出的 action
         break
       case 403:
-        message = '拒绝访问'
+        errMessage = t('sys.api.errMsg403')
         break
       case 404:
-        message = '请求地址错误'
+        errMessage = t('sys.api.errMsg404')
+        break
+      case 405:
+        errMessage = t('sys.api.errMsg405')
+        break
+      case 408:
+        errMessage = t('sys.api.errMsg408')
         break
       case 500:
-        message = '服务器故障'
+        errMessage = t('sys.api.errMsg500')
+        break
+      case 501:
+        errMessage = t('sys.api.errMsg501')
+        break
+      case 502:
+        errMessage = t('sys.api.errMsg502')
+        break
+      case 503:
+        errMessage = t('sys.api.errMsg503')
+        break
+      case 504:
+        errMessage = t('sys.api.errMsg504')
+        break
+      case 505:
+        errMessage = t('sys.api.errMsg505')
         break
       default:
-        message = '网络连接故障'
+        errMessage = 'Error Status:' + status
     }
-    ElMessage.error(message)
+    ElMessage.error(errMessage)
     return Promise.reject(error)
   }
 )

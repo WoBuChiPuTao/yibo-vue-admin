@@ -1,4 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
+import { t } from '@/hooks/web/useI18n'
 const Layout = () => import('@/views/layout/index.vue')
 
 const component: AddRouteRecordRaw = {
@@ -9,7 +10,7 @@ const component: AddRouteRecordRaw = {
   meta: {
     orderNo: 30,
     icon: 'ion:layers-outline',
-    title: '组件'
+    title: t('routes.demo.comp.comp')
   },
 
   children: [
@@ -18,7 +19,7 @@ const component: AddRouteRecordRaw = {
       name: 'BasicDemo',
       component: () => import('@/views/modules/component/basic/index.vue'),
       meta: {
-        title: '基础组件',
+        title: t('routes.demo.comp.basic'),
         icon: 'lucide:component'
       }
     },
@@ -38,7 +39,7 @@ const component: AddRouteRecordRaw = {
           name: 'BasicTreeDemo',
           component: () => import('@/views/modules/component/tree/index.vue'),
           meta: {
-            title: '基础树',
+            title: t('routes.demo.comp.treeBasic'),
             icon: 'ph:tree-structure-light'
           }
         },
@@ -48,7 +49,7 @@ const component: AddRouteRecordRaw = {
           component: () =>
             import('@/views/modules/component/tree/EditTree.vue'),
           meta: {
-            title: '可搜索/工具栏',
+            title: t('routes.demo.comp.editTree'),
             icon: 'material-symbols:rebase-edit-outline-rounded'
           }
         },
@@ -58,7 +59,7 @@ const component: AddRouteRecordRaw = {
           component: () =>
             import('@/views/modules/component/tree/ActionTree.vue'),
           meta: {
-            title: '树操作示例',
+            title: t('routes.demo.comp.actionTree'),
             icon: 'eos-icons:action-chains-outlined'
           }
         }

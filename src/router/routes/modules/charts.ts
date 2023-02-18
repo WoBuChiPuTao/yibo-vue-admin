@@ -19,7 +19,7 @@ const charts: AddRouteRecordRaw = {
       name: 'GaoDe',
       component: () => import('@/views/modules/charts/GaoDe/index.vue'),
       meta: {
-        title: '高德地图'
+        title: t('routes.demo.charts.aMap')
       }
     },
     {
@@ -36,7 +36,7 @@ const charts: AddRouteRecordRaw = {
           name: 'Map',
           component: () => import('@/views/modules/charts/echart/Map.vue'),
           meta: {
-            title: '地图'
+            title: t('routes.demo.charts.map')
           }
         },
         {
@@ -44,7 +44,7 @@ const charts: AddRouteRecordRaw = {
           name: 'Line',
           component: () => import('@/views/modules/charts/echart/Line.vue'),
           meta: {
-            title: '折线图'
+            title: t('routes.demo.charts.line')
           }
         },
         {
@@ -52,7 +52,7 @@ const charts: AddRouteRecordRaw = {
           name: 'Pie',
           component: () => import('@/views/modules/charts/echart/Pie.vue'),
           meta: {
-            title: '饼图'
+            title: t('routes.demo.charts.pie')
           }
         }
       ]

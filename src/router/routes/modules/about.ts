@@ -1,4 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
+import { t } from '@/hooks/web/useI18n'
 const Layout = () => import('@/views/layout/index.vue')
 
 const about: AddRouteRecordRaw = {
@@ -7,7 +8,7 @@ const about: AddRouteRecordRaw = {
   component: Layout,
   redirect: '/about/page',
   meta: {
-    title: '关于',
+    title: t('routes.dashboard.about'),
     orderNo: 100000,
     icon: 'simple-icons:aboutdotme'
   },
@@ -17,7 +18,7 @@ const about: AddRouteRecordRaw = {
       name: 'AboutPage',
       component: () => import('@/views/modules/about/index.vue'),
       meta: {
-        title: '关于',
+        title: t('routes.dashboard.about'),
         icon: 'simple-icons:aboutdotme',
         hideMenu: true
       }

@@ -14,6 +14,7 @@ async function createI18nOptoins(): Promise<I18nOptions> {
   const locale: LocaleType = localeStore.getLocale
   const defaultLocale = await import(`./lang/${locale}.ts`)
   const message = defaultLocale.default.message ?? {}
+
   setHtmlPageLang(locale)
   setLoadLocale((loadLocale) => {
     loadLocale.push(locale)

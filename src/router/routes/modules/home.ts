@@ -1,4 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
+import { t } from '@/hooks/web/useI18n'
 const Layout = () => import('@/views/layout/index.vue')
 
 const home: AddRouteRecordRaw = {
@@ -7,7 +8,7 @@ const home: AddRouteRecordRaw = {
   component: Layout,
   redirect: '/home/homepage',
   meta: {
-    title: '主页',
+    title: t('routes.dashboard.homePage'),
     icon: 'material-symbols:home-outline',
     orderNo: 1
   },
@@ -17,7 +18,8 @@ const home: AddRouteRecordRaw = {
       name: 'HomePage',
       component: () => import('@/views/home/index.vue'),
       meta: {
-        title: '主页',
+        title: t('routes.dashboard.homePage'),
+        hideMenu: true,
         fixedTab: true
       }
     }

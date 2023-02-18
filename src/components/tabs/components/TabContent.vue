@@ -1,19 +1,13 @@
 <template>
   <ElDropdown :trigger="getTrigger" size="small" @command="handleMenuEvent">
     <div v-if="getIsTab" @contextmenu="handleContext" @click="handleContext">
-      <span :class="activeClass">{{ props.tabItem.meta.title }}</span>
+      <span :class="activeClass">{{ getI18nName }}</span>
     </div>
     <template #dropdown>
       <ElDropdownMenu>
         <template v-for="item in getDropList" :key="item.text">
-          <ElDropdownItem
-            :icon="item.icon"
-            :disabled="item.disabled"
-            :command="item.event"
-            :divided="item.divided"
-          >
-            {{ item.text }}</ElDropdownItem
-          >
+          <ElDropdownItem :icon="item.icon" :disabled="item.disabled" :command="item.event" :divided="item.divided">
+            {{ item.text }}</ElDropdownItem>
         </template>
       </ElDropdownMenu>
     </template>
@@ -25,6 +19,7 @@ import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { computed, PropType, unref } from 'vue'
 import { RouteLocationNormalized } from 'vue-router'
 import { useTabDropdown } from '../useTabDropDown'
+import { useI18n } from '@/hooks/web/useI18n'
 const props = defineProps({
   tabItem: {
     type: Object as PropType<RouteLocationNormalized>,
@@ -36,6 +31,8 @@ const props = defineProps({
   },
   isExtra: Boolean
 })
+const { t } = useI18n()
+const getI18nName = computed(() => t(props.tabItem.meta.title as string))
 
 const activeClass = computed(() => {
   return props.isActive ? 'active' : null

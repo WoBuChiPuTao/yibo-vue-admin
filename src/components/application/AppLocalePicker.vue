@@ -9,7 +9,7 @@
     <template #dropdown>
       <ElDropdownMenu>
         <template v-for="item in localeList" :key="item.event">
-          <ElDropdownItem :command="item.event">
+          <ElDropdownItem :command="item.event" :class="item.event === getLocale ? 'picker-dropdown-item-selected' : ''">
             {{ item.text }}
           </ElDropdownItem>
         </template>
@@ -59,13 +59,25 @@ async function toggleLocale(lang: LocaleType | string) {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .picker-content {
   cursor: pointer;
   display: flex;
   align-items: center;
+
   &-title {
     font-size: 16px;
   }
 }
+
+.el-dropdown-menu__item:not(.is-disabled):focus {
+  background-color: #f5f5f5;
+  color: #606266;
+}
+
+.picker-dropdown-item-selected {
+  background-color: #ecf5ff;
+  color: #409eff !important;
+}
+
 </style>
