@@ -15,7 +15,7 @@ export default defineComponent({
   name: 'GaoDeMap',
   setup() {
     const { t } = useI18n()
-    const getDaodeName = computed(() => t('routes.demo.charts.baiduMap'))
+    const getDaodeName = computed(() => t('routes.demo.charts.aMap'))
 
     const mapRef = ref<HTMLDivElement | null>(null)
     const { toPromise: toMapPromise } = useScript({ src: MAP_URL })

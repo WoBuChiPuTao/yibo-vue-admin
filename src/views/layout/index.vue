@@ -32,7 +32,7 @@ import Side from '@/views/layout/side/index.vue'
   //background: #f0f2f5;
 
   &-content{
-    padding: 1rem;
+    padding: 0;
   }
 }
 </style>
