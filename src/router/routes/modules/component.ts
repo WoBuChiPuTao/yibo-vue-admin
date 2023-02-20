@@ -30,7 +30,7 @@ const component: AddRouteRecordRaw = {
       redirect: '/comp/tree/basic',
       component: Layout,
       meta: {
-        title: 'Tree',
+        title: t('routes.demo.comp.tree'),
         icon: 'clarity:tree-view-line'
       },
       children: [

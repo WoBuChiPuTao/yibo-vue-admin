@@ -6,7 +6,7 @@
     <ElContainer class="layout-main">
       <Header></Header>
       <ElMain class="layout-main-content">
-        <router-view></router-view>
+        <Content></Content>
       </ElMain>
     </ElContainer>
   </ElContainer>
@@ -16,6 +16,7 @@
 import { ElContainer, ElAside, ElMain } from 'element-plus'
 import Header from '@/views/layout/header/index.vue'
 import Side from '@/views/layout/side/index.vue'
+import Content from '@/views/layout/content/index.vue'
 </script>
 
 <style lang="less">
@@ -31,8 +32,9 @@ import Side from '@/views/layout/side/index.vue'
   flex-direction: column;
   //background: #f0f2f5;
 
-  &-content{
+  &-content {
     padding: 0;
+    overflow-x: hidden;
   }
 }
 </style>

@@ -32,10 +32,9 @@ export function useScript(opts: ScriptOptions) {
       opts?.text && (script.text = opts?.text)
       document.head.appendChild(script)
     })
-
-    onUnmounted(() => {
-      script && script.remove()
-    })
+  })
+  onUnmounted(() => {
+    script && script.remove()
   })
 
   return {

@@ -1,4 +1,4 @@
-import { StorageCache } from '@/types/sys'
+import { StorageCache } from '@/types/storage'
 
 export class WebStorage {
   private storage: Storage

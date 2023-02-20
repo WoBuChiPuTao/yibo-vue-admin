@@ -1,5 +1,13 @@
 import { RoleEnum } from '@/types/enums/roleEnm'
-import { RoleInfo } from './sys'
+
+/**
+ * @description: 用户角色信息
+ */
+export interface RoleInfo {
+  roleName: string
+  value: string
+}
+
 /**
  * @description: 用户信息
  */

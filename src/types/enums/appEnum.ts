@@ -4,13 +4,6 @@ export enum ThemeEnum {
   LIGHT = 'light'
 }
 
-export enum ContentEnum {
-  // auto width
-  FULL = 'full',
-  // fixed width
-  FIXED = 'fixed'
-}
-
 /**
  * 设置按钮位置
  */
@@ -35,6 +28,9 @@ export enum PermissionModeEnum {
   ROUTE_MAPPING = 'ROUTE_MAPPING'
 }
 
+/**
+ * 会话是否超时枚举
+ */
 export enum SessionTimeoutProcessingEnum {
   ROUTE_JUMP,
   PAGE_COVERAGE
