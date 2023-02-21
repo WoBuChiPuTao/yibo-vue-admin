@@ -1,11 +1,7 @@
 <template>
-  <div style="color: white">logo</div>
+  <div class="logo">logo</div>
   <ElScrollbar>
-    <Menu
-      :collapse="isCollapse"
-      @select-menu-item="handleSelected"
-      :menus="items"
-    >
+    <Menu :collapse="isCollapse" @select-menu-item="handleSelected" :menus="items">
       <template v-for="item in items" :key="item.path">
         <SubMenu :item="item" :parent="true" :collapsed="collapsed"></SubMenu>
       </template>
@@ -51,4 +47,9 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+.logo{
+  height: 60px;
+  color: white;
+}
+</style>

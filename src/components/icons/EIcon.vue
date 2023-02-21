@@ -1,5 +1,7 @@
 <template>
-    <Icon :icon="icon" :class="$attrs.class"></Icon>
+  <span :class="$attrs.class">
+    <Icon :icon="icon"></Icon>
+  </span>
 </template>
 
 <script lang="ts">

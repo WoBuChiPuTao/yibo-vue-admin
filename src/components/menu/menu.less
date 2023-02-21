@@ -6,6 +6,8 @@ ul {
 }
 
 .menu-list {
+  font-size: 14px;
+  color: rgb(164, 164, 164);
   .menu-children {
     background-color: rgb(12, 33, 53);
   }
@@ -14,12 +16,10 @@ ul {
     padding: 14px 24px;
     cursor: pointer;
     width: 100%;
-    font-size: 14px;
     padding-left: 16px;
     white-space: nowrap;
     position: relative;
     box-sizing: border-box;
-    color: rgb(164, 164, 164);
     display: flex;
     align-items: center;
 
@@ -30,12 +30,11 @@ ul {
 
     &-iconfont {
       font-family: 'iconfont' !important;
+      display: inline-flex;
       font-style: normal;
       font-size: 16px;
-      // color: #fff;
-      vertical-align: middle;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      text-transform: none;
     }
 
     &-name {
@@ -44,29 +43,41 @@ ul {
   }
 
   &-submenu {
-    cursor: pointer;
-    width: 100%;
-    padding: 14px 24px;
-
-    &-sub-title {
-      font-size: 14px;
-      padding-left: 16px;
-      white-space: nowrap;
+    &-title {
       position: relative;
-      box-sizing: border-box;
-      color: rgb(164, 164, 164);
+      z-index: 1;
+      padding: 14px 24px;
+      overflow: hidden;
+      //text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.3s;
 
       &:hover {
         color: #fff;
       }
+
+      &-iconfont {
+        font-family: 'iconfont' !important;
+        font-style: normal;
+        font-size: 16px;
+        display: inline-flex;
+        text-align: center;
+        text-transform: none;
+        vertical-align: -0.125em;
+        text-rendering: optimizelegibility;
+      }
+
+      &-name {
+        margin-left: 8px;
+      }
     }
 
-    &-child-active > &-sub-title {
+    &-child-active > &-title {
       color: #fff !important;
     }
 
     .submenu-open-icon {
-      font-size: 14px;
       position: absolute;
       top: 50%;
       right: 18px;
@@ -80,25 +91,6 @@ ul {
 
     &-opend > * > .submenu-open-icon {
       transform: translateY(-50%) rotate(180deg);
-    }
-
-    .menu-list-item-iconfont {
-      font-family: 'iconfont' !important;
-      font-style: normal;
-      font-size: 16px;
-      // color: #fff;
-      vertical-align: middle;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .menu-list-item-name {
-      margin-left: 8px;
-      font-size: 14px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      transition: all 0.3s;
     }
   }
 }
