@@ -6,35 +6,16 @@ import {
   ThemeEnum
 } from './enums/appEnum'
 import { CacheTypeEnum } from './enums/cacheEnum'
-import {
-  MenuModeEnum,
-  MenuTypeEnum,
-  MixSidebarTriggerEnum,
-  TriggerEnum
-} from './enums/menuEnum'
 
 export interface MenuSetting {
-  bgColor: string
-  fixed: boolean
   collapsed: boolean
+  // 收起时是否隐藏菜单
   siderHidden: boolean
-  canDrag: boolean
-  show: boolean
-  hidden: boolean
-  split: boolean
   menuWidth: number
-  mode: MenuModeEnum
-  type: MenuTypeEnum
   theme: ThemeEnum
-  topMenuAlign: 'start' | 'center' | 'end'
-  trigger: TriggerEnum
-  accordion: boolean
-  closeMixSidebarOnChange: boolean
-  collapsedShowTitle: boolean
-  mixSideTrigger: MixSidebarTriggerEnum
 }
 
-export interface MultiTabsSetting {
+export interface TabsSetting {
   cache: boolean
   show: boolean
   showQuick: boolean
@@ -100,7 +81,7 @@ export interface ProjectConfig {
   // menuSetting
   menuSetting: MenuSetting
   // Multi-tab settings
-  multiTabsSetting: MultiTabsSetting
+  tabsSetting: TabsSetting
   // Animation configuration
   transitionSetting: TransitionSetting
   // pageLayout whether to enable keep-alive
@@ -126,7 +107,4 @@ export interface ProjectConfig {
 // When the window shrinks, remember some states, and restore these states when the window is restored
 export interface BeforeMiniState {
   menuCollapsed?: boolean
-  menuSplit?: boolean
-  menuMode?: MenuModeEnum
-  menuType?: MenuTypeEnum
 }

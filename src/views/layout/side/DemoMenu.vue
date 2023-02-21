@@ -7,7 +7,7 @@
       :menus="items"
     >
       <template v-for="item in items" :key="item.path">
-        <SubMenu :item="item" :parent="true"></SubMenu>
+        <SubMenu :item="item" :parent="true" :collapsed="collapsed"></SubMenu>
       </template>
     </Menu>
   </ElScrollbar>
@@ -27,6 +27,10 @@ export default defineComponent({
     items: {
       type: Array as PropType<MenuType[]>,
       default: () => []
+    },
+    collapsed: {
+      type: Boolean,
+      default: false
     }
   },
   setup() {

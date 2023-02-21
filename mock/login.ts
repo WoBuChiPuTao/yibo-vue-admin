@@ -37,6 +37,7 @@ Mock.mock('/user/login', 'post', (params) => {
   const queryString = params.body
   const queryObj = JSON.parse(queryString)
   if (queryObj.username === 'lyb01' && queryObj.password === '123') {
+    LoginBack.data.role.roleName = queryObj.username
     return LoginBack
   } else {
     return {

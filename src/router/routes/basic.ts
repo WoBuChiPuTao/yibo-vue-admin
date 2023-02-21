@@ -1,3 +1,4 @@
+import { t } from '@/hooks/web/useI18n'
 import { AddRouteRecordRaw } from '../types'
 const Layout = () => import('@/views/layout/index.vue')
 
@@ -6,7 +7,7 @@ export const LOGIN_ROUTE: AddRouteRecordRaw = {
   name: 'login',
   component: () => import('@/views/login/index.vue'),
   meta: {
-    title: '登录'
+    title: t('routes.basic.login')
   }
 }
 

@@ -10,13 +10,13 @@
         class="menu-list-item-iconfont"
         :icon="item.icon"
       ></EIcon>
-      <span class="menu-list-item-name"> {{ getI18nName }}</span>
+      <span class="menu-list-item-name" v-show="!collapsed"> {{ getI18nName }}</span>
     </template>
     <template
       v-for="childrenItem in item.children || []"
       :key="childrenItem.path"
     >
-      <SubMenu :item="childrenItem"></SubMenu>
+      <SubMenu :item="childrenItem" :collapsed="collapsed"></SubMenu>
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path">
@@ -25,7 +25,7 @@
       class="menu-list-item-iconfont"
       :icon="item.icon"
     ></EIcon>
-    <span class="menu-list-item-name">{{ getI18nName }}</span>
+    <span class="menu-list-item-name" v-show="!collapsed">{{ getI18nName }}</span>
   </MenuItem>
 </template>
 
@@ -45,7 +45,8 @@ export default defineComponent({
       type: Object as PropType<Menu>,
       default: () => ({})
     },
-    parent: Boolean
+    parent: Boolean,
+    collapsed: Boolean
   },
   setup(props) {
     // 多国语言

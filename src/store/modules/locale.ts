@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
-import { LocaleSetting, initLocaleSetting, LocaleType } from '@/types/locale'
+import { initLocaleSetting } from '@/hooks/config/locale'
 import { WebCache } from '@/utils/cache'
+import { LocaleSetting, LocaleType } from '@/types/locale'
 
 interface LocaleState {
   localInfo: LocaleSetting

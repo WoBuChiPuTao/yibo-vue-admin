@@ -1,9 +1,14 @@
+import { resetRoutes } from '@/router'
 import {
   BeforeMiniState,
   HeaderSetting,
-  ProjectConfig
+  MenuSetting,
+  ProjectConfig,
+  TabsSetting,
+  TransitionSetting
 } from '@/types/appSetting'
 import { ThemeEnum } from '@/types/enums/appEnum'
+import { deepMerge } from '@/utils'
 import { WebCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
 
@@ -13,6 +18,8 @@ interface AppAtate {
   projectSetting: ProjectConfig | null
   beforeMiniInfo: BeforeMiniState
 }
+
+let timeoutId: ReturnType<typeof setTimeout>
 
 export const useAppStore = defineStore({
   id: 'app',
@@ -31,8 +38,56 @@ export const useAppStore = defineStore({
     getPageLoading(): boolean {
       return this.pageLoading
     },
+    getBeforeMiniInfo(): BeforeMiniState {
+      return this.beforeMiniInfo
+    },
     getProjectSetting(): ProjectConfig {
       return this.projectSetting || ({} as ProjectConfig)
+    },
+    getHeaderSetting(): HeaderSetting {
+      return this.getProjectSetting.headerSetting
+    },
+    getTabsSetting(): TabsSetting {
+      return this.getProjectSetting.tabsSetting
+    },
+    getMenuSetting(): MenuSetting {
+      return this.getProjectSetting.menuSetting
+    },
+    getTransitionSetting(): TransitionSetting {
+      return this.getProjectSetting.transitionSetting
+    }
+  },
+  actions: {
+    setDarkMode(mode: ThemeEnum): void {
+      this.darkMode = mode
+      WebCache.setLocal('APP__DARK__MODE', mode)
+    },
+    setPageLoading(loading: boolean): void {
+      this.pageLoading = loading
+    },
+    setBeforeMiniInfo(miniInfo: BeforeMiniState): void {
+      this.beforeMiniInfo = miniInfo
+    },
+    setProjectSetting(setting: DeepPartial<ProjectConfig>): void {
+      this.projectSetting = deepMerge(this.projectSetting || {}, setting)
+      WebCache.setLocal('PROJECT_SETTING', this.projectSetting)
+    },
+
+    async setAllStateSync() {
+      resetRoutes()
+      WebCache.clearLocal()
+      WebCache.clearSession()
+    },
+    async setPageLoadingSync(loading: boolean): Promise<void> {
+      if (loading) {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+          this.setPageLoading(loading)
+        }, 50)
+      } else {
+        this.setPageLoading(loading)
+        clearTimeout(timeoutId)
+      }
     }
   }
 })
