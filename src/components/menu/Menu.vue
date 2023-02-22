@@ -5,7 +5,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, onMounted, PropType, ref, toRefs, unref, watch } from 'vue'
+import {
+  defineComponent,
+  nextTick,
+  onMounted,
+  PropType,
+  ref,
+  toRefs,
+  unref,
+  watch
+} from 'vue'
 import { createRootMenuContext } from './useMenuContext'
 import mitt, { Emitter } from '@/utils/mitt'
 import { listenerRouteChange } from '@/hooks/mitt/routeChange'
@@ -18,8 +27,9 @@ export default defineComponent({
   props: {
     menus: {
       type: Array as PropType<Menu[]>,
-      default: () => ([])
-    }
+      default: () => []
+    },
+    collapsed: Boolean
   },
   emits: ['selectMenuItem'],
   setup(props, { emit }) {
@@ -42,6 +52,17 @@ export default defineComponent({
         nextTick(() => {
           updateOpened()
         })
+      }
+    )
+
+    watch(
+      () => props.collapsed,
+      () => {
+        if (props.collapsed) {
+          openedNames.value = []
+        } else {
+          handleMenuChange()
+        }
       }
     )
 

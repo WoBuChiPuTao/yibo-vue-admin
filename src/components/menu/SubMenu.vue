@@ -1,16 +1,38 @@
 <template>
-  <SubMenuItem v-if="hasChildrenMenu(item)" :class="getLevelClass" :name="item.path" :collapsed="collapsed">
+  <SubMenuItem
+    v-if="hasChildrenMenu(item)"
+    :class="getLevelClass"
+    :name="item.path"
+    :collapsed="collapsed"
+  >
     <template #title>
-      <EIcon v-if="getCeil" class="menu-list-submenu-title-iconfont" :icon="item.icon"></EIcon>
-      <span class="menu-list-submenu-title-name" v-if="!collapsed"> {{ getI18nName }}</span>
+      <EIcon
+        v-if="getCeil"
+        class="menu-list-submenu-title-iconfont"
+        :icon="item.icon"
+      ></EIcon>
+      <span class="menu-list-submenu-title-name" v-if="!collapsed">
+        {{ getI18nName }}</span
+      >
     </template>
-    <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
-      <SubMenu :item="childrenItem"  v-if="!collapsed"></SubMenu>
+    <template
+      v-for="childrenItem in item.children || []"
+      :key="childrenItem.path"
+    >
+      <SubMenu
+        :item="childrenItem"
+        :parent="false"
+        v-if="!collapsed"
+      ></SubMenu>
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path">
-  <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></EIcon>
-  <span class="menu-list-item-name"  v-if="!collapsed">{{ getI18nName }}</span>
+    <EIcon
+      v-if="getCeil"
+      class="menu-list-item-iconfont"
+      :icon="item.icon"
+    ></EIcon>
+    <span class="menu-list-item-name" v-if="!collapsed">{{ getI18nName }}</span>
   </MenuItem>
 </template>
 

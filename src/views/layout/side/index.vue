@@ -1,25 +1,23 @@
 <template>
   <div class="side-fill" :style="getDomStyle"></div>
-  <ElMenu
-    class="side-fixed"
-    :style="getDomStyle"
-    :collapse="getCollapsed"
-    :collapse-transition="true"
-  >
-    <DemoMenu :items="menus" :collapsed="getCollapsed"></DemoMenu>
-  </ElMenu>
+  <CollapseTransition>
+    <div class="side-fixed" :style="getDomStyle">
+      <DemoMenu :items="menus" :collapsed="getCollapsed"></DemoMenu>
+    </div>
+  </CollapseTransition>
 </template>
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, unref } from 'vue'
 import DemoMenu from './DemoMenu.vue'
-import { ElMenu } from 'element-plus'
+// import { ElMenu } from 'element-plus'
 import { useLeftMenu } from './useMenu'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import CollapseTransition from '@/components/Transition/CollapseTransition.vue'
 
 export default defineComponent({
   name: 'AppSide',
-  components: { DemoMenu, ElMenu },
+  components: { DemoMenu, CollapseTransition },
   setup() {
     const { menuRef } = useLeftMenu()
 

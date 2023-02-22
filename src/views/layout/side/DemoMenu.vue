@@ -1,7 +1,7 @@
 <template>
   <div class="logo">logo</div>
   <ElScrollbar>
-    <Menu :collapse="isCollapse" @select-menu-item="handleSelected" :menus="items">
+    <Menu :collapsed="collapsed" @select-menu-item="handleSelected" :menus="items">
       <template v-for="item in items" :key="item.path">
         <SubMenu :item="item" :parent="true" :collapsed="collapsed"></SubMenu>
       </template>
@@ -32,14 +32,12 @@ export default defineComponent({
   setup() {
     const go = useGo()
     const iconName = ref('Search')
-    const isCollapse = ref(false)
 
     function handleSelected(key: string) {
       go(key)
     }
 
     return {
-      isCollapse,
       iconName,
       handleSelected
     }

@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 80px"></div>
+  <div class="header-fill"></div>
   <div class="header-fixed" :style="getDomStyle">
     <LayoutHeader></LayoutHeader>
     <Tabs></Tabs>
@@ -29,6 +29,10 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.header-fill{
+  height: 78px;
+}
+
 .header-fixed {
   transition: all 0.2s;
   position: fixed;

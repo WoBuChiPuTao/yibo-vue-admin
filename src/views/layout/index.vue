@@ -19,6 +19,9 @@ import Content from '@/views/layout/content/index.vue'
 
 <style lang="less">
 .layout {
+  height: 100vh;
+  width: 100vw;
+
   .layout-main {
     display: flex;
     flex: auto;
@@ -28,6 +31,7 @@ import Content from '@/views/layout/content/index.vue'
     &-content {
       padding: 0;
       overflow-x: hidden;
+      position: relative;
     }
   }
 }

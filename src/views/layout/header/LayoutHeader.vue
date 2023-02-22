@@ -1,8 +1,8 @@
 <template>
   <ElHeader class="header">
     <div class="header-left">
-      <SiderTrigger></SiderTrigger>
-      <!-- <span>面包</span> -->
+      <SiderTrigger class="header-left-item"></SiderTrigger>
+      <BreadCrumb class="header-left-item"></BreadCrumb>
     </div>
 
     <div class="header-action">
@@ -26,6 +26,7 @@ import FullScreen from '@/components/header/fullScreen/FullScreen.vue'
 import UserDropdown from '@/components/header/user/UserDropdown.vue'
 import AppSetting from '@/components/header/setting/AppSetting.vue'
 import AppLocalePicker from '@/components/application/AppLocalePicker.vue'
+import BreadCrumb from '@/components/header/crumb/BreadCrumb.vue'
 
 export default defineComponent({
   name: 'layoutHeader',
@@ -37,7 +38,8 @@ export default defineComponent({
     FullScreen,
     UserDropdown,
     AppSetting,
-    AppLocalePicker
+    AppLocalePicker,
+    BreadCrumb
   },
   setup() {
     return {}

@@ -11,7 +11,6 @@ export function useOpenMenu(menus: Ref<Menu[]>, openNames: Ref<string[]>) {
       return
     }
     openNames.value = getAllParentPath(menuList, path)
-    console.log('openNames', openNames.value)
   }
 
   return { getOpenMenu: getDebounceOpenMenu }
