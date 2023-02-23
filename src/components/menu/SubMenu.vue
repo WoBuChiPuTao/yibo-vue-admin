@@ -19,14 +19,15 @@
       v-for="childrenItem in item.children || []"
       :key="childrenItem.path"
     >
-      <SubMenu
-        :item="childrenItem"
-        :parent="false"
-        v-if="!collapsed"
-      ></SubMenu>
+      <SubMenu :item="childrenItem" :parent="false" v-if="!collapsed"></SubMenu>
     </template>
   </SubMenuItem>
-  <MenuItem v-else :class="getLevelClass" :name="item.path">
+  <MenuItem
+    v-else
+    :class="getLevelClass"
+    :name="item.path"
+    :collapsed="collapsed"
+  >
     <EIcon
       v-if="getCeil"
       class="menu-list-item-iconfont"

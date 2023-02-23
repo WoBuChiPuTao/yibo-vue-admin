@@ -1,8 +1,16 @@
 <template>
   <li :class="getClass">
-    <div class="menu-list-submenu-title" @click.stop="handleClick" :style="getItemStyle">
+    <div
+      class="menu-list-submenu-title"
+      @click.stop="handleClick"
+      :style="getItemStyle"
+    >
       <slot name="title"></slot>
-      <EIcon v-if="!collapsed" icon="eva:arrow-ios-downward-outline" class="submenu-open-icon" />
+      <EIcon
+        v-if="!collapsed"
+        icon="eva:arrow-ios-downward-outline"
+        class="submenu-open-icon"
+      />
     </div>
     <CollapseTransition>
       <ul v-show="opened">
@@ -10,7 +18,6 @@
       </ul>
     </CollapseTransition>
   </li>
-
 </template>
 
 <script lang="ts">
@@ -65,7 +72,9 @@ export default defineComponent({
         'menu-list-submenu',
         {
           'menu-list-submenu-opend': state.opened,
-          'menu-list-submenu-child-active': state.active
+          'menu-list-submenu-child-active': state.active,
+          'menu-list-submenu-child-active-collapsed':
+            state.active && props.collapsed
         }
       ]
     })

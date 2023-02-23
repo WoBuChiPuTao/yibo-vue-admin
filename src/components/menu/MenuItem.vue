@@ -22,7 +22,8 @@ export default defineComponent({
     name: {
       type: String,
       required: true
-    }
+    },
+    collapsed: Boolean
   },
   setup(props) {
     const active = ref(false)
@@ -55,7 +56,8 @@ export default defineComponent({
       return [
         'menu-list-item',
         {
-          'menu-list-item-selected': unref(active)
+          'menu-list-item-selected': unref(active),
+          'menu-list-item-selected-collapsed': unref(active) && props.collapsed
         }
       ]
     })
