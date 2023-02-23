@@ -73,7 +73,7 @@ export const useAppStore = defineStore({
       WebCache.setLocal('PROJECT_SETTING', this.projectSetting)
     },
 
-    async setAllStateSync() {
+    async resetAllStateSync() {
       resetRoutes()
       WebCache.clearLocal()
       WebCache.clearSession()

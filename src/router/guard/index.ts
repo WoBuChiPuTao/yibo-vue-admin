@@ -2,9 +2,13 @@ import { setRouteChange } from '@/hooks/mitt/routeChange'
 import type { Router } from 'vue-router'
 import { createPermissionGuard } from './permissionGuard'
 import { createStateGuard } from './stateGuard'
+// 进度条
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export function setupRouteGuard(router: Router) {
   createPageGuard(router)
+  createPageLoadingGuard(router)
   createPermissionGuard(router)
   createStateGuard(router)
 }
@@ -26,5 +30,19 @@ function createPageGuard(router: Router) {
 
   router.afterEach((to) => {
     loadedPageMap.set(to.path, true)
+  })
+}
+
+// Used to handle page loading status
+function createPageLoadingGuard(router: Router) {
+  router.beforeEach((to) => {
+    // 是否出现进度条
+    !to.meta.loaded && NProgress.start()
+    return true
+  })
+
+  router.afterEach(() => {
+    // 进度条消失
+    NProgress.done()
   })
 }

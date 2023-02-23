@@ -2,7 +2,7 @@
   <router-view>
     <template #default="{ Component, route }">
       <Transition name="fade-slide" mode="out-in" appear>
-        <KeepAlive>
+        <KeepAlive :include="getCacheTabs">
           <component :is="Component" :key="route.fullPath"></component>
         </KeepAlive>
       </Transition>
@@ -10,4 +10,10 @@
   </router-view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useTabStore } from '@/store/modules/tabs'
+import { computed } from 'vue'
+const tabStore = useTabStore()
+// 只需要将tab还存在的alive
+const getCacheTabs = computed(() => tabStore.getCacheList)
+</script>
