@@ -5,10 +5,11 @@ import { createStateGuard } from './stateGuard'
 // 进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { useTabStore } from '@/store/modules/tabs'
 
 export function setupRouteGuard(router: Router) {
+  createPageTransitionGuard(router)
   createPageGuard(router)
-  createPageLoadingGuard(router)
   createPermissionGuard(router)
   createStateGuard(router)
 }
@@ -33,11 +34,14 @@ function createPageGuard(router: Router) {
   })
 }
 
-// Used to handle page loading status
-function createPageLoadingGuard(router: Router) {
+// Used to handle page transition status
+function createPageTransitionGuard(router: Router) {
   router.beforeEach((to) => {
-    // 是否出现进度条
-    !to.meta.loaded && NProgress.start()
+    // 根据tab缓存来决定是否出现进度条
+    const tabStore = useTabStore()
+    if (!tabStore.getCacheList.includes(to.name as string)) {
+      NProgress.start()
+    }
     return true
   })
 

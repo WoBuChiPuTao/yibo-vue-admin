@@ -1,6 +1,9 @@
 <template>
   <div class="body">
     <img src="../../assets/img/bg.jpeg" alt="" class="bg" />
+    <div class="app-setting-fixed">
+      <AppThemeToggle class="theme-toggle"></AppThemeToggle>
+    </div>
     <div class="container">
       <div class="cover-box"></div>
       <RegisterForm></RegisterForm>
@@ -12,6 +15,7 @@
 <script lang="ts" setup>
 import LoginForm from './LoginForm.vue'
 import RegisterForm from './RegisterForm.vue'
+import AppThemeToggle from '@/components/application/AppThemeToggle.vue'
 // import { reactive } from 'vue'
 // import { useRouter } from 'vue-router'
 // import { ElForm, ElButton, ElInput, ElFormItem } from 'element-plus'
@@ -55,10 +59,10 @@ import RegisterForm from './RegisterForm.vue'
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .bg {
   width: 100%;
   height: 100%;
@@ -66,6 +70,12 @@ import RegisterForm from './RegisterForm.vue'
   z-index: -1;
   bottom: 0;
   left: 0;
+}
+
+.app-setting-fixed{
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
 }
 
 .container {

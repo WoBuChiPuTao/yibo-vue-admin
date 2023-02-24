@@ -8,6 +8,10 @@ import 'element-plus/dist/index.css'
 import './style/index.less'
 import { setupI18n } from './locales/setupI18n'
 import { initConfigStore } from './hooks/config/init'
+import { importAllSvgIcons } from './components/icons'
+
+// 注入asset/svg下的所有svg
+importAllSvgIcons()
 
 async function launch() {
   // 创建app实例

@@ -9,8 +9,13 @@
     <template #dropdown>
       <ElDropdownMenu>
         <template v-for="item in localeList" :key="item.event">
-          <ElDropdownItem :command="item.event" class="picker-dropdown-item"
-            :class="item.event === getLocale ? 'picker-dropdown-item-selected' : ''">
+          <ElDropdownItem
+            :command="item.event"
+            class="picker-dropdown-item"
+            :class="
+              item.event === getLocale ? 'picker-dropdown-item-selected' : ''
+            "
+          >
             {{ item.text }}
           </ElDropdownItem>
         </template>
@@ -66,6 +71,8 @@ async function toggleLocale(lang: LocaleType | string) {
   cursor: pointer;
   display: flex;
   align-items: center;
+  font-size: 1rem;
+  font-style: normal;
 
   &-title {
     font-size: 16px;

@@ -1,5 +1,5 @@
-import { useLocaleStore } from '@/store/modules/locale'
 import { App } from 'vue'
+import { useLocaleStore } from '@/store/modules/locale'
 import type { I18nOptions } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import { LocaleType } from '@/types/locale'
