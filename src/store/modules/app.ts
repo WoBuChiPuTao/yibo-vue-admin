@@ -30,7 +30,7 @@ export const useAppStore = defineStore({
     beforeMiniInfo: {}
   }),
   getters: {
-    getDarkMode(): boolean {
+    getDarkMode(): ThemeEnum {
       return (
         this.darkMode || WebCache.getLocal('APP__DARK__MODE') || ThemeEnum.LIGHT
       )
