@@ -1,26 +1,14 @@
 <template>
   <div class="multiple-tabs">
-    <ElTabs
-      :model-value="activeKey"
-      type="card"
-      @tab-change="handleChange"
-      @edit="handleEdit"
-    >
-      <template
-        v-for="tab in getTabsList"
-        :key="tab.query ? tab.fullPath : tab.path"
-      >
+    <ElTabs :model-value="activeKey" type="card" @tab-click="handleClick" @edit="handleEdit">
+      <template v-for="tab in getTabsList" :key="tab.query ? tab.fullPath : tab.path">
         <ElTabPane :closable="!(tab && tab.meta && tab.meta.fixedTab)" :name="tab.query ? tab.fullPath : tab.path">
           <template #label>
-            <TabContent
-              :tab-item="tab"
-              class="el-tabs__item__content"
-              :is-active="
-                tab.path === getActive || tab.fullPath === getActive
-                  ? true
-                  : false
-              "
-            ></TabContent>
+            <TabContent :tab-item="tab" class="el-tabs__item__content" :is-active="
+              tab.path === getActive || tab.fullPath === getActive
+                ? true
+                : false
+            "></TabContent>
           </template>
         </ElTabPane>
       </template>
@@ -29,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ElTabs, ElTabPane } from 'element-plus'
+import { ElTabs, ElTabPane, TabsPaneContext } from 'element-plus'
 
 import { useTabStore } from '@/store/modules/tabs'
 import { useUserStore } from '@/store/modules/user'
@@ -53,9 +41,17 @@ const getActive = computed(() => {
   return activeKey.value
 })
 
-function handleChange(tabname: any) {
-  activeKey.value = tabname
-  go(tabname, false)
+// function handleChange(tabname: any) {
+//   activeKey.value = tabname
+//   console.log('tabs')
+//   go(tabname, false)
+// }
+
+function handleClick(tabContext: TabsPaneContext) {
+  if (!tabContext.active) {
+    activeKey.value = tabContext.paneName as string
+    go(activeKey.value, false)
+  }
 }
 
 function handleEdit(tabname: any) {
