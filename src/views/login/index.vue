@@ -72,7 +72,7 @@ import AppThemeToggle from '@/components/application/AppThemeToggle.vue'
   left: 0;
 }
 
-.app-setting-fixed{
+.app-setting-fixed {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;

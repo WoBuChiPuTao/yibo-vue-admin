@@ -31,6 +31,7 @@ export interface UserState {
   roleList: RoleEnum[]
   sessionTimeout?: boolean
   lastUpdateTime: number
+  isDynamicAddedRoute: boolean
 }
 
 /* 登录接口参数类型 */

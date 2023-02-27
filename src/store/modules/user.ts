@@ -15,6 +15,7 @@ export const useUserStore = defineStore({
     userInfo: null,
     token: undefined,
     roleList: [],
+    isDynamicAddedRoute: false,
     sessionTimeout: false,
     lastUpdateTime: 0
   }),
@@ -35,6 +36,9 @@ export const useUserStore = defineStore({
     },
     getLastUpdateTime(): number {
       return this.lastUpdateTime
+    },
+    getIsDynamicAddedRoute(): boolean {
+      return this.isDynamicAddedRoute
     }
   },
   actions: {
@@ -43,6 +47,7 @@ export const useUserStore = defineStore({
       this.token = ''
       this.roleList = []
       this.sessionTimeout = false
+      this.isDynamicAddedRoute = false
     },
     setToken(info: string | undefined) {
       if (info) {
@@ -62,6 +67,9 @@ export const useUserStore = defineStore({
     },
     setSessionTimeout(flag: boolean) {
       this.sessionTimeout = flag
+    },
+    setIsDynamicAddedRoute(added: boolean) {
+      this.isDynamicAddedRoute = added
     },
     /**
      * @description: login
@@ -91,6 +99,7 @@ export const useUserStore = defineStore({
         routes.forEach((route) => {
           router.addRoute(route as unknown as RouteRecordRaw)
         })
+        this.setIsDynamicAddedRoute(true)
         await router.replace('/home')
       }
       return userInfo

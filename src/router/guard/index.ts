@@ -8,8 +8,8 @@ import 'nprogress/nprogress.css'
 import { useTabStore } from '@/store/modules/tabs'
 
 export function setupRouteGuard(router: Router) {
-  createPageTransitionGuard(router)
   createPageGuard(router)
+  createPageTransitionGuard(router)
   createPermissionGuard(router)
   createStateGuard(router)
 }
@@ -31,22 +31,28 @@ function createPageGuard(router: Router) {
 
   router.afterEach((to) => {
     loadedPageMap.set(to.path, true)
+    return true
   })
 }
 
 // Used to handle page transition status
 function createPageTransitionGuard(router: Router) {
+  const tabStore = useTabStore()
   router.beforeEach((to) => {
     // 根据tab缓存来决定是否出现进度条
-    const tabStore = useTabStore()
+
     if (!tabStore.getCacheList.includes(to.name as string)) {
       NProgress.start()
     }
     return true
   })
 
-  router.afterEach(() => {
+  router.afterEach((to) => {
     // 进度条消失
-    NProgress.done()
+    if (!tabStore.getCacheList.includes(to.name as string)) {
+      NProgress.done()
+    }
+
+    return true
   })
 }

@@ -8,12 +8,11 @@ import 'element-plus/dist/index.css'
 import './style/index.less'
 import { setupI18n } from './locales/setupI18n'
 import { initConfigStore } from './hooks/config/init'
-import { importAllSvgIcons } from './components/icons'
-
-// 注入asset/svg下的所有svg
-importAllSvgIcons()
+import { preLoader } from './utils/preLoader'
 
 async function launch() {
+  // 注入asset的所有文件
+  preLoader()
   // 创建app实例
   const app = createApp(App)
   // 创建仓库
