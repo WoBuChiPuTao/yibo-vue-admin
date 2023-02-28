@@ -15,24 +15,26 @@
   --header-light-bg-color: #ffffff;
   --header-light-bg-hover-color: #f6f6f6;
 }
-
+// 根据root变量设置html的变量
 html {
   &[data-theme='light'] {
-    color: var(--light-color);
     --sider-bg-color: var(--sider-light-bg-color);
     --sider-children-bg-color: var(--sider-children-light-bg-color);
     --header-bg-color: var(--header-light-bg-color);
     --header-bg-hover-color: var(--header-light-bg-hover-color);
+    body {
+      color: var(--light-color);
+    }
   }
 
   &[data-theme='dark'] {
+    --sider-bg-color: var(--sider-dark-bg-color);
+    --sider-children-bg-color: var(--sider-children-dark-bg-color);
+    --header-bg-color: var(--header-dark-bg-color);
+    --header-bg-hover-color: var(--header-dark-bg-hover-color);
     body {
       color: var(--dark-color);
       background-color: var(--dark-background-color);
-      --sider-bg-color: var(--sider-dark-bg-color);
-      --sider-children-bg-color: var(--sider-children-dark-bg-color);
-      --header-bg-color: var(--header-dark-bg-color);
-      --header-bg-hover-color: var(--header-dark-bg-hover-color);
     }
   }
 }
