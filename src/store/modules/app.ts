@@ -75,8 +75,8 @@ export const useAppStore = defineStore({
 
     async resetAllStateSync() {
       resetRoutes()
-      WebCache.clearLocal()
-      WebCache.clearSession()
+      // WebCache.clearLocal()
+      // WebCache.clearSession()
     },
     async setPageLoadingSync(loading: boolean): Promise<void> {
       if (loading) {

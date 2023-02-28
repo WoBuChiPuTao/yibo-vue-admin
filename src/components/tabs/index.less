@@ -1,5 +1,5 @@
 .multiple-tabs {
-  height: 30px;
+  height: 31px;
   background-color: white;
   .el-tabs {
     --el-tabs-header-height: 30px;
@@ -12,7 +12,6 @@
 
   .el-tabs__item > .el-tabs__item__content {
     height: var(--el-tabs-header-height);
-    box-sizing: border-box;
     line-height: var(--el-tabs-header-height);
     display: inline-block;
     list-style: none;
@@ -26,5 +25,10 @@
     height: 0px;
     width: 0px;
     padding: 0px;
+  }
+
+  .el-tabs--card > .el-tabs__header .el-tabs__item {
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid var(--el-border-color-light);
   }
 }

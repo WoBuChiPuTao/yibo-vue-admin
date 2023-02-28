@@ -30,7 +30,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .header-fill{
-  height: 78px;
+  height: 79px;
 }
 
 .header-fixed {

@@ -1,6 +1,6 @@
 <template>
   <div @click="toggleCollapsed" class="flex">
-    <ElIcon size="20">
+    <ElIcon >
       <Fold v-if="!getCollapsed"></Fold>
       <Expand v-else></Expand>
     </ElIcon>

@@ -55,7 +55,7 @@ export default defineComponent({
 
 .side-fixed {
   transition: all 0.2s;
-  background-color: #001529;
+  background-color: var(--sider-bg-color);
   position: fixed;
   top: 0;
   left: 0;

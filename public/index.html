@@ -12,15 +12,22 @@
     <link rel="icon" href="/favicon.ico" rel="external nofollow" />
   </head>
   <body>
-    <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
-    </noscript>
+    <script>
+      (() => {
+        var htmlRoot = document.querySelector('html')
+        var theme = window.localStorage.getItem('APP__DARK__MODE')
+        if (htmlRoot && theme) {
+          htmlRoot.setAttribute('data-theme', theme)
+          theme = htmlRoot = null
+        }
+      })()
+    </script>
     <div id="app">
       <style>
+        html[data-theme='dark'] .transition-container {
+          background-color: #2c344a;
+        }
+
         div {
           box-sizing: border-box;
         }

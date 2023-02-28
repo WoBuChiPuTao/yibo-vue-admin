@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { ElLoading } from 'element-plus'
 import { defineAsyncComponent } from 'vue'
 
@@ -9,6 +8,7 @@ interface Options {
   retry?: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = () => {}
 
 export function createAsyncComponent(loader: Fn, Options: Options = {}) {
@@ -18,7 +18,6 @@ export function createAsyncComponent(loader: Fn, Options: Options = {}) {
     loading = false,
     retry = true
   } = Options
-  console.log('assasas' + delay)
   return defineAsyncComponent({
     loader,
     loadingComponent: loading ? ElLoading : undefined,
