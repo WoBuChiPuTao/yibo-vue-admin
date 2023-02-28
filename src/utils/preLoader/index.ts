@@ -15,16 +15,14 @@ function importAllSvgIcons() {
 function imporAllImg() {
   try {
     const request: __WebpackModuleApi.RequireContext = require.context(
-      '../../assets/img',
+      '../../../public/img',
       false,
       /\.*$/
     )
-    const promiseList: Promise<any>[] = []
+    const promiseList: Promise<string>[] = []
     console.log(request.keys())
     for (let i = 0; i < request.keys().length; i++) {
-      promiseList.push(
-        imgPreloader('../../img/' + request.keys()[i].substring(2))
-      )
+      promiseList.push(imgPreloader('./img/' + request.keys()[i].substring(2)))
     }
     return Promise.all(promiseList)
   } catch (err) {
@@ -34,7 +32,7 @@ function imporAllImg() {
 
 // 创建单个图片加载的方法-包成一个promise
 const imgPreloader = (url: string) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     const image = new Image()
     image.onload = () => {
       resolve('图片加载成功')
@@ -48,6 +46,5 @@ const imgPreloader = (url: string) => {
 
 export async function preLoader() {
   importAllSvgIcons()
-  // const res = await imporAllImg()
-  // console.log(res)
+  await imporAllImg()
 }

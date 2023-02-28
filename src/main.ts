@@ -11,8 +11,8 @@ import { initConfigStore } from './hooks/config/init'
 import { preLoader } from './utils/preLoader'
 
 async function launch() {
-  // 注入asset的所有文件
-  preLoader()
+  // 注入svg和公用图片
+  await preLoader()
   // 创建app实例
   const app = createApp(App)
   // 创建仓库

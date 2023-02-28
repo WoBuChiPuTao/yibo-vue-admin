@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <img src="../../assets/img/bg.jpeg" alt="" class="bg" />
+    <img src="/img/bg.jpeg" alt="" class="bg" />
     <div class="app-setting-fixed">
       <AppThemeToggle class="theme-toggle"></AppThemeToggle>
     </div>

@@ -3,7 +3,9 @@
     <span class="header-user-dropdown">
       <img
         ref="headerImage"
-        :src="getUserInfo.avatar"
+        :src="
+          isEmpty(getUserInfo.avatar) ? '/img/avatar.png' : getUserInfo.avatar
+        "
         alt="avatar"
         class="header-user-dropdown-avatar"
       />
@@ -34,7 +36,8 @@ import {
 import { Document, SwitchButton, Lock } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, ref } from 'vue'
-import Avatar from '@/assets/img/avatar.png'
+import { isEmpty } from '@/utils/is'
+
 const userStore = useUserStore()
 
 const headerImage = ref<HTMLImageElement>()
@@ -45,7 +48,7 @@ const getUserInfo = computed(() => {
     avatar,
     desc
   } = userStore.getUserInfo || {}
-  return { username, avatar: avatar || Avatar, desc }
+  return { username, avatar, desc }
 })
 
 const toLogout = () => {
@@ -64,7 +67,6 @@ const toLogout = () => {
       })
     })
 }
-
 </script>
 
 <style lang="less">
