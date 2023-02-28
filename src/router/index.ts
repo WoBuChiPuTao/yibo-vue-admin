@@ -5,7 +5,7 @@ import type { App } from 'vue'
 /**
  * @description 路由白名单
  */
-const WHITE_ROUTE_LIST: string[] = []
+export const WHITE_ROUTE_LIST: string[] = []
 const getRouteNames = (array: any[]) =>
   array.forEach((item) => {
     WHITE_ROUTE_LIST.push(item.name)

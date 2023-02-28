@@ -28,6 +28,7 @@ module.exports = defineConfig({
       .loader('svg-sprite-loader')
       .options({
         symbolId: 'icon-[name]'
-      }).end()
+      })
+      .end()
   }
 })

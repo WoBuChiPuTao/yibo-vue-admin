@@ -1,18 +1,93 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"
+    />
     <title><%= VUE_APP_SIMPLE_TITLE %></title>
-    <link rel="icon" href="/favicon.ico" rel="external nofollow" > 
+    <link rel="icon" href="/favicon.ico" rel="external nofollow" />
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div id="app">
-      <div>2222222222</div>
+      <style>
+        .transition-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate3d(-50%, -50%, 0);
+        }
+
+        .loader {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        .outer,
+        .middle,
+        .inner {
+          border: 3px solid transparent;
+          border-top-color: #3c80ff;
+          border-right-color: #3c80ff;
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+        }
+
+        .outer {
+          width: 3.5em;
+          height: 3.5em;
+          margin-left: -1.75em;
+          margin-top: -1.75em;
+          animation: spin 2s linear infinite;
+        }
+
+        .middle {
+          width: 2.1em;
+          height: 2.1em;
+          margin-left: -1.05em;
+          margin-top: -1.05em;
+          animation: spin 1.75s linear reverse infinite;
+        }
+
+        .inner {
+          width: 0.8em;
+          height: 0.8em;
+          margin-left: -0.4em;
+          margin-top: -0.4em;
+          animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <div class="transition-container">
+        <div class="loader">
+          <div class="outer"></div>
+          <div class="middle"></div>
+          <div class="inner"></div>
+        </div>
+      </div>
     </div>
     <!-- built files will be auto injected -->
   </body>

@@ -38,7 +38,6 @@ export default defineComponent({
     const iconName = ref('Search')
 
     function handleSelected(key: string) {
-      console.log('222212121key')
       go(key)
     }
 

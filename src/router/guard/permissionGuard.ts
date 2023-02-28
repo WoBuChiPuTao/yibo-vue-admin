@@ -2,24 +2,12 @@ import type { Router, RouteRecordRaw } from 'vue-router'
 import { useUserStoreOther } from '@/store/modules/user'
 import { asyncRoutes } from '../routes/modules'
 import { flatMultiRoutes } from '@/hooks/route'
-import { PAGE_NOT_FOUND_ROUTE } from '../routes/basic'
+// import { PAGE_NOT_FOUND_ROUTE } from '../routes/basic'
 
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreOther()
 
   router.beforeEach((to, from, next) => {
-    console.log('11111')
-    console.log(
-      'init' +
-        '----' +
-        from.fullPath +
-        '---' +
-        (from.name as string) +
-        '---' +
-        to.fullPath +
-        '---' +
-        (to.name as string)
-    )
     const token = userStore.getToken
     // 判断登录页
     if (to.path === '/login') {
@@ -62,12 +50,6 @@ export function createPermissionGuard(router: Router) {
     // }
 
     if (userStore.getIsDynamicAddedRoute) {
-      console.log(
-        'getIsDynamicAddedRoute --- true---' +
-          from.fullPath +
-          '-----' +
-          to.fullPath
-      )
       next()
       return
     }
@@ -77,20 +59,11 @@ export function createPermissionGuard(router: Router) {
     routes.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw)
     })
-    router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw)
+    // router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw)
     userStore.setIsDynamicAddedRoute(true)
 
     if (to.name === 'PageNotFound') {
       // 动态添加路由后，此处应当重定向到fullPath，否则会加载404页面内容
-      console.log(
-        'PageNotFound---' +
-          from.fullPath +
-          '----' +
-          to.fullPath +
-          '---' +
-          to.name,
-        to.query
-      )
       next({ path: to.fullPath, replace: true, query: to.query })
     } else {
       console.log('aaaaaaPageNotFound')
@@ -100,6 +73,5 @@ export function createPermissionGuard(router: Router) {
         to.path === redirect ? { ...to, replace: true } : { path: redirect }
       next(nextData)
     }
-    console.log('22222')
   })
 }

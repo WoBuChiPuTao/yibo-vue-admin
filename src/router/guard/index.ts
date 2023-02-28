@@ -5,7 +5,6 @@ import { createStateGuard } from './stateGuard'
 // 进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { useTabStore } from '@/store/modules/tabs'
 
 export function setupRouteGuard(router: Router) {
   createPageGuard(router)
@@ -37,19 +36,17 @@ function createPageGuard(router: Router) {
 
 // Used to handle page transition status
 function createPageTransitionGuard(router: Router) {
-  const tabStore = useTabStore()
-  router.beforeEach((to) => {
+  router.beforeEach((to, from) => {
     // 根据tab缓存来决定是否出现进度条
-
-    if (!tabStore.getCacheList.includes(to.name as string)) {
+    if (!to.meta.loaded && from.name !== undefined) {
       NProgress.start()
     }
     return true
   })
 
-  router.afterEach((to) => {
+  router.afterEach((to, from) => {
     // 进度条消失
-    if (!tabStore.getCacheList.includes(to.name as string)) {
+    if (!to.meta.loaded && from.name !== undefined) {
       NProgress.done()
     }
 
