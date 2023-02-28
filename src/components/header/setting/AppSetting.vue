@@ -1,9 +1,11 @@
 <template>
+  <div>
     <ElTooltip content="设置">
-        <ElIcon :class="$attrs.class">
-            <Setting></Setting>
-        </ElIcon>
+      <ElIcon>
+        <Setting></Setting>
+      </ElIcon>
     </ElTooltip>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,11 +14,10 @@ import { Setting } from '@element-plus/icons-vue'
 import { ElIcon, ElTooltip } from 'element-plus'
 
 export default defineComponent({
-    name: 'AppSetting',
-    components: { ElIcon, Setting, ElTooltip },
-    setup() {
-        return {
-        }
-    }
+  name: 'AppSetting',
+  components: { ElIcon, Setting, ElTooltip },
+  setup() {
+    return {}
+  }
 })
 </script>

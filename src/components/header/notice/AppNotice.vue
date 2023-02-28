@@ -1,9 +1,11 @@
 <template>
-        <ElTooltip content="通知">
-            <el-icon :class="$attrs.class">
-                <Bell />
-            </el-icon>
-        </ElTooltip>
+  <div>
+    <ElTooltip content="通知">
+      <el-icon>
+        <Bell />
+      </el-icon>
+    </ElTooltip>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,11 +14,10 @@ import { ElIcon, ElTooltip } from 'element-plus'
 import { Bell } from '@element-plus/icons-vue'
 
 export default defineComponent({
-    name: 'AppNotice',
-    components: { ElTooltip, ElIcon, Bell },
-    setup() {
-        return {
-        }
-    }
+  name: 'AppNotice',
+  components: { ElTooltip, ElIcon, Bell },
+  setup() {
+    return {}
+  }
 })
 </script>

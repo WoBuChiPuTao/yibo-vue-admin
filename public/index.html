@@ -21,7 +21,13 @@
     </noscript>
     <div id="app">
       <style>
+        div {
+          box-sizing: border-box;
+        }
+
         .transition-container {
+          width: 100%;
+          height: 100%;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -52,26 +58,26 @@
         }
 
         .outer {
-          width: 3.5em;
-          height: 3.5em;
-          margin-left: -1.75em;
-          margin-top: -1.75em;
+          width: 3.5rem;
+          height: 3.5rem;
+          margin-left: -1.75rem;
+          margin-top: -1.75rem;
           animation: spin 2s linear infinite;
         }
 
         .middle {
-          width: 2.1em;
-          height: 2.1em;
-          margin-left: -1.05em;
-          margin-top: -1.05em;
+          width: 2.1rem;
+          height: 2.1rem;
+          margin-left: -1.05rem;
+          margin-top: -1.05rem;
           animation: spin 1.75s linear reverse infinite;
         }
 
         .inner {
-          width: 0.8em;
-          height: 0.8em;
-          margin-left: -0.4em;
-          margin-top: -0.4em;
+          width: 0.8rem;
+          height: 0.8rem;
+          margin-left: -0.4rem;
+          margin-top: -0.4rem;
           animation: spin 1.5s linear infinite;
         }
 

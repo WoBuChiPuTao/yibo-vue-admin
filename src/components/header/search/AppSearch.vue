@@ -1,9 +1,11 @@
 <template>
+  <div>
     <ElTooltip content="搜索">
-        <ElIcon :class="$attrs.class">
-            <Search />
-        </ElIcon>
+      <ElIcon>
+        <Search />
+      </ElIcon>
     </ElTooltip>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,11 +14,10 @@ import { ElIcon, ElTooltip } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
 
 export default defineComponent({
-    name: 'AppSearch',
-    components: { ElIcon, Search, ElTooltip },
-    setup() {
-        return {
-        }
-    }
+  name: 'AppSearch',
+  components: { ElIcon, Search, ElTooltip },
+  setup() {
+    return {}
+  }
 })
 </script>

@@ -1,9 +1,11 @@
 <template>
+  <div>
     <ElTooltip :content="tooltipContent">
-        <ElIcon :class="$attrs.class" @click="toggle">
-            <FullScreen></FullScreen>
-        </ElIcon>
+      <ElIcon @click="toggle">
+        <FullScreen></FullScreen>
+      </ElIcon>
     </ElTooltip>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,25 +15,25 @@ import { useFullscreen } from '@vueuse/core'
 import { FullScreen } from '@element-plus/icons-vue'
 
 export default defineComponent({
-    name: 'FullScreenVue',
-    components: { ElTooltip, ElIcon, FullScreen },
-    setup() {
-        const { isFullscreen, toggle } = useFullscreen()
+  name: 'FullScreenVue',
+  components: { ElTooltip, ElIcon, FullScreen },
+  setup() {
+    const { isFullscreen, toggle } = useFullscreen()
 
-        const tooltipContent = computed(() => { return !unref(isFullscreen) ? '全屏模式' : '退出全屏' })
+    const tooltipContent = computed(() => {
+      return !unref(isFullscreen) ? '全屏模式' : '退出全屏'
+    })
 
-        watchEffect(() => {
-            // 重新检查全屏状态
-            isFullscreen.value = !!(
-                document.fullscreenElement
-            )
-        })
+    watchEffect(() => {
+      // 重新检查全屏状态
+      isFullscreen.value = !!document.fullscreenElement
+    })
 
-        return {
-            isFullscreen,
-            tooltipContent,
-            toggle
-        }
+    return {
+      isFullscreen,
+      tooltipContent,
+      toggle
     }
+  }
 })
 </script>
