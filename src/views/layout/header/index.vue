@@ -1,6 +1,6 @@
 <template>
   <div class="header-fill"></div>
-  <div class="header-fixed" :style="getDomStyle">
+  <div class="header-fixed header-container" :style="getDomStyle">
     <LayoutHeader></LayoutHeader>
     <Tabs></Tabs>
   </div>
@@ -29,8 +29,9 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.header-fill{
+.header-fill {
   height: 79px;
+  background-color: var(--header-bg-color);
 }
 
 .header-fixed {
@@ -38,5 +39,9 @@ export default defineComponent({
   position: fixed;
   top: 0;
   z-index: 505;
+}
+
+.header-container {
+  background-color: var(--header-bg-color);
 }
 </style>
