@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">logo</div>
+  <div class="side-logo">logo</div>
   <ElScrollbar>
     <Menu
       :collapsed="collapsed"
@@ -50,8 +50,9 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.logo {
-  height: 60px;
+.side-logo {
+  height: 48px;
+  padding: 10px 4px 10px 10px;
   color: white;
 }
 </style>

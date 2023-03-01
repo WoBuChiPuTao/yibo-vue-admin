@@ -6,6 +6,7 @@
     </div>
 
     <div class="header-action">
+      <AppThemeToggle></AppThemeToggle>
       <AppSearch class="header-action-item"></AppSearch>
       <AppNotice class="header-action-item"></AppNotice>
       <FullScreen class="header-action-item"></FullScreen>
@@ -19,7 +20,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElHeader } from 'element-plus'
-import AppLocalePicker from '@/components/application/AppLocalePicker.vue'
 import {
   SiderTrigger,
   AppSearch,
@@ -29,6 +29,7 @@ import {
   AppSetting,
   BreadCrumb
 } from '@/components/header/index'
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 export default defineComponent({
   name: 'layoutHeader',
@@ -40,8 +41,14 @@ export default defineComponent({
     FullScreen,
     UserDropdown,
     AppSetting,
-    AppLocalePicker,
-    BreadCrumb
+    BreadCrumb,
+    AppLocalePicker: createAsyncComponent(
+      () => import('@/components/application/AppLocalePicker.vue'),
+      { loading: true }
+    ),
+    AppThemeToggle: createAsyncComponent(
+      () => import('@/components/application/AppThemeToggle.vue')
+    )
   },
   setup() {
     return {}
