@@ -1,4 +1,5 @@
 import type { RouteMeta } from 'vue-router'
+import { Component } from 'vue'
 
 export interface MenuTag {
   type?: 'primary' | 'error' | 'warn' | 'success'
@@ -25,4 +26,12 @@ export interface Menu {
   hideMenu?: boolean
 
   meta?: RouteMeta
+}
+
+export interface DropMenu {
+  icon?: Component
+  event: string | number
+  text: string
+  disabled?: boolean
+  divided?: boolean
 }

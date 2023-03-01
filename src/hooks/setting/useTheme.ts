@@ -5,10 +5,10 @@ import { computed } from 'vue'
 export function useThemeMode() {
   const appStore = useAppStore()
 
-  const getThemeMode = computed(() => appStore.getDarkMode)
+  const getThemeMode = computed(() => appStore.getThemeMode)
 
   function setThemeMode(theme: ThemeEnum) {
-    appStore.setDarkMode(theme)
+    appStore.setThemeMode(theme)
   }
 
   return {

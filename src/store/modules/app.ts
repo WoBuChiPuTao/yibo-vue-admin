@@ -13,7 +13,7 @@ import { WebCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
 
 interface AppAtate {
-  darkMode?: ThemeEnum
+  themeMode?: ThemeEnum
   pageLoading: boolean
   projectSetting: ProjectConfig | null
   beforeMiniInfo: BeforeMiniState
@@ -24,15 +24,15 @@ let timeoutId: ReturnType<typeof setTimeout>
 export const useAppStore = defineStore({
   id: 'app',
   state: (): AppAtate => ({
-    darkMode: undefined,
+    themeMode: undefined,
     pageLoading: false,
     projectSetting: WebCache.getLocal('PROJECT_SETTING'),
     beforeMiniInfo: {}
   }),
   getters: {
-    getDarkMode(): ThemeEnum {
+    getThemeMode(): ThemeEnum {
       return (
-        this.darkMode || WebCache.getLocal('APP__DARK__MODE') || ThemeEnum.LIGHT
+        this.themeMode || WebCache.getLocal('APP__DARK__MODE') || ThemeEnum.LIGHT
       )
     },
     getPageLoading(): boolean {
@@ -58,8 +58,8 @@ export const useAppStore = defineStore({
     }
   },
   actions: {
-    setDarkMode(mode: ThemeEnum): void {
-      this.darkMode = mode
+    setThemeMode(mode: ThemeEnum): void {
+      this.themeMode = mode
       WebCache.setLocal('APP__DARK__MODE', mode)
     },
     setPageLoading(loading: boolean): void {

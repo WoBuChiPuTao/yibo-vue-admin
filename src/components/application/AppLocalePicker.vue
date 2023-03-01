@@ -11,9 +11,12 @@
         <template v-for="item in localeList" :key="item.event">
           <ElDropdownItem
             :command="item.event"
-            class="picker-dropdown-item"
             :class="
-              item.event === getLocale ? 'picker-dropdown-item-selected' : ''
+              item.event === getLocale
+                ? getThemeMode === 'dark'
+                  ? 'picker-selected-dark'
+                  : 'picker-selected-light'
+                : ''
             "
           >
             {{ item.text }}
@@ -31,8 +34,10 @@ import { LocaleType } from '@/types/locale'
 import { useLocale } from '@/locales/useLocale'
 import { computed, ref, unref, watchEffect } from 'vue'
 import { localeList } from '@/hooks/config/locale'
+import { isEmpty } from '@/utils/is'
+import { useThemeMode } from '@/hooks/setting/useTheme'
 
-const selectedKeys = ref<string[]>([])
+const selectedKey = ref<LocaleType>('zh_CN')
 
 const props = defineProps({
   /**
@@ -46,22 +51,23 @@ const props = defineProps({
 })
 
 const { getLocale, changeLocale } = useLocale()
+const { getThemeMode } = useThemeMode()
 
 const getLocaleText = computed(() => {
-  const key = selectedKeys.value[0]
-  if (!key) {
+  const key = selectedKey.value
+  if (isEmpty(key)) {
     return ''
   }
   return localeList.find((item) => item.event === key)?.text
 })
 
 watchEffect(() => {
-  selectedKeys.value = [unref(getLocale)]
+  selectedKey.value = unref(getLocale)
 })
 
-async function toggleLocale(lang: LocaleType | string) {
-  await changeLocale(lang as LocaleType)
-  selectedKeys.value = [lang as string]
+async function toggleLocale(lang: LocaleType) {
+  await changeLocale(lang)
+  selectedKey.value = lang
   props.reload && location.reload()
 }
 </script>
@@ -79,19 +85,13 @@ async function toggleLocale(lang: LocaleType | string) {
   }
 }
 
-// .el-dropdown-menu__item:not(.is-disabled):focus {
-//   background-color: #f5f5f5;
-//   color: #606266;
-// }
+.picker-selected-light {
+  background-color: #ecf5ff;
+  color: #409eff !important;
+}
 
-.picker-dropdown-item {
-  &:hover {
-    background-color: #f5f5f5;
-  }
-
-  &-selected {
-    background-color: #ecf5ff;
-    color: #409eff !important;
-  }
+.picker-selected-dark {
+  background-color: #393939;
+  color: #2670b9 !important;
 }
 </style>

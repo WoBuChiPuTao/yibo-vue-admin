@@ -1,7 +1,6 @@
 :root {
-  --dark-color: #c9d1d9;
-  --light-color: rgba(0, 0, 0, 0.45);
-  --dark-background-color: #000;
+  --text-dark-color: #c9d1d9;
+  --text-light-color: rgba(0, 0, 0, 0.65);
 
   // sider
   --sider-light-bg-color: #001529;
@@ -12,29 +11,67 @@
   // header
   --header-dark-bg-color: #151515;
   --header-dark-bg-hover-color: #242424;
+  --header-dark-border-color: #303030;
   --header-light-bg-color: #ffffff;
   --header-light-bg-hover-color: #f6f6f6;
+  --header-light-border-color: #eee;
 }
 // 根据root变量设置html的变量
 html {
   &[data-theme='light'] {
+    --text-color: var(--text-light-color);
     --sider-bg-color: var(--sider-light-bg-color);
     --sider-children-bg-color: var(--sider-children-light-bg-color);
     --header-bg-color: var(--header-light-bg-color);
     --header-bg-hover-color: var(--header-light-bg-hover-color);
+    --header-border-color: var(--header-light-border-color);
     body {
-      color: var(--light-color);
+      color: var(--text-light-color);
     }
   }
 
   &[data-theme='dark'] {
+    --text-color: var(--text-dark-color);
     --sider-bg-color: var(--sider-dark-bg-color);
     --sider-children-bg-color: var(--sider-children-dark-bg-color);
     --header-bg-color: var(--header-dark-bg-color);
     --header-bg-hover-color: var(--header-dark-bg-hover-color);
+    --header-border-color: var(--header-dark-border-color);
     body {
-      color: var(--dark-color);
-      background-color: var(--dark-background-color);
+      color: var(--text-dark-color);
+      background-color: #000;
+
+      // 对ElDropdown弹出框针对黑暗模式进行修改
+      .el-popper.is-light {
+        background-color: #151515;
+        border: 1px solid var(--header-border-color);
+
+        .el-dropdown-menu {
+          background-color: #151515;
+
+          .el-dropdown-menu__item {
+            color: var(--text-color);
+          }
+
+          .el-dropdown-menu__item:not(.is-disabled):focus {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--el-dropdown-menuItem-hover-color);
+          }
+
+          .el-dropdown-menu__item.is-disabled {
+            color: rgba(255, 255, 255, 0.3);
+          }
+
+          .el-dropdown-menu__item--divided {
+            border-top: 1px solid #303030;
+          }
+        }
+
+        .el-popper__arrow::before {
+          border: 1px solid var(--header-border-color);
+          background: #151515;
+        }
+      }
     }
   }
 }

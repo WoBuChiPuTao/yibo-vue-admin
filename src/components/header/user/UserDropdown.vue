@@ -17,7 +17,7 @@
       <el-dropdown-menu>
         <el-dropdown-item :icon="Document">查看文档</el-dropdown-item>
         <el-dropdown-item :icon="Lock">锁定屏幕</el-dropdown-item>
-        <el-dropdown-item @click="toLogout" :icon="SwitchButton"
+        <el-dropdown-item :icon="SwitchButton" @click="toLogout"
           >退出登录</el-dropdown-item
         >
       </el-dropdown-menu>

@@ -1,6 +1,5 @@
 .multiple-tabs {
   height: 31px;
-  background-color: white;
   .el-tabs {
     --el-tabs-header-height: 30px;
     vertical-align: middle;
@@ -8,6 +7,13 @@
 
   .el-tabs__header {
     margin: 0px;
+    border-bottom: 1px solid var(--header-border-color);
+
+    .el-tabs__nav {
+      // 重置边框样式
+      border: 0px;
+      border-right: 1px solid var(--header-border-color);
+    }
   }
 
   .el-tabs__item > .el-tabs__item__content {
@@ -17,7 +23,7 @@
     list-style: none;
     font-size: var(--el-font-size-base);
     font-weight: 500;
-    color: var(--el-text-color-primary);
+    color: var(--text-color);
     position: relative;
   }
 
@@ -28,7 +34,7 @@
   }
 
   .el-tabs--card > .el-tabs__header .el-tabs__item {
-    border-bottom: 1px solid transparent;
-    border-left: 1px solid var(--el-border-color-light);
+    border-bottom: 0px solid transparent;
+    border-left: 1px solid var(--header-border-color);
   }
 }

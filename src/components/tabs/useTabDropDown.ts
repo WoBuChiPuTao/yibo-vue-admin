@@ -2,7 +2,6 @@ import { useTabs } from '@/hooks/web/useTabs'
 import { useTabStore } from '@/store/modules/tabs'
 import { computed, ComputedRef, reactive, unref } from 'vue'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
-import { DropMenu, MenuEventEnum } from './types'
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,6 +10,16 @@ import {
   Refresh,
   RemoveFilled
 } from '@element-plus/icons-vue'
+import { DropMenu } from '@/types/menu'
+
+enum MenuEventEnum {
+  REFRESH_PAGE,
+  CLOSE_CURRENT,
+  CLOSE_LEFT,
+  CLOSE_RIGHT,
+  CLOSE_OTHER,
+  CLOSE_ALL
+}
 
 export function useTabDropdown(
   tabContent: RouteLocationNormalized,

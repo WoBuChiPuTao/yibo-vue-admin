@@ -1,5 +1,5 @@
-import { DropMenu } from '@/components/tabs/types'
 import { LocaleSetting, LocaleType } from '@/types/locale'
+import { DropMenu } from '@/types/menu'
 
 export const LOCALE: { [key: string]: LocaleType } = {
   ZH_CN: 'zh_CN',

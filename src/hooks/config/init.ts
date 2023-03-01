@@ -9,7 +9,7 @@ import projectSetting from './projectSetting'
 export function initConfigStore() {
   const localeStore = useLocaleStore()
   const appStore = useAppStore()
-  const theme = appStore.getDarkMode
+  const theme = appStore.getThemeMode
 
   let projCfg: ProjectConfig = WebCache.getLocal(
     'PROJECT_SETTING'
