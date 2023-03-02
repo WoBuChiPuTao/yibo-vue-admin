@@ -47,7 +47,10 @@ export default defineComponent({
       { loading: true }
     ),
     AppThemeToggle: createAsyncComponent(
-      () => import('@/components/application/AppThemeToggle.vue')
+      () => import('@/components/application/AppThemeToggle.vue'),
+      {
+        loading: true
+      }
     )
   },
   setup() {

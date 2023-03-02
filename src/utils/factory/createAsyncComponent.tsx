@@ -1,4 +1,4 @@
-import { ElLoading } from 'element-plus'
+import Spin from '@/components/Transition/Spin.vue'
 import { defineAsyncComponent } from 'vue'
 
 interface Options {
@@ -20,7 +20,7 @@ export function createAsyncComponent(loader: Fn, Options: Options = {}) {
   } = Options
   return defineAsyncComponent({
     loader,
-    loadingComponent: loading ? ElLoading : undefined,
+    loadingComponent: loading ? Spin : undefined,
     delay,
     timeout,
     /**
