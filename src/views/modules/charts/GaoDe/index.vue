@@ -47,8 +47,8 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .container {
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
   z-index: 0;
 }
 </style>

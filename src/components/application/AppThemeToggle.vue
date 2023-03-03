@@ -39,8 +39,8 @@ function toggleThemeMode() {
 .theme-toggle-container {
   position: relative;
   display: flex;
-  width: 50px;
-  height: 26px;
+  width: 52px;
+  height: 28px;
   padding: 0 6px;
   margin-left: auto;
   cursor: pointer;
@@ -49,6 +49,7 @@ function toggleThemeMode() {
   justify-content: space-between;
   align-items: center;
   color: #fff;
+  border: 2px solid #fff;
 
   &-inner {
     position: absolute;
@@ -62,7 +63,7 @@ function toggleThemeMode() {
     will-change: transform;
   }
   &-dark > &-inner {
-    transform: translateX(calc(100% + 6px));
+    transform: translateX(calc(100% + 5px));
   }
 }
 </style>

@@ -1,6 +1,6 @@
-import { useDebounceFn } from '@/hooks/core'
 import { getAllParentPath } from '@/router/menu/util'
 import { Menu } from '@/types/menu'
+import { useDebounceFn } from '@vueuse/core'
 import { Ref, toRaw } from 'vue'
 
 export function useOpenMenu(menus: Ref<Menu[]>, openNames: Ref<string[]>) {

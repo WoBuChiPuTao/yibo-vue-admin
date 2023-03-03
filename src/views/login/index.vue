@@ -1,13 +1,13 @@
 <template>
   <div class="body">
-    <img src="/img/bg.jpeg" alt="" class="bg" />
     <div class="app-setting-fixed">
       <AppThemeToggle class="theme-toggle"></AppThemeToggle>
+      <AppLocalePicker :reload="false"></AppLocalePicker>
     </div>
     <div class="container">
-      <div class="cover-box"></div>
-      <RegisterForm></RegisterForm>
       <LoginForm></LoginForm>
+      <RegisterForm></RegisterForm>
+      <ForgetPasswordForm></ForgetPasswordForm>
     </div>
   </div>
 </template>
@@ -16,86 +16,100 @@
 import LoginForm from './LoginForm.vue'
 import RegisterForm from './RegisterForm.vue'
 import AppThemeToggle from '@/components/application/AppThemeToggle.vue'
-// import { reactive } from 'vue'
-// import { useRouter } from 'vue-router'
-// import { ElForm, ElButton, ElInput, ElFormItem } from 'element-plus'
-// import { login } from '@/api/login'
-// import '@/mock/login'
-
-// const router = useRouter()
-
-// const loginData = reactive({
-//   username: '',
-//   password: ''
-// })
-
-// const getUSerInfo = async () => {
-//   const resData = await getUserInfo()
-//     .then((res) => {
-//       router.replace(`/home/${res.id}/${res.username}`)
-//       return res
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//     })
-//   console.log(resData)
-// }
-
-// async function handlerLogin() {
-//   const resData = await login(loginData)
-//     .then((res) => {
-//       router.push('/home')
-//       return res
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//     })
-//   console.log(resData)
-// }
+import AppLocalePicker from '@/components/application/AppLocalePicker.vue'
+import ForgetPasswordForm from './ForgetPasswordForm.vue'
 </script>
 
 <style lang="less">
 .body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.bg {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -1;
-  bottom: 0;
-  left: 0;
 }
 
 .app-setting-fixed {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
+  display: flex;
+  align-items: center;
+  .theme-toggle {
+    margin-right: 0.8rem;
+  }
 }
 
 .container {
-  width: 650px;
-  height: 450px;
+  height: auto;
+  width: 80%;
   position: relative;
-  background-color: #fff;
-  display: flex;
   border-radius: 5px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 
-  .cover-box {
-    position: absolute;
-    top: -5%;
-    left: 5%;
-    width: 320px;
-    height: 500px;
-    background-color: aqua;
-    z-index: 3;
-    // visibility: hidden;
+  .h-center {
+    text-align: center;
+  }
+
+  .back-fill {
+    width: 100%;
+    height: 100%;
+  }
+
+  .relative-box {
+    position: relative;
+
+    .absolute-right-3-top-5 {
+      position: absolute;
+      right: 3px;
+      top: 5px;
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .container {
+    width: 50%;
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .container {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 30%;
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    width: 20%;
+  }
+}
+
+.enter-x {
+  z-index: 8;
+  opacity: 0;
+  -webkit-animation: enter-x-animation 0.4s ease-in-out 0.3s;
+  animation: enter-x-animation 0.4s ease-in-out 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+  transform: translateX(50px);
+}
+
+@keyframes enter-x-animation {
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>

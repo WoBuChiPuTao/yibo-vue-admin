@@ -64,7 +64,7 @@ export default {
     placeholder: '请输入锁屏密码或者用户密码'
   },
   login: {
-    backSignIn: '返回',
+    backSignIn: '返回登录',
     signInFormTitle: '登录',
     mobileSignInFormTitle: '手机登录',
     qrSignInFormTitle: '二维码登录',

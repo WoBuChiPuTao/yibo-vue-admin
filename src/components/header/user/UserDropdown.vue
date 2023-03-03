@@ -30,15 +30,16 @@ import {
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
-  ElMessage,
   ElMessageBox
 } from 'element-plus'
 import { Document, SwitchButton, Lock } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
-import { computed, ref } from 'vue'
+import { computed, ref, h } from 'vue'
 import { isEmpty } from '@/utils/is'
+import { useI18n } from '@/hooks/web/useI18n'
 
 const userStore = useUserStore()
+const { t } = useI18n()
 
 const headerImage = ref<HTMLImageElement>()
 
@@ -51,21 +52,19 @@ const getUserInfo = computed(() => {
   return { username, avatar, desc }
 })
 
-const toLogout = () => {
-  ElMessageBox.confirm('是否退出登录', 'Warning', {
-    confirmButtonText: 'OK',
-    cancelButtonText: 'Cancel',
-    type: 'warning'
-  })
-    .then(() => {
-      userStore.logout(true)
-    })
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: '操作取消'
-      })
-    })
+async function toLogout() {
+  try {
+    await ElMessageBox.confirm(
+      () => h('span', t('sys.app.logoutMessage')),
+      t('sys.app.logoutTip'),
+      {
+        confirmButtonText: t('common.okText'),
+        cancelButtonText: t('common.cancelText'),
+        type: 'warning'
+      }
+    )
+    await userStore.logout(true)
+  } catch (error) {}
 }
 </script>
 

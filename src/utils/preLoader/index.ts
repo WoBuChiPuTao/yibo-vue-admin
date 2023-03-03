@@ -46,5 +46,9 @@ const imgPreloader = (url: string) => {
 
 export async function preLoader() {
   importAllSvgIcons()
-  await imporAllImg()
+  try {
+    await imporAllImg()
+  } catch (error) {
+    console.error(error)
+  }
 }

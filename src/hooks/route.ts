@@ -32,14 +32,12 @@ function isMultipleRoute<T extends RouteRecordRaw>(route: T) {
 function promoteRouteLevel<T extends RouteRecordRaw>(route: T) {
   // 使用vue-router拼接菜单
   // createRouter 创建一个可以被 Vue 应用程序使用的路由实例
-  console.log('routes', cloneDeep(route))
   let router: Router | null = createRouter({
     routes: [route as unknown as RouteRecordNormalized],
     history: createWebHashHistory()
   })
   // getRoutes： 获取所有路由记录的完整列表。
   const routes = router.getRoutes()
-  console.log('vue-routes', routes)
   // 将所有子路由添加到二级路由
   addToChildren(routes, route.children || [], route)
   router = null

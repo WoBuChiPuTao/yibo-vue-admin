@@ -55,7 +55,7 @@ export const useUserStore = defineStore({
       } else {
         this.token = ''
       }
-      WebCache.setLocal('TOKEN_', info, 500)
+      WebCache.setLocal('TOKEN_', info)
     },
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList
