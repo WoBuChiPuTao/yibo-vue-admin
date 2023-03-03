@@ -32,6 +32,7 @@ export default defineComponent({
 .header-fill {
   height: 79px;
   background-color: var(--header-bg-color);
+  flex-shrink: 0;
 }
 
 .header-fixed {

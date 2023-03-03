@@ -2,6 +2,10 @@
   <div>
     <div>主页</div>
     <BarChart style="height: 400px; width: 100%"></BarChart>
+    <BarChart style="height: 400px; width: 100%"></BarChart>
+    <BarChart style="height: 400px; width: 100%"></BarChart>
+    <BarChart style="height: 400px; width: 100%"></BarChart>
+    <BarChart style="height: 400px; width: 100%"></BarChart>
   </div>
 </template>
 

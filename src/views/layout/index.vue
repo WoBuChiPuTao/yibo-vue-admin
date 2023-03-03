@@ -24,7 +24,6 @@ import Content from '@/views/layout/content/index.vue'
 
   .layout-main {
     display: flex;
-    flex: auto;
     flex-direction: column;
     //background: #f0f2f5;
 
