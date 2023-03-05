@@ -15,5 +15,6 @@ import { useTabStore } from '@/store/modules/tabs'
 import { computed } from 'vue'
 const tabStore = useTabStore()
 // 只需要将tab还存在的alive
+// 注意alive的组件名字必须要和getCacheTabs中的参数一样
 const getCacheTabs = computed(() => tabStore.getCacheList)
 </script>

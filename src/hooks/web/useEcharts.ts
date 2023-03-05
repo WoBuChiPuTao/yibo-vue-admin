@@ -62,16 +62,10 @@ export function useEchart(
 
   function setOptions(options: EChartsOption, clear = true) {
     cacheOptions.value = options
-    if (unref(elRef)?.offsetHeight === 0) {
-      useTimeoutFn(() => {
-        setOptions(unref(getOptions))
-      }, 30)
-      return
-    }
-    chartInstance?.showLoading()
     nextTick(() => {
       !chartInstance && initEcharts(getThemeMode.value)
       if (!chartInstance) return
+      chartInstance?.showLoading()
       clear && chartInstance.clear()
       chartInstance.setOption(unref(getOptions))
       chartInstance.hideLoading()
