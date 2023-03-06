@@ -46,6 +46,7 @@ export function useEchart(
     if (!el) {
       return
     }
+    console.log('el', el.offsetHeight)
     chartInstance = echarts.init(el, t) as unknown as ECharts
     const { removeEvent } = useEventListener({
       el: window,
@@ -62,6 +63,12 @@ export function useEchart(
 
   function setOptions(options: EChartsOption, clear = true) {
     cacheOptions.value = options
+    if (unref(elRef)?.offsetHeight === 0) {
+      setTimeout(() => {
+        setOptions(options)
+      }, 30)
+      return
+    }
     nextTick(() => {
       !chartInstance && initEcharts(getThemeMode.value)
       if (!chartInstance) return
@@ -73,6 +80,16 @@ export function useEchart(
   }
 
   function resize() {
+    const el = unref(elRef)
+    if (!el) {
+      return
+    }
+    if (unref(elRef).offsetHeight === 0) {
+      setTimeout(() => {
+        resize()
+      }, 50)
+      return
+    }
     chartInstance?.resize({
       animation: {
         duration: 300,
@@ -88,10 +105,11 @@ export function useEchart(
     return chartInstance
   }
 
-  watch(getThemeMode, (theme) => {
+  watch(getThemeMode, () => {
     if (chartInstance) {
       chartInstance.dispose()
-      initEcharts(theme)
+      chartInstance = null
+      // initEcharts(theme)
       setOptions(cacheOptions.value)
     }
   })
