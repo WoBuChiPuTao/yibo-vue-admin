@@ -28,6 +28,7 @@
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.4.4",
     "@iconify/vue": "^4.0.0",
     "@types/mockjs": "^1.0.7",
     "@types/nprogress": "^0.2.0",
@@ -42,6 +43,7 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-standard": "^6.1.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "commitlint": "^17.4.4",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
