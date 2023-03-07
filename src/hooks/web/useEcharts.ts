@@ -14,16 +14,12 @@ export function useEchart(
   renderer?: RenderType
 ) {
   const echarts = setupEcharts()
-  echarts.use(
-    renderer === RenderType.CanvasRenderer ? CanvasRenderer : SVGRenderer
-  )
+  echarts.use(renderer === RenderType.CanvasRenderer ? CanvasRenderer : SVGRenderer)
 
   const { getThemeMode: getSysThemeMode } = useThemeMode()
   const { getCollapsed } = useMenuSetting()
 
-  const getThemeMode = computed(() =>
-    theme === 'default' ? getSysThemeMode.value : theme
-  )
+  const getThemeMode = computed(() => (theme === 'default' ? getSysThemeMode.value : theme))
 
   let chartInstance: echarts.ECharts | null = null
 
@@ -81,9 +77,6 @@ export function useEchart(
 
   function resize() {
     const el = unref(elRef)
-    if (!el) {
-      return
-    }
     if (unref(elRef).offsetHeight === 0) {
       setTimeout(() => {
         resize()
