@@ -10,14 +10,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Dcharts from './Dcharts.vue'
 import BarChart from './BarChart.vue'
 
 export default defineComponent({
   name: 'HomePage',
   components: {
-    BarChart,
-    Dcharts
+    BarChart
   },
   setup() {
     return {}
