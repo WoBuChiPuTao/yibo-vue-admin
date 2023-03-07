@@ -7,11 +7,8 @@ export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
 
   for (key in target) {
     res[key] = isObject(res[key])
-    if (res[key]) {
-      res[key] = deepMerge(src[key], target[key])
-    } else {
-      res[key] = target[key]
-    }
+      ? deepMerge(res[key], target[key])
+      : target[key]
   }
   return res
 }
