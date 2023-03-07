@@ -4,13 +4,15 @@ module.exports = {
     node: true,
     'vue/setup-compiler-macros': true
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/standard',
-    '@vue/typescript/recommended'
-  ],
+  extends: ['plugin:vue/vue3-essential', '@vue/standard', '@vue/typescript/recommended'],
   parserOptions: {
-    ecmaVersion: 2020
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    jsxPragma: 'React',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   rules: {
     indent: ['off', 2],
