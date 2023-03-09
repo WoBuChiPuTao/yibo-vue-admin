@@ -24,8 +24,20 @@
     </script>
     <div id="app">
       <style>
-        html[data-theme='dark'] .transition-container {
-          background-color: #2c344a;
+        html[data-theme='dark'] body {
+          background-color: #212121;
+        }
+
+        html[data-theme='dark'] .circle{
+          background-color: #fff;
+        }
+
+        html[data-theme='dark'] .shadow{
+          background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        body{
+          background-color: #e8e8e8;
         }
 
         div {
@@ -43,57 +55,103 @@
           transform: translate3d(-50%, -50%, 0);
         }
 
-        .loader {
+        .wrapper {
+          width: 200px;
+          height: 60px;
           position: relative;
+          z-index: 1;
         }
 
-        .outer,
-        .middle,
-        .inner {
-          border: 3px solid transparent;
-          border-top-color: #3c80ff;
-          border-right-color: #3c80ff;
-          border-radius: 50%;
+        .circle {
+          width: 20px;
+          height: 20px;
           position: absolute;
-          top: 50%;
-          left: 50%;
+          border-radius: 50%;
+          background-color: #000;
+          left: 15%;
+          transform-origin: 50%;
+          animation: circle7124 0.5s alternate infinite ease;
         }
 
-        .outer {
-          width: 3.5rem;
-          height: 3.5rem;
-          margin-left: -1.75rem;
-          margin-top: -1.75rem;
-          animation: spin 2s linear infinite;
-        }
-
-        .middle {
-          width: 2.1rem;
-          height: 2.1rem;
-          margin-left: -1.05rem;
-          margin-top: -1.05rem;
-          animation: spin 1.75s linear reverse infinite;
-        }
-
-        .inner {
-          width: 0.8rem;
-          height: 0.8rem;
-          margin-left: -0.4rem;
-          margin-top: -0.4rem;
-          animation: spin 1.5s linear infinite;
-        }
-
-        @keyframes spin {
-          to {
-            transform: rotate(360deg);
+        @keyframes circle7124 {
+          0% {
+            top: 60px;
+            height: 5px;
+            border-radius: 50px 50px 25px 25px;
+            transform: scaleX(1.7);
           }
+
+          40% {
+            height: 20px;
+            border-radius: 50%;
+            transform: scaleX(1);
+          }
+
+          100% {
+            top: 0%;
+          }
+        }
+
+        .circle:nth-child(2) {
+          left: 45%;
+          animation-delay: 0.2s;
+        }
+
+        .circle:nth-child(3) {
+          left: auto;
+          right: 15%;
+          animation-delay: 0.3s;
+        }
+
+        .shadow {
+          width: 20px;
+          height: 4px;
+          border-radius: 50%;
+          background-color: rgba(0, 0, 0, 0.9);
+          position: absolute;
+          top: 62px;
+          transform-origin: 50%;
+          z-index: -1;
+          left: 15%;
+          filter: blur(1px);
+          animation: shadow046 0.5s alternate infinite ease;
+        }
+
+        @keyframes shadow046 {
+          0% {
+            transform: scaleX(1.5);
+          }
+
+          40% {
+            transform: scaleX(1);
+            opacity: 0.7;
+          }
+
+          100% {
+            transform: scaleX(0.2);
+            opacity: 0.4;
+          }
+        }
+
+        .shadow:nth-child(4) {
+          left: 45%;
+          animation-delay: 0.2s;
+        }
+
+        .shadow:nth-child(5) {
+          left: auto;
+          right: 15%;
+          animation-delay: 0.3s;
         }
       </style>
       <div class="transition-container">
-        <div class="loader">
-          <div class="outer"></div>
-          <div class="middle"></div>
-          <div class="inner"></div>
+        <div class="wrapper">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
         </div>
       </div>
     </div>
