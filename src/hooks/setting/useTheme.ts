@@ -1,6 +1,7 @@
 import { useAppStore } from '@/store/modules/app'
 import { ThemeEnum } from '@/types/enums/appEnum'
 import { computed } from 'vue'
+import { addClass, hasClass, removeClass } from '../dom'
 
 export function useThemeMode() {
   const appStore = useAppStore()
@@ -18,5 +19,16 @@ export function useThemeMode() {
 }
 
 export function updateHtmlTheme(theme: ThemeEnum) {
-  document.querySelector('html')?.setAttribute('data-theme', theme)
+  const html = document.querySelector('html')
+  if (!html) {
+    return
+  }
+  const htmlClass = hasClass(html, ThemeEnum.DARK)
+  if (theme === ThemeEnum.DARK) {
+    html?.setAttribute('data-theme', theme)
+    !htmlClass && addClass(html, ThemeEnum.DARK)
+  } else {
+    html?.setAttribute('data-theme', theme)
+    htmlClass && removeClass(html, ThemeEnum.DARK)
+  }
 }
