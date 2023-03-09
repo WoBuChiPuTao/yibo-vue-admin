@@ -37,7 +37,7 @@ export default {
 
     home: '首页'
   },
-  multipleTab: {
+  tabDropdown: {
     reload: '重新加载',
     close: '关闭标签页',
     closeLeft: '关闭左侧标签页',

@@ -36,7 +36,7 @@ export default {
 
     home: 'Home'
   },
-  multipleTab: {
+  tabDropdown: {
     reload: 'Refresh current',
     close: 'Close current',
     closeLeft: 'Close Left',

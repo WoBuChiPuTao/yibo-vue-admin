@@ -2,15 +2,9 @@ import { useTabs } from '@/hooks/web/useTabs'
 import { useTabStore } from '@/store/modules/tabs'
 import { computed, ComputedRef, reactive, unref } from 'vue'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
-import {
-  ArrowLeft,
-  ArrowRight,
-  Close,
-  Minus,
-  Refresh,
-  RemoveFilled
-} from '@element-plus/icons-vue'
+import { ArrowLeft, ArrowRight, Close, Minus, Refresh, RemoveFilled } from '@element-plus/icons-vue'
 import { DropMenu } from '@/types/menu'
+import { useI18n } from '@/hooks/web/useI18n'
 
 enum MenuEventEnum {
   REFRESH_PAGE,
@@ -21,20 +15,11 @@ enum MenuEventEnum {
   CLOSE_ALL
 }
 
-export function useTabDropdown(
-  tabContent: RouteLocationNormalized,
-  isTab: ComputedRef<boolean>
-) {
-  const {
-    closeAll,
-    closeOther,
-    closeCurrent,
-    closeLeft,
-    closeRight,
-    refreshPage
-  } = useTabs()
+export function useTabDropdown(tabContent: RouteLocationNormalized, isTab: ComputedRef<boolean>) {
+  const { closeAll, closeOther, closeCurrent, closeLeft, closeRight, refreshPage } = useTabs()
   const tabStore = useTabStore()
   const { currentRoute } = useRouter()
+  const { t } = useI18n()
 
   const state = reactive({
     presentTab: null as RouteLocationNormalized | null,
@@ -65,48 +50,47 @@ export function useTabDropdown(
     const closeAllDisabled = tabStore.getTabList.length === 1
     const closeRightDisabled =
       !isCurrentTab ||
-      (curIndex === tabStore.getTabList.length - 1 &&
-        tabStore.getLastDragIndex >= 0)
+      (curIndex === tabStore.getTabList.length - 1 && tabStore.getLastDragIndex >= 0)
 
     const dropList: DropMenu[] = [
       {
         icon: Refresh,
         event: MenuEventEnum.REFRESH_PAGE,
-        text: '重新加载',
+        text: t('common.tabDropdown.reload'),
         disabled: refreshDisabled
       },
       {
         icon: Close,
         event: MenuEventEnum.CLOSE_CURRENT,
-        text: '关闭标签页',
+        text: t('common.tabDropdown.close'),
         disabled: !!meta.fixedTab || closeAllDisabled,
         divided: true
       },
       {
         icon: ArrowLeft,
         event: MenuEventEnum.CLOSE_LEFT,
-        text: '关闭左侧标签页',
+        text: t('common.tabDropdown.closeLeft'),
         disabled: closeLeftDisabled,
         divided: true
       },
       {
         icon: ArrowRight,
         event: MenuEventEnum.CLOSE_RIGHT,
-        text: '关闭右侧标签页',
+        text: t('common.tabDropdown.closeRight'),
         disabled: closeRightDisabled,
         divided: true
       },
       {
         icon: Minus,
         event: MenuEventEnum.CLOSE_OTHER,
-        text: '关闭其它标签页',
+        text: t('common.tabDropdown.closeOther'),
         disabled: closeAllDisabled || !isCurrentTab,
         divided: true
       },
       {
         icon: RemoveFilled,
         event: MenuEventEnum.CLOSE_ALL,
-        text: '关闭全部标签页',
+        text: t('common.tabDropdown.closeAll'),
         disabled: closeAllDisabled,
         divided: true
       }
@@ -120,9 +104,7 @@ export function useTabDropdown(
         return
       }
       e?.preventDefault()
-      const index = tabStore.getTabList.findIndex(
-        (tab) => tab.path === tabItem.path
-      )
+      const index = tabStore.getTabList.findIndex((tab) => tab.path === tabItem.path)
       state.presentTab = tabItem
       state.presentTabIndex = index
     }
