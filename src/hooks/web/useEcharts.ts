@@ -10,8 +10,8 @@ import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core'
 
 export function useEchart(
   elRef: Ref<HTMLDivElement>,
-  theme: 'light' | 'dark' | 'default' = 'default',
-  renderer?: RenderType
+  renderer?: RenderType,
+  theme: 'light' | 'dark' | 'default' = 'default'
 ) {
   const echarts = setupEcharts()
   echarts.use(renderer === RenderType.CanvasRenderer ? CanvasRenderer : SVGRenderer)
@@ -76,7 +76,6 @@ export function useEchart(
   }
 
   function resize() {
-    const el = unref(elRef)
     if (unref(elRef).offsetHeight === 0) {
       setTimeout(() => {
         resize()

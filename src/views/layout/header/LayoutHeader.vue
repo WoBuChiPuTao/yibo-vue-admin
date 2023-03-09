@@ -6,7 +6,6 @@
     </div>
 
     <div class="header-action">
-      <AppThemeToggle></AppThemeToggle>
       <AppSearch class="header-action-item"></AppSearch>
       <AppNotice class="header-action-item"></AppNotice>
       <FullScreen class="header-action-item"></FullScreen>
@@ -26,7 +25,6 @@ import {
   AppNotice,
   FullScreen,
   UserDropdown,
-  AppSetting,
   BreadCrumb
 } from '@/components/header/index'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
@@ -40,17 +38,10 @@ export default defineComponent({
     AppNotice,
     FullScreen,
     UserDropdown,
-    AppSetting,
+    AppSetting: createAsyncComponent(() => import('@/components/setting/AppSetting.vue')),
     BreadCrumb,
     AppLocalePicker: createAsyncComponent(
-      () => import('@/components/application/AppLocalePicker.vue'),
-      { loading: true }
-    ),
-    AppThemeToggle: createAsyncComponent(
-      () => import('@/components/application/AppThemeToggle.vue'),
-      {
-        loading: true
-      }
+      () => import('@/components/application/AppLocalePicker.vue')
     )
   },
   setup() {
