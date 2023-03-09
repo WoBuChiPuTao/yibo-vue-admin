@@ -1,7 +1,10 @@
 {
-  "name": "person-web",
+  "name": "yibo-vue-admin",
   "version": "0.3.1",
-  "private": true,
+  "author": {
+    "name": "yibo",
+    "url": "https://github.com/WoBuChiPuTao"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
