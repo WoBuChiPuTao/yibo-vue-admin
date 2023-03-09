@@ -1,23 +1,3 @@
-const fs = require('fs')
-const path = require('path')
-const { execSync } = require('child_process')
-
-const scopes = fs
-  .readdirSync(path.resolve(__dirname, 'src'), { withFileTypes: true })
-  .filter((dirent) => dirent.isDirectory())
-  .map((dirent) => dirent.name.replace(/s$/, ''))
-
-// precomputed scope
-const scopeComplete = execSync('git status --porcelain || true')
-  .toString()
-  .trim()
-  .split('\n')
-  .find((r) => ~r.indexOf('M  src'))
-  ?.replace(/(\/)/g, '%%')
-  ?.match(/src%%((\w|-)*)/)?.[1]
-  ?.replace(/s$/, '')
-
-/** @type {import('cz-git').UserConfig} */
 module.exports = {
   ignores: [(commit) => commit.includes('init')],
   extends: ['@commitlint/config-conventional'],
@@ -44,34 +24,13 @@ module.exports = {
         'chore',
         'revert',
         'wip',
-        'workflow',
         'types',
-        'release'
+        'release',
+        'merge'
       ]
     ]
   },
   prompt: {
-    /** @use `yarn commit :f` */
-    alias: {
-      f: 'docs: fix typos',
-      r: 'docs: update README',
-      s: 'style: update code format',
-      b: 'build: bump dependencies',
-      c: 'chore: update config'
-    },
-    customScopesAlign: !scopeComplete ? 'top' : 'bottom',
-    defaultScope: scopeComplete,
-    scopes: [...scopes, 'mock'],
-    allowEmptyIssuePrefixs: false,
-    allowCustomIssuePrefixs: false,
-
-    // English
-    typesAppend: [
-      { value: 'wip', name: 'wip:      work in process' },
-      { value: 'workflow', name: 'workflow: workflow improvements' },
-      { value: 'types', name: 'types:    type definition file changes' }
-    ]
-
     // 中英文对照版
     // messages: {
     //   type: '选择你要提交的类型 :',
@@ -80,8 +39,6 @@ module.exports = {
     //   subject: '填写简短精炼的变更描述 :\n',
     //   body: '填写更加详细的变更描述 (可选)。使用 "|" 换行 :\n',
     //   breaking: '列举非兼容性重大的变更 (可选)。使用 "|" 换行 :\n',
-    //   footerPrefixsSelect: '选择关联issue前缀 (可选):',
-    //   customFooterPrefixs: '输入自定义issue前缀 :',
     //   footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
     //   confirmCommit: '是否提交或修改commit ?',
     // },
@@ -98,10 +55,9 @@ module.exports = {
     //   { value: 'revert', name: 'revert:   回滚 commit' },
     //   { value: 'chore', name: 'chore:    对构建过程或辅助工具和库的更改 (不影响源文件、测试用例)' },
     //   { value: 'wip', name: 'wip:      正在开发中' },
-    //   { value: 'workflow', name: 'workflow: 工作流程改进' },
     //   { value: 'types', name: 'types:    类型定义文件修改' },
+    //   { value: 'release', name: 'types:    发布新版本' },
+    //   { value: 'merge', name: 'types:   合并分支或冲突' },
     // ],
-    // emptyScopesAlias: 'empty:      不填写',
-    // customScopesAlias: 'custom:     自定义',
   }
 }
