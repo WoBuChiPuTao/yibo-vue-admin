@@ -1,7 +1,6 @@
 <template>
   <div>
     <BarChart style="height: 400px; width: 100%"></BarChart>
-    <Dcharts style="height: 400px; width: 100%"></Dcharts>
     <BarChart style="height: 400px; width: 100%"></BarChart>
     <BarChart style="height: 400px; width: 100%"></BarChart>
     <BarChart style="height: 400px; width: 100%"></BarChart>
