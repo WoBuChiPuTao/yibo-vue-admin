@@ -73,6 +73,7 @@
     "unplugin-auto-import": "^0.11.4",
     "unplugin-icons": "^0.14.14"
   },
+  "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
