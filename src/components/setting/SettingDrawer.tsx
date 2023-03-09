@@ -1,19 +1,31 @@
-import { defineComponent } from 'vue'
-import { ElDrawer } from 'element-plus'
+import { defineComponent, ref } from 'vue'
+import { ElDrawer, ElDivider } from 'element-plus'
+import { useI18n } from '@/hooks/web/useI18n'
+import AppThemeToggle from '../application/AppThemeToggle.vue'
+
+export const drawerVisibile = ref(false)
 
 export default defineComponent({
   name: 'SettingDrawer',
-  props: {
-    drawerVisible: {
-      type: Boolean,
-      default: false
+  setup(_, { attrs }) {
+    const { t } = useI18n()
+
+    function rendererHeader() {
+      return <div>{() => t('common.setting.drawerTitle')}</div>
     }
-  },
-  setup(props, { attrs }) {
+
+    function rendererBody() {
+      return (
+        <>
+          <ElDivider>{() => t('common.setting.darkMode')}</ElDivider>
+          <AppThemeToggle class="mode-center"></AppThemeToggle>
+        </>
+      )
+    }
+
     return () => (
-      <ElDrawer {...attrs} v-model={props.drawerVisible}>
-        <template v-slot:header></template>
-        <template v-slot:default></template>
+      <ElDrawer {...attrs} v-model={drawerVisibile.value}>
+        {{ header: () => rendererHeader(), default: () => rendererBody() }}
       </ElDrawer>
     )
   }

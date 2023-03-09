@@ -28,8 +28,7 @@ const getClass = computed(() => {
 })
 
 function toggleThemeMode() {
-  const theme =
-    getThemeMode.value === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK
+  const theme = getThemeMode.value === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK
   setThemeMode(theme)
   updateHtmlTheme(theme)
 }
@@ -49,7 +48,7 @@ function toggleThemeMode() {
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
 
   &-inner {
     position: absolute;
