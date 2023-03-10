@@ -1,3 +1,4 @@
+// import { useDebounceFn } from '@/hooks/core/core'
 import { getAllParentPath } from '@/router/menu/util'
 import { Menu } from '@/types/menu'
 import { useDebounceFn } from '@vueuse/core'
@@ -8,9 +9,10 @@ export function useOpenMenu(menus: Ref<Menu[]>, openNames: Ref<string[]>) {
   async function getOpenMenu(path: string) {
     const menuList = toRaw(menus.value)
     if (menuList?.length === 0) {
-      return
+      return 1
     }
     openNames.value = getAllParentPath(menuList, path)
+    return 1
   }
 
   return { getOpenMenu: getDebounceOpenMenu }

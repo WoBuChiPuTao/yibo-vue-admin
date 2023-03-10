@@ -1,6 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-const Layout = () => import('@/views/layout/index.vue')
+const Layout = () => import('@/layout/index.vue')
 
 const component: AddRouteRecordRaw = {
   path: '/comp',
@@ -46,8 +46,7 @@ const component: AddRouteRecordRaw = {
         {
           path: 'editTree',
           name: 'EditTreeDemo',
-          component: () =>
-            import('@/views/modules/component/tree/EditTree.vue'),
+          component: () => import('@/views/modules/component/tree/EditTree.vue'),
           meta: {
             title: t('routes.demo.comp.editTree'),
             icon: 'material-symbols:rebase-edit-outline-rounded'
@@ -56,8 +55,7 @@ const component: AddRouteRecordRaw = {
         {
           path: 'actionTree',
           name: 'ActionTreeDemo',
-          component: () =>
-            import('@/views/modules/component/tree/ActionTree.vue'),
+          component: () => import('@/views/modules/component/tree/ActionTree.vue'),
           meta: {
             title: t('routes.demo.comp.actionTree'),
             icon: 'eos-icons:action-chains-outlined'

@@ -1,11 +1,7 @@
 <template>
   <div class="side-logo">logo</div>
   <ElScrollbar>
-    <Menu
-      :collapsed="collapsed"
-      @select-menu-item="handleSelected"
-      :menus="items"
-    >
+    <Menu :collapsed="collapsed" @select-menu-item="handleSelected" :menus="items">
       <template v-for="item in items" :key="item.path">
         <SubMenu :item="item" :parent="true" :collapsed="collapsed"></SubMenu>
       </template>

@@ -1,6 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-const Layout = () => import('@/views/layout/index.vue')
+const Layout = () => import('@/layout/index.vue')
 
 const system: AddRouteRecordRaw = {
   path: '/system',

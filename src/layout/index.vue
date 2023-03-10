@@ -12,9 +12,9 @@
 
 <script lang="ts" setup>
 import { ElContainer, ElMain } from 'element-plus'
-import Header from '@/views/layout/header/index.vue'
-import Side from '@/views/layout/side/index.vue'
-import Content from '@/views/layout/content/index.vue'
+import Header from './header/index.vue'
+import Side from './side/index.vue'
+import Content from './content/index.vue'
 </script>
 
 <style lang="less">

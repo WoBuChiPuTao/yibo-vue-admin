@@ -34,7 +34,7 @@ export function useEchart(
     }
   })
 
-  const resizeFn: Fn = useDebounceFn(resize, 200)
+  const resizeFn = useDebounceFn(resize, 200)
   let removeResizeFn: Fn
 
   function initEcharts(t = theme) {

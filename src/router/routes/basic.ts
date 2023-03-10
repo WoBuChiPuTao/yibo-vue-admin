@@ -1,6 +1,6 @@
 import { t } from '@/hooks/web/useI18n'
 import { AddRouteRecordRaw } from '../types'
-const Layout = () => import('@/views/layout/index.vue')
+const Layout = () => import('@/layout/index.vue')
 
 export const LOGIN_ROUTE: AddRouteRecordRaw = {
   path: '/login',
@@ -47,7 +47,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
     {
       path: '/redirect/:path(.*)',
       name: 'Redirect',
-      component: () => import('@/views/layout/redirect/index.vue'),
+      component: () => import('@/layout/redirect/index.vue'),
       meta: {
         title: 'redirect'
       }
