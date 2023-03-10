@@ -1,7 +1,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElDrawer, ElDivider } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import AppThemeToggle from '../application/AppThemeToggle.vue'
+import AppThemeToggle from '@/components/application/AppThemeToggle.vue'
 
 export const drawerVisibile = ref(false)
 
@@ -24,7 +24,7 @@ export default defineComponent({
     }
 
     return () => (
-      <ElDrawer {...attrs} v-model={drawerVisibile.value}>
+      <ElDrawer {...attrs} v-model={drawerVisibile.value} size="20%">
         {{ header: () => rendererHeader(), default: () => rendererBody() }}
       </ElDrawer>
     )
