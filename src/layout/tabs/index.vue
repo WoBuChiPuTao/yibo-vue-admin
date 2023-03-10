@@ -44,12 +44,6 @@ const getActive = computed(() => {
   return activeKey.value
 })
 
-// function handleChange(tabname: any) {
-//   activeKey.value = tabname
-//   console.log('tabs')
-//   go(tabname, false)
-// }
-
 function handleClick(tabContext: TabsPaneContext) {
   if (!tabContext.active) {
     activeKey.value = tabContext.paneName as string

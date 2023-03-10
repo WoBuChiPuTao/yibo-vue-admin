@@ -1,7 +1,7 @@
 .multiple-tabs {
-  height: 31px;
+  height: 40px;
   .el-tabs {
-    --el-tabs-header-height: 30px;
+    --el-tabs-header-height: 40px;
     vertical-align: middle;
   }
 
@@ -9,32 +9,52 @@
     margin: 0px;
     border-bottom: 1px solid var(--header-border-color);
 
-    .el-tabs__nav {
-      // 重置边框样式
-      border: 0px;
-      border-right: 1px solid var(--header-border-color);
-    }
-  }
+    .el-tabs__nav-wrap {
+      height: 100%;
 
-  .el-tabs__item > .el-tabs__item__content {
-    height: var(--el-tabs-header-height);
-    line-height: var(--el-tabs-header-height);
-    display: inline-block;
-    list-style: none;
-    font-size: var(--el-font-size-base);
-    font-weight: 500;
-    color: var(--text-color);
-    position: relative;
+      .el-tabs__nav-scroll {
+        height: 100%;
+
+        .el-tabs__nav {
+          // 重置边框样式
+          height: 100%;
+          border: 0px;
+          display: flex;
+          align-items: center;
+
+          // border-right: 1px solid var(--header-border-color);
+
+          .el-tabs__item {
+            border: 1px solid var(--header-border-color);
+            background-color: var(--el-color-info-light-9);
+            height: 28px;
+            margin: 3px 6px;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+
+            &.is-active {
+              background-color: var(--el-color-primary-light-9);
+              border-color: var(--el-color-primary-light-8);
+            }
+
+            .el-tabs__item__content {
+              line-height: 24px;
+            }
+
+            .is-icon-close {
+              transform: translateY(8%);
+            }
+          }
+        }
+      }
+    }
   }
 
   .el-tabs__content {
     height: 0px;
     width: 0px;
     padding: 0px;
-  }
-
-  .el-tabs--card > .el-tabs__header .el-tabs__item {
-    border-bottom: 0px solid transparent;
-    border-left: 1px solid var(--header-border-color);
   }
 }

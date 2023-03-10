@@ -30,7 +30,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .header-fill {
-  height: 79px;
+  height: 104px;
   background-color: var(--header-bg-color);
   flex-shrink: 0;
 }
