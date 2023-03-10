@@ -6,7 +6,6 @@
     </div>
 
     <div class="header-action">
-      <AppSearch class="header-action-item"></AppSearch>
       <AppNotice class="header-action-item"></AppNotice>
       <FullScreen class="header-action-item"></FullScreen>
       <AppLocalePicker class="header-action-item"></AppLocalePicker>
@@ -19,14 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElHeader } from 'element-plus'
-import {
-  SiderTrigger,
-  AppSearch,
-  AppNotice,
-  FullScreen,
-  UserDropdown,
-  BreadCrumb
-} from './components/index'
+import { SiderTrigger, AppNotice, FullScreen, UserDropdown, BreadCrumb } from './components/index'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 export default defineComponent({
@@ -34,7 +26,6 @@ export default defineComponent({
   components: {
     ElHeader,
     SiderTrigger,
-    AppSearch,
     AppNotice,
     FullScreen,
     UserDropdown,

@@ -47,7 +47,7 @@ export default defineComponent({
 
 <style lang="less">
 .side-logo {
-  height: 48px;
+  height: 64px;
   padding: 10px 4px 10px 10px;
   color: white;
 }
