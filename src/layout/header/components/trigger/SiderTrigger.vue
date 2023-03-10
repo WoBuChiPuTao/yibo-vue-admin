@@ -1,6 +1,6 @@
 <template>
   <div @click="toggleCollapsed" class="flex">
-    <ElIcon >
+    <ElIcon>
       <Fold v-if="!getCollapsed"></Fold>
       <Expand v-else></Expand>
     </ElIcon>
@@ -27,7 +27,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.flex{
+.flex {
   cursor: pointer;
   display: flex;
   align-items: center;

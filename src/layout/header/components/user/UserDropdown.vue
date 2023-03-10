@@ -3,9 +3,7 @@
     <span class="header-user-dropdown">
       <img
         ref="headerImage"
-        :src="
-          isEmpty(getUserInfo.avatar) ? '/img/avatar.png' : getUserInfo.avatar
-        "
+        :src="isEmpty(getUserInfo.avatar) ? '/img/avatar.png' : getUserInfo.avatar"
         alt="avatar"
         class="header-user-dropdown-avatar"
       />
@@ -17,21 +15,14 @@
       <el-dropdown-menu>
         <el-dropdown-item :icon="Document">查看文档</el-dropdown-item>
         <el-dropdown-item :icon="Lock">锁定屏幕</el-dropdown-item>
-        <el-dropdown-item :icon="SwitchButton" @click="toLogout"
-          >退出登录</el-dropdown-item
-        >
+        <el-dropdown-item :icon="SwitchButton" @click="toLogout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </ElDropdown>
 </template>
 
 <script lang="ts" setup>
-import {
-  ElDropdown,
-  ElDropdownMenu,
-  ElDropdownItem,
-  ElMessageBox
-} from 'element-plus'
+import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
 import { Document, SwitchButton, Lock } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, ref, h } from 'vue'
@@ -44,11 +35,7 @@ const { t } = useI18n()
 const headerImage = ref<HTMLImageElement>()
 
 const getUserInfo = computed(() => {
-  const {
-    username = 'nibabassssss',
-    avatar,
-    desc
-  } = userStore.getUserInfo || {}
+  const { username = 'nibabassssss', avatar, desc } = userStore.getUserInfo || {}
   return { username, avatar, desc }
 })
 

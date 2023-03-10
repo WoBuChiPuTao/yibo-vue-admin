@@ -26,7 +26,7 @@ import {
   FullScreen,
   UserDropdown,
   BreadCrumb
-} from '@/components/header/index'
+} from './components/index'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 export default defineComponent({
@@ -38,10 +38,15 @@ export default defineComponent({
     AppNotice,
     FullScreen,
     UserDropdown,
-    AppSetting: createAsyncComponent(() => import('../setting/AppSetting.vue')),
+    AppSetting: createAsyncComponent(() => import('../setting/AppSetting.vue'), {
+      loading: true
+    }),
     BreadCrumb,
     AppLocalePicker: createAsyncComponent(
-      () => import('@/components/application/AppLocalePicker.vue')
+      () => import('@/components/application/AppLocalePicker.vue'),
+      {
+        loading: true
+      }
     )
   },
   setup() {

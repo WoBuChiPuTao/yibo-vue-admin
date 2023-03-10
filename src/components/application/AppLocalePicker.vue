@@ -2,9 +2,7 @@
   <ElDropdown trigger="click" @command="toggleLocale" tabindex="0">
     <span>
       <EIcon class="picker-content" icon="ion:language"></EIcon>
-      <span v-if="showText" class="picker-content-title">{{
-        getLocaleText
-      }}</span>
+      <span v-if="showText" class="picker-content-title">{{ getLocaleText }}</span>
     </span>
     <template #dropdown>
       <ElDropdownMenu>
@@ -77,7 +75,7 @@ async function toggleLocale(lang: LocaleType) {
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  // font-size: 1rem;
   font-style: normal;
 
   &-title {

@@ -10,6 +10,4 @@ export const FullScreen = createAsyncComponent(() => import('./fullScreen/FullSc
 
 export const AppNotice = createAsyncComponent(() => import('./notice/AppNotice.vue'))
 
-export const UserDropdown = createAsyncComponent(() => import('./user/UserDropdown.vue'), {
-  loading: true
-})
+export const UserDropdown = createAsyncComponent(() => import('./user/UserDropdown.vue'))
