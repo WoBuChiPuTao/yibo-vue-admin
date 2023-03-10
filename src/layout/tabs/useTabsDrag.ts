@@ -15,11 +15,7 @@ export function useTabsDarg() {
       //   },
       onEnd: (evt) => {
         const { oldIndex, newIndex } = evt
-        if (
-          isNullOrUnDef(oldIndex) ||
-          isNullOrUnDef(newIndex) ||
-          oldIndex === newIndex
-        ) {
+        if (isNullOrUnDef(oldIndex) || isNullOrUnDef(newIndex) || oldIndex === newIndex) {
           return
         }
         tabStore.sortTabs(oldIndex, newIndex)

@@ -6,8 +6,14 @@
     <template #dropdown>
       <ElDropdownMenu>
         <template v-for="item in getDropList" :key="item.text">
-          <ElDropdownItem :icon="item.icon" :disabled="item.disabled" :command="item.event" :divided="item.divided">
-            {{ item.text }}</ElDropdownItem>
+          <ElDropdownItem
+            :icon="item.icon"
+            :disabled="item.disabled"
+            :command="item.event"
+            :divided="item.divided"
+          >
+            {{ item.text }}</ElDropdownItem
+          >
         </template>
       </ElDropdownMenu>
     </template>
@@ -44,10 +50,7 @@ const getIsTab = computed(() => {
 const getTrigger = computed((): ('contextmenu' | 'click' | 'hover')[] => {
   return unref(getIsTab) ? ['contextmenu'] : ['click']
 })
-const { getDropList, handleContextMenu, handleMenuEvent } = useTabDropdown(
-  props.tabItem,
-  getIsTab
-)
+const { getDropList, handleContextMenu, handleMenuEvent } = useTabDropdown(props.tabItem, getIsTab)
 
 function handleContext(e: Event) {
   props.tabItem && handleContextMenu(props.tabItem)(e)

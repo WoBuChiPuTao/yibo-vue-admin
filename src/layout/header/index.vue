@@ -9,7 +9,7 @@
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, unref } from 'vue'
 import LayoutHeader from './LayoutHeader.vue'
-import Tabs from '@/components/tabs/index.vue'
+import Tabs from '../tabs/index.vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 export default defineComponent({
   name: 'Header',

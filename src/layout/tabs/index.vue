@@ -2,13 +2,16 @@
   <div class="multiple-tabs">
     <ElTabs :model-value="activeKey" type="card" @tab-click="handleClick" @edit="handleEdit">
       <template v-for="tab in getTabsList" :key="tab.query ? tab.fullPath : tab.path">
-        <ElTabPane :closable="!(tab && tab.meta && tab.meta.fixedTab)" :name="tab.query ? tab.fullPath : tab.path">
+        <ElTabPane
+          :closable="!(tab && tab.meta && tab.meta.fixedTab)"
+          :name="tab.query ? tab.fullPath : tab.path"
+        >
           <template #label>
-            <TabContent :tab-item="tab" class="el-tabs__item__content" :is-active="
-              tab.path === getActive || tab.fullPath === getActive
-                ? true
-                : false
-            "></TabContent>
+            <TabContent
+              :tab-item="tab"
+              class="el-tabs__item__content"
+              :is-active="tab.path === getActive || tab.fullPath === getActive ? true : false"
+            ></TabContent>
           </template>
         </ElTabPane>
       </template>
