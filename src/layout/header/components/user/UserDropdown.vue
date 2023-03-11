@@ -79,8 +79,8 @@ async function toLogout() {
   }
 
   &-name {
-    font-size: 14px;
-    color: rgb(134, 134, 134);
+    font-size: 1rem;
+    line-height: @header-height;
   }
 }
 </style>
