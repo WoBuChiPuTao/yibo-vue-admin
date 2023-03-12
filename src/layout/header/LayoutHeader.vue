@@ -6,9 +6,9 @@
     </div>
 
     <div class="header-action">
-      <AppNotice class="header-action-item"></AppNotice>
+      <AppNotice class="header-action-item notice-i"></AppNotice>
       <FullScreen class="header-action-item"></FullScreen>
-      <AppLocalePicker class="header-action-item"></AppLocalePicker>
+      <AppLocalePicker class="header-action-item locale-picker-span"></AppLocalePicker>
       <UserDropdown class="header-action-item"></UserDropdown>
       <AppSetting class="header-action-item"></AppSetting>
     </div>
