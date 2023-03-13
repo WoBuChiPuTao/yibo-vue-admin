@@ -8,7 +8,7 @@ const about: AddRouteRecordRaw = {
   component: Layout,
   redirect: '/about/page',
   meta: {
-    title: t('routes.dashboard.about'),
+    title: t('routes.home.about'),
     orderNo: 100000,
     icon: 'simple-icons:aboutdotme'
   },
@@ -18,7 +18,7 @@ const about: AddRouteRecordRaw = {
       name: 'AboutPage',
       component: () => import('@/views/modules/about/index.vue'),
       meta: {
-        title: t('routes.dashboard.about'),
+        title: t('routes.home.about'),
         icon: 'simple-icons:aboutdotme',
         hideMenu: true
       }

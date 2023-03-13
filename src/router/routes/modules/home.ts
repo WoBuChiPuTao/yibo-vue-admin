@@ -6,21 +6,28 @@ const home: AddRouteRecordRaw = {
   path: '/home',
   name: 'home',
   component: Layout,
-  redirect: '/home/homepage',
+  redirect: '/home/dashboard',
   meta: {
-    title: t('routes.dashboard.homePage'),
+    title: t('routes.home.home'),
     icon: 'material-symbols:home-outline',
     orderNo: 1
   },
   children: [
     {
-      path: 'homepage',
-      name: 'HomePage',
-      component: () => import('@/views/home/index.vue'),
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('@/views/home/dashboard/index.vue'),
       meta: {
-        title: t('routes.dashboard.homePage'),
-        hideMenu: true,
+        title: t('routes.home.dashboard'),
         fixedTab: true
+      }
+    },
+    {
+      path: 'workbench',
+      name: 'Workbench',
+      component: () => import('@/views/home/workbench/index.vue'),
+      meta: {
+        title: t('routes.home.workbench')
       }
     }
   ]

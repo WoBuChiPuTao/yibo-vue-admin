@@ -4,7 +4,6 @@ import { createPermissionGuard } from './permissionGuard'
 import { createStateGuard } from './stateGuard'
 // 进度条
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 
 export function setupRouteGuard(router: Router) {
   createPageGuard(router)
@@ -37,7 +36,6 @@ function createPageGuard(router: Router) {
 // Used to handle page transition status
 function createPageTransitionGuard(router: Router) {
   router.beforeEach((to, from) => {
-    // 根据tab缓存来决定是否出现进度条
     if (!to.meta.loaded && from.name !== undefined) {
       NProgress.start()
     }

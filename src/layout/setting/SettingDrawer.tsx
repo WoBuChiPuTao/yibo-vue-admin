@@ -24,7 +24,7 @@ export default defineComponent({
     }
 
     return () => (
-      <ElDrawer {...attrs} v-model={drawerVisibile.value} size="25%">
+      <ElDrawer {...attrs} v-model={drawerVisibile.value} size="24%">
         {{ header: () => rendererHeader(), default: () => rendererBody() }}
       </ElDrawer>
     )

@@ -9,10 +9,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BarChart from './BarChart.vue'
+import BarChart from '../BarChart.vue'
 
 export default defineComponent({
-  name: 'HomePage',
+  name: 'Workbench',
   components: {
     BarChart
   },
