@@ -12,9 +12,7 @@ export function setupRouteGuard(router: Router) {
   createStateGuard(router)
 }
 
-/**
- * Hooks for handling page state
- */
+// Hooks for handling page state
 function createPageGuard(router: Router) {
   const loadedPageMap = new Map<string, boolean>()
 
