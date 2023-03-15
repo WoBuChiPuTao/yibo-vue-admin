@@ -1,8 +1,8 @@
 <template>
   <div class="body">
     <div class="app-setting-fixed">
-      <AppThemeToggle class="theme-toggle"></AppThemeToggle>
-      <AppLocalePicker :reload="false"></AppLocalePicker>
+      <AppThemeToggle class="theme-toggle" mode="icon"></AppThemeToggle>
+      <AppLocalePicker class="locale-toggle" :reload="false"></AppLocalePicker>
     </div>
     <div class="container">
       <LoginForm></LoginForm>
@@ -38,6 +38,12 @@ import ForgetPasswordForm from './ForgetPasswordForm.vue'
   align-items: center;
   .theme-toggle {
     margin-right: 0.8rem;
+  }
+
+  .locale-toggle {
+    .picker-content {
+      font-size: 20px;
+    }
   }
 }
 

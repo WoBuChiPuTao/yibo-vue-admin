@@ -1,18 +1,31 @@
 <template>
-  <div :class="getClass" @click="toggleThemeMode">
+  <div v-if="themeMode" :class="getClass" @click="toggleThemeMode">
     <div class="theme-toggle-container-inner"></div>
     <SvgIcon size="14" name="sun-regular" />
     <SvgIcon size="14" name="moon-regular" />
+  </div>
+  <div v-else @click="toggleThemeMode">
+    <SvgIcon v-if="isDarked" size="20" name="sun-regular" />
+    <SvgIcon v-else size="20" name="moon-regular" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useThemeMode, updateHtmlTheme } from '@/hooks/setting/useTheme'
 import { ThemeEnum } from '@/types/enums/appEnum'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 import SvgIcon from '../icons/SvgIcon.vue'
 
 const { getThemeMode, setThemeMode } = useThemeMode()
+
+const props = defineProps({
+  mode: {
+    type: String as PropType<'switch' | 'icon'>,
+    default: 'switch'
+  }
+})
+
+const themeMode = props.mode === 'switch'
 
 const isDarked = computed(() => {
   return getThemeMode.value === ThemeEnum.DARK
