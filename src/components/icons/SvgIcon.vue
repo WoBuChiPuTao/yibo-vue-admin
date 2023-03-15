@@ -33,6 +33,7 @@ export default defineComponent({
     })
 
     const getStyle = computed((): CSSProperties => {
+      console.log('sadasdasd')
       return {
         width: props.size,
         height: props.size

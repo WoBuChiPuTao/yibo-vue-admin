@@ -39,7 +39,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   component: Layout,
   name: 'RedirectTo',
   meta: {
-    title: 'redirect',
+    title: 'Redirect',
     hideBreadcrumb: true,
     hideMenu: true
   },
@@ -49,7 +49,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
       name: 'Redirect',
       component: () => import('@/layout/redirect/index.vue'),
       meta: {
-        title: 'redirect'
+        title: 'Redirect'
       }
     }
   ]
