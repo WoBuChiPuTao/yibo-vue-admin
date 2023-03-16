@@ -4,7 +4,7 @@ import type { I18nOptions } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import { LocaleType } from '@/types/locale'
 import { setHtmlPageLang, setLoadLocale } from './helper'
-import { initLocaleSetting } from '@/hooks/config/locale'
+import { initLocaleSetting } from '@/settings/locale'
 
 const { fallback, availableLocales } = initLocaleSetting
 

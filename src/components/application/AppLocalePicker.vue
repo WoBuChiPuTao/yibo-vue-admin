@@ -31,7 +31,7 @@ import EIcon from '../icons/EIcon.vue'
 import { LocaleType } from '@/types/locale'
 import { useLocale } from '@/locales/useLocale'
 import { computed, ref, unref, watchEffect } from 'vue'
-import { localeList } from '@/hooks/config/locale'
+import { localeList } from '@/settings/locale'
 import { isEmpty } from '@/utils/is'
 import { useThemeMode } from '@/hooks/setting/useTheme'
 

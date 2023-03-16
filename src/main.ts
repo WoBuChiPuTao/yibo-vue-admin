@@ -10,7 +10,7 @@ import { router, setupRouter } from './router'
 import { setupRouteGuard } from './router/guard'
 import { setupStore } from './store'
 import { setupI18n } from './locales/setupI18n'
-import { initConfigStore } from './hooks/config/init'
+import { initConfigStore } from './settings/init'
 import { preLoader } from './utils/preLoader'
 
 async function launch() {
