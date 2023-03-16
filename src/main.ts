@@ -1,4 +1,6 @@
+// tailwindcss样式引入
 import 'tailwindcss/tailwind.css'
+// element-plus样式引入
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import './style/index.less'
