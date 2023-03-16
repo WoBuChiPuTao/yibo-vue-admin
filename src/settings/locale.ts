@@ -1,5 +1,5 @@
-import { LocaleSetting, LocaleType } from '@/types/locale'
-import { DropMenu } from '@/types/menu'
+import { DropMenu } from '#/list'
+import { LocaleSetting, LocaleType } from '#/store'
 
 export const LOCALE: { [key: string]: LocaleType } = {
   ZH_CN: 'zh_CN',

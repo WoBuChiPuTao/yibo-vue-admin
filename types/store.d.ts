@@ -1,4 +1,16 @@
-import { RoleEnum } from '@/types/enums/roleEnm'
+import { RoleEnum } from '@/enums/roleEnm'
+
+export type LocaleType = 'zh_CN' | 'en' | 'ru' | 'ja' | 'ko'
+
+export interface LocaleSetting {
+  showPicker: boolean
+  // Current language
+  locale: LocaleType
+  // default language
+  fallback: LocaleType
+  // available Locales
+  availableLocales: LocaleType[]
+}
 
 /**
  * @description: 用户角色信息
@@ -11,7 +23,7 @@ export interface RoleInfo {
 /**
  * @description: 用户信息
  */
-export interface UserInfoRes {
+export interface UserInfo {
   userId: string | number
   username: string
   realName: string
@@ -26,21 +38,10 @@ export interface UserInfoRes {
  *
  */
 export interface UserState {
-  userInfo: Nullable<UserInfoRes>
+  userInfo: Nullable<UserInfo>
   token?: string
   roleList: RoleEnum[]
   sessionTimeout?: boolean
   lastUpdateTime: number
   isDynamicAddedRoute: boolean
-}
-
-/* 登录接口参数类型 */
-export interface LoginParam {
-  username: string
-  password: string
-}
-/* 登录接口返回值类型 */
-export interface LoginRes {
-  token: string
-  role: RoleInfo
 }

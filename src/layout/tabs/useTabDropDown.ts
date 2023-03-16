@@ -3,8 +3,8 @@ import { useTabStore } from '@/store/modules/tabs'
 import { computed, ComputedRef, reactive, unref } from 'vue'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
 import { ArrowLeft, ArrowRight, Close, Minus, Refresh, RemoveFilled } from '@element-plus/icons-vue'
-import { DropMenu } from '@/types/menu'
 import { useI18n } from '@/hooks/web/useI18n'
+import { DropMenu } from '#/list'
 
 enum MenuEventEnum {
   REFRESH_PAGE,

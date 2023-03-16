@@ -1,6 +1,6 @@
+import { Menu } from '#/list'
 import { isUrl } from '@/hooks/is'
 import { findPath, treeMap } from '@/hooks/tree'
-import { Menu } from '@/types/menu'
 import { cloneDeep } from 'lodash-es'
 import { AddRouteRecordRaw } from '../types'
 
@@ -46,7 +46,11 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
   joinParentPath(list as Menu[])
   list.forEach((item) => {
     // 单个不显示子菜单重定向
-    if (item.children?.length === 1 && item.children[0]?.meta.hideMenu === true && typeof item.redirect === 'string') {
+    if (
+      item.children?.length === 1 &&
+      item.children[0]?.meta.hideMenu === true &&
+      typeof item.redirect === 'string'
+    ) {
       item.path = item.redirect
     }
   })

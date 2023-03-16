@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useGo } from '@/hooks/web/usePage'
-import { PageEnum } from '@/types/enums/pageEnum'
+import { PageEnum } from '@/enums/pageEnum'
 
 const { getCollapsed } = useMenuSetting()
 

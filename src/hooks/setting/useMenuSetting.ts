@@ -1,6 +1,5 @@
+import { MenuSetting } from '#/config'
 import { useAppStore } from '@/store/modules/app'
-import type { MenuSetting } from '@/types/appSetting'
-
 import { computed, unref } from 'vue'
 
 export function useMenuSetting() {

@@ -1,4 +1,4 @@
-import type { LocaleType } from '@/types/locale'
+import { LocaleType } from '#/store'
 import { set } from 'lodash-es'
 
 export const loadLocale: LocaleType[] = []

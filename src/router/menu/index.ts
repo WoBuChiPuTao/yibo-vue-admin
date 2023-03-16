@@ -1,7 +1,7 @@
-import { Menu } from '@/types/menu'
 import { asyncRoutes } from '@/router/routes/modules'
 import { routeToMenu } from './util'
 import { treeMap } from '@/hooks/tree'
+import { Menu } from '#/list'
 
 async function getAsyncMenus() {
   const menulist = routeToMenu(asyncRoutes)

@@ -1,5 +1,5 @@
-import { PermissionModeEnum, SessionTimeoutProcessingEnum, ThemeEnum } from './enums/appEnum'
-import { CacheTypeEnum } from './enums/cacheEnum'
+import { PermissionModeEnum, SessionTimeoutProcessingEnum, ThemeEnum } from '@/enums/appEnum'
+import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 export interface MenuSetting {
   collapsed: boolean
@@ -40,8 +40,6 @@ export interface ProjectConfig {
   permissionMode: PermissionModeEnum
   // Session timeout processing
   sessionTimeoutProcessing: SessionTimeoutProcessingEnum
-  // Theme color
-  themeColor: string
 
   // menuType: MenuTypeEnum;
   headerSetting: HeaderSetting

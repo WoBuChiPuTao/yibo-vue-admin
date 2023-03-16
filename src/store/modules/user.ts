@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-import { LoginParam, UserState, UserInfoRes } from '@/types/user'
-import { RoleEnum } from '@/types/enums/roleEnm'
+import { RoleEnum } from '@/enums/roleEnm'
 import { login, getUserInfo } from '@/api/sys/user'
 import { router } from '@/router'
 import { asyncRoutes } from '@/router/routes/modules/index'
@@ -8,7 +7,9 @@ import { store } from '../index'
 import { WebCache } from '@/utils/cache'
 import { RouteRecordRaw } from 'vue-router'
 import { flatMultiRoutes } from '@/hooks/route'
-import { PageEnum } from '@/types/enums/pageEnum'
+import { PageEnum } from '@/enums/pageEnum'
+import { UserInfo, UserState } from '#/store'
+import { LoginParam } from '#/api'
 
 export const useUserStore = defineStore({
   id: 'app-user',
@@ -21,8 +22,8 @@ export const useUserStore = defineStore({
     lastUpdateTime: 0
   }),
   getters: {
-    getUserInfo(): UserInfoRes {
-      return this.userInfo || WebCache.getLocal('USER_INFO') || ({} as UserInfoRes)
+    getUserInfo(): UserInfo {
+      return this.userInfo || WebCache.getLocal('USER_INFO') || ({} as UserInfo)
     },
     getToken(): string {
       return this.token || (WebCache.getLocal('TOKEN_') as string)
@@ -59,7 +60,7 @@ export const useUserStore = defineStore({
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList
     },
-    setUserInfo(info: UserInfoRes | null) {
+    setUserInfo(info: UserInfo | null) {
       this.userInfo = info
       this.lastUpdateTime = new Date().getTime()
       WebCache.setLocal('USER_INFO', info)
@@ -73,7 +74,7 @@ export const useUserStore = defineStore({
     /**
      * @description: login
      */
-    async toLogin(params: LoginParam): Promise<UserInfoRes | null> {
+    async toLogin(params: LoginParam): Promise<UserInfo | null> {
       try {
         const { ...loginParam } = params
         const data = await login(loginParam)
@@ -85,7 +86,7 @@ export const useUserStore = defineStore({
         return Promise.reject(error)
       }
     },
-    async afterLogin(): Promise<UserInfoRes | null> {
+    async afterLogin(): Promise<UserInfo | null> {
       if (!this.token) return null
       const userInfo = await this.getUserInfoApi()
       const sessionTimeout = this.sessionTimeout
@@ -106,7 +107,7 @@ export const useUserStore = defineStore({
     /**
      * @description: 得到用户信息
      */
-    async getUserInfoApi(): Promise<UserInfoRes | null> {
+    async getUserInfoApi(): Promise<UserInfo | null> {
       if (!this.getToken) return null
       const userInfo = await getUserInfo()
       const { roles = [] } = userInfo

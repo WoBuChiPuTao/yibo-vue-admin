@@ -1,10 +1,8 @@
-import { PageEnum } from '@/types/enums/pageEnum'
+import { PageEnum } from '@/enums/pageEnum'
 import { unref } from 'vue'
 import { RouteLocationRaw, Router, useRouter } from 'vue-router'
 
-export type PathAsPageEnum<T> = T extends { path: string }
-  ? T & { path: PageEnum }
-  : T
+export type PathAsPageEnum<T> = T extends { path: string } ? T & { path: PageEnum } : T
 export type RouteLocationRawEx = PathAsPageEnum<RouteLocationRaw>
 
 function handleError(e: Error) {

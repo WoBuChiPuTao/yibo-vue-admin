@@ -15,7 +15,7 @@ import { getMenus } from '@/router/menu/index'
 import { useRouter } from 'vue-router'
 import { useI18n } from '@/hooks/web/useI18n'
 import { getAllParentPath } from '@/router/menu/util'
-import { Menu } from '@/types/menu'
+import { Menu } from '#/list'
 
 export default defineComponent({
   name: 'breadCrumb',

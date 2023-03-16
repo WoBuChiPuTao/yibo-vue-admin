@@ -1,6 +1,6 @@
+import { ProjectConfig } from '#/config'
 import { useAppStore } from '@/store/modules/app'
 import { useLocaleStore } from '@/store/modules/locale'
-import { ProjectConfig } from '@/types/appSetting'
 import { deepMerge } from '@/utils'
 import { WebCache } from '@/utils/cache'
 import { updateHtmlTheme } from '../hooks/setting/useTheme'

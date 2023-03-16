@@ -1,8 +1,8 @@
 import { getMenus } from '@/router/menu'
-import { Menu } from '@/types/menu'
 import { ref, watch } from 'vue'
 // import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
+import { Menu } from '#/list'
 
 export function useLeftMenu() {
   const menuRef = ref<Menu[]>([])

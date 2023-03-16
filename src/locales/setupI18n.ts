@@ -2,9 +2,9 @@ import { App } from 'vue'
 import { useLocaleStore } from '@/store/modules/locale'
 import type { I18nOptions } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
-import { LocaleType } from '@/types/locale'
 import { setHtmlPageLang, setLoadLocale } from './helper'
 import { initLocaleSetting } from '@/settings/locale'
+import { LocaleType } from '#/store'
 
 const { fallback, availableLocales } = initLocaleSetting
 

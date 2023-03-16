@@ -1,12 +1,6 @@
 import { resetRoutes } from '@/router'
-import {
-  BeforeMiniState,
-  HeaderSetting,
-  MenuSetting,
-  ProjectConfig,
-  TabsSetting
-} from '@/types/appSetting'
-import { ThemeEnum } from '@/types/enums/appEnum'
+import { BeforeMiniState, HeaderSetting, MenuSetting, ProjectConfig, TabsSetting } from '#/config'
+import { ThemeEnum } from '@/enums/appEnum'
 import { deepMerge } from '@/utils'
 import { WebCache } from '@/utils/cache'
 import { defineStore } from 'pinia'

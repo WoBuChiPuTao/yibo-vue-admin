@@ -1,7 +1,8 @@
 import Mock from 'mockjs' // 引入mockjs
 // import qs from 'qs'
-import { LoginRes, UserInfoRes } from '@/types/user'
 import { Result } from '@/utils/axios/types'
+import { LoginRes } from '#/api'
+import { UserInfo } from '#/store'
 
 const LoginBack: Result<LoginRes> = {
   code: 200,
@@ -15,7 +16,7 @@ const LoginBack: Result<LoginRes> = {
   }
 }
 
-const userInfoBack: Result<UserInfoRes> = {
+const userInfoBack: Result<UserInfo> = {
   code: 200,
   message: 'success',
   data: {

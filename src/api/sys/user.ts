@@ -1,6 +1,6 @@
+import { LoginParam, LoginRes } from '#/api'
+import { UserInfo } from '#/store'
 import { http } from '@/utils/axios/index'
-
-import type { UserInfoRes, LoginParam, LoginRes } from '@/types/user'
 
 /**
  * 登录
@@ -13,7 +13,7 @@ export function login(data: LoginParam) {
  * 获取登录用户信息
  */
 export function getUserInfo() {
-  return http.get<UserInfoRes>('/user/info')
+  return http.get<UserInfo>('/user/info')
 }
 
 /**

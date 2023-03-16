@@ -1,13 +1,9 @@
 import { defineStore } from 'pinia'
-import type {
-  RouteLocationNormalized,
-  Router,
-  RouteLocationRaw
-} from 'vue-router'
+import type { RouteLocationNormalized, Router, RouteLocationRaw } from 'vue-router'
 import { getRawRoute } from '@/hooks/route'
 import { useRedo, useGo } from '@/hooks/web/usePage'
 import { unref, toRaw } from 'vue'
-import { PageEnum } from '@/types/enums/pageEnum'
+import { PageEnum } from '@/enums/pageEnum'
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic'
 import { WebCache } from '@/utils/cache'
 
@@ -114,9 +110,7 @@ export const useTabStore = defineStore({
         path === PageEnum.ERROR_PAGE ||
         path === PageEnum.BASE_LOGIN ||
         !name ||
-        [REDIRECT_ROUTE.name, PAGE_NOT_FOUND_ROUTE.name].includes(
-          name as string
-        )
+        [REDIRECT_ROUTE.name, PAGE_NOT_FOUND_ROUTE.name].includes(name as string)
       ) {
         return
       }
@@ -151,9 +145,7 @@ export const useTabStore = defineStore({
         if (fixedTab) {
           return
         }
-        const index = this.tabList.findIndex(
-          (item) => item.fullPath === fullPath
-        )
+        const index = this.tabList.findIndex((item) => item.fullPath === fullPath)
         index !== -1 && this.tabList.splice(index, 1)
       }
 
@@ -193,9 +185,7 @@ export const useTabStore = defineStore({
     },
 
     async removeTabByKey(key: string, router: Router) {
-      const index = this.tabList.findIndex(
-        (item) => (item.fullPath || item.path) === key
-      )
+      const index = this.tabList.findIndex((item) => (item.fullPath || item.path) === key)
       if (index !== -1) {
         await this.removeTab(this.tabList[index], router)
         const { currentRoute, replace } = router
@@ -226,9 +216,7 @@ export const useTabStore = defineStore({
      * remove tabs in bulk
      */
     async bulkRemoveTabs(pathList: string[]) {
-      this.tabList = this.tabList.filter(
-        (item) => !pathList.includes(item.fullPath)
-      )
+      this.tabList = this.tabList.filter((item) => !pathList.includes(item.fullPath))
     },
 
     /**
@@ -260,9 +248,7 @@ export const useTabStore = defineStore({
     },
 
     async removeRightTabs(route: RouteLocationNormalized, router: Router) {
-      const index = this.tabList.findIndex(
-        (item) => item.fullPath === route.fullPath
-      )
+      const index = this.tabList.findIndex((item) => item.fullPath === route.fullPath)
 
       if (index >= 0 && index < this.tabList.length - 1) {
         const rightTabs = this.tabList.slice(index + 1, this.tabList.length)
@@ -303,9 +289,7 @@ export const useTabStore = defineStore({
     },
 
     async removeAllTabs(router: Router) {
-      this.tabList = this.tabList.filter(
-        (item) => item?.meta?.fixedTab ?? false
-      )
+      this.tabList = this.tabList.filter((item) => item?.meta?.fixedTab ?? false)
       this.clearCacheList()
       this.goPage(router)
     },

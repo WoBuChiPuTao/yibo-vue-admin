@@ -1,4 +1,4 @@
-import { StorageCache } from '@/types/storage'
+import { StorageCache } from './types'
 
 export class WebStorage {
   private storage: Storage
@@ -20,9 +20,7 @@ export class WebStorage {
     const stringData = this.storage.getItem(key)
     // 判断数据是否过期
     if (stringData && /expire/.test(stringData)) {
-      const { expire, value } = JSON.parse(
-        stringData
-      ) as unknown as StorageCache
+      const { expire, value } = JSON.parse(stringData) as unknown as StorageCache
       if (expire && new Date().getTime() > expire) {
         this.remove(key)
         return null
