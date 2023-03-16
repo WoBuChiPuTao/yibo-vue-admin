@@ -1,5 +1,5 @@
 <template>
-  <div class="side-logo">logo</div>
+  <AppLogo class="side-logo"></AppLogo>
   <ElScrollbar>
     <Menu :collapsed="collapsed" @select-menu-item="handleSelected" :menus="items">
       <template v-for="item in items" :key="item.path">
@@ -14,11 +14,12 @@ import { defineComponent, PropType, ref } from 'vue'
 import { ElScrollbar } from 'element-plus'
 import Menu from '@/components/menu/Menu.vue'
 import SubMenu from '@/components/menu/SubMenu.vue'
+import AppLogo from '@/components/application/AppLogo.vue'
 import { Menu as MenuType } from '@/types/menu'
 import { useGo } from '@/hooks/web/usePage'
 export default defineComponent({
   name: 'DemoMenu',
-  components: { Menu, SubMenu, ElScrollbar },
+  components: { Menu, SubMenu, ElScrollbar, AppLogo },
   props: {
     items: {
       type: Array as PropType<MenuType[]>,
@@ -48,7 +49,7 @@ export default defineComponent({
 <style lang="less">
 .side-logo {
   height: 64px;
-  padding: 10px 4px 10px 10px;
+  padding: 10px 8px 10px 8px;
   color: white;
 }
 </style>
