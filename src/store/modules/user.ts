@@ -8,6 +8,7 @@ import { store } from '../index'
 import { WebCache } from '@/utils/cache'
 import { RouteRecordRaw } from 'vue-router'
 import { flatMultiRoutes } from '@/hooks/route'
+import { PageEnum } from '@/types/enums/pageEnum'
 
 export const useUserStore = defineStore({
   id: 'app-user',
@@ -21,9 +22,7 @@ export const useUserStore = defineStore({
   }),
   getters: {
     getUserInfo(): UserInfoRes {
-      return (
-        this.userInfo || WebCache.getLocal('USER_INFO') || ({} as UserInfoRes)
-      )
+      return this.userInfo || WebCache.getLocal('USER_INFO') || ({} as UserInfoRes)
     },
     getToken(): string {
       return this.token || (WebCache.getLocal('TOKEN_') as string)
@@ -100,7 +99,7 @@ export const useUserStore = defineStore({
           router.addRoute(route as unknown as RouteRecordRaw)
         })
         this.setIsDynamicAddedRoute(true)
-        await router.replace('/home')
+        await router.replace(PageEnum.BASE_HOME)
       }
       return userInfo
     },
@@ -135,7 +134,7 @@ export const useUserStore = defineStore({
       this.setToken(undefined)
       this.setSessionTimeout(false)
       this.setUserInfo(null)
-      goLogin && router.push('/login')
+      goLogin && router.push(PageEnum.BASE_LOGIN)
     }
   }
 })

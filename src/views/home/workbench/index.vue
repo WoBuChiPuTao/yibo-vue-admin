@@ -1,20 +1,17 @@
 <template>
   <div>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
+    <el-button type="primary"></el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BarChart from '../BarChart.vue'
+import { ElButton } from 'element-plus'
 
 export default defineComponent({
   name: 'Workbench',
   components: {
-    BarChart
+    ElButton
   },
   setup() {
     return {}

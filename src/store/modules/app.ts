@@ -4,8 +4,7 @@ import {
   HeaderSetting,
   MenuSetting,
   ProjectConfig,
-  TabsSetting,
-  TransitionSetting
+  TabsSetting
 } from '@/types/appSetting'
 import { ThemeEnum } from '@/types/enums/appEnum'
 import { deepMerge } from '@/utils'
@@ -31,9 +30,7 @@ export const useAppStore = defineStore({
   }),
   getters: {
     getThemeMode(): ThemeEnum {
-      return (
-        this.themeMode || WebCache.getLocal('APP__DARK__MODE') || ThemeEnum.LIGHT
-      )
+      return this.themeMode || WebCache.getLocal('APP__DARK__MODE') || ThemeEnum.LIGHT
     },
     getPageLoading(): boolean {
       return this.pageLoading
@@ -52,9 +49,6 @@ export const useAppStore = defineStore({
     },
     getMenuSetting(): MenuSetting {
       return this.getProjectSetting.menuSetting
-    },
-    getTransitionSetting(): TransitionSetting {
-      return this.getProjectSetting.transitionSetting
     }
   },
   actions: {

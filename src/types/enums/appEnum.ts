@@ -5,15 +5,6 @@ export enum ThemeEnum {
 }
 
 /**
- * 设置按钮位置
- */
-export enum SettingButtonPositionEnum {
-  AUTO = 'auto',
-  HEADER = 'header',
-  FIXED = 'fixed'
-}
-
-/**
  * 权限模式
  */
 export enum PermissionModeEnum {
@@ -34,14 +25,4 @@ export enum PermissionModeEnum {
 export enum SessionTimeoutProcessingEnum {
   ROUTE_JUMP,
   PAGE_COVERAGE
-}
-
-// 路由切换动画
-export enum RouterTransitionEnum {
-  ZOOM_FADE = 'zoom-fade',
-  ZOOM_OUT = 'zoom-out',
-  FADE_SIDE = 'fade-slide',
-  FADE = 'fade',
-  FADE_BOTTOM = 'fade-bottom',
-  FADE_SCALE = 'fade-scale'
 }
