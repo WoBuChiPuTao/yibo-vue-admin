@@ -5,13 +5,25 @@ function resolve(dir) {
 
 const { defineConfig } = require('@vue/cli-service')
 const Icons = require('unplugin-icons/webpack')
+const IconsResolver = require('unplugin-icons/resolver')
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
     plugins: [
       Icons({
         compiler: 'vue3',
-        autoInstall: true
+        autoInstall: true,
+        tsx: 'react'
+      }),
+      require('unplugin-vue-components/webpack')({
+        dts: 'types/components.d.ts',
+        resolvers: [
+          // 自动导入图标组件
+          IconsResolver({
+            // 图标使用：<{prefix}-{collection}-{icon} />
+            prefix: 'icon'
+          })
+        ]
       })
     ]
   },
