@@ -6,7 +6,7 @@
     :collapsed="collapsed"
   >
     <template #title>
-      <EIcon v-if="getCeil" class="menu-list-submenu-title-iconfont" :icon="item.icon"></EIcon>
+      <Icon v-if="getCeil" class="menu-list-submenu-title-iconfont" :icon="item.icon"></Icon>
       <span class="menu-list-submenu-title-name" v-if="!collapsed"> {{ getI18nName }}</span>
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
@@ -14,7 +14,7 @@
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path" :collapsed="collapsed">
-    <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></EIcon>
+    <Icon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></Icon>
     <span class="menu-list-item-name" v-if="!collapsed">{{ getI18nName }}</span>
   </MenuItem>
 </template>
@@ -24,12 +24,13 @@ import { Menu } from '#/list'
 import { computed, defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
 import MenuItem from './MenuItem.vue'
-import EIcon from '@/components/icons/EIcon.vue'
+// import EIcon from '@/components/icons/EIcon.vue'
+import Icon from '../icons/Icon.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'SubMenu',
-  components: { MenuItem, EIcon, SubMenuItem },
+  components: { MenuItem, Icon, SubMenuItem },
   props: {
     item: {
       type: Object as PropType<Menu>,

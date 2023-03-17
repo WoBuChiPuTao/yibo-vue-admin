@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     AppThemeToggle: typeof import('./../src/components/application/AppThemeToggle.vue')['default']
     CollapseTransition: typeof import('./../src/components/Transition/CollapseTransition.vue')['default']
     EIcon: typeof import('./../src/components/icons/EIcon.vue')['default']
+    Icon: typeof import('./../src/components/icons/Icon.vue')['default']
     Menu: typeof import('./../src/components/menu/Menu.vue')['default']
     MenuItem: typeof import('./../src/components/menu/MenuItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
