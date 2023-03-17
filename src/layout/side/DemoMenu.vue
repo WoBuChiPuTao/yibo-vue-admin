@@ -15,7 +15,7 @@ import { ElScrollbar } from 'element-plus'
 import Menu from '@/components/menu/Menu.vue'
 import SubMenu from '@/components/menu/SubMenu.vue'
 import AppLogo from '@/components/application/AppLogo.vue'
-import { Menu as MenuType } from '@/types/menu'
+import { Menu as MenuType } from '#/list'
 import { useGo } from '@/hooks/web/usePage'
 export default defineComponent({
   name: 'DemoMenu',

@@ -5,21 +5,12 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  nextTick,
-  onMounted,
-  PropType,
-  ref,
-  toRefs,
-  unref,
-  watch
-} from 'vue'
+import { defineComponent, nextTick, onMounted, PropType, ref, toRefs, unref, watch } from 'vue'
 import { createRootMenuContext } from './useMenuContext'
 import mitt, { Emitter } from '@/utils/mitt'
 import { listenerRouteChange } from '@/hooks/mitt/routeChange'
 import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router'
-import { Menu } from '@/types/menu'
+import { Menu } from '#/list'
 import { useOpenMenu } from './useOpen'
 
 export default defineComponent({

@@ -1,0 +1,45 @@
+:root {
+  --text-dark-color: #c9d1d9;
+  --text-light-color: rgba(0, 0, 0, 0.65);
+
+  // sider
+  --sider-light-bg-color: #001529;
+  --sider-dark-bg-color: #212121;
+  --sider-children-light-bg-color: #0c2135;
+  --sider-children-dark-bg-color: #2d2d2d;
+
+  // header
+  --header-dark-bg-color: #151515;
+  --header-dark-bg-hover-color: #242424;
+  --header-dark-border-color: #303030;
+  --header-light-bg-color: #ffffff;
+  --header-light-bg-hover-color: #f6f6f6;
+  --header-light-border-color: #eee;
+}
+// 根据root变量设置html的变量
+
+html {
+  --text-color: var(--text-light-color);
+  --sider-bg-color: var(--sider-light-bg-color);
+  --sider-children-bg-color: var(--sider-children-light-bg-color);
+  --header-bg-color: var(--header-light-bg-color);
+  --header-bg-hover-color: var(--header-light-bg-hover-color);
+  --header-border-color: var(--header-light-border-color);
+  body {
+    color: var(--text-light-color);
+  }
+
+  &[data-theme='dark'] {
+    --text-color: var(--text-dark-color);
+    --sider-bg-color: var(--sider-dark-bg-color);
+    --sider-children-bg-color: var(--sider-children-dark-bg-color);
+    --header-bg-color: var(--header-dark-bg-color);
+    --header-bg-hover-color: var(--header-dark-bg-hover-color);
+    --header-border-color: var(--header-dark-border-color);
+
+    body {
+      color: var(--text-dark-color);
+      background-color: #000;
+    }
+  }
+}

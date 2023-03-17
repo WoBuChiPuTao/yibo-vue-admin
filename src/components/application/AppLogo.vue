@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-left items-center cursor-pointer" @click="goHome">
-    <img class="h-8 w-8" src="../../assets/img/logo.png" />
+  <div class="flex items-center cursor-pointer justify-left" @click="goHome">
+    <img class="w-8 h-8" src="../../assets/img/logo.png" />
     <h2 v-if="!getCollapsed" class="ml-5 font-bold truncate">{{ title }}</h2>
   </div>
 </template>

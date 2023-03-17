@@ -6,27 +6,24 @@ function importAllSvgIcons() {
       false,
       /\.svg$/
     )
-    request.keys().forEach(request)
+    request.keys().forEach((key) => request(key))
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
 function imporAllImg() {
   try {
     const request: __WebpackModuleApi.RequireContext = require.context(
-      '../../../public/img',
+      '@/assets/img',
       false,
       /\.*$/
     )
     const promiseList: Promise<string>[] = []
-    console.log(request.keys())
-    for (let i = 0; i < request.keys().length; i++) {
-      promiseList.push(imgPreloader('./img/' + request.keys()[i].substring(2)))
-    }
+    request.keys().forEach((url) => promiseList.push(imgPreloader(request(url))))
     return Promise.all(promiseList)
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 

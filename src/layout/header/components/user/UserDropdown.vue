@@ -1,12 +1,7 @@
 <template>
   <ElDropdown>
     <span class="header-user-dropdown">
-      <img
-        ref="headerImage"
-        :src="isEmpty(getUserInfo.avatar) ? '/img/avatar.png' : getUserInfo.avatar"
-        alt="avatar"
-        class="header-user-dropdown-avatar"
-      />
+      <img :src="getUserInfo.avatar" alt="avatar" class="header-user-dropdown-avatar" />
       <span class="header-user-dropdown-name">
         {{ getUserInfo.username }}
       </span>
@@ -25,20 +20,18 @@
 import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
 import { Document, SwitchButton, Lock } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
-import { computed, ref, h } from 'vue'
+import { computed, h } from 'vue'
 import { isEmpty } from '@/utils/is'
 import { useI18n } from '@/hooks/web/useI18n'
+import headerImg from '@/assets/img/avatar.png'
 
 const userStore = useUserStore()
 const { t } = useI18n()
 
-const headerImage = ref<HTMLImageElement>()
-
 const getUserInfo = computed(() => {
   const { username = 'nibabassssss', avatar, desc } = userStore.getUserInfo || {}
-  return { username, avatar, desc }
+  return { username, avatar: isEmpty(avatar) ? headerImg : avatar, desc }
 })
-
 async function toLogout() {
   try {
     await ElMessageBox.confirm(
