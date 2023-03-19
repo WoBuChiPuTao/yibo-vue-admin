@@ -3,11 +3,7 @@
     <h2 class="h-center enter-x">{{ t('sys.login.signInFormTitle') }}</h2>
     <el-form class="enter-x" :model="loginForm" @keypress.enter="handleLogin">
       <el-form-item class="enter-x" prop="account">
-        <el-input
-          size="large"
-          v-model="loginForm.account"
-          :placeholder="t('sys.login.userName')"
-        >
+        <el-input size="large" v-model="loginForm.account" :placeholder="t('sys.login.userName')">
         </el-input>
       </el-form-item>
       <el-form-item prop="password" class="enter-x">
@@ -60,11 +56,11 @@
     </el-row>
     <ElDivider class="enter-x">{{ t('sys.login.otherSignIn') }}</ElDivider>
     <div class="login-icon-container enter-x">
-      <EIcon icon="mdi:github"></EIcon>
-      <EIcon icon="ic:baseline-wechat"></EIcon>
-      <EIcon icon="ri:alipay-fill"></EIcon>
-      <EIcon icon="ph:google-logo-fill"></EIcon>
-      <EIcon icon="ic:baseline-facebook"></EIcon>
+      <Icon icon="mdi:github"></Icon>
+      <Icon icon="ic:baseline-wechat"></Icon>
+      <Icon icon="ri:alipay-fill"></Icon>
+      <Icon icon="ph:google-logo-fill"></Icon>
+      <Icon icon="ic:baseline-facebook"></Icon>
     </div>
   </template>
 </template>
@@ -89,13 +85,12 @@ import { useUserStore } from '@/store/modules/user'
 import { LoginStateEnum, useLoginState } from './useLogin'
 import { useI18n } from '@/hooks/web/useI18n'
 import EIcon from '@/components/icons/EIcon.vue'
+import Icon from '@/components/icons/Icon.vue'
 
 const { getLoginState, setLoginState } = useLoginState()
 const { t } = useI18n()
 
-const getShow = computed(
-  () => unref(getLoginState.value) === LoginStateEnum.LOGIN
-)
+const getShow = computed(() => unref(getLoginState.value) === LoginStateEnum.LOGIN)
 
 const rememberMe = ref(false)
 const loading = ref(false)
@@ -133,6 +128,7 @@ async function handleLogin() {
 <style lang="less" scoped>
 .relative {
   position: relative;
+
   .absolute-right {
     position: absolute;
     right: 0;
@@ -144,8 +140,10 @@ async function handleLogin() {
   display: flex;
   justify-content: space-around;
   font-size: 1.6rem;
+
   span {
     cursor: pointer;
+
     &:hover {
       color: var(--el-color-primary-dark-2);
     }

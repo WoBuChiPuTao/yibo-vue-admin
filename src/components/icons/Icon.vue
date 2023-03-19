@@ -4,7 +4,8 @@
 
 <script lang="ts">
 import { defineComponent, nextTick, onMounted, ref, unref } from 'vue'
-import Iconify from '@iconify/iconify'
+// import Iconify from '@iconify/iconify/dist/iconify'
+import Iconify from '@purge-icons/generated'
 export default defineComponent({
   name: 'Icon',
   props: {
@@ -15,7 +16,7 @@ export default defineComponent({
   },
   setup(props) {
     const iconRef = ref<Element>()
-
+    console.log('icon')
     async function updateIcon() {
       const el = unref(iconRef)
       if (!el) return

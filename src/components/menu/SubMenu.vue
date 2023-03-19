@@ -24,8 +24,8 @@ import { Menu } from '#/list'
 import { computed, defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
 import MenuItem from './MenuItem.vue'
-// import EIcon from '@/components/icons/EIcon.vue'
-import Icon from '../icons/Icon.vue'
+import EIcon from '@/components/icons/EIcon.vue'
+import Icon from '@/components/icons/Icon.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
