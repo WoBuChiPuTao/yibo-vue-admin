@@ -8,8 +8,14 @@
     </span>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item :icon="Document">查看文档</el-dropdown-item>
-        <el-dropdown-item :icon="Lock">锁定屏幕</el-dropdown-item>
+        <el-dropdown-item :icon="Document"
+          ><a
+            href="https://github.com/WoBuChiPuTao/yibo-vue-admin"
+            target="_blank"
+            rel="noopener noreferrer"
+            >查看文档</a
+          ></el-dropdown-item
+        >
         <el-dropdown-item :icon="SwitchButton" @click="toLogout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -18,7 +24,7 @@
 
 <script lang="ts" setup>
 import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
-import { Document, SwitchButton, Lock } from '@element-plus/icons-vue'
+import { Document, SwitchButton } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, h } from 'vue'
 import { isEmpty } from '@/utils/is'

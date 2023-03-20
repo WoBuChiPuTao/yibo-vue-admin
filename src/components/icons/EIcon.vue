@@ -16,7 +16,7 @@ export default defineComponent({
       default: undefined
     },
     postIcon: {
-      type: [Object] as PropType<IconifyIcon>,
+      type: Object as PropType<IconifyIcon>,
       default: undefined
     }
   },
