@@ -4,17 +4,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup name="Workbench">
 import { ElButton } from 'element-plus'
-
-export default defineComponent({
-  name: 'Workbench',
-  components: {
-    ElButton
-  },
-  setup() {
-    return {}
-  }
-})
 </script>

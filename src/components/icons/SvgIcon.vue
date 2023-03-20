@@ -1,9 +1,5 @@
 <template>
-  <svg
-    :style="getStyle"
-    :class="['svg-icon-base', $attrs.class, spin && 'svg-icon-spin']"
-    aria-hidden="true"
-  >
+  <svg :class="['svg-icon-base', $attrs.class, spin && 'svg-icon-spin']" aria-hidden="true">
     <use :xlink:href="getSvgId"></use>
   </svg>
 </template>

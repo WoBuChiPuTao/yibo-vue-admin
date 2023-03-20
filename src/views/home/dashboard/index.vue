@@ -1,23 +1,23 @@
 <template>
-  <div>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
-    <BarChart style="height: 400px; width: 100%"></BarChart>
+  <div class="p-4">
+    <VisitCard class="enter-y" :skeletonLoading="setLoading"></VisitCard>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import BarChart from '../BarChart.vue'
+import { defineComponent, ref } from 'vue'
+import {} from 'element-plus'
+import VisitCard from './components/VisitCard.vue'
 
 export default defineComponent({
   name: 'Dashboard',
-  components: {
-    BarChart
-  },
+  components: { VisitCard },
   setup() {
-    return {}
+    const setLoading = ref(true)
+    setTimeout(() => {
+      setLoading.value = false
+    }, 3000)
+    return { setLoading }
   }
 })
 </script>

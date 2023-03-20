@@ -1,8 +1,8 @@
 <template>
   <div v-if="themeMode" :class="getClass" @click="toggleThemeMode">
     <div class="theme-toggle-container-inner"></div>
-    <SvgIcon size="14" name="sun-regular" />
-    <SvgIcon size="14" name="moon-regular" />
+    <SvgIcon class="mr-1 text-xs" name="sun-regular" />
+    <SvgIcon class="text-xs" name="moon-regular" />
   </div>
   <div v-else @click="toggleThemeMode">
     <SvgIcon v-if="isDarked" size="20" name="sun-regular" />

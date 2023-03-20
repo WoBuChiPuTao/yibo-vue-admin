@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     AppLogo: typeof import('./../src/components/application/AppLogo.vue')['default']
     AppProvider: typeof import('./../src/components/application/AppProvider.vue')['default']
     AppThemeToggle: typeof import('./../src/components/application/AppThemeToggle.vue')['default']
+    Card: typeof import('./../src/components/card/Card.vue')['default']
     CollapseTransition: typeof import('./../src/components/Transition/CollapseTransition.vue')['default']
     EIcon: typeof import('./../src/components/icons/EIcon.vue')['default']
     Menu: typeof import('./../src/components/menu/Menu.vue')['default']
