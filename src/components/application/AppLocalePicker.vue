@@ -1,7 +1,7 @@
 <template>
   <ElDropdown trigger="click" @command="toggleLocale" tabindex="0">
     <span>
-      <EIcon class="picker-content" icon="ion:language"></EIcon>
+      <EIcon class="picker-content" icon="ion:language" :post-icon="languageIcon"></EIcon>
       <span v-if="showText" class="picker-content-title">{{ getLocaleText }}</span>
     </span>
     <template #dropdown>
@@ -28,12 +28,14 @@
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import EIcon from '../icons/EIcon.vue'
-import { LocaleType } from '@/types/locale'
+import { LocaleType } from '#/store'
 import { useLocale } from '@/locales/useLocale'
 import { computed, ref, unref, watchEffect } from 'vue'
 import { localeList } from '@/settings/locale'
 import { isEmpty } from '@/utils/is'
 import { useThemeMode } from '@/hooks/setting/useTheme'
+// 图标
+import languageIcon from '@iconify-icons/ion/language'
 
 const selectedKey = ref<LocaleType>('zh_CN')
 

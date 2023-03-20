@@ -1,5 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
+import settingsOutline from '@iconify-icons/ion/settings-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const system: AddRouteRecordRaw = {
@@ -9,7 +10,8 @@ const system: AddRouteRecordRaw = {
   redirect: '/system/account',
   meta: {
     title: t('routes.demo.system.moduleName'),
-    icon: 'ion:settings-outline',
+    // icon: 'ion:settings-outline',
+    icon: { name: 'ion:settings-outline', entity: settingsOutline },
     orderNo: 2000
   },
   children: [
@@ -17,8 +19,7 @@ const system: AddRouteRecordRaw = {
       path: 'account',
       name: 'AccountManagement',
       meta: {
-        title: t('routes.demo.system.account'),
-        icon: 'ic:outline-account-circle'
+        title: t('routes.demo.system.account')
       },
       component: () => import('@/views/modules/system/account/index.vue')
     },
@@ -34,8 +35,7 @@ const system: AddRouteRecordRaw = {
       path: 'menu',
       name: 'MenuManagement',
       meta: {
-        title: t('routes.demo.system.menu'),
-        icon: 'ic:twotone-menu'
+        title: t('routes.demo.system.menu')
       },
       component: () => import('@/views/modules/system/menu/index.vue')
     },
@@ -43,8 +43,7 @@ const system: AddRouteRecordRaw = {
       path: 'dept',
       name: 'DeptManagement',
       meta: {
-        title: t('routes.demo.system.dept'),
-        icon: 'mingcute:department-line'
+        title: t('routes.demo.system.dept')
       },
       component: () => import('@/views/modules/system/department/index.vue')
     },
@@ -52,8 +51,7 @@ const system: AddRouteRecordRaw = {
       path: 'changePassword',
       name: 'ChangePassword',
       meta: {
-        title: t('routes.demo.system.password'),
-        icon: 'mdi:key-change'
+        title: t('routes.demo.system.password')
       },
       component: () => import('@/views/modules/system/password/index.vue')
     }

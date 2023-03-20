@@ -1,14 +1,11 @@
 <template>
   <li :class="getClass">
-    <div
-      class="menu-list-submenu-title"
-      @click.stop="handleClick"
-      :style="getItemStyle"
-    >
+    <div class="menu-list-submenu-title" @click.stop="handleClick" :style="getItemStyle">
       <slot name="title"></slot>
       <EIcon
         v-if="!collapsed"
         icon="eva:arrow-ios-downward-outline"
+        :post-icon="arrowIosDownwardOutline"
         class="submenu-open-icon"
       />
     </div>
@@ -21,18 +18,12 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  onBeforeMount,
-  reactive,
-  toRefs
-} from 'vue'
+import { computed, defineComponent, getCurrentInstance, onBeforeMount, reactive, toRefs } from 'vue'
 import { useMenuItem } from './useMenu'
 import EIcon from '@/components/icons/EIcon.vue'
 import CollapseTransition from '@/components/Transition/CollapseTransition.vue'
 import { useRootMenuContext } from './useMenuContext'
+import arrowIosDownwardOutline from '@iconify-icons/eva/arrow-ios-downward-outline'
 
 export default defineComponent({
   name: 'SubMenuItem',
@@ -73,29 +64,25 @@ export default defineComponent({
         {
           'menu-list-submenu-opend': state.opened,
           'menu-list-submenu-child-active': state.active,
-          'menu-list-submenu-child-active-collapsed':
-            state.active && props.collapsed
+          'menu-list-submenu-child-active-collapsed': state.active && props.collapsed
         }
       ]
     })
 
     onBeforeMount(() => {
-      rootMenuEmitter.on(
-        'on-update-opened',
-        (data: Record<string, any> | string[]) => {
-          if (props.name && Array.isArray(data)) {
-            state.opened = (data as (string | number)[]).includes(props.name)
-          } else {
-            const { opend, uidList } = data as {
-              opend: boolean
-              uidList: number[]
-            }
-            if (!uidList.includes(instance?.uid as number)) {
-              state.opened = opend
-            }
+      rootMenuEmitter.on('on-update-opened', (data: Record<string, any> | string[]) => {
+        if (props.name && Array.isArray(data)) {
+          state.opened = (data as (string | number)[]).includes(props.name)
+        } else {
+          const { opend, uidList } = data as {
+            opend: boolean
+            uidList: number[]
+          }
+          if (!uidList.includes(instance?.uid as number)) {
+            state.opened = opend
           }
         }
-      )
+      })
 
       rootMenuEmitter.on('on-update-active-name:submenu', (data: number[]) => {
         if (instance?.uid) {
@@ -108,7 +95,8 @@ export default defineComponent({
       getItemStyle,
       getClass,
       handleClick,
-      ...toRefs(state)
+      ...toRefs(state),
+      arrowIosDownwardOutline
     }
   }
 })

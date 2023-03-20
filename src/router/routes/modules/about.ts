@@ -1,5 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
+import ellipsisVerticalCircle from '@iconify-icons/ion/ellipsis-vertical-circle'
 const Layout = () => import('@/layout/index.vue')
 
 const about: AddRouteRecordRaw = {
@@ -10,7 +11,10 @@ const about: AddRouteRecordRaw = {
   meta: {
     title: t('routes.home.about'),
     orderNo: 100000,
-    icon: 'simple-icons:aboutdotme'
+    icon: {
+      name: 'ion:ellipsis-vertical-circle',
+      entity: ellipsisVerticalCircle
+    }
   },
   children: [
     {
@@ -19,7 +23,6 @@ const about: AddRouteRecordRaw = {
       component: () => import('@/views/modules/about/index.vue'),
       meta: {
         title: t('routes.home.about'),
-        icon: 'simple-icons:aboutdotme',
         hideMenu: true
       }
     }

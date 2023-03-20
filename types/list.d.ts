@@ -1,5 +1,6 @@
 import type { RouteMeta } from 'vue-router'
 import { Component } from 'vue'
+import { IconifyIcon } from '@iconify/vue/dist/offline'
 
 export interface MenuTag {
   type?: 'primary' | 'error' | 'warn' | 'success'
@@ -10,7 +11,7 @@ export interface MenuTag {
 export interface Menu {
   name: string
 
-  icon?: string
+  icon?: { name: string; entity: IconifyIcon }
 
   path: string
 

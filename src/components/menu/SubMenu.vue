@@ -6,7 +6,12 @@
     :collapsed="collapsed"
   >
     <template #title>
-      <Icon v-if="getCeil" class="menu-list-submenu-title-iconfont" :icon="item.icon"></Icon>
+      <EIcon
+        v-if="getCeil"
+        class="menu-list-submenu-title-iconfont"
+        :icon="item.icon?.name"
+        :post-icon="item.icon?.entity"
+      ></EIcon>
       <span class="menu-list-submenu-title-name" v-if="!collapsed"> {{ getI18nName }}</span>
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
@@ -14,7 +19,12 @@
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path" :collapsed="collapsed">
-    <Icon v-if="getCeil" class="menu-list-item-iconfont" :icon="item.icon"></Icon>
+    <EIcon
+      v-if="getCeil"
+      class="menu-list-item-iconfont"
+      :icon="item.icon?.name"
+      :post-icon="item.icon?.entity"
+    ></EIcon>
     <span class="menu-list-item-name" v-if="!collapsed">{{ getI18nName }}</span>
   </MenuItem>
 </template>
@@ -25,12 +35,11 @@ import { computed, defineComponent, PropType } from 'vue'
 import SubMenuItem from './SubMenuItem.vue'
 import MenuItem from './MenuItem.vue'
 import EIcon from '@/components/icons/EIcon.vue'
-import Icon from '@/components/icons/Icon.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'SubMenu',
-  components: { MenuItem, Icon, SubMenuItem },
+  components: { MenuItem, EIcon, SubMenuItem },
   props: {
     item: {
       type: Object as PropType<Menu>,

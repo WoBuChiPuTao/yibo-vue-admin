@@ -1,6 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-
+import barChartOutline from '@iconify-icons/ion/bar-chart-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const charts: AddRouteRecordRaw = {
@@ -10,7 +10,10 @@ const charts: AddRouteRecordRaw = {
   redirect: '/charts/echarts/map',
   meta: {
     orderNo: 500,
-    icon: 'ion:bar-chart-outline',
+    icon: {
+      name: 'ion:bar-chart-outline',
+      entity: barChartOutline
+    },
     title: t('routes.demo.charts.charts')
   },
   children: [

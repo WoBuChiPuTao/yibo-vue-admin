@@ -5,18 +5,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { Icon } from '@iconify/vue'
+import { defineComponent, PropType } from 'vue'
+import { Icon, IconifyIcon, addIcon } from '@iconify/vue/dist/offline'
 export default defineComponent({
   name: 'EIcon',
   components: { Icon },
   props: {
     icon: {
       type: String,
-      default: null
+      default: undefined
+    },
+    postIcon: {
+      type: [Object] as PropType<IconifyIcon>,
+      default: undefined
     }
   },
-  setup() {
+  setup(props) {
+    props.postIcon && addIcon(props.icon as string, props.postIcon)
     return {}
   }
 })

@@ -1,5 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
+import layersOutline from '@iconify-icons/ion/layers-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const component: AddRouteRecordRaw = {
@@ -9,7 +10,10 @@ const component: AddRouteRecordRaw = {
   redirect: '/comp/basic',
   meta: {
     orderNo: 30,
-    icon: 'ion:layers-outline',
+    icon: {
+      name: 'ion:layers-outline',
+      entity: layersOutline
+    },
     title: t('routes.demo.comp.comp')
   },
 
@@ -19,8 +23,7 @@ const component: AddRouteRecordRaw = {
       name: 'BasicDemo',
       component: () => import('@/views/modules/component/basic/index.vue'),
       meta: {
-        title: t('routes.demo.comp.basic'),
-        icon: 'lucide:component'
+        title: t('routes.demo.comp.basic')
       }
     },
 
@@ -30,8 +33,7 @@ const component: AddRouteRecordRaw = {
       redirect: '/comp/tree/basic',
       component: Layout,
       meta: {
-        title: t('routes.demo.comp.tree'),
-        icon: 'clarity:tree-view-line'
+        title: t('routes.demo.comp.tree')
       },
       children: [
         {
@@ -39,8 +41,7 @@ const component: AddRouteRecordRaw = {
           name: 'BasicTreeDemo',
           component: () => import('@/views/modules/component/tree/index.vue'),
           meta: {
-            title: t('routes.demo.comp.treeBasic'),
-            icon: 'ph:tree-structure-light'
+            title: t('routes.demo.comp.treeBasic')
           }
         },
         {
@@ -48,8 +49,7 @@ const component: AddRouteRecordRaw = {
           name: 'EditTreeDemo',
           component: () => import('@/views/modules/component/tree/EditTree.vue'),
           meta: {
-            title: t('routes.demo.comp.editTree'),
-            icon: 'material-symbols:rebase-edit-outline-rounded'
+            title: t('routes.demo.comp.editTree')
           }
         },
         {
@@ -57,8 +57,7 @@ const component: AddRouteRecordRaw = {
           name: 'ActionTreeDemo',
           component: () => import('@/views/modules/component/tree/ActionTree.vue'),
           meta: {
-            title: t('routes.demo.comp.actionTree'),
-            icon: 'eos-icons:action-chains-outlined'
+            title: t('routes.demo.comp.actionTree')
           }
         }
       ]
