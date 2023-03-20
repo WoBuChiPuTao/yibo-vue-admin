@@ -99,24 +99,4 @@ import ForgetPasswordForm from './ForgetPasswordForm.vue'
     width: 20%;
   }
 }
-
-.enter-x {
-  z-index: 8;
-  -webkit-animation: enter-x-animation 0.4s ease-in-out 0.3s;
-  animation: enter-x-animation 0.4s ease-in-out 0.3s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-
-  opacity: 0;
-  transform: translateX(50px);
-}
-
-@keyframes enter-x-animation {
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 </style>
