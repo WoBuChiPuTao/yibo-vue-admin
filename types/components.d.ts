@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     EIcon: typeof import('./../src/components/icons/EIcon.vue')['default']
     Menu: typeof import('./../src/components/menu/Menu.vue')['default']
     MenuItem: typeof import('./../src/components/menu/MenuItem.vue')['default']
+    NumberTransition: typeof import('./../src/components/Transition/NumberTransition.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Spin: typeof import('./../src/components/Transition/Spin.vue')['default']

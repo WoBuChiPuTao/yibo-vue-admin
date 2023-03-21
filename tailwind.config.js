@@ -34,7 +34,6 @@ function createEnterTransition(childrenNum = 5) {
     for (let i = 1; i < childrenNum + 1; i++) {
       Object.assign(addCss, { ...createCss('x', i), ...createCss('y', i) })
     }
-    console.log(addCss)
     addBase({
       ...addCss,
       ['@keyframes enter-x-animation']: {

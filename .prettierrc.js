@@ -7,5 +7,7 @@ module.exports = {
   jsxBracketSameLine: false,
   arrowParens: 'always',
   proseWrap: 'preserve',
-  unescape: true
+  unescape: true,
+  vueIndentScriptAndStyle: false,
+  htmlWhitespaceSensitivity: 'strict'
 }
