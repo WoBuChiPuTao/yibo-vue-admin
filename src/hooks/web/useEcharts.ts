@@ -7,7 +7,7 @@ import { EChartsOption } from 'echarts/types/dist/shared'
 import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core'
 
 export function useEchart(
-  elRef: Ref<HTMLDivElement>,
+  elRef: Ref<HTMLDivElement | undefined>,
   renderer: RenderType = RenderType.SVGRenderer,
   theme: 'light' | 'dark' | 'default' = 'default'
 ) {
@@ -61,7 +61,8 @@ export function useEchart(
 
   function setOptions(options: EChartsOption, clear = true) {
     cacheOptions.value = options
-    if (unref(elRef)?.offsetHeight === 0) {
+    const el = unref(elRef)
+    if (!el || el.offsetHeight === 0 || el.offsetWidth === 0) {
       setTimeout(() => {
         setOptions(options)
       }, 30)

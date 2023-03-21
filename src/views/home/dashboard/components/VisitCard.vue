@@ -18,28 +18,28 @@ const cardList = [
     title: 'Vue',
     icon: { name: 'logos:vue', entity: logosVue },
     growth: 1111,
-    totalTitle: '总访问数',
+    totalTitle: 'Total visits',
     total: 99999
   },
   {
     title: 'React',
     icon: { name: 'logos:react', entity: logosReact },
     growth: 22222,
-    totalTitle: '总访问数',
+    totalTitle: 'Total visits',
     total: 999999
   },
   {
     title: 'Nuxt',
     icon: { name: 'logos:nuxt-icon', entity: nuxtIcon },
     growth: 333333,
-    totalTitle: '总访问数',
+    totalTitle: 'Total visits',
     total: 9999999
   },
   {
     title: 'Nest',
     icon: { name: 'logos:nestjs', entity: logosNestjs },
     growth: 444444,
-    totalTitle: '总访问数',
+    totalTitle: 'Total visits',
     total: 99999999
   }
 ]
