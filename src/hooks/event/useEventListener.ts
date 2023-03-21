@@ -4,7 +4,7 @@ import { useDebounceFn, useThrottleFn } from '@vueuse/core'
 export type RemoveEventFn = () => void
 
 export interface EventParams {
-  el: Element | Window
+  el: Window | Element
   name: string
   listener: EventListener
   useCapture?: boolean
@@ -17,7 +17,7 @@ export function useEventListener({
   el = window,
   name,
   listener,
-  useCapture,
+  useCapture = false,
   autoRemove = true,
   isDebounce = true,
   wait = 80

@@ -24,38 +24,50 @@ import {
   VisualMapComponent,
   TimelineComponent,
   CalendarComponent,
-  GraphicComponent
+  GraphicComponent,
+  DatasetComponent,
+  TransformComponent
 } from 'echarts/components'
 
+import { LabelLayout, UniversalTransition } from 'echarts/features'
+
+import { SVGRenderer, CanvasRenderer } from 'echarts/renderers'
+
 export enum RenderType {
-  SVGRenderer = 'SVGRenderer',
-  CanvasRenderer = 'CanvasRenderer'
+  SVGRenderer = 'canvas',
+  CanvasRenderer = 'svg'
 }
 
-export function setupEcharts() {
-  echarts.use([
-    BarChart,
-    LineChart,
-    PieChart,
-    MapChart,
-    PictorialBarChart,
-    RadarChart,
-    ScatterChart,
-    TitleComponent,
-    TooltipComponent,
-    GridComponent,
-    PolarComponent,
-    AriaComponent,
-    ParallelComponent,
-    LegendComponent,
-    RadarComponent,
-    ToolboxComponent,
-    DataZoomComponent,
-    VisualMapComponent,
-    TimelineComponent,
-    CalendarComponent,
-    GraphicComponent
-  ])
+// 注册组件
+echarts.use([
+  BarChart,
+  LineChart,
+  PieChart,
+  MapChart,
+  PictorialBarChart,
+  RadarChart,
+  ScatterChart,
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  PolarComponent,
+  AriaComponent,
+  ParallelComponent,
+  LegendComponent,
+  RadarComponent,
+  ToolboxComponent,
+  DataZoomComponent,
+  VisualMapComponent,
+  TimelineComponent,
+  CalendarComponent,
+  GraphicComponent,
+  DatasetComponent,
+  TransformComponent,
+  LegendComponent,
+  LabelLayout,
+  UniversalTransition,
+  SVGRenderer,
+  CanvasRenderer
+])
 
-  return echarts
-}
+export default echarts

@@ -1,21 +1,16 @@
-import { setupEcharts, RenderType } from '@/utils/lib/echarts'
+import echarts, { RenderType } from '@/utils/lib/echarts'
 import { computed, nextTick, ref, Ref, unref, watch } from 'vue'
 import { useMenuSetting } from '../setting/useMenuSetting'
 import { useThemeMode } from '../setting/useTheme'
-import { SVGRenderer, CanvasRenderer } from 'echarts/renderers'
 import { EChartsOption } from 'echarts/types/dist/shared'
-import echarts, { ECharts } from 'echarts'
-import { useEventListener } from '../event/useEventListener'
+// import { useEventListener } from '../event/useEventListener'
 import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core'
 
 export function useEchart(
   elRef: Ref<HTMLDivElement>,
-  renderer?: RenderType,
+  renderer: RenderType = RenderType.SVGRenderer,
   theme: 'light' | 'dark' | 'default' = 'default'
 ) {
-  const echarts = setupEcharts()
-  echarts.use(renderer === RenderType.CanvasRenderer ? CanvasRenderer : SVGRenderer)
-
   const { getThemeMode: getSysThemeMode } = useThemeMode()
   const { getCollapsed } = useMenuSetting()
 
@@ -42,14 +37,21 @@ export function useEchart(
     if (!el) {
       return
     }
-    console.log('el', el.offsetHeight)
-    chartInstance = echarts.init(el, t) as unknown as ECharts
-    const { removeEvent } = useEventListener({
-      el: window,
-      name: 'resize',
-      listener: resizeFn
-    })
-    removeResizeFn = removeEvent
+    chartInstance = echarts.init(el, t, { renderer }) as unknown as echarts.ECharts
+    // 监听window的resize事件
+    // const { removeEvent } = useEventListener({
+    //   el: window,
+    //   name: 'resize',
+    //   listener: resizeFn
+    // })
+    // removeResizeFn = removeEvent
+    // 由于dom元素没有resize事件将其修改为ResizeObserver
+    const resizeObserver = new ResizeObserver(() => resizeFn())
+    resizeObserver.observe(el)
+    removeResizeFn = () => {
+      resizeObserver.unobserve(el)
+    }
+
     if (el.offsetWidth === 0 || el.offsetHeight === 0) {
       useTimeoutFn(() => {
         resizeFn()
@@ -76,10 +78,8 @@ export function useEchart(
   }
 
   function resize() {
-    if (unref(elRef).offsetHeight === 0) {
-      setTimeout(() => {
-        resize()
-      }, 50)
+    const el = unref(elRef)
+    if (!el || el?.offsetHeight === 0 || el?.offsetWidth === 0) {
       return
     }
     chartInstance?.resize({
@@ -97,11 +97,11 @@ export function useEchart(
     return chartInstance
   }
 
+  // 监听主题的变化
   watch(getThemeMode, () => {
     if (chartInstance) {
       chartInstance.dispose()
       chartInstance = null
-      // initEcharts(theme)
       setOptions(cacheOptions.value)
     }
   })
