@@ -16,7 +16,7 @@ export default defineComponent({
     const setLoading = ref(true)
     setTimeout(() => {
       setLoading.value = false
-    }, 3000)
+    }, 2500)
     return { setLoading }
   }
 })

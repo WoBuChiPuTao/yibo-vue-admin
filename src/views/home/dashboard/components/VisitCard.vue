@@ -7,6 +7,7 @@ import logosVue from '@iconify-icons/logos/vue'
 import logosReact from '@iconify-icons/logos/react'
 import nuxtIcon from '@iconify-icons/logos/nuxt-icon'
 import logosNestjs from '@iconify-icons/logos/nestjs'
+import NumberTransition from '@/components/Transition/NumberTransition.vue'
 
 const props = defineProps({
   skeletonLoading: Boolean
@@ -16,30 +17,30 @@ const cardList = [
   {
     title: 'Vue',
     icon: { name: 'logos:vue', entity: logosVue },
-    growth: 222222,
+    growth: 1111,
     totalTitle: '总访问数',
-    total: 3333333
+    total: 99999
   },
   {
     title: 'React',
     icon: { name: 'logos:react', entity: logosReact },
-    growth: 222222,
+    growth: 22222,
     totalTitle: '总访问数',
-    total: 3333333
+    total: 999999
   },
   {
     title: 'Nuxt',
     icon: { name: 'logos:nuxt-icon', entity: nuxtIcon },
-    growth: 222222,
+    growth: 333333,
     totalTitle: '总访问数',
-    total: 3333333
+    total: 9999999
   },
   {
     title: 'Nest',
     icon: { name: 'logos:nestjs', entity: logosNestjs },
-    growth: 222222,
+    growth: 444444,
     totalTitle: '总访问数',
-    total: 3333333
+    total: 99999999
   }
 ]
 </script>
@@ -56,19 +57,26 @@ const cardList = [
             </div>
           </template>
           <div class="flex items-center justify-between mb-2">
-            <span class="text-2xl">{{ item.growth }}</span>
+            <NumberTransition class="text-2xl" :end-number="item.growth"></NumberTransition>
             <SvgIcon
               class="w-12 h-12"
-              style="color: greenyellow; transform: rotateX(180deg)"
+              :class="{ 'text-red-500': !(item.growth % 2), 'rotate-x': item.growth % 2 }"
               name="twotone-trending-up"
             />
           </div>
           <div class="flex items-center justify-between text-sm">
             <span>{{ item.totalTitle }}</span>
-            <span>{{ item.total }}</span>
+            <NumberTransition :end-number="item.total" />
           </div>
         </Card>
       </el-col>
     </template>
   </el-row>
 </template>
+
+<style lang="less" scoped>
+.rotate-x {
+  color: rgb(47, 255, 57);
+  transform: rotateX(180deg);
+}
+</style>

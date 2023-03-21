@@ -3,7 +3,7 @@
     <template #header v-if="$slots.header">
       <slot name="header"></slot>
     </template>
-    <ElSkeleton :rows="5" animated :loading="props.loading">
+    <ElSkeleton :rows="3" animated :loading="props.loading">
       <template #default>
         <slot></slot>
       </template>
