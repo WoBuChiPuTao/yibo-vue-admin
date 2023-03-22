@@ -4,9 +4,9 @@
     <SvgIcon class="h-4 mr-1" name="sun-regular" />
     <SvgIcon class="h-4" name="moon-regular" />
   </div>
-  <div v-else @click="toggleThemeMode">
-    <SvgIcon v-if="isDarked" size="20" name="sun-regular" />
-    <SvgIcon v-else size="20" name="moon-regular" />
+  <div v-else @click="toggleThemeMode" class="cursor-pointer">
+    <SvgIcon v-if="isDarked" class="w-5 h-5" name="sun-regular" />
+    <SvgIcon v-else class="w-5 h-5" name="moon-regular" />
   </div>
 </template>
 

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, CSSProperties, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'SvgIcon',
@@ -13,10 +13,6 @@ export default defineComponent({
     name: {
       type: String,
       required: true
-    },
-    size: {
-      type: String,
-      default: '16px'
     },
     spin: {
       type: Boolean,
@@ -28,16 +24,8 @@ export default defineComponent({
       return `#icon-${props.name}`
     })
 
-    const getStyle = computed((): CSSProperties => {
-      return {
-        width: props.size,
-        height: props.size
-      }
-    })
-
     return {
-      getSvgId,
-      getStyle
+      getSvgId
     }
   }
 })
