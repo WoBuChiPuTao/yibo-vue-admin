@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     Menu: typeof import('./../src/components/menu/Menu.vue')['default']
     MenuItem: typeof import('./../src/components/menu/MenuItem.vue')['default']
     NumberTransition: typeof import('./../src/components/Transition/NumberTransition.vue')['default']
+    ProgressBar: typeof import('./../src/components/progressBar/ProgressBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Spin: typeof import('./../src/components/Transition/Spin.vue')['default']
