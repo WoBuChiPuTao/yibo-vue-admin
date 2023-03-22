@@ -1,8 +1,8 @@
 <template>
   <div v-if="themeMode" :class="getClass" @click="toggleThemeMode">
     <div class="theme-toggle-container-inner"></div>
-    <SvgIcon class="mr-1 text-xs" name="sun-regular" />
-    <SvgIcon class="text-xs" name="moon-regular" />
+    <SvgIcon class="h-4 mr-1" name="sun-regular" />
+    <SvgIcon class="h-4" name="moon-regular" />
   </div>
   <div v-else @click="toggleThemeMode">
     <SvgIcon v-if="isDarked" size="20" name="sun-regular" />
@@ -51,8 +51,8 @@ function toggleThemeMode() {
 .theme-toggle-container {
   position: relative;
   display: flex;
-  width: 52px;
-  height: 28px;
+  width: 64px;
+  height: 30px;
   padding: 0 6px;
   margin-left: auto;
   cursor: pointer;
@@ -65,7 +65,7 @@ function toggleThemeMode() {
 
   &-inner {
     position: absolute;
-    left: 4px;
+    left: 0.5rem;
     z-index: 1;
     width: 18px;
     height: 18px;
@@ -75,7 +75,7 @@ function toggleThemeMode() {
     will-change: transform;
   }
   &-dark > &-inner {
-    transform: translateX(calc(100% + 5px));
+    transform: translateX(calc(100% + 0.6rem));
   }
 }
 </style>

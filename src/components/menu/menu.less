@@ -8,6 +8,7 @@ ul {
 .menu-list {
   font-size: 14px;
   color: rgb(164, 164, 164);
+
   .menu-children {
     background-color: var(--sider-children-bg-color);
   }
@@ -53,6 +54,9 @@ ul {
 
     &-name {
       margin-left: 0.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
@@ -110,7 +114,7 @@ ul {
     .submenu-open-icon {
       position: absolute;
       top: 50%;
-      right: 18px;
+      right: 12px;
       transform: translateY(-50%);
       transition: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
