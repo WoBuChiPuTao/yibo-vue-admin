@@ -12,7 +12,7 @@ function setI18nLanguage(locale: LocaleType) {
     i18n.global.locale = locale
   } else {
     // ？？ prettierrc 开头自动添加分号
-    false && ((i18n.global.locale as any).value = locale)
+    true && ((i18n.global.locale as any).value = locale)
   }
   localeStore.setLocaleInfo({ locale })
   setHtmlPageLang(locale)
