@@ -1,19 +1,17 @@
 <template>
-  <div class="container">
-    <div ref="chartRef" class="chart-div"></div>
-  </div>
+  <div ref="chartRef" class="w-full h-full"></div>
 </template>
 
 <script lang="ts">
 import { useEchart } from '@/hooks/web/useEcharts'
 import { mapData } from './data'
-import { defineComponent, onMounted, Ref, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { registerMap } from 'echarts'
 export default defineComponent({
   name: 'Map',
   setup() {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useEchart(chartRef as Ref<HTMLDivElement>)
+    const chartRef = ref<HTMLDivElement>()
+    const { setOptions } = useEchart(chartRef)
     onMounted(async () => {
       const json = (await (await import('./china.json')).default) as any
       registerMap('china', json)
@@ -101,17 +99,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="less" scoped>
-.container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .chart-div {
-    height: 100%;
-    width: 100%;
-  }
-}
-</style>
