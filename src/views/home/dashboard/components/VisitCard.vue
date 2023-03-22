@@ -6,7 +6,7 @@ import SvgIcon from '@/components/icons/SvgIcon.vue'
 import logosVue from '@iconify-icons/logos/vue'
 import logosReact from '@iconify-icons/logos/react'
 import nuxtIcon from '@iconify-icons/logos/nuxt-icon'
-import logosNestjs from '@iconify-icons/logos/nestjs'
+import logosNextjs from '@iconify-icons/logos/nextjs-icon'
 import NumberTransition from '@/components/Transition/NumberTransition.vue'
 
 const props = defineProps({
@@ -37,7 +37,7 @@ const cardList = [
   },
   {
     title: 'Nest',
-    icon: { name: 'logos:nestjs', entity: logosNestjs },
+    icon: { name: 'logos:nextjs-icon', entity: logosNextjs },
     growth: 444444,
     totalTitle: 'Total visits',
     total: 99999999

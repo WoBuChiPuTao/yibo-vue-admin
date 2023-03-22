@@ -2,9 +2,9 @@ import echarts, { RenderType } from '@/utils/lib/echarts'
 import { computed, nextTick, ref, Ref, unref, watch } from 'vue'
 import { useMenuSetting } from '../setting/useMenuSetting'
 import { useThemeMode } from '../setting/useTheme'
-import { EChartsOption } from 'echarts/types/dist/shared'
 // import { useEventListener } from '../event/useEventListener'
 import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core'
+import { EChartsOption } from 'echarts/types/dist/echarts'
 
 export function useEchart(
   elRef: Ref<HTMLDivElement | undefined>,
