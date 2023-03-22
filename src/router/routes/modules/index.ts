@@ -1,13 +1,7 @@
 import { AddRouteRecordRaw } from '@/router/types'
-import HOME from './home'
-import ABOUT from './about'
-import SYSTEM from './system'
-import COMPONENT from './component'
-import CHARTS from './charts'
-export const asyncRoutes: Array<AddRouteRecordRaw> = [
-  HOME,
-  ABOUT,
-  SYSTEM,
-  COMPONENT,
-  CHARTS
-]
+import Home from './home'
+import About from './about'
+import System from './system'
+import features from './features'
+import Charts from './charts'
+export const asyncRoutes: Array<AddRouteRecordRaw> = [Home, About, System, features, Charts]
