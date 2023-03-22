@@ -47,24 +47,8 @@ export default {
     cropperImage: 'Cropper Image',
     cardList: 'Card List'
   },
-  editor: {
-    editor: 'Editor',
-    jsonEditor: 'Json editor',
-    markdown: 'Markdown editor',
-
-    tinymce: 'Rich text',
-    tinymceBasic: 'Basic',
-    tinymceForm: 'embedded form'
-  },
-  excel: {
-    excel: 'Excel',
-    customExport: 'Select export format',
-    jsonExport: 'JSON data export',
-    arrayExport: 'Array data export',
-    importExcel: 'Import'
-  },
   feat: {
-    feat: 'Page Function',
+    feat: 'Function',
     icon: 'Icon',
     tabs: 'Tabs',
     tabDetail: 'Tab Detail',
@@ -97,74 +81,12 @@ export default {
     breadcrumbChildren: 'Level mode',
     breadcrumbChildrenDetail: 'Level mode detail'
   },
-  flow: {
-    name: 'Graphics editor',
-    flowChart: 'FlowChart'
-  },
-  form: {
-    form: 'Form',
-    basic: 'Basic',
-    useForm: 'useForm',
-    refForm: 'RefForm',
-    advancedForm: 'Shrinkable',
-    ruleForm: 'Form validation',
-    dynamicForm: 'Dynamic',
-    customerForm: 'Custom',
-    appendForm: 'Append',
-    tabsForm: 'TabsForm'
-  },
-  iframe: {
-    frame: 'External',
-    antv: 'antVue doc (embedded)',
-    doc: 'Project doc (embedded)',
-    docExternal: 'Project doc (external)'
-  },
-  level: { level: 'MultiMenu' },
-  page: {
-    page: 'Page',
-
-    form: 'Form',
-    formBasic: 'Basic Form',
-    formStep: 'Step Form',
-    formHigh: 'Advanced Form',
-
-    desc: 'Details',
-    descBasic: 'Basic Details',
-    descHigh: 'Advanced Details',
-
-    result: 'Result',
-    resultSuccess: 'Success',
-    resultFail: 'Failed',
-
-    account: 'Personal',
-    accountCenter: 'Personal Center',
-    accountSetting: 'Personal Settings',
-
-    exception: 'Exception',
-    netWorkError: 'Network Error',
-    notData: 'No data',
-
-    list: 'List page',
-    listCard: 'Card list',
-    basic: 'Basic list',
-    listBasic: 'Basic list',
-    listSearch: 'Search list'
-  },
-  permission: {
-    permission: 'Permission',
-
-    front: 'front-end',
-    frontPage: 'Page',
-    frontBtn: 'Button',
-    frontTestA: 'Test page A',
-    frontTestB: 'Test page B',
-
-    back: 'background',
-    backPage: 'Page',
-    backBtn: 'Button'
-  },
-  setup: {
-    page: 'Intro page'
+  excel: {
+    excel: 'Excel',
+    customExport: 'Select export format',
+    jsonExport: 'JSON data export',
+    arrayExport: 'Array data export',
+    importExcel: 'Import'
   },
   system: {
     moduleName: 'System management',
@@ -177,26 +99,5 @@ export default {
 
     menu: 'Menu management',
     role: 'Role management'
-  },
-  table: {
-    table: 'Table',
-
-    basic: 'Basic',
-    treeTable: 'Tree',
-    fetchTable: 'Remote loading',
-    fixedColumn: 'Fixed column',
-    customerCell: 'Custom column',
-    formTable: 'Open search',
-    useTable: 'UseTable',
-    refTable: 'RefTable',
-    multipleHeader: 'MultiLevel header',
-    mergeHeader: 'Merge cells',
-    expandTable: 'Expandable table',
-    fixedHeight: 'Fixed height',
-    footerTable: 'Footer',
-    editCellTable: 'Editable cell',
-    editRowTable: 'Editable row',
-    authColumn: 'Auth column',
-    resizeParentHeightTable: 'resizeParentHeightTable'
   }
 }
