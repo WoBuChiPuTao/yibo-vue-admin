@@ -59,8 +59,9 @@ import { AccessItems } from './data'
   /* stylelint-disable-next-line no-descending-specificity */
   :deep(.el-card) {
     border-radius: 0%;
-    box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0, 1px 0 0 0 #f0f0f0 inset,
-      0 1px 0 0 #f0f0f0 inset;
+    box-shadow: 1px 0 0 0 var(--el-border-color), 0 1px 0 0 var(--el-border-color),
+      1px 1px 0 0 var(--el-border-color), 1px 0 0 0 var(--el-border-color) inset,
+      0 1px 0 0 var(--el-border-color) inset;
   }
 
   .is-hover-shadow:hover {
