@@ -5,21 +5,17 @@
     </template>
     <template #default>
       <div class="content">
-        <template v-for="list in AccessItems" :key="list">
-          <div class="gird-container">
-            <template v-for="item in list" :key="item.title">
-              <Card shadow="hover">
-                <div class="flex flex-col items-center">
-                  <EIcon
-                    :icon="item.icon"
-                    class="text-xl"
-                    :post-icon="item.postIcon"
-                    :style="{ color: item.color }"
-                  ></EIcon>
-                  <span class="mt-2 truncate">{{ item.title }}</span>
-                </div>
-              </Card>
-            </template>
+        <template v-for="item in AccessItems" :key="item.title">
+          <div class="w-full card-grid md:w-1/3">
+            <div class="flex flex-col items-center justify-center">
+              <EIcon
+                :icon="item.icon"
+                class="text-xl"
+                :post-icon="item.postIcon"
+                :style="{ color: item.color }"
+              ></EIcon>
+              <span class="mt-2 truncate">{{ item.title }}</span>
+            </div>
           </div>
         </template>
       </div>
@@ -35,38 +31,41 @@ import { AccessItems } from './data'
 
 <style lang="less" scoped>
 .access-container {
-  :deep(.el-card__header + .el-card__body) {
+  :deep(.el-card__body) {
     padding: 0;
   }
+}
 
-  .content {
-    margin: -1px 0 0 -1px;
-  }
-  .content::before {
+.content {
+  margin: -1px 0 0 -1px;
+  overflow: hidden;
+
+  &::before {
     display: table;
     content: '';
   }
-  .content::after {
+
+  &::after {
     display: table;
     clear: both;
     content: '';
   }
-}
-.gird-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
 
-  /* stylelint-disable-next-line no-descending-specificity */
-  :deep(.el-card) {
-    border-radius: 0%;
-    box-shadow: 1px 0 0 0 var(--el-border-color), 0 1px 0 0 var(--el-border-color),
-      1px 1px 0 0 var(--el-border-color), 1px 0 0 0 var(--el-border-color) inset,
-      0 1px 0 0 var(--el-border-color) inset;
-  }
+  .card-grid {
+    float: left;
+    border: 0;
+    padding: 1.5rem;
+    border-radius: 0;
+    box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0, 1px 0 0 0 #f0f0f0 inset,
+      0 1px 0 0 #f0f0f0 inset;
+    transition: all 0.3s;
 
-  .is-hover-shadow:hover {
-    z-index: 1;
-    box-shadow: var(--el-box-shadow-light);
+    &:hover {
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+        0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    }
   }
 }
 </style>
