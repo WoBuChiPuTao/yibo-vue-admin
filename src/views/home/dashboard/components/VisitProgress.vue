@@ -12,6 +12,7 @@
           :color="item.color"
           :progress-value="item.progress"
           :total="item.total"
+          round
         ></ProgressBar>
       </template>
     </div>

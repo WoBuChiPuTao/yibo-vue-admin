@@ -5,8 +5,18 @@
       <span>{{ `${outputValue}/${props.total}` }}</span>
     </div>
     <div class="relative w-full" :style="{ height: props.height }">
-      <div class="absolute w-full h-full" :style="{ backgroundColor: props.backColor }"></div>
-      <div class="absolute h-full" :style="{ backgroundColor: props.color, width: getWidth }"></div>
+      <div
+        class="absolute w-full h-full"
+        :style="{ backgroundColor: props.backColor, borderRadius: round ? props.height : '0px' }"
+      ></div>
+      <div
+        class="absolute h-full"
+        :style="{
+          backgroundColor: props.color,
+          width: getWidth,
+          borderRadius: round ? props.height : '0px'
+        }"
+      ></div>
     </div>
   </div>
 </template>
@@ -41,6 +51,7 @@ const props = defineProps({
     type: Number,
     default: 1500
   },
+  round: Boolean,
   transition: {
     type: String as PropType<keyof typeof TransitionPresets>,
     default: 'linear'
