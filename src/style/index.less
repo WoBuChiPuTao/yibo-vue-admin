@@ -1,4 +1,5 @@
 @import './var/index.less';
+@import './element/index.less';
 @import './transition/index.less';
 @import './public.less';
 @import './theme.less';
@@ -7,6 +8,9 @@
 ::after,
 ::before {
   box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: initial;
 }
 
 html {
@@ -41,4 +45,8 @@ ul {
   padding: 0;
   margin-block-start: 0px;
   margin-block-end: 0px;
+}
+
+.text-sub {
+  color: var(--text-sub-color);
 }
