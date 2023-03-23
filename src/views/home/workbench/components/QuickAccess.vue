@@ -39,6 +39,9 @@ import { AccessItems } from './data'
     padding: 0;
   }
 
+  .content {
+    margin: -1px 0 0 -1px;
+  }
   .content::before {
     display: table;
     content: '';
@@ -56,10 +59,13 @@ import { AccessItems } from './data'
   /* stylelint-disable-next-line no-descending-specificity */
   :deep(.el-card) {
     border-radius: 0%;
+    box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0, 1px 0 0 0 #f0f0f0 inset,
+      0 1px 0 0 #f0f0f0 inset;
   }
 
   .is-hover-shadow:hover {
     z-index: 1;
+    box-shadow: var(--el-box-shadow-light);
   }
 }
 </style>
