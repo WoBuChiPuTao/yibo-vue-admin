@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-between">
+    <div v-if="props.title" class="flex justify-between">
       <span>{{ props.title }}</span>
       <span>{{ `${outputValue}/${props.total}` }}</span>
     </div>

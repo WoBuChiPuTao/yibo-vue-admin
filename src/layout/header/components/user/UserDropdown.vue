@@ -27,7 +27,6 @@ import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'elemen
 import { Document, SwitchButton } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, h } from 'vue'
-import { isEmpty } from '@/utils/is'
 import { useI18n } from '@/hooks/web/useI18n'
 import headerImg from '@/assets/img/avatar.png'
 
@@ -36,7 +35,7 @@ const { t } = useI18n()
 
 const getUserInfo = computed(() => {
   const { username = 'nibabassssss', avatar, desc } = userStore.getUserInfo || {}
-  return { username, avatar: isEmpty(avatar) ? headerImg : avatar, desc }
+  return { username, avatar: avatar || headerImg, desc }
 })
 async function toLogout() {
   try {

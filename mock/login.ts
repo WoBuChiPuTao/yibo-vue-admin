@@ -21,8 +21,8 @@ const userInfoBack: Result<UserInfo> = {
   message: 'success',
   data: {
     userId: '111111',
-    username: 'nibaba',
-    avatar: '',
+    username: 'yibo Admin',
+    avatar: undefined,
     desc: 'sb',
     realName: 'SB',
     roles: [

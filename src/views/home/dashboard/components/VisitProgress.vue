@@ -1,7 +1,7 @@
 <template>
   <Card :loading="props.skeletonLoading">
     <template #header>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center">
         <span class="text-xl font-bold">{{ '访问进度' }}</span>
       </div>
     </template>
