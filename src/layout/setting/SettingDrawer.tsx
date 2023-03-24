@@ -2,7 +2,8 @@ import { defineComponent, ref } from 'vue'
 import { ElDrawer, ElDivider } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import AppThemeToggle from '@/components/application/AppThemeToggle.vue'
-import NavigationTypes from './components/NavigationType.vue'
+import NavigationPicker from './components/NavigationPicker.vue'
+import ColorPicker from './components/ColorPicker.vue'
 
 export const drawerVisibile = ref(false)
 
@@ -15,25 +16,15 @@ export default defineComponent({
       return <div>{() => t('common.setting.drawerTitle')}</div>
     }
 
-    function renderThemeMode() {
-      return (
-        <>
-          <AppThemeToggle class="mode-center"></AppThemeToggle>
-        </>
-      )
-    }
-
-    function renderNavMode() {
-      return <NavigationTypes></NavigationTypes>
-    }
-
     function rendererBody() {
       return (
         <>
           <ElDivider>{() => t('common.setting.darkMode')}</ElDivider>
-          {renderThemeMode()}
+          <AppThemeToggle class="mode-center"></AppThemeToggle>
           <ElDivider>{() => t('common.setting.navMode')}</ElDivider>
-          {renderNavMode()}
+          <NavigationPicker></NavigationPicker>
+          <ElDivider>{() => t('common.setting.sysTheme')}</ElDivider>
+          <ColorPicker></ColorPicker>
         </>
       )
     }

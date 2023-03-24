@@ -47,36 +47,19 @@ function handleChange(type: MenuTypeEnum) {
       z-index: 1;
       width: 33%;
       height: 100%;
-      background-color: #273352;
+      background-color: #00408a;
       border-radius: 4px 0 0 4px;
-    }
-
-    &::after {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 25%;
-      background-color: #fff;
     }
   }
 
   &-top-menu {
-    &::before {
-      top: 0;
-      left: 0;
-      width: 33%;
-      height: 100%;
-      background-color: #fff;
-      border-radius: 4px 0 0 4px;
-    }
-
     &::after {
       top: 0;
       left: 0;
       width: 100%;
       height: 25%;
       z-index: 1;
-      background-color: #273352;
+      background-color: #00408a;
     }
   }
 }
