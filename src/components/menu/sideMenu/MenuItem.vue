@@ -32,7 +32,7 @@ export default defineComponent({
           const { list, uidList } = getParentList()
           list.forEach((item) => {
             if (item.proxy) {
-              ;(item.proxy as any).active = true
+              (item.proxy as any).active = true
             }
           })
           rootMenuEmitter.emit('on-update-active-name:submenu', uidList)

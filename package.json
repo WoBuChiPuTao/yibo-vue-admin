@@ -91,8 +91,8 @@
   "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "eslint --fix"
     ],
     "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
       "prettier --write--parser json"
@@ -101,8 +101,8 @@
       "prettier --write"
     ],
     "*.vue": [
-      "eslint --fix",
       "prettier --write",
+      "eslint --fix",
       "stylelint --fix"
     ],
     "*.{scss,less,styl,html}": [
