@@ -1,44 +1,27 @@
-import { computed, ComponentInternalInstance } from 'vue'
-import type { CSSProperties } from 'vue'
+import { getMenus } from '@/router/menu'
+import { ref, watch } from 'vue'
+// import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/modules/user'
+import { Menu } from '#/list'
 
-export function useMenuItem(instance: ComponentInternalInstance | null) {
-  const getItemStyle = computed((): CSSProperties => {
-    let parent = instance?.parent
-    let padding = 16
-    if (!parent) {
-      return {}
-    }
-    while (parent && parent.type.name !== 'Menu') {
-      if (parent.type.name === 'SubMenuItem') {
-        padding += padding
-      }
-      parent = parent.parent
-    }
-    return { paddingLeft: padding + 'px' }
-  })
+export function useMenu() {
+  const menuRef = ref<Menu[]>([])
+  const userStore = useUserStore()
 
-  function getParentList() {
-    let parent = instance?.parent
-    if (!parent) {
-      return {
-        uidList: [],
-        list: []
-      }
+  // const { currentRoute } = useRouter()
+  watch(
+    () => userStore.getToken,
+    () => {
+      useGetMenu()
+    },
+    {
+      immediate: true
     }
-    const int: ComponentInternalInstance[] = []
-    while (parent && parent.type.name !== 'Menu') {
-      if (parent.type.name === 'SubMenuItem') {
-        int.push(parent)
-      }
-      parent = parent?.parent
-    }
-    return {
-      uidList: int.map((item) => item.uid),
-      list: int
-    }
+  )
+
+  async function useGetMenu() {
+    menuRef.value = await getMenus()
   }
-  return {
-    getItemStyle,
-    getParentList
-  }
+
+  return { menuRef }
 }

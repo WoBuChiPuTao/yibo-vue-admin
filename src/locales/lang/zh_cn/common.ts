@@ -46,9 +46,14 @@ export default {
     closeAll: '关闭全部标签页'
   },
   setting: {
+    // header title
     drawerTitle: '项目配置',
-
+    // body title
     darkMode: '主题',
+    navMode: '导航栏模式',
+    sysTheme: '系统主题',
+    headerTheme: '顶栏主题',
+    sidebarTheme: '菜单主题',
 
     on: '开',
     off: '关',

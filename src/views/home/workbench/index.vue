@@ -2,7 +2,7 @@
   <div class="p-4">
     <div class="flex">
       <div class="pr-4 flex-col-75">
-        <Card>
+        <Card shadow="always">
           <WokerHeader class="mb-8"></WokerHeader>
           <ElDivider></ElDivider>
           <WorkerProject></WorkerProject>
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElRow, ElCol, ElDivider } from 'element-plus'
+import { ElDivider } from 'element-plus'
 import Card from '@/components/card/Card.vue'
 import WokerHeader from './components/WokerHeader.vue'
 import WorkerProject from './components/WorkerProject.vue'

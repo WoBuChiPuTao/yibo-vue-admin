@@ -1,5 +1,6 @@
 import { ProjectConfig } from '#/config'
-import { PermissionModeEnum, SessionTimeoutProcessingEnum, ThemeEnum } from '@/enums/appEnum'
+import { PermissionModeEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnum'
+import { MenuTypeEnum, ThemeEnum } from '@/enums/configEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 // ! You need to clear the browser cache after the change
@@ -39,6 +40,8 @@ const setting: ProjectConfig = {
 
   // Menu configuration
   menuSetting: {
+    show: true,
+    type: MenuTypeEnum.SIDE,
     // Menu collapse
     collapsed: false,
     // When sider hide because of the responsive layout

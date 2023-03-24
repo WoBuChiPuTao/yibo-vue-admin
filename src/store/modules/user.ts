@@ -99,6 +99,7 @@ export const useUserStore = defineStore({
         routes.forEach((route) => {
           router.addRoute(route as unknown as RouteRecordRaw)
         })
+        // 添加路由已经添加的状态
         this.setIsDynamicAddedRoute(true)
         await router.replace(PageEnum.BASE_HOME)
       }

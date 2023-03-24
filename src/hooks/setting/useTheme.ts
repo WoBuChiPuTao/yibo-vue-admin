@@ -1,5 +1,5 @@
 import { useAppStore } from '@/store/modules/app'
-import { ThemeEnum } from '@/enums/appEnum'
+import { ThemeEnum } from '@/enums/configEnum'
 import { computed } from 'vue'
 import { addClass, hasClass, removeClass } from '../dom'
 

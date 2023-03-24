@@ -1,6 +1,6 @@
 import { resetRoutes } from '@/router'
 import { BeforeMiniState, HeaderSetting, MenuSetting, ProjectConfig, TabsSetting } from '#/config'
-import { ThemeEnum } from '@/enums/appEnum'
+import { ThemeEnum } from '@/enums/configEnum'
 import { deepMerge } from '@/utils'
 import { WebCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
@@ -19,7 +19,7 @@ export const useAppStore = defineStore({
   state: (): AppAtate => ({
     themeMode: undefined,
     pageLoading: false,
-    projectSetting: WebCache.getLocal('PROJECT_SETTING'),
+    projectSetting: WebCache.getLocal('PROJECT_SETTING') || {},
     beforeMiniInfo: {}
   }),
   getters: {
@@ -33,7 +33,7 @@ export const useAppStore = defineStore({
       return this.beforeMiniInfo
     },
     getProjectSetting(): ProjectConfig {
-      return this.projectSetting || ({} as ProjectConfig)
+      return this.projectSetting as ProjectConfig
     },
     getHeaderSetting(): HeaderSetting {
       return this.getProjectSetting.headerSetting

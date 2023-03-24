@@ -2,7 +2,7 @@
   <ElDropdown>
     <span class="header-user-dropdown">
       <img :src="getUserInfo.avatar" alt="avatar" class="header-user-dropdown-avatar" />
-      <span class="header-user-dropdown-name">
+      <span class="truncate header-user-dropdown-name">
         {{ getUserInfo.username }}
       </span>
     </span>

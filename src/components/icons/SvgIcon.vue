@@ -33,7 +33,7 @@ export default defineComponent({
 
 <style lang="less">
 .svg-icon-base {
-  display: inline-block;
+  display: inline;
   overflow: hidden;
   vertical-align: -0.15em;
   fill: currentColor;

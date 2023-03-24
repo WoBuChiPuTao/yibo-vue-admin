@@ -5,18 +5,17 @@ const Layout = () => import('@/layout/index.vue')
 
 const features: AddRouteRecordRaw = {
   path: '/feat',
-  name: 'component',
+  name: 'Feature',
   component: Layout,
   redirect: '/feat/ws',
   meta: {
-    orderNo: 30,
+    orderNo: 10,
     icon: {
       name: 'ion:logo-xbox',
       entity: ionLogoXbox
     },
     title: t('routes.demo.feat.feat')
   },
-
   children: [
     {
       path: 'ws',

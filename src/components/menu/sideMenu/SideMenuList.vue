@@ -14,7 +14,7 @@ import { Menu } from '#/list'
 import { useOpenMenu } from './useOpen'
 
 export default defineComponent({
-  name: 'Menu',
+  name: 'SideMenuList',
   props: {
     menus: {
       type: Array as PropType<Menu[]>,

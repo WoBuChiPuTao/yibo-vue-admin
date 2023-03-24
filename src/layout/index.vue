@@ -1,6 +1,6 @@
 <template>
   <ElContainer class="layout">
-    <Side></Side>
+    <Side v-if="getShowSideMenu"></Side>
     <ElContainer class="layout-main">
       <Header></Header>
       <ElMain class="layout-main-content">
@@ -15,6 +15,9 @@ import { ElContainer, ElMain } from 'element-plus'
 import Header from './header/index.vue'
 import Side from './side/index.vue'
 import Content from './content/index.vue'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+
+const { getShowSideMenu } = useMenuSetting()
 </script>
 
 <style lang="less">

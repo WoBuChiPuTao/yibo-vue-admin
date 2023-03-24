@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { useThemeMode, updateHtmlTheme } from '@/hooks/setting/useTheme'
-import { ThemeEnum } from '@/enums/appEnum'
+import { ThemeEnum } from '@/enums/configEnum'
 import { computed, PropType } from 'vue'
 import SvgIcon from '../icons/SvgIcon.vue'
 

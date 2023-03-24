@@ -15,10 +15,10 @@ export default defineComponent({
   name: 'Header',
   components: { LayoutHeader, Tabs },
   setup() {
-    const { getRealWidth } = useMenuSetting()
+    const { getRealWidth, getShowSideMenu } = useMenuSetting()
     const getDomStyle = computed((): CSSProperties => {
       return {
-        width: `calc(100% - ${unref(getRealWidth)}px)`
+        width: unref(getShowSideMenu) ? `calc(100% - ${unref(getRealWidth)}px)` : '100%'
       }
     })
     return {

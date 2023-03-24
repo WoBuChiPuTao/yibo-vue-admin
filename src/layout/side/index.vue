@@ -1,33 +1,21 @@
 <template>
   <div class="side-fill" :style="getDomStyle"></div>
-  <CollapseTransition>
-    <div class="side-fixed" :style="getDomStyle">
-      <DemoMenu :items="menus" :collapsed="getCollapsed"></DemoMenu>
-    </div>
-  </CollapseTransition>
+  <div class="side-fixed" :style="getDomStyle">
+    <AppLogo class="side-logo"></AppLogo>
+    <Menu></Menu>
+  </div>
 </template>
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, unref } from 'vue'
-import DemoMenu from './DemoMenu.vue'
-// import { ElMenu } from 'element-plus'
-import { useLeftMenu } from './useMenu'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import CollapseTransition from '@/components/Transition/CollapseTransition.vue'
+import Menu from '@/components/menu/LayoutMenu.vue'
 
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 export default defineComponent({
   name: 'AppSide',
-  components: { DemoMenu, CollapseTransition },
+  components: { Menu },
   setup() {
-    const { menuRef } = useLeftMenu()
-
-    const menus = computed(() => {
-      const menu = unref(menuRef)
-      return menu
-    })
-
-    const { getCollapsed, getRealWidth } = useMenuSetting()
-
+    const { getRealWidth } = useMenuSetting()
     const getDomStyle = computed((): CSSProperties => {
       const width = `${unref(getRealWidth)}px`
       return {
@@ -39,9 +27,7 @@ export default defineComponent({
       }
     })
     return {
-      menus,
-      getDomStyle,
-      getCollapsed
+      getDomStyle
     }
   }
 })
@@ -61,5 +47,11 @@ export default defineComponent({
   left: 0;
   height: 100%;
   z-index: 100;
+}
+
+.side-logo {
+  height: 64px;
+  padding: 10px 8px 10px 8px;
+  color: white;
 }
 </style>

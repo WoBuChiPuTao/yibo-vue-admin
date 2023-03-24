@@ -56,15 +56,13 @@ import { AccessItems } from './data'
     border: 0;
     padding: 1.5rem;
     border-radius: 0;
-    box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0, 1px 0 0 0 #f0f0f0 inset,
-      0 1px 0 0 #f0f0f0 inset;
+    box-shadow: 1px 0 0 0 var(--box-shadow-color) inset, 0 1px 0 0 var(--box-shadow-color) inset;
     transition: all 0.3s;
 
     &:hover {
       position: relative;
       z-index: 1;
-      box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
-        0 5px 12px 4px rgba(0, 0, 0, 0.09);
+      box-shadow: var(--box-hover-shadow);
     }
   }
 }

@@ -46,8 +46,12 @@ export default {
   },
   setting: {
     drawerTitle: 'Configuration',
-
-    darkMode: 'Dark mode',
+    // body title
+    darkMode: 'Theme mode',
+    navMode: 'Navigation mode',
+    sysTheme: 'System theme',
+    headerTheme: 'Header theme',
+    sidebarTheme: 'Menu theme',
 
     on: 'On',
     off: 'Off',

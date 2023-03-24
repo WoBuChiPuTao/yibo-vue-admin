@@ -1,7 +1,10 @@
-import { PermissionModeEnum, SessionTimeoutProcessingEnum, ThemeEnum } from '@/enums/appEnum'
+import { PermissionModeEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnum'
+import { ThemeEnum, MenuTypeEnum } from '@/enums/configEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 export interface MenuSetting {
+  show: boolean
+  type: MenuTypeEnum
   collapsed: boolean
   // 收起时是否隐藏菜单
   siderHidden: boolean
