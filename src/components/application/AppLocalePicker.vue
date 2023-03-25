@@ -66,6 +66,9 @@ watchEffect(() => {
 })
 
 async function toggleLocale(lang: LocaleType) {
+  if (lang === unref(getLocale)) {
+    return
+  }
   await changeLocale(lang)
   selectedKey.value = lang
   props.reload && location.reload()
