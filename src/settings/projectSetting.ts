@@ -3,14 +3,8 @@ import { PermissionModeEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnu
 import { MenuTypeEnum, ThemeEnum } from '@/enums/configEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
-// ! You need to clear the browser cache after the change
+// 系统初始化的样式配置
 const setting: ProjectConfig = {
-  // Whether to show the configuration button
-  showSettingButton: true,
-
-  // Whether to show the theme switch button
-  showDarkModeToggle: true,
-
   // Permission mode
   permissionMode: PermissionModeEnum.ROUTE_MAPPING,
 
@@ -63,9 +57,6 @@ const setting: ProjectConfig = {
 
   // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time
   openKeepAlive: true,
-
-  // Automatic screen lock time, 0 does not lock the screen. Unit minute default 0
-  lockTime: 0,
 
   // Whether to show breadcrumbs
   showBreadCrumb: true,

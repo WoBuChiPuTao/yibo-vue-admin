@@ -19,11 +19,12 @@ export const localeList: DropMenu[] = [
 ]
 
 export const initLocaleSetting: LocaleSetting = {
+  // 是否显示多国语言按钮
   showPicker: true,
-  // Locale
+  // 当前语言
   locale: LOCALE.ZH_CN,
-  // Default locale
+  // 默认语言
   fallback: LOCALE.ZH_CN,
-  // available Locales
+  // 可用语言
   availableLocales: [LOCALE.ZH_CN, LOCALE.EN_US]
 }

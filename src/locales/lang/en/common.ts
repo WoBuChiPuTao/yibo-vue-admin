@@ -51,7 +51,7 @@ export default {
     navMode: 'Navigation mode',
     sysTheme: 'System theme',
     headerTheme: 'Header theme',
-    sidebarTheme: 'Menu theme',
+    sideTheme: 'Menu theme',
 
     on: 'On',
     off: 'Off',

@@ -1,5 +1,5 @@
 <template>
-  <ElDropdown trigger="click" @command="toggleLocale" tabindex="0">
+  <ElDropdown v-if="getShowPicker" trigger="click" @command="toggleLocale" tabindex="0">
     <span>
       <EIcon class="picker-content" icon="ion:language" :post-icon="languageIcon"></EIcon>
       <span v-if="showText" class="picker-content-title">{{ getLocaleText }}</span>
@@ -50,7 +50,7 @@ const props = defineProps({
   reload: { type: Boolean, default: true }
 })
 
-const { getLocale, changeLocale } = useLocale()
+const { getShowPicker, getLocale, changeLocale } = useLocale()
 const { getThemeMode } = useThemeMode()
 
 const getLocaleText = computed(() => {

@@ -17,7 +17,7 @@ import { preLoader } from './utils/preLoader'
 
 async function launch() {
   // 注入svg和公用图片
-  await preLoader()
+  // await preLoader()
 
   // 创建app实例
   const app = createApp(App)

@@ -1,6 +1,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElDrawer, ElDivider } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
+import { SYS_COLOR_LIST, HEADER_BG_COLOR_LIST, SIDE_BG_COLOR_LIST } from '@/settings/sysColor'
 import AppThemeToggle from '@/components/application/AppThemeToggle.vue'
 import NavigationPicker from './components/NavigationPicker.vue'
 import ColorPicker from './components/ColorPicker.vue'
@@ -24,7 +25,11 @@ export default defineComponent({
           <ElDivider>{() => t('common.setting.navMode')}</ElDivider>
           <NavigationPicker></NavigationPicker>
           <ElDivider>{() => t('common.setting.sysTheme')}</ElDivider>
-          <ColorPicker></ColorPicker>
+          <ColorPicker colorList={SYS_COLOR_LIST}></ColorPicker>
+          <ElDivider>{() => t('common.setting.headerTheme')}</ElDivider>
+          <ColorPicker colorList={HEADER_BG_COLOR_LIST}></ColorPicker>
+          <ElDivider>{() => t('common.setting.sideTheme')}</ElDivider>
+          <ColorPicker colorList={SIDE_BG_COLOR_LIST}></ColorPicker>
         </>
       )
     }

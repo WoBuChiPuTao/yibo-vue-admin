@@ -35,10 +35,6 @@ export interface HeaderSetting {
 export interface ProjectConfig {
   // Storage location of permission related information
   permissionCacheType: CacheTypeEnum
-  // Whether to show the configuration button
-  showSettingButton: boolean
-  // Whether to show the theme switch button
-  showDarkModeToggle: boolean
   // Permission mode
   permissionMode: PermissionModeEnum
   // Session timeout processing
@@ -52,8 +48,6 @@ export interface ProjectConfig {
   tabsSetting: TabsSetting
   // pageLayout whether to enable keep-alive
   openKeepAlive: boolean
-  // Lock screen time
-  lockTime: number
   // Show breadcrumbs
   showBreadCrumb: boolean
   // Use error-handler-plugin

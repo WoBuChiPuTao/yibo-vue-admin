@@ -53,7 +53,7 @@ export default {
     navMode: '导航栏模式',
     sysTheme: '系统主题',
     headerTheme: '顶栏主题',
-    sidebarTheme: '菜单主题',
+    sideTheme: '菜单主题',
 
     on: '开',
     off: '关',

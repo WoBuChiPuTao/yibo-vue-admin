@@ -54,7 +54,7 @@ async function toLogout() {
 </script>
 
 <style lang="less">
-@import '/src/style/var/index.less';
+// @import '/src/style/var/index.less';
 
 .header-user-dropdown {
   display: flex;

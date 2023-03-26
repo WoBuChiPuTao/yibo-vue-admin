@@ -1,7 +1,7 @@
 <template>
   <div class="color-list">
     <template v-for="item in props.colorList" :key="item">
-      <div></div>
+      <div class="color-list-item" :style="{ backgroundColor: item }"></div>
     </template>
   </div>
 </template>
@@ -24,5 +24,11 @@ const props = defineProps({
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 1rem 0;
+
+  &-item {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 0.5rem 0.5rem;
+  }
 }
 </style>

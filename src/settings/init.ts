@@ -15,6 +15,7 @@ export function initConfigStore() {
 
   projCfg = deepMerge(projectSetting, projCfg || {})
 
+  // 进行主题、语言、样式的初始设置
   appStore.setProjectSetting(projCfg)
   localeStore.initLocale()
   updateHtmlTheme(theme)

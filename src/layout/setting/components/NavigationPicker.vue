@@ -1,7 +1,15 @@
 <template>
   <div class="flex justify-around">
     <template v-for="item in items" :key="item.type">
-      <div :class="['mode-item', `mode-item-${item.type}`]" @click="handleChange(item.type)"> </div>
+      <div
+        :class="[
+          'mode-item',
+          `mode-item-${item.type}`,
+          { 'mode-item-active': item.type === getMenuType }
+        ]"
+        @click="handleChange(item.type)"
+      >
+      </div>
     </template>
   </div>
 </template>
@@ -33,6 +41,10 @@ function handleChange(type: MenuTypeEnum) {
   cursor: pointer;
   background-color: #f0f2f5;
   border-radius: 4px;
+
+  &-active {
+    box-shadow: var(--box-hover-shadow);
+  }
 
   &::before,
   &::after {
