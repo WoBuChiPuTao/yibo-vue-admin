@@ -1,5 +1,5 @@
 import { Menu } from '#/list'
-import { isUrl } from '@/hooks/is'
+import { isUrl } from '@/utils/is'
 import { findPath, treeMap } from '@/hooks/tree'
 import { cloneDeep } from 'lodash-es'
 import { AddRouteRecordRaw } from '../types'

@@ -90,11 +90,11 @@ async function toggleLocale(lang: LocaleType) {
 
 .picker-selected-light {
   background-color: #ecf5ff;
-  color: #409eff !important;
+  color: var(--el-color-primary) !important;
 }
 
 .picker-selected-dark {
   background-color: #393939;
-  color: #2670b9 !important;
+  color: var(--el-color-primary) !important;
 }
 </style>

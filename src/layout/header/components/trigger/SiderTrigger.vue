@@ -11,13 +11,13 @@
 import { defineComponent } from 'vue'
 import { ElIcon } from 'element-plus'
 import { Fold, Expand } from '@element-plus/icons-vue'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 
 export default defineComponent({
   name: 'SiderTrigger',
   components: { ElIcon, Fold, Expand },
   setup() {
-    const { getCollapsed, toggleCollapsed } = useMenuSetting()
+    const { getCollapsed, toggleCollapsed } = useSiderSetting()
     return {
       getCollapsed,
       toggleCollapsed

@@ -8,12 +8,6 @@ const Icons = require('unplugin-icons/webpack')
 const IconsResolver = require('unplugin-icons/resolver')
 module.exports = defineConfig({
   transpileDependencies: true,
-  pluginOptions: {
-    'style-resources-loader': {
-      preProcessor: 'less',
-      patterns: [path.resolve(__dirname, './src/style/var/index.less')]
-    }
-  },
   configureWebpack: {
     plugins: [
       Icons({
@@ -32,6 +26,22 @@ module.exports = defineConfig({
         ]
       })
     ]
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        // 若 less-loader 版本小于 6.0，请移除 lessOptions 这一级，直接配置选项。
+        lessOptions: {
+          modifyVars: {
+            // 直接覆盖变量
+            'text-color': '#111',
+            'border-color': '#eee',
+            // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
+            hack: `true; @import "${path.resolve(__dirname, './src/style/var/index.less')}";`
+          }
+        }
+      }
+    }
   },
   chainWebpack: (config) => {
     // vue-i18n配置

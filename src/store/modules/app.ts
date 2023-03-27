@@ -1,5 +1,5 @@
 import { resetRoutes } from '@/router'
-import { BeforeMiniState, HeaderSetting, MenuSetting, ProjectConfig, TabsSetting } from '#/config'
+import { BeforeMiniState, HeaderSetting, SiderSetting, ProjectConfig, TabsSetting } from '#/config'
 import { ThemeEnum } from '@/enums/configEnum'
 import { deepMerge } from '@/utils'
 import { WebCache } from '@/utils/cache'
@@ -41,8 +41,8 @@ export const useAppStore = defineStore({
     getTabsSetting(): TabsSetting {
       return this.getProjectSetting.tabsSetting
     },
-    getMenuSetting(): MenuSetting {
-      return this.getProjectSetting.menuSetting
+    getMenuSetting(): SiderSetting {
+      return this.getProjectSetting.siderSetting
     }
   },
   actions: {

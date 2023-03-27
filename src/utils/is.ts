@@ -50,3 +50,12 @@ export function isEmpty<T = unknown>(val: T): val is T {
 export function isFunction(val: unknown): val is Function {
   return typeof val === 'function'
 }
+
+/**
+ * 是否为url
+ */
+export function isUrl(path: string): boolean {
+  // eslint-disable-next-line no-useless-escape
+  const reg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-\.\/?%&=]*)?/
+  return reg.test(path)
+}

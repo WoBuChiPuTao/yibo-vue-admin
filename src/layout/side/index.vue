@@ -10,12 +10,12 @@
 import { computed, CSSProperties, defineComponent, unref } from 'vue'
 import Menu from '@/components/menu/LayoutMenu.vue'
 
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 export default defineComponent({
   name: 'AppSide',
   components: { Menu },
   setup() {
-    const { getRealWidth } = useMenuSetting()
+    const { getRealWidth } = useSiderSetting()
     const getDomStyle = computed((): CSSProperties => {
       const width = `${unref(getRealWidth)}px`
       return {
@@ -50,8 +50,8 @@ export default defineComponent({
 }
 
 .side-logo {
-  height: 64px;
+  height: @header-height;
   padding: 10px 8px 10px 8px;
-  color: white;
+  color: var(--sider-text-hover-color);
 }
 </style>

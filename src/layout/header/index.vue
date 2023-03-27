@@ -10,12 +10,12 @@
 import { computed, CSSProperties, defineComponent, unref } from 'vue'
 import LayoutHeader from './LayoutHeader.vue'
 import Tabs from '../tabs/index.vue'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 export default defineComponent({
   name: 'Header',
   components: { LayoutHeader, Tabs },
   setup() {
-    const { getRealWidth, getShowSideMenu } = useMenuSetting()
+    const { getRealWidth, getShowSideMenu } = useSiderSetting()
     const getDomStyle = computed((): CSSProperties => {
       return {
         width: unref(getShowSideMenu) ? `calc(100% - ${unref(getRealWidth)}px)` : '100%'
@@ -30,8 +30,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .header-fill {
-  height: 104px;
-  background-color: var(--header-bg-color);
+  height: calc(@header-height + @tabs-height);
   flex-shrink: 0;
 }
 
@@ -40,9 +39,5 @@ export default defineComponent({
   position: fixed;
   top: 0;
   z-index: 505;
-}
-
-.header-container {
-  background-color: var(--header-bg-color);
 }
 </style>

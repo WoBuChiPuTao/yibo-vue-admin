@@ -15,9 +15,9 @@ import { ElContainer, ElMain } from 'element-plus'
 import Header from './header/index.vue'
 import Side from './side/index.vue'
 import Content from './content/index.vue'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 
-const { getShowSideMenu } = useMenuSetting()
+const { getShowSideMenu } = useSiderSetting()
 </script>
 
 <style lang="less">

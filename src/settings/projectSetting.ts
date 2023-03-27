@@ -1,10 +1,47 @@
 import { ProjectConfig } from '#/config'
-import { PermissionModeEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnum'
-import { MenuTypeEnum, ThemeEnum } from '@/enums/configEnum'
+import {
+  PermissionModeEnum,
+  SessionTimeoutProcessingEnum,
+  SiderColorEnum,
+  HeaderColorEnum,
+  MenuTypeEnum
+} from '@/enums/configEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 // 系统初始化的样式配置
 const setting: ProjectConfig = {
+  themeColor: {
+    mainColor: {
+      key: 'default',
+      theme: '#0960bd',
+      config: [
+        { name: '--el-color-primary', value: '#0960bd' },
+        { name: '--el-color-primary-light-3', value: '#79bbff' },
+        { name: '--el-color-primary-light-5', value: '#a0cfff' },
+        { name: '--el-color-primary-light-7', value: '#c6e2ff' },
+        { name: '--el-color-primary-light-8', value: '#d9ecff' },
+        { name: '--el-color-primary-light-9', value: '#ecf5ff' }
+      ]
+    },
+    siderColor: {
+      key: 'default',
+      theme: '#001529',
+      config: [
+        { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001529' },
+        { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
+        { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' },
+        { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#a4a4a4' }
+      ]
+    },
+    headerColor: {
+      key: 'default',
+      theme: '#ffffff',
+      config: [
+        { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#ffffff' },
+        { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
+      ]
+    }
+  },
   // Permission mode
   permissionMode: PermissionModeEnum.ROUTE_MAPPING,
 
@@ -14,36 +51,28 @@ const setting: ProjectConfig = {
   // Session timeout processing
   sessionTimeoutProcessing: SessionTimeoutProcessingEnum.ROUTE_JUMP,
 
-  // Header configuration
+  // 顶栏设置
   headerSetting: {
-    // header bg color
-    bgColor: '#fff',
-    // Whether to show top
+    // 是否显示
     show: true,
-    // theme
-    theme: ThemeEnum.LIGHT,
-    // Whether to enable the lock screen function
-    useLockPage: true,
-    // Whether to show the full screen button
+    // 是否显示全屏按钮
     showFullScreen: true,
-    // Whether to show the document button
-    showDoc: true,
-    // Whether to show the notification button
+    // 是否显示通知
     showNotice: true
   },
 
-  // Menu configuration
-  menuSetting: {
-    show: true,
-    type: MenuTypeEnum.SIDE,
-    // Menu collapse
+  // 菜单设置
+  siderSetting: {
+    // 是否显示菜单
+    showMenu: true,
+    // 菜单类型
+    menuType: MenuTypeEnum.SIDE,
+    // 菜单折叠
     collapsed: false,
-    // When sider hide because of the responsive layout
+    // 隐藏侧边栏
     siderHidden: false,
-    // Menu width
-    menuWidth: 210,
-    // Menu theme
-    theme: ThemeEnum.DARK
+    // 侧边栏宽度
+    siderWidth: 210
   },
 
   // Multi-label

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { addClass, removeClass } from '@/hooks/dom'
+import { addClass, removeClass } from '@/hooks/dom/useClass'
 import { defineComponent } from 'vue'
 
 export default defineComponent({

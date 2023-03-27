@@ -6,7 +6,7 @@
       <BreadCrumb v-if="!getIsTopMenu" class="header-left-item"></BreadCrumb>
     </div>
 
-    <div v-if="getIsTopMenu" class="header-menu">
+    <div v-if="getShowMenu && getIsTopMenu" class="header-menu">
       <Menu></Menu>
     </div>
     <div class="header-action">
@@ -23,7 +23,7 @@
 import { defineComponent } from 'vue'
 import { ElHeader } from 'element-plus'
 import { SiderTrigger, AppNotice, FullScreen, UserDropdown, BreadCrumb } from './components/index'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 import AppLogo from '@/components/application/AppLogo.vue'
 import Menu from '@/components/menu/LayoutMenu.vue'
@@ -50,8 +50,8 @@ export default defineComponent({
     )
   },
   setup() {
-    const { getIsTopMenu } = useMenuSetting()
-    return { getIsTopMenu }
+    const { getShowMenu, getIsTopMenu } = useSiderSetting()
+    return { getIsTopMenu, getShowMenu }
   }
 })
 </script>

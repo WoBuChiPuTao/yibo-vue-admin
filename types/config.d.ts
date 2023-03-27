@@ -1,15 +1,35 @@
-import { PermissionModeEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnum'
-import { ThemeEnum, MenuTypeEnum } from '@/enums/configEnum'
+import {
+  PermissionModeEnum,
+  SessionTimeoutProcessingEnum,
+  SiderColorEnum,
+  HeaderColorEnum,
+  MenuTypeEnum
+} from '@/enums/configEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
-export interface MenuSetting {
-  show: boolean
-  type: MenuTypeEnum
+export interface ColorSetting<T> {
+  key: string | symbol
+  theme: string
+  config: T[]
+}
+
+export interface SiderColorSetting {
+  name: SiderColorEnum
+  value: string
+}
+
+export interface HeaderColorSetting {
+  name: HeaderColorEnum
+  value: string
+}
+
+export interface SiderSetting {
+  showMenu: boolean
+  menuType: MenuTypeEnum
   collapsed: boolean
   // 收起时是否隐藏菜单
   siderHidden: boolean
-  menuWidth: number
-  theme: ThemeEnum
+  siderWidth: number
 }
 
 export interface TabsSetting {
@@ -19,20 +39,18 @@ export interface TabsSetting {
 }
 
 export interface HeaderSetting {
-  bgColor: string
   show: boolean
-  theme: ThemeEnum
-  // Turn on full screen
   showFullScreen: boolean
-  // Whether to show the lock screen
-  useLockPage: boolean
-  // Show document button
-  showDoc: boolean
-  // Show message center button
   showNotice: boolean
 }
 
 export interface ProjectConfig {
+  // 主题颜色
+  themeColor: {
+    mainColor: ColorSetting<{ name: string; value: string }>
+    siderColor: ColorSetting<SiderColorSetting>
+    headerColor: ColorSetting<HeaderColorSetting>
+  }
   // Storage location of permission related information
   permissionCacheType: CacheTypeEnum
   // Permission mode
@@ -43,7 +61,7 @@ export interface ProjectConfig {
   // menuType: MenuTypeEnum;
   headerSetting: HeaderSetting
   // menuSetting
-  menuSetting: MenuSetting
+  siderSetting: SiderSetting
   // Multi-tab settings
   tabsSetting: TabsSetting
   // pageLayout whether to enable keep-alive

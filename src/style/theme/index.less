@@ -13,20 +13,6 @@
     0 5px 12px 4px rgba(0, 0, 0, 0.09);
   --box-hover-dark-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.64), 0 3px 6px 0 rgba(0, 0, 0, 0.48),
     0 5px 12px 4px rgba(0, 0, 0, 0.36);
-
-  // sider
-  --sider-light-bg-color: #001529;
-  --sider-dark-bg-color: #212121;
-  --sider-children-light-bg-color: #0c2135;
-  --sider-children-dark-bg-color: #2d2d2d;
-
-  // header
-  --header-dark-bg-color: #151515;
-  --header-dark-bg-hover-color: #242424;
-  --header-dark-border-color: #303030;
-  --header-light-bg-color: #ffffff;
-  --header-light-bg-hover-color: #f6f6f6;
-  --header-light-border-color: #eee;
 }
 // 根据root变量设置html的变量
 
@@ -39,12 +25,15 @@ html {
   --box-hover-shadow: var(--box-hover-light-shadow);
 
   //sider
-  --sider-bg-color: var(--sider-light-bg-color);
-  --sider-children-bg-color: var(--sider-children-light-bg-color);
+  --sider-bg-color: #001529;
+  --sider-child-bg-color: #0c2135;
+  --sider-text-color: #a4a4a4;
+  --sider-text-hover-color: #fff;
+
   //header
-  --header-bg-color: var(--header-light-bg-color);
+  --header-bg-color: #ffffff;
   --header-bg-hover-color: var(--header-light-bg-hover-color);
-  --header-border-color: var(--header-light-border-color);
+  --header-border-color: #eee;
 
   body {
     color: var(--text-light-color);
@@ -59,12 +48,14 @@ html {
     --box-shadow-color: var(--box-shadow-dark-color);
     --box-hover-shadow: var(--box-hover-dark-shadow);
     //sider
-    --sider-bg-color: var(--sider-dark-bg-color);
-    --sider-children-bg-color: var(--sider-children-dark-bg-color);
+    --sider-bg-color: #212121;
+    --sider-child-bg-color: #2d2d2d;
+    --sider-text-color: #a4a4a4;
+    --sider-text-hover-color: #fff;
     //header
-    --header-bg-color: var(--header-dark-bg-color);
-    --header-bg-hover-color: var(--header-dark-bg-hover-color);
-    --header-border-color: var(--header-dark-border-color);
+    --header-bg-color: #151515;
+    --header-bg-hover-color: #f6f6f6;
+    --header-border-color: #303030;
 
     body {
       color: var(--text-dark-color);

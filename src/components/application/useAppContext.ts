@@ -1,4 +1,4 @@
-import { createContext, useContext } from '@/hooks/useContext'
+import { createContext, useContext } from '@/hooks/core/useContext'
 import { InjectionKey, Ref } from 'vue'
 
 export interface AppProviderContext {

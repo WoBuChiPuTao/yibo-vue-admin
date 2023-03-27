@@ -30,5 +30,7 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-@import './index.less';
+.mode-center {
+  margin: 0 auto;
+}
 </style>

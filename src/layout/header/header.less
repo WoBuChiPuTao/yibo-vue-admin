@@ -1,7 +1,6 @@
-@import '/src/style/var/index.less';
-
 .header {
   display: flex;
+  background-color: var(--header-bg-color);
   height: @header-height;
   padding: 5px 0;
   margin-left: 0px;
@@ -33,6 +32,12 @@
 
   &-menu {
     min-width: 0;
+    :deep(.el-menu) {
+      background-color: transparent;
+    }
+    :deep(.el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover) {
+      background-color: transparent;
+    }
   }
 
   &-action {

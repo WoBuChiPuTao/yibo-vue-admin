@@ -1,6 +1,6 @@
 import echarts, { RenderType } from '@/utils/lib/echarts'
 import { computed, nextTick, ref, Ref, unref, watch } from 'vue'
-import { useMenuSetting } from '../setting/useMenuSetting'
+import { useSiderSetting } from '../setting/useSiderSetting'
 import { useThemeMode } from '../setting/useTheme'
 // import { useEventListener } from '../event/useEventListener'
 import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core'
@@ -12,7 +12,7 @@ export function useEchart(
   theme: 'light' | 'dark' | 'default' = 'default'
 ) {
   const { getThemeMode: getSysThemeMode } = useThemeMode()
-  const { getCollapsed } = useMenuSetting()
+  const { getCollapsed } = useSiderSetting()
 
   const getThemeMode = computed(() => (theme === 'default' ? getSysThemeMode.value : theme))
 

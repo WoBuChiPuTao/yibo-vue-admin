@@ -16,19 +16,17 @@
 
 <script setup lang="ts">
 import { MenuTypeEnum } from '@/enums/configEnum'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import { useAppStore } from '@/store/modules/app'
+import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 import { unref } from 'vue'
 
 const items = [{ type: MenuTypeEnum.SIDE }, { type: MenuTypeEnum.TOP_MENU }]
-const { getMenuType } = useMenuSetting()
-const appStore = useAppStore()
+const { getMenuType, setSiderSetting } = useSiderSetting()
 
 function handleChange(type: MenuTypeEnum) {
   if (type === unref(getMenuType)) {
     return
   }
-  appStore.setProjectSetting({ menuSetting: { type } })
+  setSiderSetting({ menuType: type })
 }
 </script>
 
