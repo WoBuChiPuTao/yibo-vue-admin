@@ -89,7 +89,7 @@ export default {
     importExcel: 'Import'
   },
   system: {
-    moduleName: 'System management',
+    moduleName: 'System',
 
     account: 'Account management',
     account_detail: 'Account detail',

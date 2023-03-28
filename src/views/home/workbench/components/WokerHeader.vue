@@ -2,7 +2,9 @@
   <div class="flex justify-between">
     <div class="flex items-center">
       <ElAvatar :src="avatar || HeaderImg" :size="72"></ElAvatar>
-      <h3 class="ml-4 text-xl font-medium">欢迎回来 , {{ username }}</h3>
+      <h3 class="ml-4 text-xl font-medium"
+        >{{ t('sys.login.loginSuccessDesc') }} , {{ username }}</h3
+      >
     </div>
     <div class="flex">
       <div class="flex flex-col items-end justify-around">
@@ -25,6 +27,8 @@
 import { useUserStore } from '@/store/modules/user'
 import { ElAvatar } from 'element-plus'
 import HeaderImg from '@/assets/img/avatar.png'
+import { useI18n } from '@/hooks/web/useI18n'
+const { t } = useI18n()
 
 const userStore = useUserStore()
 

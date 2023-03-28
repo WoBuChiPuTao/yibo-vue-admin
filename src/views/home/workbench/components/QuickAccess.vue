@@ -1,12 +1,12 @@
 <template>
   <Card class="access-container">
     <template #header>
-      <span class="text-xl">快捷访问</span>
+      <span class="text-xl">{{ props.title }}</span>
     </template>
     <template #default>
       <div class="content">
-        <template v-for="item in AccessItems" :key="item.title">
-          <div class="w-full card-grid md:w-1/3">
+        <template v-for="item in accessList" :key="item.name">
+          <div class="w-full cursor-pointer card-grid md:w-1/3" @click="handleClick(item)">
             <div class="flex flex-col items-center justify-center">
               <EIcon
                 :icon="item.icon"
@@ -26,7 +26,21 @@
 <script setup lang="ts">
 import Card from '@/components/card/Card.vue'
 import EIcon from '@/components/icons/EIcon.vue'
-import { AccessItems } from './data'
+import { PropType } from 'vue'
+import { AccessItem } from './types'
+const props = defineProps({
+  accessList: {
+    type: Array as PropType<AccessItem[]>,
+    default: () => []
+  },
+  title: String
+})
+
+const emits = defineEmits(['clickItem'])
+
+function handleClick(item: AccessItem) {
+  emits('clickItem', item)
+}
 </script>
 
 <style lang="less" scoped>
