@@ -12,10 +12,9 @@ import { CacheTypeEnum } from '@/enums/cacheEnum'
 const setting: ProjectConfig = {
   themeColor: {
     mainColor: {
-      key: 'default',
-      theme: '#0960bd',
+      theme: '#409eff',
       config: [
-        { name: '--el-color-primary', value: '#0960bd' },
+        { name: '--el-color-primary', value: '#409eff' },
         { name: '--el-color-primary-light-3', value: '#79bbff' },
         { name: '--el-color-primary-light-5', value: '#a0cfff' },
         { name: '--el-color-primary-light-7', value: '#c6e2ff' },
@@ -24,7 +23,6 @@ const setting: ProjectConfig = {
       ]
     },
     siderColor: {
-      key: 'default',
       theme: '#001529',
       config: [
         { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001529' },
@@ -34,7 +32,6 @@ const setting: ProjectConfig = {
       ]
     },
     headerColor: {
-      key: 'default',
       theme: '#ffffff',
       config: [
         { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#ffffff' },
@@ -55,40 +52,50 @@ const setting: ProjectConfig = {
   headerSetting: {
     // 是否显示
     show: true,
+    // 高度
+    headerHeight: 64,
     // 是否显示全屏按钮
     showFullScreen: true,
     // 是否显示通知
-    showNotice: true
+    showNotice: true,
+    // 是否显示面包屑
+    showBreadCrumb: true,
+    // 是否显示多国语言
+    showMultLang: true,
+    // 是否显示设置
+    showSettingButton: true
   },
 
-  // 菜单设置
+  // 侧边栏设置
   siderSetting: {
-    // 是否显示菜单
-    showMenu: true,
+    // 是否显示
+    show: true,
     // 菜单类型
     menuType: MenuTypeEnum.SIDE,
     // 菜单折叠
     collapsed: false,
     // 隐藏侧边栏
     siderHidden: false,
+    // 侧边栏折叠后的宽度
+    siderCollapsedWidth: 48,
     // 侧边栏宽度
     siderWidth: 210
   },
 
-  // Multi-label
+  // tabs
   tabsSetting: {
-    cache: false,
-    // Turn on
+    // 是否缓存数据
+    cache: true,
+    // 是否显示
     show: true,
-    // Is it possible to drag and drop sorting tabs
-    canDrag: true
+    // 是否可以拖动
+    canDrag: true,
+    // tabs高度
+    tabsHeight: 40
   },
 
   // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time
   openKeepAlive: true,
-
-  // Whether to show breadcrumbs
-  showBreadCrumb: true,
 
   // Use error-handler-plugin
   useErrorHandle: false,

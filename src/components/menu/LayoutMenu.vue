@@ -10,7 +10,7 @@ export default defineComponent({
   components: { SideMenu, ElScrollbar, TopMenu },
   setup() {
     const { menuRef } = useMenu()
-    const { getCollapsed, getShowSideMenu, getShowMenu } = useSiderSetting()
+    const { getCollapsed, getShowSideMenu, getShowSider } = useSiderSetting()
 
     const getProps = computed(() => {
       const menus = unref(menuRef)
@@ -21,7 +21,7 @@ export default defineComponent({
     })
 
     function renderMenu() {
-      const showMenu = unref(getShowMenu)
+      const showMenu = unref(getShowSider)
       if (!showMenu) {
         return <></>
       }

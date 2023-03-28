@@ -41,7 +41,7 @@ export const useAppStore = defineStore({
     getTabsSetting(): TabsSetting {
       return this.getProjectSetting.tabsSetting
     },
-    getMenuSetting(): SiderSetting {
+    getSiderSetting(): SiderSetting {
       return this.getProjectSetting.siderSetting
     }
   },

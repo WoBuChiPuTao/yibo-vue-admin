@@ -43,9 +43,7 @@ function promoteRouteLevel<T extends RouteRecordRaw>(route: T) {
   router = null
 
   // omit lodash的函数 对传入的item对象的children进行删除
-  route.children = route.children?.map(
-    (item) => omit(item, 'children') as RouteRecordNormalized
-  )
+  route.children = route.children?.map((item) => omit(item, 'children') as RouteRecordNormalized)
 }
 
 // 将所有子路由添加到二级路由
@@ -56,7 +54,9 @@ function addToChildren<T extends RouteRecordRaw>(
 ) {
   for (let index = 0; index < children.length; index++) {
     const child = children[index]
+
     const route = routes.find((item) => item.name === child.name)
+    // 判断路由是否存在
     if (!route) {
       continue
     }
@@ -90,9 +90,7 @@ export function flatMultiRoutes<T extends RouteRecordRaw>(routes: T[]) {
 /**
  * @description: 解构路由的记录
  */
-export function getRawRoute(
-  route: RouteLocationNormalized
-): RouteLocationNormalized {
+export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
   if (!route) return route
   const { matched, ...opt } = route
   return {

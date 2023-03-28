@@ -15,7 +15,7 @@ export function useSiderSetting() {
 
   function setSiderColor(color: ColorSetting<SiderColorSetting>) {
     const oldSiderColor = unref(getSiderColor)
-    if (oldSiderColor && color && oldSiderColor.key === color.key) {
+    if (color && oldSiderColor.theme === color.theme) {
       return
     }
     setSiderColorStorage(color)
@@ -26,7 +26,7 @@ export function useSiderSetting() {
 
   function setHeaderColor(color: ColorSetting<HeaderColorSetting>) {
     const oldHeaderColor = unref(getHeaderColor)
-    if (oldHeaderColor && color && oldHeaderColor.key === color.key) {
+    if (color && oldHeaderColor.theme === color.theme) {
       return
     }
     setHeaderColorStorage(color)
@@ -37,7 +37,7 @@ export function useSiderSetting() {
 
   function setMainColor(color: ColorSetting<{ name: string; value: string }>) {
     const oldMainColor = unref(getMainColor)
-    if (oldMainColor && color && oldMainColor.key === color.key) {
+    if (color && oldMainColor.theme === color.theme) {
       return
     }
     setMainColorStorage(color)

@@ -6,6 +6,7 @@ import { unref, toRaw } from 'vue'
 import { PageEnum } from '@/enums/pageEnum'
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic'
 import { WebCache } from '@/utils/cache'
+import setting from '@/settings/projectSetting'
 
 interface TabState {
   cacheList: Set<string>
@@ -26,12 +27,14 @@ function handleGoPage(router: Router) {
   const go = useGo(router)
   go(unref(router.currentRoute).path, true)
 }
+// 从初始设置拿到是否缓存
+const cacheTabs = setting.tabsSetting.cache
 
 export const useTabStore = defineStore({
   id: 'app-tabs',
   state: (): TabState => ({
     cacheList: new Set(),
-    tabList: WebCache.getLocal('Tabs') || [],
+    tabList: cacheTabs ? WebCache.getLocal('TABS') || [] : [],
     lastDragIndex: 0
   }),
   getters: {
@@ -136,7 +139,7 @@ export const useTabStore = defineStore({
         this.tabList.push(route)
       }
       this.updateCacheTab()
-      WebCache.setLocal('Tabs', this.tabList)
+      cacheTabs && WebCache.setLocal('TABS', this.tabList)
     },
 
     async removeTab(tab: RouteLocationNormalized, router: Router) {

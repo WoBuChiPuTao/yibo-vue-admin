@@ -6,11 +6,12 @@ import { computed, unref } from 'vue'
 export function useSiderSetting() {
   const appStore = useAppStore()
 
-  const getShowMenu = computed(() => appStore.getMenuSetting.showMenu)
-  const getMenuType = computed(() => appStore.getMenuSetting.menuType || MenuTypeEnum.SIDE)
-  const getCollapsed = computed(() => appStore.getMenuSetting.collapsed)
-  const getSiderHidden = computed(() => appStore.getMenuSetting.siderHidden)
-  const getSiderWidth = computed(() => appStore.getMenuSetting.siderWidth)
+  const getShowSider = computed(() => appStore.getSiderSetting.show)
+  const getMenuType = computed(() => appStore.getSiderSetting.menuType || MenuTypeEnum.SIDE)
+  const getCollapsed = computed(() => appStore.getSiderSetting.collapsed)
+  const getSiderHidden = computed(() => appStore.getSiderSetting.siderHidden)
+  const getSiderWidth = computed(() => appStore.getSiderSetting.siderWidth)
+  const getCollapsedWidth = computed(() => appStore.getSiderSetting.siderCollapsedWidth)
 
   // 菜单类型
   const getIsSideMenu = computed(() => unref(getMenuType) === MenuTypeEnum.SIDE)
@@ -18,12 +19,12 @@ export function useSiderSetting() {
 
   // 是否展现sideMenu
   const getShowSideMenu = computed(() => {
-    return unref(getShowMenu) && !unref(getSiderHidden) && unref(getIsSideMenu)
+    return unref(getShowSider) && !unref(getSiderHidden) && unref(getIsSideMenu)
   })
 
   // colllpase后的宽度
   const getSiderMiniWidth = computed(() => {
-    return unref(getSiderHidden) ? 0 : 48
+    return unref(getSiderHidden) ? 0 : unref(getCollapsedWidth)
   })
   // sideMenu的宽度
   const getRealWidth = computed(() => {
@@ -40,7 +41,7 @@ export function useSiderSetting() {
 
   return {
     getMenuType,
-    getShowMenu,
+    getShowSider,
     getCollapsed,
     getSiderWidth,
     getSiderMiniWidth,

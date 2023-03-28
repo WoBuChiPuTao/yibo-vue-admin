@@ -1,8 +1,7 @@
 .header {
   display: flex;
   background-color: var(--header-bg-color);
-  height: @header-height;
-  padding: 5px 0;
+  padding: 0;
   margin-left: 0px;
   align-items: center;
   justify-content: space-between;
@@ -13,16 +12,13 @@
   &-left {
     display: flex;
     height: 100%;
-    align-items: center;
 
     &-item {
       display: flex;
       align-items: center;
       cursor: pointer;
       padding: 0 1rem;
-      height: @header-height;
       font-size: 1.2rem;
-      line-height: @header-height;
 
       &:hover {
         background-color: var(--header-bg-hover-color);
@@ -42,8 +38,8 @@
 
   &-action {
     display: flex;
+    height: 100%;
     min-width: 180px;
-    align-items: center;
     justify-content: space-between;
 
     &-item {
@@ -51,18 +47,18 @@
       align-items: center;
       cursor: pointer;
       padding: 0 1rem;
-      height: @header-height;
       font-size: 1.2rem;
+      height: 100%;
 
-      &.notice-i :deep(i) {
-        height: @header-height;
-      }
+      // &.notice-i :deep(i) {
+      //   height: @header-height;
+      // }
 
-      &.locale-picker-span {
-        :deep(.picker-content) {
-          height: @header-height;
-        }
-      }
+      // &.locale-picker-span {
+      //   :deep(.picker-content) {
+      //     height: @header-height;
+      //   }
+      // }
 
       &:hover {
         background-color: var(--header-bg-hover-color);

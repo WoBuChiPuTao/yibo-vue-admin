@@ -2,11 +2,9 @@
   <div>
     <ElPopover trigger="click">
       <template #reference>
-        <el-icon>
-          <ElBadge :is-dot="true">
-            <Bell />
-          </ElBadge>
-        </el-icon>
+        <div class="container">
+          <ElBadge class="badge" :is-dot="true"> <Bell /></ElBadge>
+        </div>
       </template>
       <template #default>
         {{ 'aaaaaaaaaaaaaaa' }}
@@ -17,14 +15,30 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElIcon, ElBadge, ElPopover } from 'element-plus'
+import { ElBadge, ElPopover } from 'element-plus'
 import { Bell } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'AppNotice',
-  components: { ElIcon, Bell, ElBadge, ElPopover },
+  components: { Bell, ElBadge, ElPopover },
   setup() {
     return {}
   }
 })
 </script>
+
+<style lang="less" scoped>
+.container {
+  display: inline-block;
+  height: 100%;
+  width: 1em;
+  vertical-align: middle;
+
+  .badge {
+    width: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    vertical-align: top;
+  }
+}
+</style>

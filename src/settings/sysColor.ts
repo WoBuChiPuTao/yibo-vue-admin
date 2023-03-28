@@ -4,7 +4,6 @@ import { ColorSetting, SiderColorSetting, HeaderColorSetting } from '#/config'
 // 侧边栏颜色
 export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
   {
-    key: 'default',
     theme: '#001529',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001529' },
@@ -14,7 +13,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '1',
     theme: '#ec0000',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#ec0000' },
@@ -24,7 +22,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '2',
     theme: '#212121',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#212121' },
@@ -34,7 +31,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '3',
     theme: '#273352',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#273352' },
@@ -44,7 +40,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '4',
     theme: '#ffffff',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#ffffff' },
@@ -54,7 +49,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '5',
     theme: '#191b24',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#191b24' },
@@ -63,7 +57,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '6',
     theme: '#304156',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#304156' },
@@ -72,7 +65,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
     ]
   },
   {
-    key: '7',
     theme: '#001628',
     config: [
       { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001628' },
@@ -84,7 +76,6 @@ export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
 
 export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
   {
-    key: 'default',
     theme: '#ffffff',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#ffffff' },
@@ -92,7 +83,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '1',
     theme: '#151515',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#151515' },
@@ -100,7 +90,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '2',
     theme: '#009688',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#009688' },
@@ -108,7 +97,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '3',
     theme: '#5172DC',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#5172DC' },
@@ -116,7 +104,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '4',
     theme: '#018ffb',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#018ffb' },
@@ -124,7 +111,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '5',
     theme: '#409eff',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#409eff' },
@@ -132,7 +118,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '6',
     theme: '#e74c3c',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#e74c3c' },
@@ -140,7 +125,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
     ]
   },
   {
-    key: '7',
     theme: '#24292e',
     config: [
       { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#24292e' },
@@ -153,7 +137,6 @@ export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
 // 通过element的css变量修改全局主题
 export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
   {
-    key: 'default',
     theme: '#409eff',
     config: [
       { name: '--el-color-primary', value: '#409eff' },
@@ -165,7 +148,6 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
     ]
   },
   {
-    key: '1',
     theme: '#0084f4',
     config: [
       { name: '--el-color-primary', value: '#0084f4' },
@@ -177,31 +159,28 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
     ]
   },
   {
-    key: '2',
-    theme: '#009688',
+    theme: '#67c23a',
     config: [
-      { name: '--el-color-primary', value: '#009688' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
+      { name: '--el-color-primary', value: '#67c23a' },
+      { name: '--el-color-primary-light-3', value: '#95d475' },
+      { name: '--el-color-primary-light-5', value: '#b3e19d' },
+      { name: '--el-color-primary-light-7', value: '#d1edc4' },
+      { name: '--el-color-primary-light-8', value: '#e1f3d8' },
+      { name: '--el-color-primary-light-9', value: '#f0f9eb' }
     ]
   },
   {
-    key: '3',
-    theme: '#536dfe',
+    theme: '#e6a23c',
     config: [
-      { name: '--el-color-primary', value: '#536dfe' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
+      { name: '--el-color-primary', value: '#e6a23c' },
+      { name: '--el-color-primary-light-3', value: '#eebe77' },
+      { name: '--el-color-primary-light-5', value: '#f3d19e' },
+      { name: '--el-color-primary-light-7', value: '#f8e3c5' },
+      { name: '--el-color-primary-light-8', value: '#faecd8' },
+      { name: '--el-color-primary-light-9', value: '#fdf6ec' }
     ]
   },
   {
-    key: '4',
     theme: '#ff5c93',
     config: [
       { name: '--el-color-primary', value: '#ff5c93' },
@@ -213,7 +192,6 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
     ]
   },
   {
-    key: '5',
     theme: '#ee4f12',
     config: [
       { name: '--el-color-primary', value: '#ee4f12' },
@@ -225,19 +203,17 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
     ]
   },
   {
-    key: '6',
-    theme: '#0096c7',
+    theme: '#f56c6c',
     config: [
-      { name: '--el-color-primary', value: '#0096c7' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
+      { name: '--el-color-primary', value: '#f56c6c' },
+      { name: '--el-color-primary-light-3', value: '#f89898' },
+      { name: '--el-color-primary-light-5', value: '#fab6b6' },
+      { name: '--el-color-primary-light-7', value: '#fcd3d3' },
+      { name: '--el-color-primary-light-8', value: '#fde2e2' },
+      { name: '--el-color-primary-light-9', value: '#fef0f0' }
     ]
   },
   {
-    key: '7',
     theme: '#9c27b0',
     config: [
       { name: '--el-color-primary', value: '#9c27b0' },

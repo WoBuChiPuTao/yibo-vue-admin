@@ -1,6 +1,6 @@
 <template>
   <div class="color-list">
-    <template v-for="item in props.colorList" :key="item.key">
+    <template v-for="item in props.colorList" :key="item.theme">
       <div
         :class="['color-list-item', { 'color-list-item-active': item.theme === activedTheme }]"
         :style="{ backgroundColor: item.theme }"

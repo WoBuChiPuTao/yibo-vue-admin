@@ -1,9 +1,9 @@
 <template>
   <ElDropdown v-if="getShowPicker" trigger="click" @command="toggleLocale" tabindex="0">
-    <span>
+    <div class="container">
       <EIcon class="picker-content" icon="ion:language" :post-icon="languageIcon"></EIcon>
       <span v-if="showText" class="picker-content-title">{{ getLocaleText }}</span>
-    </span>
+    </div>
     <template #dropdown>
       <ElDropdownMenu>
         <template v-for="item in localeList" :key="item.event">
@@ -75,26 +75,31 @@ async function toggleLocale(lang: LocaleType) {
 }
 </script>
 
-<style lang="less">
-.picker-content {
+<style lang="less" scoped>
+.container {
   cursor: pointer;
   display: flex;
   align-items: center;
-  // font-size: 1rem;
-  font-style: normal;
+  height: 100%;
+  // width: 100%;
+  // position: relative;
 
-  &-title {
-    font-size: 16px;
+  .picker-content {
+    font-style: normal;
+
+    &-title {
+      font-size: 1rem;
+    }
   }
 }
 
-.picker-selected-light {
-  background-color: #ecf5ff;
+:deep(.picker-selected-light) {
+  background-color: var(--el-color-primary-light-9);
   color: var(--el-color-primary) !important;
 }
 
-.picker-selected-dark {
-  background-color: #393939;
+:deep(.picker-selected-dark) {
+  background-color: var(--el-color-primary-light-9);
   color: var(--el-color-primary) !important;
 }
 </style>

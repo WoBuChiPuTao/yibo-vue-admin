@@ -1,5 +1,5 @@
 <template>
-  <div class="multiple-tabs">
+  <div class="multiple-tabs" :style="getDomHeight">
     <ElTabs :model-value="activeKey" type="card" @tab-click="handleClick" @edit="handleEdit">
       <template v-for="tab in getTabsList" :key="tab.query ? tab.fullPath : tab.path">
         <ElTabPane
@@ -24,14 +24,16 @@ import { ElTabs, ElTabPane, TabsPaneContext } from 'element-plus'
 
 import { useTabStore } from '@/store/modules/tabs'
 import { useUserStore } from '@/store/modules/user'
-import { computed, ref, unref } from 'vue'
+import { computed, CSSProperties, onMounted, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGo } from '@/hooks/web/usePage'
 import { listenerRouteChange } from '@/hooks/mitt/routeChange'
 import TabContent from './components/TabContent.vue'
 import { useTabsDarg } from './useTabsDrag'
+import { useTabsSetting } from '@/hooks/setting/useTabsSetting'
 
 const tabStore = useTabStore()
+const { getCanDrag, getTabsHeight } = useTabsSetting()
 const userStore = useUserStore()
 const router = useRouter()
 const go = useGo()
@@ -42,6 +44,19 @@ const getTabsList = computed(() => {
 })
 const getActive = computed(() => {
   return activeKey.value
+})
+const getDomHeight = computed((): CSSProperties => {
+  return {
+    height: `${unref(getTabsHeight)}px`
+  }
+})
+
+// 修改element的el-tabs元素的高度
+onMounted(() => {
+  const elTabs = document.querySelector<HTMLDivElement>('.el-tabs')
+  if (elTabs) {
+    elTabs.style.setProperty('--el-tabs-header-height', `${unref(getTabsHeight)}px`)
+  }
 })
 
 function handleClick(tabContext: TabsPaneContext) {
@@ -55,7 +70,7 @@ function handleEdit(tabname: any) {
   tabStore.removeTabByKey(tabname, router)
 }
 
-useTabsDarg()
+unref(getCanDrag) && useTabsDarg()
 
 listenerRouteChange((route) => {
   const { name } = route

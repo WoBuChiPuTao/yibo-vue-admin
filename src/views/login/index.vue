@@ -4,7 +4,7 @@
       <AppThemeToggle class="theme-toggle" mode="icon"></AppThemeToggle>
       <AppLocalePicker class="locale-toggle" :reload="false"></AppLocalePicker>
     </div>
-    <div class="container">
+    <div class="login-container">
       <LoginForm></LoginForm>
       <RegisterForm></RegisterForm>
       <ForgetPasswordForm></ForgetPasswordForm>
@@ -32,6 +32,7 @@ import ForgetPasswordForm from './ForgetPasswordForm.vue'
 
 .app-setting-fixed {
   position: fixed;
+  overflow: hidden;
   top: 1.5rem;
   right: 1.5rem;
   display: flex;
@@ -47,7 +48,7 @@ import ForgetPasswordForm from './ForgetPasswordForm.vue'
   }
 }
 
-.container {
+.login-container {
   height: auto;
   width: 80%;
   position: relative;
@@ -75,27 +76,27 @@ import ForgetPasswordForm from './ForgetPasswordForm.vue'
 }
 
 @media screen and (min-width: 576px) {
-  .container {
+  .login-container {
     width: 50%;
     padding: 1.5rem;
   }
 }
 
 @media screen and (min-width: 990px) {
-  .container {
+  .login-container {
     width: 40%;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .container {
+  .login-container {
     width: 30%;
     padding: 2rem;
   }
 }
 
 @media screen and (min-width: 1600px) {
-  .container {
+  .login-container {
     width: 20%;
   }
 }

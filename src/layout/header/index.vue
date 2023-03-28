@@ -1,8 +1,8 @@
 <template>
-  <div class="header-fill"></div>
-  <div class="header-fixed header-container" :style="getDomStyle">
+  <div v-if="getShowHeader" class="header-fill" :style="getDomHeight"></div>
+  <div v-if="getShowHeader" class="header-fixed" :style="{ ...getDomWidth, ...getDomHeight }">
     <LayoutHeader></LayoutHeader>
-    <Tabs></Tabs>
+    <Tabs v-if="getShowTabs"></Tabs>
   </div>
 </template>
 
@@ -11,18 +11,31 @@ import { computed, CSSProperties, defineComponent, unref } from 'vue'
 import LayoutHeader from './LayoutHeader.vue'
 import Tabs from '../tabs/index.vue'
 import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
+import { useTabsSetting } from '@/hooks/setting/useTabsSetting'
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 export default defineComponent({
   name: 'Header',
   components: { LayoutHeader, Tabs },
   setup() {
     const { getRealWidth, getShowSideMenu } = useSiderSetting()
-    const getDomStyle = computed((): CSSProperties => {
+    const { getShowHeader, getHeaderHeight } = useHeaderSetting()
+    const { getShowTabs, getTabsHeight } = useTabsSetting()
+    const getDomWidth = computed((): CSSProperties => {
       return {
         width: unref(getShowSideMenu) ? `calc(100% - ${unref(getRealWidth)}px)` : '100%'
       }
     })
+
+    const getDomHeight = computed((): CSSProperties => {
+      return {
+        height: `calc(${unref(getHeaderHeight)}px + ${unref(getTabsHeight)}px)`
+      }
+    })
     return {
-      getDomStyle
+      getShowHeader,
+      getShowTabs,
+      getDomWidth,
+      getDomHeight
     }
   }
 })

@@ -8,7 +8,6 @@ import {
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 export interface ColorSetting<T> {
-  key: string | symbol
   theme: string
   config: T[]
 }
@@ -24,11 +23,12 @@ export interface HeaderColorSetting {
 }
 
 export interface SiderSetting {
-  showMenu: boolean
+  show: boolean
   menuType: MenuTypeEnum
   collapsed: boolean
   // 收起时是否隐藏菜单
   siderHidden: boolean
+  siderCollapsedWidth: number
   siderWidth: number
 }
 
@@ -36,12 +36,17 @@ export interface TabsSetting {
   cache: boolean
   show: boolean
   canDrag: boolean
+  tabsHeight: number
 }
 
 export interface HeaderSetting {
   show: boolean
+  headerHeight: number
   showFullScreen: boolean
   showNotice: boolean
+  showBreadCrumb: boolean
+  showMultLang: boolean
+  showSettingButton: boolean
 }
 
 export interface ProjectConfig {
@@ -58,16 +63,14 @@ export interface ProjectConfig {
   // Session timeout processing
   sessionTimeoutProcessing: SessionTimeoutProcessingEnum
 
-  // menuType: MenuTypeEnum;
+  // 顶栏设置
   headerSetting: HeaderSetting
-  // menuSetting
+  // 侧边栏设置
   siderSetting: SiderSetting
-  // Multi-tab settings
+  // tabs
   tabsSetting: TabsSetting
   // pageLayout whether to enable keep-alive
   openKeepAlive: boolean
-  // Show breadcrumbs
-  showBreadCrumb: boolean
   // Use error-handler-plugin
   useErrorHandle: boolean
   // Whether to open back to top
