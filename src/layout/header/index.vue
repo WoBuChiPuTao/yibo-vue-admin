@@ -1,7 +1,7 @@
 <template>
-  <div v-if="getShowHeader" class="header-fill" :style="getDomHeight"></div>
-  <div v-if="getShowHeader" class="header-fixed" :style="{ ...getDomWidth, ...getDomHeight }">
-    <LayoutHeader></LayoutHeader>
+  <div class="header-fill" :style="getDomHeight"></div>
+  <div class="header-fixed" :style="{ ...getDomWidth, ...getDomHeight }">
+    <LayoutHeader v-if="getShowHeader"></LayoutHeader>
     <Tabs v-if="getShowTabs"></Tabs>
   </div>
 </template>
@@ -27,8 +27,10 @@ export default defineComponent({
     })
 
     const getDomHeight = computed((): CSSProperties => {
+      const headerHeight = unref(getShowHeader) ? unref(getHeaderHeight) : 0
+      const tabsHeight = unref(getShowTabs) ? unref(getTabsHeight) : 0
       return {
-        height: `calc(${unref(getHeaderHeight)}px + ${unref(getTabsHeight)}px)`
+        height: `calc(${headerHeight}px + ${tabsHeight}px)`
       }
     })
     return {

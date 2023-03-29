@@ -1,3 +1,4 @@
+import { HeaderSetting } from '#/config'
 import { useAppStore } from '@/store/modules/app'
 import { computed } from 'vue'
 
@@ -12,6 +13,10 @@ export function useHeaderSetting() {
   const getShowNotice = computed(() => appStore.getHeaderSetting.showNotice)
   const getShowSetting = computed(() => appStore.getHeaderSetting.showSettingButton)
 
+  function setHeaderSetting(headerSetting: Partial<HeaderSetting>): void {
+    appStore.setProjectSetting({ headerSetting })
+  }
+
   return {
     getShowHeader,
     getHeaderHeight,
@@ -19,6 +24,7 @@ export function useHeaderSetting() {
     getShowFullScreen,
     getShowMultLang,
     getShowNotice,
-    getShowSetting
+    getShowSetting,
+    setHeaderSetting
   }
 }

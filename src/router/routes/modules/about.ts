@@ -10,7 +10,7 @@ const about: AddRouteRecordRaw = {
   redirect: '/about/page',
   meta: {
     title: t('routes.home.about'),
-    orderNo: 100000,
+    orderNo: 1000000,
     icon: {
       name: 'ion:ellipsis-vertical-circle',
       entity: ellipsisVerticalCircle

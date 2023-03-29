@@ -92,5 +92,8 @@ export default {
     dept: '部门管理',
     menu: '菜单管理',
     role: '角色管理'
+  },
+  report: {
+    moduleName: '报表'
   }
 }

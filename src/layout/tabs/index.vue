@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import { ElTabs, ElTabPane, TabsPaneContext } from 'element-plus'
-
 import { useTabStore } from '@/store/modules/tabs'
 import { useUserStore } from '@/store/modules/user'
 import { computed, CSSProperties, onMounted, ref, unref } from 'vue'

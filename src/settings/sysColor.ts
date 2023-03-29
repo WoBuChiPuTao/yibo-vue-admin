@@ -192,17 +192,6 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
     ]
   },
   {
-    theme: '#ee4f12',
-    config: [
-      { name: '--el-color-primary', value: '#ee4f12' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
-    ]
-  },
-  {
     theme: '#f56c6c',
     config: [
       { name: '--el-color-primary', value: '#f56c6c' },
@@ -222,6 +211,17 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-7', value: '' },
       { name: '--el-color-primary-light-8', value: '' },
       { name: '--el-color-primary-light-9', value: '' }
+    ]
+  },
+  {
+    theme: '#909399',
+    config: [
+      { name: '--el-color-primary', value: '#909399' },
+      { name: '--el-color-primary-light-3', value: '#b1b3b8' },
+      { name: '--el-color-primary-light-5', value: '#c8c9cc' },
+      { name: '--el-color-primary-light-7', value: '#dedfe0' },
+      { name: '--el-color-primary-light-8', value: '#e9e9eb' },
+      { name: '--el-color-primary-light-9', value: '#f4f4f5' }
     ]
   }
 ]

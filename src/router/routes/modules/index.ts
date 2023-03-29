@@ -5,4 +5,13 @@ import System from './system'
 import features from './features'
 import Comp from './component'
 import Charts from './charts'
-export const asyncRoutes: Array<AddRouteRecordRaw> = [Home, About, System, features, Comp, Charts]
+import Report from './report'
+export const asyncRoutes: Array<AddRouteRecordRaw> = [
+  Home,
+  About,
+  System,
+  features,
+  Comp,
+  Charts,
+  Report
+]

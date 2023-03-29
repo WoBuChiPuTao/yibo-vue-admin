@@ -99,5 +99,8 @@ export default {
 
     menu: 'Menu management',
     role: 'Role management'
+  },
+  report: {
+    moduleName: 'Report'
   }
 }
