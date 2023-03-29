@@ -4,7 +4,7 @@ export interface LimitInfo {
   limit: number
   together: string
   threshold: number
-  useRate: number
+  useRate: string
   lateExportTime: string
   maxExceed: number
   averageExceed: number

@@ -19,9 +19,10 @@ import { limitData } from './data'
 import { LimitInfo } from './type'
 
 const tableRowClassName = ({ row }: { row: LimitInfo; rowIndex: number }) => {
-  if (row.useRate >= 1) {
+  const rate = Number(row.useRate.replace(/%/, ''))
+  if (rate >= 100) {
     return 'error-row'
-  } else if (row.limit * row.useRate >= row.threshold) {
+  } else if ((row.limit * rate) / 100 >= row.threshold) {
     return 'warning-row'
   }
   return ''

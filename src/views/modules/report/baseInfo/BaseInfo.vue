@@ -1,19 +1,19 @@
 <template>
   <ElTable :data="tableData">
     <ElTableColumn prop="Index" label="Index"></ElTableColumn>
-    <ElTableColumn prop="tradeCode" label="交易ID"></ElTableColumn>
-    <ElTableColumn prop="BondCode" label="产品代码"></ElTableColumn>
-    <ElTableColumn prop="BondName" label="产品名称"></ElTableColumn>
+    <ElTableColumn prop="tradeCode" label="交易ID" min-width="90"></ElTableColumn>
+    <ElTableColumn prop="BondCode" label="产品代码" min-width="120"></ElTableColumn>
+    <ElTableColumn prop="BondName" label="产品名称" min-width="140"></ElTableColumn>
     <ElTableColumn prop="isBuy" label="买卖"></ElTableColumn>
     <ElTableColumn prop="principal" label="本金"></ElTableColumn>
     <ElTableColumn prop="tradePrice" label="交易价格"></ElTableColumn>
-    <ElTableColumn prop="accrualConventions" label="计息惯例" min-width="120"></ElTableColumn>
+    <ElTableColumn prop="accrualConventions" label="计息惯例" min-width="140"></ElTableColumn>
     <ElTableColumn prop="tradeDate" label="交易时间" min-width="100"></ElTableColumn>
     <ElTableColumn prop="tradeDesk" label="交易台"></ElTableColumn>
     <ElTableColumn prop="trader" label="交易员"></ElTableColumn>
     <ElTableColumn prop="exteriorId" label="外部ID"></ElTableColumn>
     <ElTableColumn prop="tradeStatus" label="状态"></ElTableColumn>
-    <ElTableColumn fixed="right" label="Operations" min-width="90">
+    <ElTableColumn fixed="right" label="Operations" min-width="120">
       <template #default>
         <el-button link type="primary" size="small" @click.prevent="dialogVisible = true">
           查看
@@ -30,7 +30,8 @@
       background
       layout="total, sizes, prev, pager, next, jumper"
       :page-sizes="[5, 10, 20, 50]"
-    ></ElPagination>
+    >
+    </ElPagination>
   </div>
   <ElDialog v-model="dialogVisible">
     <ElDescriptions title="债券信息" :border="true" :column="3">

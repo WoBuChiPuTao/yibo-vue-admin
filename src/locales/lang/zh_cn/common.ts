@@ -58,5 +58,8 @@ export default {
     on: '开',
     off: '关',
     minute: '分钟'
+  },
+  button: {
+    look: '查看'
   }
 }

@@ -101,6 +101,20 @@ export default {
     role: 'Role management'
   },
   report: {
-    moduleName: 'Report'
+    moduleName: 'Report',
+    information: {
+      tradeId: 'Trade ID',
+      productCode: 'Product Code',
+      productName: 'product Name',
+      buyOrSell: 'Buy or Sell',
+      principal: 'Principal',
+      tradePrice: 'Trade Price',
+      InterestAccrualConvention: 'Interest Accrual Convention',
+      tradeDate: 'Trade Date',
+      tradeDesk: 'Trade Desk',
+      trader: 'Trader',
+      externalID: 'External ID',
+      tradeStatus: 'Status'
+    }
   }
 }

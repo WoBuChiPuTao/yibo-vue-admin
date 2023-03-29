@@ -56,5 +56,8 @@ export default {
     on: 'On',
     off: 'Off',
     minute: 'Minute'
+  },
+  button: {
+    look: 'Look'
   }
 }
