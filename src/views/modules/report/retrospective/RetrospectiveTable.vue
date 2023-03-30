@@ -1,4 +1,8 @@
 <template>
+  <div class="flex items-center justify-between h-12 pt-4">
+    <span class="mr-4 text-xl font-bold">{{ '回溯曲线' }} </span>
+  </div>
+  <ElDivider></ElDivider>
   <ElTable :data="retrospectiveData" :style="{ width: '100%' }">
     <ElTableColumn prop="date" label="日期"></ElTableColumn>
     <ElTableColumn prop="income" label="损益"></ElTableColumn>
@@ -10,6 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { ElTable, ElTableColumn } from 'element-plus'
+import { ElTable, ElTableColumn, ElDivider } from 'element-plus'
 import { retrospectiveData } from './data'
 </script>

@@ -15,3 +15,5 @@ export const varValue = [
   { label: '压力VaR', content: (Math.random() * 2000 - 1000).toFixed(4) },
   { label: '压力ES', content: (Math.random() * 2000 - 1000).toFixed(4) }
 ]
+
+export const varOption = ['现值', 'VaR', 'ES', '压力VaR', '压力ES']

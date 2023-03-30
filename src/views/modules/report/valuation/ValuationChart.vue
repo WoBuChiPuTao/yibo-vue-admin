@@ -1,6 +1,13 @@
 <template>
   <div class="flex items-center justify-between pt-4">
-    <span class="text-xl font-bold">{{ '变化趋势' }}</span>
+    <div class="flex items-center">
+      <span class="mr-4 text-xl font-bold">{{ '变化趋势' }} </span>
+      <ElSelect v-model="selected" @change="selectChange">
+        <template v-for="item in valuationOptions" :key="item">
+          <ElOption :value="item.label" :label="item.label" />
+        </template>
+      </ElSelect>
+    </div>
     <el-radio-group v-model="radio" @change="handleRadioChange">
       <el-radio-button label="Month"></el-radio-button>
       <el-radio-button label="Year"></el-radio-button>
@@ -12,15 +19,17 @@
 </template>
 
 <script setup lang="ts">
-import { ElRadioGroup, ElRadioButton, ElDivider } from 'element-plus'
+import { ElRadioGroup, ElRadioButton, ElDivider, ElSelect, ElOption } from 'element-plus'
 import { useEchart } from '@/hooks/web/useEcharts'
 import { computed, ComputedRef, onMounted, ref, unref } from 'vue'
 import { EChartsOption } from 'echarts'
 import echarts from '@/utils/lib/echarts'
+import { valuationOptions } from './data'
 
 const chart = ref<HTMLDivElement>()
 
 const radio = ref('Month')
+const selected = ref(valuationOptions[0].label)
 
 const chartData: ComputedRef<EChartsOption> = computed(() => {
   const radioValue = unref(radio)
@@ -228,6 +237,10 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
 const { setOptions } = useEchart(chart)
 
 function handleRadioChange() {
+  setOptions(chartData.value)
+}
+
+function selectChange() {
   setOptions(chartData.value)
 }
 

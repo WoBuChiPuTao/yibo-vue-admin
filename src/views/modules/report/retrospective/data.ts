@@ -11,3 +11,5 @@ export const retrospectiveData: RetrospectiveTableInfo[] = [...new Array(10)].ma
     stressEs: (Math.random() * 2000 - 1000).toFixed(4)
   }
 })
+
+export const retrospectiveOption = ['损益', 'VaR', 'ES', '压力VaR', '压力ES']

@@ -33,7 +33,7 @@ export const valuationValue = [
   { label: '总损益', content: (Math.random() * 20000 - 10000).toFixed(4) }
 ]
 
-export const options = [
+export const valuationOptions = [
   {
     label: '市值',
     value: 'npv'

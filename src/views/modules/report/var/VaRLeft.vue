@@ -1,9 +1,9 @@
 <template>
   <div class="flex items-center justify-between pt-4">
     <div class="flex items-center">
-      <span class="mr-4 text-xl font-bold">{{ '回溯曲线' }} </span>
+      <span class="mr-4 text-xl font-bold">{{ '变化趋势' }} </span>
       <ElSelect v-model="selected" @change="selectChange">
-        <template v-for="item in retrospectiveOption" :key="item">
+        <template v-for="item in varOption" :key="item">
           <ElOption :value="item" :label="item" />
         </template>
       </ElSelect>
@@ -15,7 +15,7 @@
     </el-radio-group>
   </div>
   <ElDivider></ElDivider>
-  <div ref="chart" class="h-4/6"></div>
+  <div ref="chart" class="h-5/6"></div>
 </template>
 
 <script setup lang="ts">
@@ -24,11 +24,11 @@ import { useEchart } from '@/hooks/web/useEcharts'
 import { computed, ComputedRef, onMounted, ref, unref } from 'vue'
 import { EChartsOption } from 'echarts'
 import echarts from '@/utils/lib/echarts'
-import { retrospectiveOption } from './data'
+import { varOption } from './data'
 
 const chart = ref<HTMLDivElement>()
 const radio = ref('Month')
-const selected = ref(retrospectiveOption[0])
+const selected = ref(varOption[0])
 
 const chartData: ComputedRef<EChartsOption> = computed(() => {
   const radioValue = unref(radio)
