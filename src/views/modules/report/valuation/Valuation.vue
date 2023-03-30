@@ -1,7 +1,7 @@
 <template>
   <ElRow :gutter="30">
-    <ElCol :span="12"><ValuationChart></ValuationChart></ElCol>
-    <ElCol :span="12"><ValuationTable></ValuationTable></ElCol>
+    <ElCol :span="12" class="i-enter-x"><ValuationChart></ValuationChart></ElCol>
+    <ElCol :span="12" class="enter-y"><ValuationTable></ValuationTable></ElCol>
   </ElRow>
 </template>
 

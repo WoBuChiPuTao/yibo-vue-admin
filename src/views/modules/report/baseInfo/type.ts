@@ -2,7 +2,7 @@ export interface BondTradeInfo {
   Index: string
   tradeCode: string
   BondCode: string
-  isBuy: boolean
+  isBuy: string
   principal: number
   tradePrice: string
   accrualConventions: string

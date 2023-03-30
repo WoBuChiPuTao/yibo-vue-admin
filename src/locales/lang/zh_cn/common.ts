@@ -1,4 +1,5 @@
 export default {
+  appTitle: 'Yibo Admin',
   okText: '确认',
   closeText: '关闭',
   cancelText: '取消',
@@ -53,7 +54,7 @@ export default {
     navMode: '导航栏模式',
     sysTheme: '系统主题',
     headerTheme: '顶栏主题',
-    sideTheme: '菜单主题',
+    sideTheme: '侧边栏主题',
 
     on: '开',
     off: '关',

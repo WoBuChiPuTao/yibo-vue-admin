@@ -3,9 +3,10 @@
     <template v-for="item in props.colorList" :key="item.theme">
       <div
         :class="['color-list-item', { 'color-list-item-active': item.theme === activedTheme }]"
-        :style="{ backgroundColor: item.theme }"
         @click="handleCilck(item)"
-      ></div>
+      >
+        <div :style="{ height: '100%', backgroundColor: item.theme }"></div>
+      </div>
     </template>
   </div>
 </template>
@@ -39,12 +40,13 @@ function handleCilck(color: ColorSetting<any>) {
   &-item {
     height: 1.5rem;
     width: 1.5rem;
-    margin: 0.5rem 0.5rem;
+    padding: 0.25rem 0.25rem;
+    margin: 0.25rem 0.25rem;
     border: 1px solid #a7a7a7;
 
     &:hover,
     &-active {
-      border-color: #006df3;
+      border-color: var(--el-color-primary);
     }
   }
 }

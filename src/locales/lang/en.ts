@@ -5,6 +5,7 @@ const files = require.context('./en', true, /\.ts$/, 'sync')
 
 const messages = spliceMessage(files)
 
+console.log(messages)
 export default {
   message: {
     ...messages,

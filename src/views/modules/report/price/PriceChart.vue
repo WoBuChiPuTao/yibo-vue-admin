@@ -1,6 +1,13 @@
 <template>
   <div class="flex items-center justify-between pt-4">
-    <span class="text-xl font-bold">{{ '变化趋势' }}</span>
+    <div class="flex items-center">
+      <span class="mr-4 text-xl font-bold">{{ '变化趋势' }} </span>
+      <ElSelect v-model="selected" @change="selectChange">
+        <template v-for="item in options" :key="item.value">
+          <ElOption :value="item.label" :label="item.label" />
+        </template>
+      </ElSelect>
+    </div>
     <el-radio-group v-model="radio" @change="handleRadioChange">
       <el-radio-button label="Month"></el-radio-button>
       <el-radio-button label="Year"></el-radio-button>
@@ -12,28 +19,26 @@
 </template>
 
 <script setup lang="ts">
-import { ElRadioGroup, ElRadioButton, ElDivider } from 'element-plus'
+import { ElRadioGroup, ElRadioButton, ElDivider, ElOption, ElSelect } from 'element-plus'
 import { useEchart } from '@/hooks/web/useEcharts'
 import { computed, ComputedRef, onMounted, ref, unref } from 'vue'
 import { EChartsOption } from 'echarts'
 import echarts from '@/utils/lib/echarts'
+import { chartMonthValue, options } from './data'
 
 const chart = ref<HTMLDivElement>()
 
 const radio = ref('Month')
 
+const selected = ref('NPV')
+
+function selectChange() {
+  setOptions(chartData.value)
+}
+
 const chartData: ComputedRef<EChartsOption> = computed(() => {
   const radioValue = unref(radio)
   if (radioValue === 'Month') {
-    const oneDay = 24 * 3600 * 1000
-    let base = +new Date() - 30 * oneDay
-    const date = []
-    const data = [Math.random() * 30000]
-    for (let i = 1; i < 31; i++) {
-      const now = new Date((base += oneDay))
-      date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'))
-      data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]))
-    }
     return {
       tooltip: {
         trigger: 'axis'
@@ -56,11 +61,10 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: date
+        data: chartMonthValue[0]
       },
       yAxis: {
-        type: 'value',
-        scale: true
+        type: 'value'
       },
       series: [
         {
@@ -68,7 +72,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
           type: 'line',
           stack: 'Total',
           color: '#e00000',
-          data: data
+          data: chartMonthValue[1]
         }
       ]
     }

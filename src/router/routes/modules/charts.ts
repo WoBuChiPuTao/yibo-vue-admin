@@ -30,7 +30,7 @@ const charts: AddRouteRecordRaw = {
       name: 'Echarts',
       component: Layout,
       meta: {
-        title: 'Echarts'
+        title: t('routes.demo.charts.echarts')
       },
       redirect: '/charts/echarts/map',
       children: [

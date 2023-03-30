@@ -18,7 +18,7 @@ export function useHtmlTitle() {
       if (route.name === 'Redirect') {
         return
       }
-      const title = t((route?.meta?.title || '') as string)
+      const title = t((route?.meta?.title || 'common.appTitle') as string)
       pageTitle.value = title
         ? `${title}-${process.env.VUE_APP_SIMPLE_TITLE}`
         : `${process.env.VUE_APP_SIMPLE_TITLE}`

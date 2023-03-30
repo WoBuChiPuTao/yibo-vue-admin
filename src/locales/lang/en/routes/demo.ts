@@ -4,6 +4,7 @@ export default {
     aMap: 'A map',
     googleMap: 'Google map',
     charts: 'Chart',
+    echarts: 'Echarts',
     map: 'Map',
     line: 'Line',
     pie: 'Pie'
@@ -101,20 +102,6 @@ export default {
     role: 'Role management'
   },
   report: {
-    moduleName: 'Report',
-    information: {
-      tradeId: 'Trade ID',
-      productCode: 'Product Code',
-      productName: 'product Name',
-      buyOrSell: 'Buy or Sell',
-      principal: 'Principal',
-      tradePrice: 'Trade Price',
-      InterestAccrualConvention: 'Interest Accrual Convention',
-      tradeDate: 'Trade Date',
-      tradeDesk: 'Trade Desk',
-      trader: 'Trader',
-      externalID: 'External ID',
-      tradeStatus: 'Status'
-    }
+    moduleName: 'Report'
   }
 }

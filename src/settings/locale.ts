@@ -2,7 +2,7 @@ import { DropMenu } from '#/list'
 import { LocaleSetting, LocaleType } from '#/store'
 
 export const LOCALE: { [key: string]: LocaleType } = {
-  ZH_CN: 'zh_CN',
+  ZH_CN: 'zh-CN',
   EN_US: 'en'
 }
 

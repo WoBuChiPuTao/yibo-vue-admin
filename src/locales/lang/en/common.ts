@@ -1,4 +1,5 @@
 export default {
+  appTitle: 'Yibo Admin',
   okText: 'OK',
   closeText: 'Close',
   cancelText: 'Cancel',
@@ -51,7 +52,7 @@ export default {
     navMode: 'Navigation mode',
     sysTheme: 'System theme',
     headerTheme: 'Header theme',
-    sideTheme: 'Menu theme',
+    sideTheme: 'Sider theme',
 
     on: 'On',
     off: 'Off',

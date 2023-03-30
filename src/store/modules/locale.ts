@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { initLocaleSetting } from '@/settings/locale'
+import { initLocaleSetting, LOCALE } from '@/settings/locale'
 import { WebCache } from '@/utils/cache'
 import { LocaleSetting, LocaleType } from '#/store'
 
@@ -10,20 +10,20 @@ interface LocaleState {
 export const useLocaleStore = defineStore({
   id: 'app-locale',
   state: (): LocaleState => ({
-    localInfo: WebCache.getLocal('LOCAL') || initLocaleSetting
+    localInfo: WebCache.getLocal('LOCALE') || initLocaleSetting
   }),
   getters: {
     getShowPicker(): boolean {
       return !!this.localInfo.showPicker
     },
     getLocale(): LocaleType {
-      return this.localInfo.locale ?? 'zh_CN'
+      return this.localInfo.locale ?? LOCALE.ZH_CN
     }
   },
   actions: {
     setLocaleInfo(info: Partial<LocaleSetting>) {
       this.localInfo = { ...this.localInfo, ...info }
-      WebCache.setLocal('LOCAL', this.localInfo)
+      WebCache.setLocal('LOCALE', this.localInfo)
     },
     initLocale() {
       this.setLocaleInfo({

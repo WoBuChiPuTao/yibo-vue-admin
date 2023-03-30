@@ -4,6 +4,7 @@ export default {
     aMap: '高德地图',
     googleMap: '谷歌地图',
     charts: '图表',
+    echarts: 'Echarts',
     map: '地图',
     line: '折线图',
     pie: '饼图'
@@ -94,20 +95,6 @@ export default {
     role: '角色管理'
   },
   report: {
-    moduleName: '报表',
-    information: {
-      tradeId: '交易ID',
-      productCode: '产品代码',
-      productName: '产品名称',
-      buyOrSell: '买卖',
-      principal: '本金',
-      tradePrice: '交易价格',
-      InterestAccrualConvention: '计息惯例',
-      tradeDate: '交易时间',
-      tradeDesk: '交易台',
-      trader: '交易员',
-      externalID: '外部ID',
-      tradeStatus: '状态'
-    }
+    moduleName: '报表'
   }
 }

@@ -1,5 +1,10 @@
 <template>
-  <ElTable :data="limitData" :style="{ width: '100%' }" :rowClassName="tableRowClassName">
+  <ElTable
+    :data="limitData"
+    :style="{ width: '100%' }"
+    :rowClassName="tableRowClassName"
+    class="enter-y"
+  >
     <ElTableColumn prop="date" label="日期"></ElTableColumn>
     <ElTableColumn prop="target" label="指标"></ElTableColumn>
     <ElTableColumn prop="limit" label="限额"></ElTableColumn>

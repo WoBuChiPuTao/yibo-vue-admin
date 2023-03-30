@@ -28,7 +28,22 @@ export const valuationParam = [
 
 export const valuationValue = [
   { label: '货币', content: Math.random() > 0.5 ? 'CNY' : 'USD' },
-  { label: '市值', content: (Math.random() * 2000 - 1000).toFixed(4) },
+  { label: '市值', content: (Math.random() * 200000 + 100000).toFixed(4) },
   { label: '日损益', content: (Math.random() * 2000 - 1000).toFixed(4) },
-  { label: '总损益', content: (Math.random() * 2000 - 1000).toFixed(4) }
+  { label: '总损益', content: (Math.random() * 20000 - 10000).toFixed(4) }
+]
+
+export const options = [
+  {
+    label: '市值',
+    value: 'npv'
+  },
+  {
+    label: '日损益',
+    value: 'fullPrice'
+  },
+  {
+    label: '总损益',
+    value: 'yieldToMaturity'
+  }
 ]
