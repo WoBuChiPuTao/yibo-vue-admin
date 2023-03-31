@@ -33,6 +33,7 @@ const selected = ref(valuationOptions[0].label)
 
 const chartData: ComputedRef<EChartsOption> = computed(() => {
   const radioValue = unref(radio)
+  const selectedValue = unref(selected)
   if (radioValue === 'Month') {
     const oneDay = 24 * 3600 * 1000
     let base = +new Date() - 30 * oneDay
@@ -49,7 +50,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       },
       title: {
         left: 'center',
-        text: radioValue
+        text: selectedValue
       },
       grid: {
         left: '3%',
@@ -100,7 +101,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       },
       title: {
         left: 'center',
-        text: radioValue
+        text: selectedValue
       },
       toolbox: {
         feature: {
@@ -176,7 +177,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
     },
     title: {
       left: 'center',
-      text: radioValue
+      text: selectedValue
     },
     toolbox: {
       feature: {

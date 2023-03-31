@@ -30,11 +30,6 @@ export default {
     tooltipEntryFull: 'Full Screen',
     tooltipExitFull: 'Exit Full Screen',
 
-    // lock
-    lockScreenPassword: 'Lock screen password',
-    lockScreen: 'Lock screen',
-    lockScreenBtn: 'Locking',
-
     home: 'Home'
   },
   tabDropdown: {
@@ -59,6 +54,6 @@ export default {
     minute: 'Minute'
   },
   button: {
-    look: 'Look'
+    view: 'View'
   }
 }

@@ -1,16 +1,14 @@
 import axios from 'axios'
-import type {
-  AxiosInstance,
-  AxiosError,
-  AxiosRequestConfig,
-  AxiosResponse
-} from 'axios'
+import type { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Header, TIME_OUT, BASEURL } from './config'
+import { useUserStore } from '@/store/modules/user'
 
 const { t } = useI18n()
+const userStore = useUserStore()
 
+// 创建Axios实例
 const service: AxiosInstance = axios.create({
   baseURL: BASEURL,
   timeout: TIME_OUT,
@@ -21,6 +19,9 @@ const service: AxiosInstance = axios.create({
 /* 请求拦截器 */
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    // 添加请求头
+    // const conf = config as Recordable
+    config.headers!.Authorization = userStore.getToken
     return config
   },
   (error: AxiosError) => {
@@ -95,18 +96,10 @@ export const http = {
   get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
     return service.get(url, config)
   },
-  post<T = unknown>(
-    url: string,
-    data?: object,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
+  post<T = unknown>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
     return service.post(url, data, config)
   },
-  put<T = unknown>(
-    url: string,
-    data?: object,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
+  put<T = unknown>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
     return service.put(url, data, config)
   },
   delete<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {

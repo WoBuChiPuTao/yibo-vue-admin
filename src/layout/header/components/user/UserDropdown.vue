@@ -13,10 +13,12 @@
             href="https://github.com/WoBuChiPuTao/yibo-vue-admin"
             target="_blank"
             rel="noopener noreferrer"
-            >查看文档</a
+            >{{ t('common.header.dropdownItemDoc') }}</a
           ></el-dropdown-item
         >
-        <el-dropdown-item :icon="SwitchButton" @click="toLogout">退出登录</el-dropdown-item>
+        <el-dropdown-item :icon="SwitchButton" @click="toLogout">{{
+          t('common.header.dropdownItemLoginOut')
+        }}</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </ElDropdown>
@@ -28,7 +30,7 @@ import { Document, SwitchButton } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, h } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
-import headerImg from '@/assets/img/avatar.png'
+import headerImg from '@/assets/img/avatar.jpg'
 
 const userStore = useUserStore()
 const { t } = useI18n()

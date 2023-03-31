@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-between h-12 pt-4">
-    <span class="mr-4 text-xl font-bold">{{ '回溯曲线' }} </span>
+    <span class="mr-4 text-xl font-bold">{{ '回溯数据' }} </span>
   </div>
   <ElDivider></ElDivider>
   <ElTable :data="retrospectiveData" :style="{ width: '100%' }">

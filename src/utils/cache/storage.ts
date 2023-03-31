@@ -1,5 +1,8 @@
 import { StorageCache } from './types'
 
+/**
+ * @description 创建storage，进行自定义操作
+ */
 export class WebStorage {
   private storage: Storage
 

@@ -20,21 +20,16 @@ export default {
   dark: '黑暗主题',
   header: {
     // user dropdown
-    dropdownItemDoc: '文档',
-    dropdownItemLoginOut: '退出系统',
+    dropdownItemDoc: '查看文档',
+    dropdownItemLoginOut: '退出登录',
 
     // tooltip
     tooltipErrorLog: '错误日志',
     tooltipLock: '锁定屏幕',
     tooltipNotify: '消息通知',
 
-    tooltipEntryFull: '全屏',
+    tooltipEntryFull: '全屏模式',
     tooltipExitFull: '退出全屏',
-
-    // lock
-    lockScreenPassword: '锁屏密码',
-    lockScreen: '锁定屏幕',
-    lockScreenBtn: '锁定',
 
     home: '首页'
   },
@@ -61,6 +56,6 @@ export default {
     minute: '分钟'
   },
   button: {
-    look: '查看'
+    view: '查看'
   }
 }

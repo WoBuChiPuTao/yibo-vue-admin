@@ -38,6 +38,7 @@ function selectChange() {
 
 const chartData: ComputedRef<EChartsOption> = computed(() => {
   const radioValue = unref(radio)
+  const selectedValue = unref(selected)
   if (radioValue === 'Month') {
     return {
       tooltip: {
@@ -45,7 +46,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       },
       title: {
         left: 'center',
-        text: radioValue
+        text: selectedValue
       },
       grid: {
         left: '3%',
@@ -95,7 +96,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       },
       title: {
         left: 'center',
-        text: radioValue
+        text: selectedValue
       },
       toolbox: {
         feature: {
@@ -171,7 +172,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
     },
     title: {
       left: 'center',
-      text: radioValue
+      text: selectedValue
     },
     toolbox: {
       feature: {

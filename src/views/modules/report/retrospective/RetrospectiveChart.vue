@@ -15,7 +15,7 @@
     </el-radio-group>
   </div>
   <ElDivider></ElDivider>
-  <div ref="chart" class="h-4/6"></div>
+  <div ref="chart" class="h-5/6"></div>
 </template>
 
 <script setup lang="ts">
@@ -32,6 +32,7 @@ const selected = ref(retrospectiveOption[0])
 
 const chartData: ComputedRef<EChartsOption> = computed(() => {
   const radioValue = unref(radio)
+  const selectedValue = unref(selected)
   if (radioValue === 'Month') {
     const oneDay = 24 * 3600 * 1000
     let base = +new Date() - 30 * oneDay
@@ -48,7 +49,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       },
       title: {
         left: 'center',
-        text: radioValue
+        text: selectedValue
       },
       grid: {
         left: '3%',
@@ -99,7 +100,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
       },
       title: {
         left: 'center',
-        text: radioValue
+        text: selectedValue
       },
       toolbox: {
         feature: {
@@ -175,7 +176,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
     },
     title: {
       left: 'center',
-      text: radioValue
+      text: selectedValue
     },
     toolbox: {
       feature: {

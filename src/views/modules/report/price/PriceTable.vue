@@ -15,11 +15,11 @@
     <template v-for="item in descriptionData" :key="item.label">
       <ElDescriptionsItem :label="item.label" align="right" label-class-name="float-left">
         <span class="mr-8">{{ item.content }}</span>
-        <SvgIcon
+        <!-- <SvgIcon
           class="w-5 h-5"
           :class="[item.content >= 0 ? 'text-red-500' : 'text-green-500 rotate-x-180']"
           name="twotone-trending-up"
-        />
+        /> -->
       </ElDescriptionsItem>
     </template>
   </ElDescriptions>
@@ -30,7 +30,7 @@
 import { ElDescriptions, ElDescriptionsItem, ElDatePicker, ElDivider } from 'element-plus'
 import { ref, unref } from 'vue'
 import { descriptionParam, descriptionValue } from './data'
-import SvgIcon from '@/components/icons/SvgIcon.vue'
+// import SvgIcon from '@/components/icons/SvgIcon.vue'
 
 const day = ref(new Date())
 

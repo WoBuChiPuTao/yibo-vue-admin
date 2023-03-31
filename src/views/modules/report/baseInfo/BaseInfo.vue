@@ -56,7 +56,7 @@
         <ElTableColumn fixed="right" label="Operation" min-width="120">
           <template #default>
             <el-button link type="primary" size="small" @click.prevent="dialogVisible = true">
-              {{ t('common.button.look') }}
+              {{ t('common.button.view') }}
             </el-button>
           </template>
         </ElTableColumn>
@@ -70,7 +70,7 @@
         :pager-count="7"
         background
         layout="total, sizes, prev, pager, next, jumper"
-        :page-sizes="[5, 10, 20, 50]"
+        :page-sizes="[5, 10, 15, 20, 50]"
       >
       </ElPagination>
     </div>

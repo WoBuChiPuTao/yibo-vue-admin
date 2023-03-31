@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user'
 import { ElAvatar } from 'element-plus'
-import HeaderImg from '@/assets/img/avatar.png'
+import HeaderImg from '@/assets/img/avatar.jpg'
 import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 
