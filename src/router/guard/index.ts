@@ -4,12 +4,25 @@ import { createPermissionGuard } from './permissionGuard'
 import { createStateGuard } from './stateGuard'
 // 进度条
 import NProgress from 'nprogress'
+import { AxiosCancel } from '@/utils/axios/axiosCancel'
+import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 
 export function setupRouteGuard(router: Router) {
   createPageGuard(router)
+  createHttpGuard(router)
+  createPageLoading(router)
   createPageTransitionGuard(router)
   createPermissionGuard(router)
   createStateGuard(router)
+}
+
+// 清除http请求
+function createHttpGuard(router: Router) {
+  router.beforeEach(() => {
+    AxiosCancel.clearPending()
+    return true
+  })
 }
 
 // Hooks for handling page state
@@ -31,7 +44,7 @@ function createPageGuard(router: Router) {
   })
 }
 
-// Used to handle page transition status
+// 使用过渡组件
 function createPageTransitionGuard(router: Router) {
   router.beforeEach((to, from) => {
     if (!to.meta.loaded && from.name !== undefined) {
@@ -47,5 +60,28 @@ function createPageTransitionGuard(router: Router) {
     }
 
     return true
+  })
+}
+
+// 使用PageLoading
+function createPageLoading(router: Router) {
+  const userStore = useUserStore()
+  const appStore = useAppStore()
+  router.beforeEach(async (to) => {
+    if (!userStore.getToken) {
+      return true
+    }
+    if (to.meta.loaded) {
+      return true
+    }
+    // 将loading状态开启
+    appStore.setPageLoadingSync(true)
+    return true
+  })
+  router.afterEach(async () => {
+    // 防止loading加载过快无法显示
+    setTimeout(() => {
+      appStore.setPageLoading(false)
+    }, 220)
   })
 }

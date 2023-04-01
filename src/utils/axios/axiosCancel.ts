@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
+import { WHITE_CANCEL_URL } from './config'
 
 export class AxiosCancel {
   // 声明一个对象来保存请求的标识和cancel实例
@@ -18,7 +19,11 @@ export class AxiosCancel {
    * @param {AxiosRequestConfig} config
    * @description 在请求拦截器使用
    */
-  private static addPending(config: AxiosRequestConfig) {
+  static addPending(config: AxiosRequestConfig) {
+    // 白名单地址判断
+    if (WHITE_CANCEL_URL.includes(config.url || '')) {
+      return
+    }
     const key = this.getUrl(config)
     config.cancelToken =
       config.cancelToken ||
@@ -35,7 +40,7 @@ export class AxiosCancel {
    * @param {AxiosRequestConfig} config
    * @description 在响应拦截器使用
    */
-  private static removePending(config: AxiosRequestConfig) {
+  static removePending(config: AxiosRequestConfig) {
     const key = this.getUrl(config)
     if (this.pending.has(key)) {
       const cancel = this.pending.get(key)
@@ -48,7 +53,7 @@ export class AxiosCancel {
    * 执行所有的cancel实例并清空pending
    * @description 在路由守卫使用
    */
-  private static clearPending() {
+  static clearPending() {
     for (const [key, cancal] of this.pending) {
       cancal && cancal(key)
     }

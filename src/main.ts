@@ -13,6 +13,7 @@ import { setupRouteGuard } from './router/guard'
 import { setupStore } from './store'
 import { setupI18n } from './locales/setupI18n'
 import { initConfigStore } from './settings/init'
+import { setupDirectives } from './directives'
 import { preLoader } from './utils/preLoader'
 
 async function launch() {
@@ -31,6 +32,8 @@ async function launch() {
   setupRouter(app)
   // 创建路由守卫
   setupRouteGuard(router)
+  // 创建全局指令
+  setupDirectives(app)
 
   app.mount('#app')
 }

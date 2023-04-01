@@ -1,20 +1,17 @@
 import { useI18n } from '@/hooks/web/useI18n'
-import { useUserStore } from '@/store/modules/user'
+import { AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
-import { AxiosInterceptorsConfig } from './types'
+import { AxiosInterceptorsConfig, Result } from './types'
 
 const { t } = useI18n()
-const userStore = useUserStore()
 
 export const axiosInterceptors: AxiosInterceptorsConfig = {
   requestInterceptors: (config) => {
-    console.log(config?.requestOptions?.ignoreCancelToken)
     // 添加请求头
     // const conf = config as Recordable
-    config.headers!.Authorization = userStore.getToken
     return config
   },
-  responseInterceptors: (response) => {
+  responseInterceptors: (response: AxiosResponse<Result>) => {
     const { code, message, data } = response.data // 根据自定义错误码判断请求是否成功
     if (code === 200) {
       // 将组件用的数据返回

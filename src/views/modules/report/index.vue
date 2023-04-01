@@ -12,7 +12,6 @@
         <ElTabPane :label="t('module.report.valuation.valuation')" name="valuation"
           ><Valuation
         /></ElTabPane>
-        <ElTabPane :label="t('module.report.limit.limit')" name="limit"><Limit /> </ElTabPane>
         <ElTabPane :label="t('module.report.var.var')" name="var"><VaR></VaR></ElTabPane>
         <ElTabPane :label="t('module.report.retrospective.retrospective')" name="retrospective"
           ><Retrospective
@@ -28,14 +27,13 @@ import { ElTabs, ElTabPane } from 'element-plus'
 import Price from './price/Price.vue'
 import BaseInfo from './baseInfo/BaseInfo.vue'
 import Valuation from './valuation/Valuation.vue'
-import Limit from './limit/Limit.vue'
 import VaR from './var/VaR.vue'
 import Retrospective from './retrospective/Retrospective.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'ReportPage',
-  components: { ElTabs, ElTabPane, BaseInfo, Price, Valuation, Limit, VaR, Retrospective },
+  components: { ElTabs, ElTabPane, BaseInfo, Price, Valuation, VaR, Retrospective },
   setup() {
     const { t } = useI18n()
     const tabName = ref<string>('information')
