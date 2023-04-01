@@ -1,4 +1,3 @@
-<!-- eslint-disable func-call-spacing -->
 <template>
   <span>{{ `${outputvalue}` }}</span>
 </template>
