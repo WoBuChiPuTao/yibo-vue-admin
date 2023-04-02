@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import { tryOnUnmounted } from '@vueuse/shared'
-import { nextTick, onMounted, PropType, ref, toRef, unref } from 'vue'
+import { onMounted, PropType, ref, toRef, unref } from 'vue'
 
 const elRef = ref()
 const isLoad = ref(false)
@@ -67,9 +67,7 @@ function runIntersectionObserver() {
     (entries, observer) => {
       const isIntersecting = entries[0].isIntersecting || entries[0].intersectionRatio
       if (isIntersecting) {
-        nextTick(() => {
-          startLoad()
-        })
+        startLoad()
         if (observer) {
           observer.unobserve(entries[0].target)
         }
