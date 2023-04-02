@@ -43,6 +43,7 @@ function promoteRouteLevel<T extends RouteRecordRaw>(route: T) {
   router = null
 
   // omit lodash的函数 对传入的item对象的children进行删除
+  // 剔除三级路由
   route.children = route.children?.map((item) => omit(item, 'children') as RouteRecordNormalized)
 }
 
