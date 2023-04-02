@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     CollapseTransition: typeof import('./../src/components/Transition/CollapseTransition.vue')['default']
     EIcon: typeof import('./../src/components/icons/EIcon.vue')['default']
     LayoutMenu: typeof import('./../src/components/menu/LayoutMenu.vue')['default']
+    LazyContainer: typeof import('./../src/components/lazy/LazyContainer.vue')['default']
     MenuItem: typeof import('./../src/components/menu/sideMenu/MenuItem.vue')['default']
     NumberTransition: typeof import('./../src/components/Transition/NumberTransition.vue')['default']
     ProgressBar: typeof import('./../src/components/progressBar/ProgressBar.vue')['default']

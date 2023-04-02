@@ -61,6 +61,14 @@ const component: AddRouteRecordRaw = {
           }
         }
       ]
+    },
+    {
+      path: 'lazy',
+      name: 'LazyDemo',
+      component: () => import('@/views/modules/component/lazy/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.lazy')
+      }
     }
   ]
 }
