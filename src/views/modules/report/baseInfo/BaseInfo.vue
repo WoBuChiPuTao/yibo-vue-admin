@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-full">
     <div class="relative flex-1">
-      <ElTable :data="tableData" class="absolute h-full">
+      <ElTable ref="table" :data="tableData" class="absolute h-full" :height="tableHeight">
         <ElTableColumn prop="Index" label="Index"></ElTableColumn>
         <ElTableColumn
           prop="tradeCode"
@@ -113,8 +113,11 @@ import {
 } from 'element-plus'
 import { computed, reactive, ref, unref } from 'vue'
 import { tradeData } from './data'
+import { useTableHeight } from '@/components/table/useTableHeight'
 
 const { t } = useI18n()
+
+const table = ref(null)
 
 const pageData = reactive({ current: 1, size: 10, total: tradeData.length })
 
@@ -124,6 +127,8 @@ const tableData = computed(() => {
 })
 
 const dialogVisible = ref(false)
+
+const { tableHeight } = useTableHeight(table, tableData, 36)
 </script>
 
 <style lang="less" scoped>

@@ -8,3 +8,9 @@ declare type DeepPartial<T> = {
 declare interface ChangeEvent extends Event {
   target: HTMLInputElement
 }
+
+declare interface ComponentElRef<T extends HTMLElement = HTMLDivElement> {
+  $el: T
+}
+
+declare type ElementRef<T extends HTMLElement = HTMLDivElement> = ComponentElRef<T> | null
