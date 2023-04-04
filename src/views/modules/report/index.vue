@@ -16,6 +16,12 @@
         <ElTabPane :label="t('module.report.retrospective.retrospective')" name="retrospective"
           ><Retrospective
         /></ElTabPane>
+        <ElTabPane :label="'压力测试'" name="stress">
+          <Stress></Stress>
+        </ElTabPane>
+        <ElTabPane :label="'风险对比'" name="risk">
+          <RIskContrast></RIskContrast>
+        </ElTabPane>
       </ElTabs>
     </div>
   </div>
@@ -29,11 +35,23 @@ import BaseInfo from './baseInfo/BaseInfo.vue'
 import Valuation from './valuation/Valuation.vue'
 import VaR from './var/VaR.vue'
 import Retrospective from './retrospective/Retrospective.vue'
+import Stress from './stress/Stress.vue'
+import RIskContrast from './riskContrast/RIskContrast.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'ReportPage',
-  components: { ElTabs, ElTabPane, BaseInfo, Price, Valuation, VaR, Retrospective },
+  components: {
+    ElTabs,
+    ElTabPane,
+    BaseInfo,
+    Price,
+    Valuation,
+    VaR,
+    Retrospective,
+    Stress,
+    RIskContrast
+  },
   setup() {
     const { t } = useI18n()
     const tabName = ref<string>('information')

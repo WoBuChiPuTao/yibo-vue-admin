@@ -61,9 +61,6 @@ export function useTableHeight(
     const headrToBottom = getEloffset(headEl).bottomToVisibleWindow
 
     const height = headrToBottom - headerHegiht - tableToPageBottomHeight
-
-    console.log('headrToBottom', headrToBottom)
-    console.log(height)
     // table主体高度
     tableHeight.value = `${height}px`
   }

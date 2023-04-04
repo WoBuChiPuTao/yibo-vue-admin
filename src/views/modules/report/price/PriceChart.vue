@@ -73,6 +73,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
           type: 'line',
           stack: 'Total',
           color: '#e00000',
+          showSymbol: false,
           data: chartMonthValue[1]
         }
       ]

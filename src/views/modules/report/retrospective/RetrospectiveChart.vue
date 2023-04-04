@@ -1,248 +1,126 @@
 <template>
   <div class="flex items-center justify-between pt-4">
-    <div class="flex items-center">
+    <div class="flex items-center h-8">
       <span class="mr-4 text-xl font-bold">{{ '回溯曲线' }} </span>
-      <ElSelect v-model="selected" @change="selectChange">
-        <template v-for="item in retrospectiveOption" :key="item">
-          <ElOption :value="item" :label="item" />
-        </template>
-      </ElSelect>
     </div>
-    <el-radio-group v-model="radio" @change="handleRadioChange">
-      <el-radio-button label="Month"></el-radio-button>
-      <el-radio-button label="Year"></el-radio-button>
-      <el-radio-button label="3 Year"></el-radio-button>
-    </el-radio-group>
   </div>
   <ElDivider></ElDivider>
   <div ref="chart" class="h-5/6"></div>
 </template>
 
 <script setup lang="ts">
-import { ElRadioGroup, ElRadioButton, ElDivider, ElSelect, ElOption } from 'element-plus'
+import { ElDivider } from 'element-plus'
 import { useEchart } from '@/hooks/web/useEcharts'
-import { computed, ComputedRef, onMounted, ref, unref } from 'vue'
+import { computed, ComputedRef, onMounted, ref } from 'vue'
 import { EChartsOption } from 'echarts'
-import echarts from '@/utils/lib/echarts'
-import { retrospectiveOption } from './data'
+import { xAxis, barData, lineData, mirrorLineData } from './data'
 
 const chart = ref<HTMLDivElement>()
-const radio = ref('Month')
-const selected = ref(retrospectiveOption[0])
+
+const getMarkPoint = computed(() => {
+  const data: any[] = []
+  barData.forEach((item, index) => {
+    if (item > lineData[index]) {
+      data.push({ name: 'index', value: item, xAxis: index, yAxis: item })
+    }
+  })
+  return data
+})
+
+const getMarkPointMirror = computed(() => {
+  const data: any[] = []
+  barData.forEach((item, index) => {
+    if (item < mirrorLineData[index]) {
+      data.push({ name: 'index', value: item, xAxis: index, yAxis: item })
+    }
+  })
+  return data
+})
 
 const chartData: ComputedRef<EChartsOption> = computed(() => {
-  const radioValue = unref(radio)
-  const selectedValue = unref(selected)
-  if (radioValue === 'Month') {
-    const oneDay = 24 * 3600 * 1000
-    let base = +new Date() - 30 * oneDay
-    const date = []
-    const data = [Math.random() * 30000]
-    for (let i = 1; i < 31; i++) {
-      const now = new Date((base += oneDay))
-      date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'))
-      data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]))
-    }
-    return {
-      tooltip: {
-        trigger: 'axis'
-      },
-      title: {
-        left: 'center',
-        text: selectedValue
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: date
-      },
-      yAxis: {
-        type: 'value',
-        scale: true
-      },
-      series: [
-        {
-          name: 'NPV',
-          type: 'line',
-          stack: 'Total',
-          color: '#e00000',
-          data: data
-        }
-      ]
-    }
-  } else if (radioValue === 'Year') {
-    let base = +new Date(2022, 3, 15)
-    const oneDay = 24 * 3600 * 1000
-    const date = []
-    const data = [Math.random() * 300]
-    for (let i = 1; i < 365; i++) {
-      const now = new Date((base += oneDay))
-      date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'))
-      data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]))
-    }
-    return {
-      tooltip: {
-        trigger: 'axis',
-        position: function (pt) {
-          return [pt[0], '10%']
-        }
-      },
-      title: {
-        left: 'center',
-        text: selectedValue
-      },
-      toolbox: {
-        feature: {
-          dataZoom: {
-            yAxisIndex: 'none'
-          },
-          restore: {},
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: date
-      },
-      yAxis: {
-        type: 'value',
-        boundaryGap: [0, '100%']
-      },
-      dataZoom: [
-        {
-          type: 'inside',
-          start: 50,
-          end: 100
-        },
-        {
-          type: 'slider',
-          start: 0,
-          end: 10
-        }
-      ],
-      series: [
-        {
-          name: 'Fake Data',
-          type: 'line',
-          symbol: 'none',
-          sampling: 'lttb',
-          itemStyle: {
-            color: 'rgb(255, 70, 131)'
-          },
-          areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              {
-                offset: 0,
-                color: 'rgb(255, 158, 68)'
-              },
-              {
-                offset: 1,
-                color: 'rgb(255, 70, 131)'
-              }
-            ])
-          },
-          data: data
-        }
-      ]
-    }
-  }
-  let base = +new Date(2020, 3, 15)
-  const oneDay = 24 * 3600 * 1000
-  const date = []
-  const data = [Math.random() * 300]
-  for (let i = 1; i < 365 * 3; i++) {
-    const now = new Date((base += oneDay))
-    date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'))
-    data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]))
-  }
   return {
-    tooltip: {
-      trigger: 'axis',
-      position: function (pt) {
-        return [pt[0], '10%']
-      }
-    },
-    title: {
-      left: 'center',
-      text: selectedValue
-    },
     toolbox: {
       feature: {
         dataZoom: {
-          yAxisIndex: 'none'
+          yAxisIndex: false
         },
-        restore: {},
-        saveAsImage: {}
+        saveAsImage: {
+          pixelRatio: 2
+        }
       }
     },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: date
+    legend: {
+      data: ['日损益', 'VaR', '镜像VaR']
     },
-    yAxis: {
-      type: 'value',
-      boundaryGap: [0, '100%']
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    grid: {
+      bottom: 90
     },
     dataZoom: [
       {
-        type: 'inside',
-        start: 90,
-        end: 100
+        type: 'inside'
       },
       {
-        start: 0,
-        end: 50
+        type: 'slider'
       }
     ],
+    xAxis: {
+      data: xAxis,
+      silent: false,
+      splitLine: {
+        show: false
+      },
+      splitArea: {
+        show: false
+      }
+    },
+    yAxis: {
+      splitArea: {
+        show: false
+      }
+    },
     series: [
       {
-        name: 'Fake Data',
+        type: 'bar',
+        name: '日损益',
+        data: barData,
+        showSymbol: false,
+        large: true
+      },
+      {
         type: 'line',
-        symbol: 'none',
-        sampling: 'lttb',
-        itemStyle: {
-          color: 'rgb(255, 70, 131)'
-        },
-        areaStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: 'rgb(255, 158, 68)'
-            },
-            {
-              offset: 1,
-              color: 'rgb(255, 70, 131)'
-            }
-          ])
-        },
-        data: data
+        name: 'VaR',
+        data: lineData,
+        smooth: true,
+        showSymbol: false,
+        markPoint: {
+          data: getMarkPoint.value
+        }
+      },
+      {
+        type: 'line',
+        name: '镜像VaR',
+        data: mirrorLineData,
+        smooth: true,
+        showSymbol: false,
+        markPoint: {
+          symbolRotate: (value) => {
+            return value >= 0 ? 0 : 180
+          },
+          label: { position: 'insideBottom' },
+          data: getMarkPointMirror.value
+        }
       }
     ]
   }
 })
 
 const { setOptions } = useEchart(chart)
-
-function selectChange() {
-  setOptions(chartData.value)
-}
-
-function handleRadioChange() {
-  setOptions(chartData.value)
-}
 
 onMounted(() => setOptions(chartData.value))
 </script>

@@ -26,7 +26,9 @@ import {
   CalendarComponent,
   GraphicComponent,
   DatasetComponent,
-  TransformComponent
+  TransformComponent,
+  MarkLineComponent,
+  MarkPointComponent
 } from 'echarts/components'
 
 import { LabelLayout, UniversalTransition } from 'echarts/features'
@@ -64,6 +66,8 @@ echarts.use([
   DatasetComponent,
   TransformComponent,
   LegendComponent,
+  MarkLineComponent,
+  MarkPointComponent,
   LabelLayout,
   UniversalTransition,
   SVGRenderer,
