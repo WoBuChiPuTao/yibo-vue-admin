@@ -55,12 +55,13 @@ export function useTableHeight(
     // 自定义table到页面底部的距离
     const tableToPageBottomHeight = toBottom
     // 头部高度
-    const headerHegiht = (headEl as HTMLElement).offsetHeight
+    //  const headerHegiht = (headEl as HTMLElement).offsetHeight
 
     // 头部距离可视页面底部距离
     const headrToBottom = getEloffset(headEl).bottomToVisibleWindow
 
-    const height = headrToBottom - headerHegiht - tableToPageBottomHeight
+    const height = headrToBottom - tableToPageBottomHeight
+    console.log(headrToBottom)
     // table主体高度
     tableHeight.value = `${height}px`
   }
