@@ -1,3 +1,4 @@
+<!-- eslint-disable import/no-absolute-path -->
 <template>
   <template v-if="getShow">
     <h2 class="h-center enter-x">{{ t('sys.login.signInFormTitle') }}</h2>
@@ -77,10 +78,9 @@ import {
   ElDivider,
   ElNotification
 } from 'element-plus'
-import { ref, reactive, unref, computed } from 'vue'
 // mock
-// eslint-disable-next-line import/no-absolute-path
-import '/mock/login'
+import '&/login'
+import { ref, reactive, unref, computed } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import { LoginStateEnum, useLoginState } from './useLogin'
 import { useI18n } from '@/hooks/web/useI18n'

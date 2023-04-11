@@ -128,7 +128,7 @@ const tableData = computed(() => {
 
 const dialogVisible = ref(false)
 
-const { tableHeight } = useTableHeight(table, tableData, 36)
+const { tableHeight } = useTableHeight(table, tableData, 64)
 </script>
 
 <style lang="less" scoped>

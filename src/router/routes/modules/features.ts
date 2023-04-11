@@ -41,6 +41,14 @@ const features: AddRouteRecordRaw = {
           meta: {
             title: t('routes.demo.excel.importExcel')
           }
+        },
+        {
+          path: 'exportFile',
+          name: 'ExportFile',
+          component: () => import('@/views/modules/feature/excel/ExportExcel.vue'),
+          meta: {
+            title: t('routes.demo.excel.exportExcel')
+          }
         }
       ]
     }

@@ -84,9 +84,8 @@ export default {
   },
   excel: {
     excel: 'Excel',
-    customExport: 'Select export format',
-    jsonExport: 'JSON data export',
-    arrayExport: 'Array data export',
+    exportExcel: 'Export',
+    exportFiles: 'Export various files',
     importExcel: 'Import'
   },
   system: {

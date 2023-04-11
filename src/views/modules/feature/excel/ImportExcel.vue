@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center">
-    <ImportExcelComponent @success="handleExcel" class="mb-8">
+    <ImportExcelComponent @success="handleExcel" class="mt-8 mb-8">
       <ElButton type="primary">导入Excel</ElButton>
     </ImportExcelComponent>
     <ElTable ref="table" :data="excelData.results" :height="tableHeight">

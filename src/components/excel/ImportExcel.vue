@@ -25,6 +25,8 @@ const props = defineProps({
 
 const emits = defineEmits(['success', 'error'])
 
+const { utils, read } = Xlsx
+
 const inputRef = ref<HTMLInputElement>()
 const loading = ref(false)
 
@@ -33,16 +35,16 @@ function getExcelHeader(workSheet: Xlsx.Sheet) {
   if (!workSheet || !workSheet['!ref']) return []
   const excelHeader: string[] = []
   // A3:B7=>{s:{c:0, r:2}, e:{c:1, r:6}}
-  const range = Xlsx.utils.decode_range(workSheet['!ref'])
+  const range = utils.decode_range(workSheet['!ref'])
 
   const R = range.s.r
   /* start in the first row */
   for (let C = range.s.c; C <= range.e.c; ++C) {
     /* walk every column in the range */
-    const cell = workSheet[Xlsx.utils.encode_cell({ c: C, r: R })]
+    const cell = workSheet[utils.encode_cell({ c: C, r: R })]
     /* find the cell in the first row */
     let hdr = 'UNKNOWN ' + C // <-- replace with your desired default
-    if (cell && cell.t) hdr = Xlsx.utils.format_cell(cell)
+    if (cell && cell.t) hdr = utils.format_cell(cell)
     excelHeader.push(hdr)
   }
   return excelHeader
@@ -54,7 +56,7 @@ function getExcelData(workBook: Xlsx.WorkBook) {
   for (const sheetName of workBook.SheetNames) {
     const workSheet = workBook.Sheets[sheetName]
     const header = getExcelHeader(workSheet)
-    let results = Xlsx.utils.sheet_to_json(workSheet, {
+    let results = utils.sheet_to_json(workSheet, {
       raw: true,
       dateNF: formatDate // Not worked
     }) as object[]
@@ -84,7 +86,7 @@ async function readData(file: File) {
     reader.onload = async (e) => {
       try {
         const data = e.target?.result
-        const workBook = Xlsx.read(data, { type: 'array', cellDates: true })
+        const workBook = read(data, { type: 'array', cellDates: true })
         const excelData = getExcelData(workBook)
         resolve('success')
         emits('success', excelData)

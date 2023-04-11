@@ -6,7 +6,7 @@ import { ComputedRef, Ref, nextTick, ref, unref, watch } from 'vue'
 export function useTableHeight(
   tableRef: Ref<ElementRef>,
   getDataSourceRef: ComputedRef<Recordable[]>,
-  toBottom = 54
+  toBottom = 36
 ) {
   const tableHeight = ref('100%')
 

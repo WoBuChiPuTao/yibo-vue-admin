@@ -26,7 +26,7 @@ const getCacheTabs = computed(() => tabStore.getCacheList)
 
 <style lang="less" scoped>
 .layout-content-cotainer {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
 }

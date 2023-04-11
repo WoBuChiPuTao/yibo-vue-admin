@@ -80,9 +80,8 @@ export default {
   },
   excel: {
     excel: 'Excel',
-    customExport: '选择导出格式',
-    jsonExport: 'JSON数据导出',
-    arrayExport: 'Array数据导出',
+    exportExcel: '导出',
+    exportFiles: '导出各种文件',
     importExcel: '导入'
   },
   system: {
