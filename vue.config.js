@@ -6,9 +6,22 @@ function resolve(dir) {
 const { defineConfig } = require('@vue/cli-service')
 const Icons = require('unplugin-icons/webpack')
 const IconsResolver = require('unplugin-icons/resolver')
+
+// 生产环境配置
+const externals = []
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('production')
+//   // 生产环境排除mock文件夹
+//   //  \u4e00 === &
+//   externals.push(/^\u4e00\//)
+//   externals.push({
+//     mock: 'mock'
+//   })
+// }
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
+    externals: externals,
     plugins: [
       Icons({
         compiler: 'vue3',
@@ -44,6 +57,10 @@ module.exports = defineConfig({
     }
   },
   chainWebpack: (config) => {
+    // 路径别称
+    config.resolve.alias.set('@', resolve('src'))
+    config.resolve.alias.set('#', resolve('types'))
+    config.resolve.alias.set('&', resolve('mock'))
     // vue-i18n配置
     config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js')
     // svg-sprite-loader配置

@@ -36,7 +36,6 @@ export class YAxios {
     } = this.interceptors
 
     this.instance.interceptors.request.use(requestInterceptors, requestInterceptorsCatch)
-    this.instance.interceptors.response.use(responseInterceptors, responseInterceptorsCatch)
 
     // cancelToken
     this.instance.interceptors.request.use((config: AddAxiosRequestConfig) => {
@@ -49,6 +48,8 @@ export class YAxios {
       res && AxiosCancel.removePending(res.config)
       return res
     }, undefined)
+
+    this.instance.interceptors.response.use(responseInterceptors, responseInterceptorsCatch)
   }
 
   get<T = unknown>(url: string, options?: RequestOptions, config?: AxiosRequestConfig): Promise<T> {

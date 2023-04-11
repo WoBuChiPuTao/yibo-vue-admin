@@ -17,7 +17,8 @@
     "types": ["webpack-env", "element-plus/global"],
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "#/*": ["types/*"],
+      "&/*": ["mock/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
@@ -30,5 +31,5 @@
     "tests/**/*.tsx",
     "mock/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.js"]
 }
