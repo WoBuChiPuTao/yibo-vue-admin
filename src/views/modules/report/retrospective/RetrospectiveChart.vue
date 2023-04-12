@@ -90,7 +90,14 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
         name: '日损益',
         data: barData,
         showSymbol: false,
-        large: true
+        large: true,
+        markPoint: {
+          symbolRotate: (value) => {
+            return value >= 0 ? 0 : 180
+          },
+          label: { position: 'insideBottom' },
+          data: getMarkPointMirror.value
+        }
       },
       {
         type: 'line',
@@ -107,14 +114,7 @@ const chartData: ComputedRef<EChartsOption> = computed(() => {
         name: '镜像VaR',
         data: mirrorLineData,
         smooth: true,
-        showSymbol: false,
-        markPoint: {
-          symbolRotate: (value) => {
-            return value >= 0 ? 0 : 180
-          },
-          label: { position: 'insideBottom' },
-          data: getMarkPointMirror.value
-        }
+        showSymbol: false
       }
     ]
   }

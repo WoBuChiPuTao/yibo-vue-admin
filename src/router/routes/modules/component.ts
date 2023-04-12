@@ -26,7 +26,6 @@ const component: AddRouteRecordRaw = {
         title: t('routes.demo.comp.basic')
       }
     },
-
     {
       path: 'tree',
       name: 'TreeDemo',
@@ -68,6 +67,14 @@ const component: AddRouteRecordRaw = {
       component: () => import('@/views/modules/component/lazy/index.vue'),
       meta: {
         title: t('routes.demo.comp.lazy')
+      }
+    },
+    {
+      path: 'qrcode',
+      name: 'QRcode',
+      component: () => import('@/views/modules/component/qrCode/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.qrcode')
       }
     }
   ]

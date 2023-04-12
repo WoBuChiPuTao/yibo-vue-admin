@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     MenuItem: typeof import('./../src/components/menu/sideMenu/MenuItem.vue')['default']
     NumberTransition: typeof import('./../src/components/Transition/NumberTransition.vue')['default']
     ProgressBar: typeof import('./../src/components/progressBar/ProgressBar.vue')['default']
+    QrCode: typeof import('./../src/components/QRcode/QrCode.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideMenu: typeof import('./../src/components/menu/sideMenu/index.vue')['default']
