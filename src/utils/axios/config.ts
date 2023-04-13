@@ -1,7 +1,7 @@
 import { AddAxiosRequestConfig } from './types'
 
-export const BASEURL = process.env.VUE_APP_BASE_URL
-// export const BASEURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net/'
+export const BASEURL = process.env.VUE_APP_API_URL
+
 export const TIME_OUT = 5000
 
 export const Header = {

@@ -9,12 +9,12 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 
 export function setupRouteGuard(router: Router) {
+  createStateGuard(router)
   createPageGuard(router)
   createHttpGuard(router)
   createPageLoading(router)
   createPageTransitionGuard(router)
   createPermissionGuard(router)
-  createStateGuard(router)
 }
 
 // 清除http请求

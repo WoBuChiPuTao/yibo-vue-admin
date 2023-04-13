@@ -1,6 +1,5 @@
 import echarts, { RenderType } from '@/utils/lib/echarts'
 import { computed, nextTick, ref, Ref, unref, watch } from 'vue'
-import { useSiderSetting } from '../setting/useSiderSetting'
 import { useThemeMode } from '../setting/useTheme'
 // import { useEventListener } from '../event/useEventListener'
 import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core'
@@ -12,7 +11,6 @@ export function useEchart(
   theme: 'light' | 'dark' | 'default' = 'default'
 ) {
   const { getThemeMode: getSysThemeMode } = useThemeMode()
-  const { getCollapsed } = useSiderSetting()
 
   const getThemeMode = computed(() => (theme === 'default' ? getSysThemeMode.value : theme))
 
@@ -29,7 +27,7 @@ export function useEchart(
     }
   })
 
-  const resizeFn = useDebounceFn(resize, 200)
+  const resizeFn = useDebounceFn(resize, 100)
   let removeResizeFn: Fn
 
   function initEcharts(t = theme) {
@@ -105,12 +103,6 @@ export function useEchart(
       chartInstance = null
       setOptions(cacheOptions.value)
     }
-  })
-
-  watch(getCollapsed, () => {
-    useTimeoutFn(() => {
-      resizeFn()
-    }, 300)
   })
 
   tryOnUnmounted(() => {

@@ -3,7 +3,7 @@ import { ContentType, DrawQrcodeParam } from './types'
 import { unref, watch, ref } from 'vue'
 import { cloneDeep } from 'lodash-es'
 import { useThemeMode } from '@/hooks/setting/useTheme'
-import { renderCnavas } from './renderCanvas'
+import { renderInner } from './renderInner'
 
 export async function useDrawQrcode({
   type,
@@ -34,7 +34,7 @@ export async function useDrawQrcode({
         opt.scale = width === 0 ? undefined : (width / originWidth) * 4
       }
       urlRef.value = await toCanvas(warp, content, opt).then(() =>
-        renderCnavas(warp as HTMLCanvasElement, image)
+        renderInner(warp as HTMLCanvasElement, image)
       )
     } else {
       const url = await toDataURL(content, { errorCorrectionLevel: 'H', width, ...opt })

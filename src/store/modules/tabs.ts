@@ -83,6 +83,7 @@ export const useTabStore = defineStore({
     resetState() {
       this.tabList = []
       this.clearCacheList()
+      WebCache.removeLocal('TABS')
     },
     /**
      *@description: 跳转页面

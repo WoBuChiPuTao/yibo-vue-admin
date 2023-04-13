@@ -28,7 +28,7 @@ const props = defineProps({
   // 宽度
   width: {
     type: Number as PropType<number>,
-    default: 160
+    default: 200
   },
   // 图片
   image: {

@@ -36,7 +36,7 @@ const userStore = useUserStore()
 const { t } = useI18n()
 
 const getUserInfo = computed(() => {
-  const { username = 'nibabassssss', avatar, desc } = userStore.getUserInfo || {}
+  const { username, avatar, desc } = userStore.getUserInfo || {}
   return { username, avatar: avatar || headerImg, desc }
 })
 async function toLogout() {

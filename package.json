@@ -6,8 +6,8 @@
     "url": "https://github.com/WoBuChiPuTao"
   },
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
     "lint-staged": "lint-staged",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -67,6 +67,7 @@
     "autoprefixer": "^10.4.14",
     "commitlint": "^17.4.4",
     "conventional-changelog-cli": "^2.2.2",
+    "dotenv": "^16.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",

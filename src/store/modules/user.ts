@@ -48,6 +48,8 @@ export const useUserStore = defineStore({
       this.roleList = []
       this.sessionTimeout = false
       this.isDynamicAddedRoute = false
+      WebCache.removeLocal('TOKEN_')
+      WebCache.removeLocal('USER_INFO')
     },
     setToken(info: string | undefined) {
       if (info) {
@@ -133,9 +135,6 @@ export const useUserStore = defineStore({
           console.log('注销Token失败')
         }
       }
-      this.setToken(undefined)
-      this.setSessionTimeout(false)
-      this.setUserInfo(null)
       goLogin && router.push(PageEnum.BASE_LOGIN)
     }
   }

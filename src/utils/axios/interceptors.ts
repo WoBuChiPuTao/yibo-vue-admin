@@ -3,8 +3,6 @@ import { AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import { AxiosInterceptorsConfig, Result } from './types'
 
-const { t } = useI18n()
-
 export const axiosInterceptors: AxiosInterceptorsConfig = {
   requestInterceptors: (config) => {
     // 添加请求头
@@ -27,6 +25,7 @@ export const axiosInterceptors: AxiosInterceptorsConfig = {
     return Promise.reject(error)
   },
   responseInterceptorsCatch: (error) => {
+    const { t } = useI18n()
     // 处理 HTTP 网络错误
     let errMessage = ''
     // HTTP 状态码
