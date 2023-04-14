@@ -52,7 +52,6 @@ export function renderInner(canvas: HTMLCanvasElement, image?: string | RenderIm
     const fillStyle = ctx.createPattern(innerCnavas, 'no-repeat')
 
     if (!fillStyle) return
-    console.log('fill')
     ctx.fillStyle = fillStyle
     ctx.fill()
   }
