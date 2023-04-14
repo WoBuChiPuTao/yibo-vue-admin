@@ -59,7 +59,7 @@ import { ElInput, ElButton, ElTag, ElDivider, ElMessage } from 'element-plus'
 import { useWebSocket } from '@vueuse/core'
 import { formatTime } from '@/utils/dateFormat'
 
-const server = process.env.VUE_APP_API_URL + 'ws'
+const server = 'ws://101.35.249.181:3300/ws'
 export default defineComponent({
   name: 'WebSocket',
   components: { Card, ElInput, ElButton, ElDivider, ElTag },
