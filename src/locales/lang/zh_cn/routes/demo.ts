@@ -95,5 +95,9 @@ export default {
   },
   report: {
     moduleName: '报表'
+  },
+  graphics: {
+    moduleName: '图形学',
+    canvas: 'Canvas'
   }
 }

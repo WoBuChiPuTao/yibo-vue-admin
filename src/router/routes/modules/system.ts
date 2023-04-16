@@ -12,7 +12,7 @@ const system: AddRouteRecordRaw = {
     title: t('routes.demo.system.moduleName'),
     // icon: 'ion:settings-outline',
     icon: { name: 'ion:settings-outline', entity: settingsOutline },
-    orderNo: 2000
+    orderNo: 1000
   },
   children: [
     {

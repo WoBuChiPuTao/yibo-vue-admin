@@ -102,5 +102,9 @@ export default {
   },
   report: {
     moduleName: 'Report'
+  },
+  graphics: {
+    moduleName: 'Graphics',
+    canvas: 'Canvas'
   }
 }

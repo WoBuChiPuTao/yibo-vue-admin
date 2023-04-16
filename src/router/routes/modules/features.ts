@@ -1,6 +1,6 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import ionLogoXbox from '@iconify-icons/ion/logo-xbox'
+import baselinePlayCircleOutline from '@iconify-icons/ic/baseline-play-circle-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const features: AddRouteRecordRaw = {
@@ -11,8 +11,8 @@ const features: AddRouteRecordRaw = {
   meta: {
     orderNo: 10,
     icon: {
-      name: 'ion:logo-xbox',
-      entity: ionLogoXbox
+      name: 'ic:baseline-play-circle-outline',
+      entity: baselinePlayCircleOutline
     },
     title: t('routes.demo.feat.feat')
   },

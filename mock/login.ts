@@ -4,6 +4,8 @@ import { Result } from '@/utils/axios/types'
 import { LoginRes } from '#/api'
 import { UserInfo } from '#/store'
 
+const domain = '/api'
+
 const LoginBack: Result<LoginRes> = {
   code: 200,
   message: 'success',
@@ -34,7 +36,7 @@ const userInfoBack: Result<UserInfo> = {
   }
 }
 
-Mock.mock('/user/login', 'post', (params) => {
+Mock.mock(`${domain}/user/login`, 'post', (params) => {
   const queryString = params.body
   const queryObj = JSON.parse(queryString)
   if (queryObj.username === 'lyb01' && queryObj.password === '123') {
@@ -48,6 +50,6 @@ Mock.mock('/user/login', 'post', (params) => {
   }
 })
 
-Mock.mock('/user/info', 'get', () => {
+Mock.mock(`${domain}/user/info`, 'get', () => {
   return userInfoBack
 })
