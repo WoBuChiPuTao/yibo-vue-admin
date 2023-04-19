@@ -40,9 +40,8 @@
             <ul>
               <li v-for="item in getList" :key="item.time" class="mb-6 ml-4">
                 <div class="text-xs">{{ formatTime(item.time) }}</div>
-                <span class="px-4 py-1 bg-white rounded news-triangle">
-                  {{ item.res }}
-                </span>
+
+                item.res
               </li>
             </ul>
           </div>
@@ -53,9 +52,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, toRefs, watchEffect } from 'vue'
+import { VNode, computed, defineComponent, h, reactive, toRefs, watchEffect } from 'vue'
 import Card from '@/components/card/Card.vue'
-import { ElInput, ElButton, ElTag, ElDivider, ElMessage } from 'element-plus'
+import { ElInput, ElButton, ElTag, ElDivider } from 'element-plus'
 import { useWebSocket } from '@vueuse/core'
 import { formatTime } from '@/utils/dateFormat'
 
@@ -67,21 +66,14 @@ export default defineComponent({
     const state = reactive({
       server,
       sendValue: '',
-      recordList: [] as { time: number; res: string }[]
+      recordList: [] as { time: number; res: VNode }[]
     })
 
     const { status, data, send, open, close } = useWebSocket(state.server, {
-      autoReconnect: {
-        retries: 3,
-        delay: 1000,
-        onFailed() {
-          ElMessage.error('Failed to connect WebSocket after 3 retries')
-        }
-      },
       heartbeat: {
         message: 'ping',
         interval: 1000,
-        pongTimeout: 3000
+        pongTimeout: 10000
       }
     })
 
@@ -90,12 +82,22 @@ export default defineComponent({
       return [...state.recordList]
     })
 
-    watchEffect(() => {
+    watchEffect(async () => {
       if (data.value) {
         try {
-          const res = JSON.parse(data.value)
-          state.recordList.push(res)
+          const response = (await JSON.parse(data.value)) as { time: number; res: string }
+          const arr = response.res.split(/\n/)
+          const br = h('br')
+          const arrRes: (string | VNode)[] = []
+          arr.forEach((item, index) => {
+            if (index === 0) return
+            arrRes.push(br)
+            arrRes.push(item)
+          })
+          const res = h('p', { class: 'px-4 py-1 bg-white rounded news-triangle' }, ...arrRes)
+          state.recordList.push({ time: response.time, res })
         } catch (error) {
+          console.log('error', error)
           state.recordList.push({
             res: data.value,
             time: new Date().getTime()

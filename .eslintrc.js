@@ -24,6 +24,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/no-non-null-assertion': 'off',
-    'dot-notation': ['error', { allowPattern: '^[_a-z]+([_a-z]+)+$' }]
+    'dot-notation': ['error', { allowPattern: '^[_a-z]+([_a-z]+)+$' }],
+    'symbol-description': 'off'
   }
 }

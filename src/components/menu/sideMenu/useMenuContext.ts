@@ -7,7 +7,6 @@ export interface SimpleRootMenuContextProps {
   selectedName: Ref<string>
 }
 
-// eslint-disable-next-line symbol-description
 const key: InjectionKey<SimpleRootMenuContextProps> = Symbol()
 
 export function createRootMenuContext(context: SimpleRootMenuContextProps) {
