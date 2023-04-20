@@ -76,6 +76,14 @@ const component: AddRouteRecordRaw = {
       meta: {
         title: t('routes.demo.comp.qrcode')
       }
+    },
+    {
+      path: 'vitual-table',
+      name: 'VitualTable',
+      component: () => import('@/views/modules/component/vitualTable/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.virtualTable')
+      }
     }
   ]
 }

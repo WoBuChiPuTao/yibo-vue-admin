@@ -18,7 +18,7 @@ export default {
     scroll: '滚动组件',
     scrollBasic: '基础滚动',
     scrollAction: '滚动函数',
-    virtualScroll: '虚拟滚动',
+    virtualTable: '虚拟列表',
 
     tree: 'Tree',
     treeBasic: '基础树',

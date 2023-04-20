@@ -18,7 +18,7 @@ export default {
     scroll: 'Scroll',
     scrollBasic: 'Basic',
     scrollAction: 'Scroll Function',
-    virtualScroll: 'Virtual Scroll',
+    virtualTable: 'Virtual Table',
 
     tree: 'Tree',
 
