@@ -169,6 +169,7 @@ function drawStyle(canvasRef: Ref<HTMLCanvasElement | null>) {
   ctx.closePath()
 
   //  线性渐变
+  // const gradient = ctx.createLinearGradient(50)
 }
 
 onMounted(() => {

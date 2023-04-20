@@ -38,10 +38,9 @@
           <ElDivider></ElDivider>
           <div class="h-full overflow-y-auto bg-gray-100">
             <ul>
-              <li v-for="item in getList" :key="item.time" class="mb-6 ml-4">
+              <li v-for="item in getList" :key="item.time" class="mb-4 ml-4">
                 <div class="text-xs">{{ formatTime(item.time) }}</div>
-
-                item.res
+                <div class="px-4 py-1 bg-white rounded news-triangle"> {{ item.res }}</div>
               </li>
             </ul>
           </div>
@@ -52,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { VNode, computed, defineComponent, h, reactive, toRefs, watchEffect } from 'vue'
+import { computed, defineComponent, reactive, toRefs, watchEffect } from 'vue'
 import Card from '@/components/card/Card.vue'
 import { ElInput, ElButton, ElTag, ElDivider } from 'element-plus'
 import { useWebSocket } from '@vueuse/core'
@@ -66,7 +65,7 @@ export default defineComponent({
     const state = reactive({
       server,
       sendValue: '',
-      recordList: [] as { time: number; res: VNode }[]
+      recordList: [] as { time: number; res: string }[]
     })
 
     const { status, data, send, open, close } = useWebSocket(state.server, {
@@ -86,16 +85,7 @@ export default defineComponent({
       if (data.value) {
         try {
           const response = (await JSON.parse(data.value)) as { time: number; res: string }
-          const arr = response.res.split(/\n/)
-          const br = h('br')
-          const arrRes: (string | VNode)[] = []
-          arr.forEach((item, index) => {
-            if (index === 0) return
-            arrRes.push(br)
-            arrRes.push(item)
-          })
-          const res = h('p', { class: 'px-4 py-1 bg-white rounded news-triangle' }, ...arrRes)
-          state.recordList.push({ time: response.time, res })
+          state.recordList.push(response)
         } catch (error) {
           console.log('error', error)
           state.recordList.push({
