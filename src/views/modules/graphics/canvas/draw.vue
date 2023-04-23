@@ -12,6 +12,9 @@
     <canvas ref="style" height="150" width="400">
       当前浏览器不支持canvas元素，请升级或更换浏览器！
     </canvas>
+    <canvas ref="text" height="150" width="400">
+      当前浏览器不支持canvas元素，请升级或更换浏览器！
+    </canvas>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ const line = ref<HTMLCanvasElement | null>(null)
 const circle = ref<HTMLCanvasElement | null>(null)
 const curve = ref<HTMLCanvasElement | null>(null)
 const style = ref<HTMLCanvasElement | null>(null)
+const text = ref<HTMLCanvasElement | null>(null)
 
 function drawLine(canvasRef: Ref<HTMLCanvasElement | null>) {
   const canvas = unref(canvasRef)
@@ -169,7 +173,49 @@ function drawStyle(canvasRef: Ref<HTMLCanvasElement | null>) {
   ctx.closePath()
 
   //  线性渐变
-  // const gradient = ctx.createLinearGradient(50)
+  const gradient = ctx.createLinearGradient(50, 5, 50, 100)
+  gradient.addColorStop(0, 'red')
+  gradient.addColorStop(0.5, 'yellow')
+  gradient.addColorStop(1, 'green')
+  ctx.globalAlpha = 1
+  ctx.beginPath()
+  ctx.fillStyle = gradient
+  ctx.fillRect(50, 5, 50, 95)
+  ctx.closePath()
+
+  // 径向渐变
+  ctx.beginPath()
+  const gradient2 = ctx.createRadialGradient(150, 50, 40, 150, 50, 10)
+  gradient2.addColorStop(0, 'red')
+  gradient2.addColorStop(1, 'white')
+  ctx.arc(150, 50, 40, 0, 2 * Math.PI)
+  ctx.fillStyle = gradient2
+  ctx.fill()
+  ctx.closePath()
+
+  ctx.beginPath()
+  const gradient3 = ctx.createRadialGradient(250, 50, 40, 270, 80, 0)
+  gradient3.addColorStop(0, 'red')
+  gradient3.addColorStop(1, 'white')
+  ctx.arc(250, 50, 40, 0, 2 * Math.PI)
+  ctx.fillStyle = gradient3
+  ctx.fill()
+  ctx.closePath()
+}
+
+function drawText(canvasRef: Ref<HTMLCanvasElement | null>) {
+  const canvas = unref(canvasRef)
+  if (!canvas) return
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  ctx.beginPath()
+  ctx.font = '50px serif'
+  ctx.fillStyle = 'red'
+  ctx.fillText('canvas', 25, 25, 40)
+  ctx.strokeStyle = 'green'
+  ctx.strokeText('draw', 50, 50)
+  ctx.closePath()
 }
 
 onMounted(() => {
@@ -177,5 +223,6 @@ onMounted(() => {
   drawCircle(circle)
   drawCurve(curve)
   drawStyle(style)
+  drawText(text)
 })
 </script>
