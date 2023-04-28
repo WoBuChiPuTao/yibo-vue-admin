@@ -214,7 +214,33 @@ function drawText(canvasRef: Ref<HTMLCanvasElement | null>) {
   ctx.fillStyle = 'red'
   ctx.fillText('canvas', 25, 25, 40)
   ctx.strokeStyle = 'green'
-  ctx.strokeText('draw', 50, 50)
+  ctx.strokeText('draw', 20, 70)
+  ctx.closePath()
+
+  ctx.beginPath()
+  ctx.font = '15px serif'
+  // 语言的方向
+  ctx.direction = 'ltr'
+  // 文字的横轴对齐方式
+  ctx.textAlign = 'right'
+  // 文字的基线
+  ctx.textBaseline = 'bottom'
+  ctx.fillText('I Love Graphics `!', 250, 10)
+  ctx.direction = 'ltr'
+  ctx.textAlign = 'center'
+  ctx.fillText('I Love Graphics `!', 250, 30)
+  ctx.direction = 'ltr'
+  ctx.textAlign = 'left'
+  ctx.fillText('I Love Graphics `!', 250, 50)
+  ctx.direction = 'rtl'
+  ctx.textAlign = 'left'
+  ctx.fillText('I Love Graphics `!', 250, 70)
+  ctx.direction = 'rtl'
+  ctx.textAlign = 'center'
+  ctx.fillText('I Love Graphics `!', 250, 90)
+  ctx.direction = 'rtl'
+  ctx.textAlign = 'right'
+  ctx.fillText('I Love Graphics `!', 250, 110)
   ctx.closePath()
 }
 

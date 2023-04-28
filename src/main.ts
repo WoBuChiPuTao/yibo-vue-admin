@@ -9,7 +9,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import { router, setupRouter } from './router'
-import { setupRouteGuard } from './router/guard'
+import { setupRouterGuard } from './router/guard'
 import { setupStore } from './store'
 import { setupI18n } from './locales/setupI18n'
 import { initConfigStore } from './settings/init'
@@ -19,7 +19,6 @@ import { preLoader } from './utils/preLoader'
 async function launch() {
   // 注入svg和公用图片
   preLoader()
-
   // 创建app实例
   const app = createApp(App)
   // 创建仓库
@@ -31,7 +30,7 @@ async function launch() {
   // 创建router实例
   setupRouter(app)
   // 创建路由守卫
-  setupRouteGuard(router)
+  setupRouterGuard(router)
   // 创建全局指令
   setupDirectives(app)
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref, toRefs } from 'vue'
 import { createAppProvider } from './useAppContext'
+import { createBreakpointsListener } from '@/hooks/event/useBreakpoint'
 
 const props = {
   appClass: {
@@ -15,6 +16,13 @@ export default defineComponent({
   props,
   setup(props, { slots }) {
     const isMobile = ref(false)
+
+    createBreakpointsListener(({ screenSizeEnum, realWidth, screenMap }) => {
+      const width = screenMap.get(screenSizeEnum.LG)
+      if (width) {
+        isMobile.value = realWidth.value - 5 < width
+      }
+    })
 
     const { appClass } = toRefs(props)
 

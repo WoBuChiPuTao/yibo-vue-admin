@@ -37,7 +37,7 @@ import { useThemeMode } from '@/hooks/setting/useTheme'
 // 图标
 import languageIcon from '@iconify-icons/ion/language'
 
-const selectedKey = ref<LocaleType>('zh_CN')
+const selectedKey = ref<LocaleType>('zh-CN')
 
 const props = defineProps({
   /**

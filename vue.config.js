@@ -4,8 +4,8 @@ function resolve(dir) {
 }
 
 const { defineConfig } = require('@vue/cli-service')
-const Icons = require('unplugin-icons/webpack')
-const IconsResolver = require('unplugin-icons/resolver')
+// const Icons = require('unplugin-icons/webpack')
+// const IconsResolver = require('unplugin-icons/resolver')
 
 // 生产环境配置
 const externals = []
@@ -23,21 +23,21 @@ module.exports = defineConfig({
   configureWebpack: {
     externals: externals,
     plugins: [
-      Icons({
-        compiler: 'vue3',
-        autoInstall: true,
-        tsx: 'react'
-      }),
-      require('unplugin-vue-components/webpack')({
-        dts: 'types/components.d.ts',
-        resolvers: [
-          // 自动导入图标组件
-          IconsResolver({
-            // 图标使用：<{prefix}-{collection}-{icon} />
-            prefix: 'icon'
-          })
-        ]
-      })
+      // Icons({
+      //   compiler: 'vue3',
+      //   autoInstall: true,
+      //   tsx: 'react'
+      // }),
+      // require('unplugin-vue-components/webpack')({
+      //   dts: 'types/components.d.ts',
+      //   resolvers: [
+      //     // 自动导入图标组件
+      //     IconsResolver({
+      //       // 图标使用：<{prefix}-{collection}-{icon} />
+      //       prefix: 'icon'
+      //     })
+      //   ]
+      // })
     ]
   },
   css: {
@@ -53,6 +53,15 @@ module.exports = defineConfig({
             hack: `true; @import "${path.resolve(__dirname, './src/style/var/index.less')}";`
           }
         }
+      }
+    }
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://101.35.249.181/api/',
+        ws: true,
+        changeOrigin: true
       }
     }
   },

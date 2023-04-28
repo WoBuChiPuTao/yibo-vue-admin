@@ -8,7 +8,7 @@ import { AxiosCancel } from '@/utils/axios/axiosCancel'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 
-export function setupRouteGuard(router: Router) {
+export function setupRouterGuard(router: Router) {
   createStateGuard(router)
   createPageGuard(router)
   createHttpGuard(router)
