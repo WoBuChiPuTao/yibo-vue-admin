@@ -23,11 +23,10 @@ export interface HeaderColorSetting {
 }
 
 export interface SiderSetting {
+  // 是否显示侧边栏
   show: boolean
   menuType: MenuTypeEnum
   collapsed: boolean
-  // 收起时是否隐藏菜单
-  siderHidden: boolean
   siderCollapsedWidth: number
   siderWidth: number
 }

@@ -57,6 +57,7 @@ module.exports = defineConfig({
     }
   },
   devServer: {
+    port: '1315',
     proxy: {
       '/api': {
         target: 'http://101.35.249.181/api/',

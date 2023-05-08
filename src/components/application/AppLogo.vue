@@ -1,16 +1,20 @@
 <template>
   <div class="flex items-center cursor-pointer justify-left" @click="goHome">
     <img class="logo-size" src="../../assets/img/logo.jpg" />
-    <h2 v-if="!getCollapsed" class="ml-5 font-bold truncate">{{ title }}</h2>
+    <h2 v-show="props.showText" class="ml-5 font-bold truncate">{{ title }}</h2>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 import { useGo } from '@/hooks/web/usePage'
 import { PageEnum } from '@/enums/pageEnum'
 
-const { getCollapsed } = useSiderSetting()
+const props = defineProps({
+  showText: {
+    type: Boolean,
+    default: true
+  }
+})
 
 const title = process.env.VUE_APP_SIMPLE_TITLE
 

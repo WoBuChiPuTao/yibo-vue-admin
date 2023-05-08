@@ -4,9 +4,9 @@ import { createAppProvider } from './useAppContext'
 import { createBreakpointsListener } from '@/hooks/event/useBreakpoint'
 
 const props = {
-  appClass: {
+  classPrefix: {
     type: String,
-    default: 'person'
+    default: 'app'
   }
 }
 
@@ -17,16 +17,18 @@ export default defineComponent({
   setup(props, { slots }) {
     const isMobile = ref(false)
 
+    // 监听窗口宽度变换
     createBreakpointsListener(({ screenSizeEnum, realWidth, screenMap }) => {
       const width = screenMap.get(screenSizeEnum.LG)
       if (width) {
         isMobile.value = realWidth.value - 5 < width
       }
+      console.log('isMobile', isMobile.value)
     })
 
-    const { appClass } = toRefs(props)
+    const { classPrefix } = toRefs(props)
 
-    createAppProvider({ appClass, isMobile })
+    createAppProvider({ classPrefix, isMobile })
 
     return () => slots.default?.()
   }

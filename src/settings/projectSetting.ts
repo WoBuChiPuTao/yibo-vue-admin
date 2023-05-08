@@ -74,8 +74,6 @@ const setting: ProjectConfig = {
     menuType: MenuTypeEnum.SIDE,
     // 菜单折叠
     collapsed: false,
-    // 隐藏侧边栏
-    siderHidden: false,
     // 侧边栏折叠后的宽度
     siderCollapsedWidth: 48,
     // 侧边栏宽度

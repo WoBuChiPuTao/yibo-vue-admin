@@ -9,22 +9,20 @@ export function useSiderSetting() {
   const getShowSider = computed(() => appStore.getSiderSetting.show)
   const getMenuType = computed(() => appStore.getSiderSetting.menuType || MenuTypeEnum.SIDE)
   const getCollapsed = computed(() => appStore.getSiderSetting.collapsed)
-  const getSiderHidden = computed(() => appStore.getSiderSetting.siderHidden)
   const getSiderWidth = computed(() => appStore.getSiderSetting.siderWidth)
   const getCollapsedWidth = computed(() => appStore.getSiderSetting.siderCollapsedWidth)
 
   // 菜单类型
   const getIsSideMenu = computed(() => unref(getMenuType) === MenuTypeEnum.SIDE)
-  const getIsTopMenu = computed(() => unref(getMenuType) === MenuTypeEnum.TOP_MENU)
 
   // 是否展现sideMenu
   const getShowSideMenu = computed(() => {
-    return unref(getShowSider) && !unref(getSiderHidden) && unref(getIsSideMenu)
+    return unref(getShowSider) && unref(getIsSideMenu)
   })
 
   // colllpase后的宽度
   const getSiderMiniWidth = computed(() => {
-    return unref(getSiderHidden) ? 0 : unref(getCollapsedWidth)
+    return unref(getShowSider) ? unref(getCollapsedWidth) : 0
   })
   // sideMenu的宽度
   const getRealWidth = computed(() => {
@@ -48,7 +46,6 @@ export function useSiderSetting() {
     getRealWidth,
     getShowSideMenu,
     getIsSideMenu,
-    getIsTopMenu,
     setSiderSetting,
     toggleCollapsed
   }

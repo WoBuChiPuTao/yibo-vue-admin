@@ -144,7 +144,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '#a0cfff' },
       { name: '--el-color-primary-light-7', value: '#c6e2ff' },
       { name: '--el-color-primary-light-8', value: '#d9ecff' },
-      { name: '--el-color-primary-light-9', value: '#ecf5ff' }
+      { name: '--el-color-primary-light-9', value: '#ecf5ff' },
+      { name: '--el-color-primary-dark-2', value: '#337ecc' }
     ]
   },
   {
@@ -155,7 +156,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '' },
       { name: '--el-color-primary-light-7', value: '' },
       { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
+      { name: '--el-color-primary-light-9', value: '' },
+      { name: '--el-color-primary-dark-2', value: '' }
     ]
   },
   {
@@ -166,7 +168,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '#b3e19d' },
       { name: '--el-color-primary-light-7', value: '#d1edc4' },
       { name: '--el-color-primary-light-8', value: '#e1f3d8' },
-      { name: '--el-color-primary-light-9', value: '#f0f9eb' }
+      { name: '--el-color-primary-light-9', value: '#f0f9eb' },
+      { name: '--el-color-primary-dark-2', value: '#529b2e' }
     ]
   },
   {
@@ -177,7 +180,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '#f3d19e' },
       { name: '--el-color-primary-light-7', value: '#f8e3c5' },
       { name: '--el-color-primary-light-8', value: '#faecd8' },
-      { name: '--el-color-primary-light-9', value: '#fdf6ec' }
+      { name: '--el-color-primary-light-9', value: '#fdf6ec' },
+      { name: '--el-color-primary-dark-2', value: '#b88230' }
     ]
   },
   {
@@ -188,7 +192,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '' },
       { name: '--el-color-primary-light-7', value: '' },
       { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
+      { name: '--el-color-primary-light-9', value: '' },
+      { name: '--el-color-primary-dark-2', value: '' }
     ]
   },
   {
@@ -199,7 +204,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '#fab6b6' },
       { name: '--el-color-primary-light-7', value: '#fcd3d3' },
       { name: '--el-color-primary-light-8', value: '#fde2e2' },
-      { name: '--el-color-primary-light-9', value: '#fef0f0' }
+      { name: '--el-color-primary-light-9', value: '#fef0f0' },
+      { name: '--el-color-primary-dark-2', value: '#c45656' }
     ]
   },
   {
@@ -221,7 +227,8 @@ export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
       { name: '--el-color-primary-light-5', value: '#c8c9cc' },
       { name: '--el-color-primary-light-7', value: '#dedfe0' },
       { name: '--el-color-primary-light-8', value: '#e9e9eb' },
-      { name: '--el-color-primary-light-9', value: '#f4f4f5' }
+      { name: '--el-color-primary-light-9', value: '#f4f4f5' },
+      { name: '--el-color-primary-dark-2', value: '#73767a' }
     ]
   }
 ]

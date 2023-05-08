@@ -21,7 +21,6 @@ export function useBreakpoint() {
 export function createBreakpointsListener(fn?: (opt: BreakpointParam) => void) {
   const screenRef = ref<screenSizeEnum>(screenSizeEnum.XL)
   const realWidthRef = ref(window.innerWidth)
-
   function getWindowWidth() {
     const width = document.body.clientWidth
     const xs = screenMap.get(screenSizeEnum.XS)!
@@ -69,7 +68,7 @@ export function createBreakpointsListener(fn?: (opt: BreakpointParam) => void) {
       screenSizeEnum
     })
   }
-
+  resizeFn()
   return {
     screenSize,
     screenWidth,

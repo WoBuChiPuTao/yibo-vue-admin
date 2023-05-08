@@ -1,6 +1,6 @@
 <template>
   <ElContainer class="layout">
-    <Side v-if="getShowSideMenu"></Side>
+    <Side v-if="getShowSideMenu || getIsMobile"></Side>
     <ElContainer class="layout-main">
       <Header></Header>
       <ElMain class="layout-main-content">
@@ -16,8 +16,11 @@ import Header from './header/index.vue'
 import Side from './side/index.vue'
 import Content from './content/index.vue'
 import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
+import { useAppInject } from '@/hooks/web/useAppInject'
 
 const { getShowSideMenu } = useSiderSetting()
+
+const { getIsMobile } = useAppInject()
 </script>
 
 <style lang="less">

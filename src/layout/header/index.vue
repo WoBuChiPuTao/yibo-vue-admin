@@ -13,16 +13,19 @@ import Tabs from '../tabs/index.vue'
 import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 import { useTabsSetting } from '@/hooks/setting/useTabsSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+import { useAppInject } from '@/hooks/web/useAppInject'
 export default defineComponent({
   name: 'Header',
   components: { LayoutHeader, Tabs },
   setup() {
+    const { getIsMobile } = useAppInject()
     const { getRealWidth, getShowSideMenu } = useSiderSetting()
     const { getShowHeader, getHeaderHeight } = useHeaderSetting()
     const { getShowTabs, getTabsHeight } = useTabsSetting()
     const getDomWidth = computed((): CSSProperties => {
+      const subtractedWidth = unref(getIsMobile) ? 0 : unref(getRealWidth)
       return {
-        width: unref(getShowSideMenu) ? `calc(100% - ${unref(getRealWidth)}px)` : '100%'
+        width: unref(getShowSideMenu) ? `calc(100% - ${subtractedWidth}px)` : '100%'
       }
     })
 
