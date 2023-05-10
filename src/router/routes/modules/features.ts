@@ -20,7 +20,8 @@ const features: AddRouteRecordRaw = {
     {
       path: 'ws',
       name: 'WebSocket',
-      component: () => import('@/views/modules/feature/webSocket/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "WebSocket" */ '@/views/modules/feature/webSocket/index.vue'),
       meta: {
         title: t('routes.demo.feat.ws')
       }
@@ -37,7 +38,10 @@ const features: AddRouteRecordRaw = {
         {
           path: 'importExcel',
           name: 'ImportExcel',
-          component: () => import('@/views/modules/feature/excel/ImportExcel.vue'),
+          component: () =>
+            import(
+              /* webpackChunkName: "ImportExcel" */ '@/views/modules/feature/excel/ImportExcel.vue'
+            ),
           meta: {
             title: t('routes.demo.excel.importExcel')
           }
@@ -45,7 +49,10 @@ const features: AddRouteRecordRaw = {
         {
           path: 'exportFile',
           name: 'ExportFile',
-          component: () => import('@/views/modules/feature/excel/ExportExcel.vue'),
+          component: () =>
+            import(
+              /* webpackChunkName: "ExportFile" */ '@/views/modules/feature/excel/ExportExcel.vue'
+            ),
           meta: {
             title: t('routes.demo.excel.exportExcel')
           }

@@ -52,24 +52,30 @@ export function useTableHeight(
     const headEl = tableEl.querySelector('.el-table__header-wrapper')
     if (!headEl) return
 
+    // 头部距离可视页面底部和顶部距离
+    const { top, bottomToVisibleWindow } = getEloffset(headEl)
+    // 如果距离顶部为零则页面已缓存隐藏
+    if (!top) {
+      setTimeout(() => {
+        calcTableHeight()
+      }, 200)
+      return
+    }
+
     // 自定义table到页面底部的距离
     const tableToPageBottomHeight = toBottom
-    // 头部高度
-    //  const headerHegiht = (headEl as HTMLElement).offsetHeight
 
-    // 头部距离可视页面底部距离
-    const headrToBottom = getEloffset(headEl).bottomToVisibleWindow
-
-    const height = headrToBottom - tableToPageBottomHeight
+    const height = bottomToVisibleWindow - tableToPageBottomHeight
     // table主体高度
     tableHeight.value = `${height}px`
   }
+
   useWindowSizeFn(calcTableHeight, 200)
   tryOnMounted(() => {
-    calcTableHeight()
-    nextTick(() => {
-      debounceRedoHeight()
-    })
+    debounceRedoHeight()
+    // nextTick(() => {
+    //   debounceRedoHeight()
+    // })
   })
   return { redoHeight, tableHeight }
 }

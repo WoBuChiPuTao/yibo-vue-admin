@@ -21,7 +21,10 @@ const system: AddRouteRecordRaw = {
       meta: {
         title: t('routes.demo.system.account')
       },
-      component: () => import('@/views/modules/system/account/index.vue')
+      component: () =>
+        import(
+          /* webpackChunkName: "AccountManagement" */ '@/views/modules/system/account/index.vue'
+        )
     },
     {
       path: 'role',
@@ -29,7 +32,8 @@ const system: AddRouteRecordRaw = {
       meta: {
         title: t('routes.demo.system.role')
       },
-      component: () => import('@/views/modules/system/role/index.vue')
+      component: () =>
+        import(/* webpackChunkName: "RoleManagement" */ '@/views/modules/system/role/index.vue')
     },
     {
       path: 'menu',
@@ -37,7 +41,8 @@ const system: AddRouteRecordRaw = {
       meta: {
         title: t('routes.demo.system.menu')
       },
-      component: () => import('@/views/modules/system/menu/index.vue')
+      component: () =>
+        import(/* webpackChunkName: "MenuManagement" */ '@/views/modules/system/menu/index.vue')
     },
     {
       path: 'dept',
@@ -45,7 +50,10 @@ const system: AddRouteRecordRaw = {
       meta: {
         title: t('routes.demo.system.dept')
       },
-      component: () => import('@/views/modules/system/department/index.vue')
+      component: () =>
+        import(
+          /* webpackChunkName: "DeptManagement" */ '@/views/modules/system/department/index.vue'
+        )
     },
     {
       path: 'changePassword',
@@ -53,7 +61,8 @@ const system: AddRouteRecordRaw = {
       meta: {
         title: t('routes.demo.system.password')
       },
-      component: () => import('@/views/modules/system/password/index.vue')
+      component: () =>
+        import(/* webpackChunkName: "ChangePassword" */ '@/views/modules/system/password/index.vue')
     }
   ]
 }

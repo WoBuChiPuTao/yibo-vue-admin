@@ -20,7 +20,8 @@ const charts: AddRouteRecordRaw = {
     {
       path: 'gaode',
       name: 'GaoDe',
-      component: () => import('@/views/modules/charts/GaoDe/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "GaoDe" */ '@/views/modules/charts/GaoDe/index.vue'),
       meta: {
         title: t('routes.demo.charts.aMap')
       }
@@ -37,7 +38,8 @@ const charts: AddRouteRecordRaw = {
         {
           path: 'map',
           name: 'Map',
-          component: () => import('@/views/modules/charts/echart/Map.vue'),
+          component: () =>
+            import(/* webpackChunkName: "Map" */ '@/views/modules/charts/echart/Map.vue'),
           meta: {
             title: t('routes.demo.charts.map')
           }
@@ -45,7 +47,8 @@ const charts: AddRouteRecordRaw = {
         {
           path: 'line',
           name: 'Line',
-          component: () => import('@/views/modules/charts/echart/Line.vue'),
+          component: () =>
+            import(/* webpackChunkName: "Line" */ '@/views/modules/charts/echart/Line.vue'),
           meta: {
             title: t('routes.demo.charts.line')
           }
@@ -53,7 +56,8 @@ const charts: AddRouteRecordRaw = {
         {
           path: 'pie',
           name: 'Pie',
-          component: () => import('@/views/modules/charts/echart/Pie.vue'),
+          component: () =>
+            import(/* webpackChunkName: "Pie" */ '@/views/modules/charts/echart/Pie.vue'),
           meta: {
             title: t('routes.demo.charts.pie')
           }

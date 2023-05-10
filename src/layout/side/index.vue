@@ -94,6 +94,8 @@ export default defineComponent({
 // 修改原有elDrawer样式
 .mobile-side-drawer {
   :deep(.el-drawer) {
+    background-color: var(--sider-bg-color);
+
     .el-drawer__header {
       height: 0;
       padding: 0;

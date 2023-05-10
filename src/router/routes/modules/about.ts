@@ -20,7 +20,8 @@ const about: AddRouteRecordRaw = {
     {
       path: 'page',
       name: 'AboutPage',
-      component: () => import('@/views/modules/about/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "AboutPage" */ '@/views/modules/about/index.vue'),
       meta: {
         title: t('routes.home.about'),
         hideMenu: true

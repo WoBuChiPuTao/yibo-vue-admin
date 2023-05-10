@@ -21,7 +21,8 @@ const component: AddRouteRecordRaw = {
     {
       path: 'basic',
       name: 'BasicDemo',
-      component: () => import('@/views/modules/component/basic/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "BasicDemo" */ '@/views/modules/component/basic/index.vue'),
       meta: {
         title: t('routes.demo.comp.basic')
       }
@@ -38,7 +39,10 @@ const component: AddRouteRecordRaw = {
         {
           path: 'basic',
           name: 'BasicTreeDemo',
-          component: () => import('@/views/modules/component/tree/index.vue'),
+          component: () =>
+            import(
+              /* webpackChunkName: "BasicTreeDemo" */ '@/views/modules/component/tree/index.vue'
+            ),
           meta: {
             title: t('routes.demo.comp.treeBasic')
           }
@@ -46,7 +50,10 @@ const component: AddRouteRecordRaw = {
         {
           path: 'editTree',
           name: 'EditTreeDemo',
-          component: () => import('@/views/modules/component/tree/EditTree.vue'),
+          component: () =>
+            import(
+              /* webpackChunkName: "EditTreeDemo" */ '@/views/modules/component/tree/EditTree.vue'
+            ),
           meta: {
             title: t('routes.demo.comp.editTree')
           }
@@ -54,7 +61,10 @@ const component: AddRouteRecordRaw = {
         {
           path: 'actionTree',
           name: 'ActionTreeDemo',
-          component: () => import('@/views/modules/component/tree/ActionTree.vue'),
+          component: () =>
+            import(
+              /* webpackChunkName: "ActionTreeDemo" */ '@/views/modules/component/tree/ActionTree.vue'
+            ),
           meta: {
             title: t('routes.demo.comp.actionTree')
           }
@@ -64,7 +74,8 @@ const component: AddRouteRecordRaw = {
     {
       path: 'lazy',
       name: 'LazyDemo',
-      component: () => import('@/views/modules/component/lazy/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "LazyDemo" */ '@/views/modules/component/lazy/index.vue'),
       meta: {
         title: t('routes.demo.comp.lazy')
       }
@@ -72,7 +83,8 @@ const component: AddRouteRecordRaw = {
     {
       path: 'qrcode',
       name: 'QRcode',
-      component: () => import('@/views/modules/component/qrCode/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "QRcode" */ '@/views/modules/component/qrCode/index.vue'),
       meta: {
         title: t('routes.demo.comp.qrcode')
       }
@@ -80,7 +92,10 @@ const component: AddRouteRecordRaw = {
     {
       path: 'vitual-table',
       name: 'VitualTable',
-      component: () => import('@/views/modules/component/vitualTable/index.vue'),
+      component: () =>
+        import(
+          /* webpackChunkName: "VitualTable" */ '@/views/modules/component/vitualTable/index.vue'
+        ),
       meta: {
         title: t('routes.demo.comp.virtualTable')
       }

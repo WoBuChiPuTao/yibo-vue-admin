@@ -21,6 +21,13 @@ const externals = []
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
+    entry: {
+      app: './src/main.ts'
+    },
+    output: {
+      filename: 'js/[name].[contenthash].js',
+      chunkFilename: 'js/[name].[contenthash].js'
+    },
     externals: externals,
     plugins: [
       // Icons({

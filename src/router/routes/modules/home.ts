@@ -20,7 +20,8 @@ const home: AddRouteRecordRaw = {
     {
       path: 'dashboard',
       name: 'Dashboard',
-      component: () => import('@/views/home/dashboard/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "Dashboard" */ '@/views/home/dashboard/index.vue'),
       meta: {
         title: t('routes.home.dashboard'),
         fixedTab: true
@@ -29,7 +30,8 @@ const home: AddRouteRecordRaw = {
     {
       path: 'workbench',
       name: 'Workbench',
-      component: () => import('@/views/home/workbench/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "Workbench" */ '@/views/home/workbench/index.vue'),
       meta: {
         title: t('routes.home.workbench')
       }

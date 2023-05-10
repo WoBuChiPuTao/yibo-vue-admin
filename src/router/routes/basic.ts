@@ -4,8 +4,8 @@ const Layout = () => import('@/layout/index.vue')
 
 export const LOGIN_ROUTE: AddRouteRecordRaw = {
   path: '/login',
-  name: 'login',
-  component: () => import('@/views/login/index.vue'),
+  name: 'Login',
+  component: () => import(/* webpackChunkName: "Login" */ '@/views/login/index.vue'),
   meta: {
     title: t('routes.basic.login')
   }
@@ -24,7 +24,7 @@ export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
     {
       path: '/:path(.*)*',
       name: 'PageNotFound',
-      component: () => import('@/views/error/404.vue'),
+      component: () => import(/* webpackChunkName: "PageNotFound" */ '@/views/error/404.vue'),
       meta: {
         title: 'ErrorPage',
         hideBreadcrumb: true,
@@ -47,7 +47,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
     {
       path: '/redirect/:path(.*)',
       name: 'Redirect',
-      component: () => import('@/layout/redirect/index.vue'),
+      component: () => import(/* webpackChunkName: "Redirect" */ '@/layout/redirect/index.vue'),
       meta: {
         title: 'Redirect'
       }

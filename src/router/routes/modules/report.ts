@@ -20,7 +20,8 @@ const reports: AddRouteRecordRaw = {
     {
       path: 'page',
       name: 'ReportPage',
-      component: () => import('@/views/modules/report/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "ReportPage" */ '@/views/modules/report/index.vue'),
       meta: {
         title: t('routes.demo.report.moduleName'),
         hideMenu: true

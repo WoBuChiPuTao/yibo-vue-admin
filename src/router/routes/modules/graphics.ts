@@ -20,7 +20,8 @@ const graphics: AddRouteRecordRaw = {
     {
       path: 'canvas',
       name: 'Canvas',
-      component: () => import('@/views/modules/graphics/canvas/index.vue'),
+      component: () =>
+        import(/* webpackChunkName: "Canvas" */ '@/views/modules/graphics/canvas/index.vue'),
       meta: {
         title: t('routes.demo.graphics.canvas')
       }

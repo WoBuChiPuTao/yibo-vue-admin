@@ -1,19 +1,11 @@
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { createAppProvider } from './useAppContext'
 import { createBreakpointsListener } from '@/hooks/event/useBreakpoint'
-
-const props = {
-  classPrefix: {
-    type: String,
-    default: 'app'
-  }
-}
 
 export default defineComponent({
   name: 'AppProvider',
   inheritAttrs: false,
-  props,
   setup(props, { slots }) {
     const isMobile = ref(false)
 
@@ -23,12 +15,9 @@ export default defineComponent({
       if (width) {
         isMobile.value = realWidth.value - 5 < width
       }
-      console.log('isMobile', isMobile.value)
     })
 
-    const { classPrefix } = toRefs(props)
-
-    createAppProvider({ classPrefix, isMobile })
+    createAppProvider({ isMobile })
 
     return () => slots.default?.()
   }
