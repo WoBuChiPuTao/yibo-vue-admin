@@ -9,7 +9,7 @@
     >
       <div class="side-style" :style="getsiderWidth">
         <AppLogo class="side-logo" :showText="!getCollapsed"></AppLogo>
-        <Menu></Menu>
+        <Menu class="side-height-auto"></Menu>
       </div>
     </ElDrawer>
   </div>
@@ -17,7 +17,7 @@
     <div class="side-fill" :style="getsiderWidth"></div>
     <div class="side-style side-fixed" :style="getsiderWidth">
       <AppLogo class="side-logo" :showText="!getCollapsed"></AppLogo>
-      <Menu></Menu>
+      <Menu class="side-height-auto"></Menu>
     </div>
   </div>
 </template>
@@ -73,11 +73,23 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .side-style {
+  display: flex;
+  flex-direction: column;
   transition: all 0.2s;
   background-color: var(--sider-bg-color);
   height: 100%;
   overflow: hidden;
   z-index: 100;
+
+  .side-logo {
+    height: @header-height;
+    padding: 10px 8px 10px 8px;
+    color: var(--sider-text-hover-color);
+  }
+
+  .side-height-auto {
+    flex: 1;
+  }
 }
 
 .side-fill {
@@ -106,11 +118,5 @@ export default defineComponent({
       padding: 0;
     }
   }
-}
-
-.side-logo {
-  height: @header-height;
-  padding: 10px 8px 10px 8px;
-  color: var(--sider-text-hover-color);
 }
 </style>

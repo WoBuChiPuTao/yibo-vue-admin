@@ -6,13 +6,18 @@
     "url": "https://github.com/WoBuChiPuTao"
   },
   "scripts": {
-    "dev": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "dev": "vue-cli-service serve --mode development",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
     "lint": "vue-cli-service lint",
     "lint-staged": "lint-staged",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
     "prepare": "husky install"
   },
+  "main": "background.js",
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "@vueuse/core": "^9.6.0",
@@ -49,6 +54,7 @@
     "@iconify/json": "^2.2.36",
     "@iconify/vue": "^4.1.0",
     "@types/crypto-js": "^4.1.1",
+    "@types/electron-devtools-installer": "^2.2.0",
     "@types/mockjs": "^1.0.7",
     "@types/nprogress": "^0.2.0",
     "@types/qrcode": "^1.5.0",
@@ -68,6 +74,8 @@
     "commitlint": "^17.4.4",
     "conventional-changelog-cli": "^2.2.2",
     "dotenv": "^16.0.3",
+    "electron": "^13.0.0",
+    "electron-devtools-installer": "^3.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
@@ -90,7 +98,8 @@
     "stylelint-order": "^5.0.0",
     "svg-sprite-loader": "^5.2.1",
     "tailwindcss": "^3.2.7",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "vue-cli-plugin-electron-builder": "~2.1.1"
   },
   "license": "MIT",
   "lint-staged": {
