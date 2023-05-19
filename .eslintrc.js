@@ -1,8 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
-    'vue/setup-compiler-macros': true
+    node: true
   },
   extends: ['plugin:vue/vue3-essential', '@vue/standard', '@vue/typescript/recommended'],
   parserOptions: {
@@ -25,6 +24,8 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/no-non-null-assertion': 'off',
     'dot-notation': ['error', { allowPattern: '^[_a-z]+([_a-z]+)+$' }],
-    'symbol-description': 'off'
+    'symbol-description': 'off',
+    'no-undef': 'off',
+    '@typescript-eslint/no-var-requires': 'off'
   }
 }
