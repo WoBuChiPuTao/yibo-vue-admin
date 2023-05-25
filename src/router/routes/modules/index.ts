@@ -7,6 +7,7 @@ import Comp from './component'
 import Charts from './charts'
 import Report from './report'
 import graphics from './graphics'
+import capRisk from './capRiskCopy'
 export const asyncRoutes: Array<AddRouteRecordRaw> = [
   Home,
   About,
@@ -15,5 +16,6 @@ export const asyncRoutes: Array<AddRouteRecordRaw> = [
   Comp,
   Charts,
   Report,
-  graphics
+  graphics,
+  capRisk
 ]

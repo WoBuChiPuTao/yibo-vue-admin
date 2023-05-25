@@ -1,4 +1,8 @@
 export default {
+  capRisk: {
+    moduleName: 'CapRisk',
+    bond: 'Bond'
+  },
   charts: {
     baiduMap: 'Baidu map',
     aMap: 'A map',

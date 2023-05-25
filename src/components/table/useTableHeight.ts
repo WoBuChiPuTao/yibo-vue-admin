@@ -5,13 +5,13 @@ import { ComputedRef, Ref, nextTick, ref, unref, watch } from 'vue'
 
 export function useTableHeight(
   tableRef: Ref<ElementRef>,
-  getDataSourceRef: ComputedRef<Recordable[]>,
+  getDataSourceRef: ComputedRef<Recordable[]> | Ref<Recordable[]> | Recordable[],
   toBottom = 36
 ) {
   const tableHeight = ref('100%')
 
   watch(
-    () => unref(getDataSourceRef)?.length,
+    () => (unref(getDataSourceRef) as Recordable[])?.length,
     () => {
       debounceRedoHeight()
     },
@@ -31,7 +31,7 @@ export function useTableHeight(
   let bodyEl: HTMLElement | null
 
   async function calcTableHeight() {
-    const tableData = unref(getDataSourceRef)
+    const tableData = unref(getDataSourceRef) as Recordable[]
 
     const table = unref(tableRef)
     if (!table) return

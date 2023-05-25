@@ -4,22 +4,15 @@ const { defineConfig } = require('@vue/cli-service')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
+// const isDev = process.env.NODE_ENV !== 'production'
 // const Icons = require('unplugin-icons/webpack')
 // const IconsResolver = require('unplugin-icons/resolver')
 
 // 生产环境配置
+// 不参与打包的文件，需要使用CDN
 const externals = []
-// if (process.env.NODE_ENV === 'production') {
-//   console.log('production')
-//   // 生产环境排除mock文件夹
-//   //  \u4e00 === &
-//   externals.push(/^\u4e00\//)
-//   externals.push({
-//     mock: 'mock'
-//   })
-// }
 module.exports = defineConfig({
-  transpileDependencies: true,
+  productionSourceMap: false, // 生产环境不生成资源映射map文件
   configureWebpack: {
     entry: {
       app: './src/main.ts'

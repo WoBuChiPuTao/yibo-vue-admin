@@ -15,6 +15,7 @@ import { setupI18n } from './locales/setupI18n'
 import { initConfigStore } from './settings/init'
 import { setupDirectives } from './directives'
 import { preLoader } from './utils/preLoader'
+import { setupComponents } from './components/global'
 
 async function launch() {
   // 注入svg和公用图片
@@ -31,6 +32,8 @@ async function launch() {
   setupRouter(app)
   // 创建路由守卫
   setupRouterGuard(router)
+  // 注册全局组件
+  setupComponents(app)
   // 创建全局指令
   setupDirectives(app)
 

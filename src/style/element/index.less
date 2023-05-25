@@ -1,3 +1,8 @@
 .el-card {
   border: none;
 }
+
+// 修复输入下划线_不显示问题
+.el-input__inner {
+  line-height: calc(var(--el-input-inner-height, 30px) + 1px);
+}

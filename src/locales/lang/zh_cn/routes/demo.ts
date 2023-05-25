@@ -1,4 +1,8 @@
 export default {
+  capRisk: {
+    moduleName: 'CapRisk',
+    bond: '债券'
+  },
   charts: {
     baiduMap: '百度地图',
     aMap: '高德地图',

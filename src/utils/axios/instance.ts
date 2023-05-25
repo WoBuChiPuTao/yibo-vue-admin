@@ -52,8 +52,13 @@ export class YAxios {
     this.instance.interceptors.response.use(responseInterceptors, responseInterceptorsCatch)
   }
 
-  get<T = unknown>(url: string, options?: RequestOptions, config?: AxiosRequestConfig): Promise<T> {
-    return this.request({ ...config, url, method: 'GET' }, options)
+  get<T = unknown>(
+    url: string,
+    params?: Record<string, any>,
+    options?: RequestOptions,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    return this.request({ ...config, url, params, method: 'GET' }, options)
   }
 
   post<T = unknown>(
@@ -76,10 +81,11 @@ export class YAxios {
 
   delete<T = unknown>(
     url: string,
+    params?: Record<string, any>,
     options?: RequestOptions,
     config?: AxiosRequestConfig
   ): Promise<T> {
-    return this.request({ ...config, url, method: 'DELETE' }, options)
+    return this.request({ ...config, url, params, method: 'DELETE' }, options)
   }
 
   request<T = unknown>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
