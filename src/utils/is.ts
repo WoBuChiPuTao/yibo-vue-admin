@@ -46,9 +46,12 @@ export function isEmpty<T = unknown>(val: T): val is T {
   return false
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function isFunction(val: unknown): val is Function {
+export function isFunction(val: unknown): val is Fn {
   return typeof val === 'function'
+}
+
+export function isDate(val: unknown): val is Date {
+  return is(val, 'Date')
 }
 
 /**

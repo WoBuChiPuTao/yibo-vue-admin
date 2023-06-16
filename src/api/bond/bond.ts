@@ -8,17 +8,17 @@ interface TableDataType {
   market: string
   marketCode: string
   issuer: string
-  issuingDate: string
+  issuingDate: string | null
   issuePrice: number
-  valueDate: string
-  dueDate: string
+  valueDate: string | null
+  dueDate: string | null
   maturityPeriod: string | null
   coupon: number
   templateCode: string
 }
 
-export function getBondData() {
-  return http.post<TableDataType[]>('/bond')
+export function getBondData(code?: string) {
+  return http.post<TableDataType[]>('/bond', { instCode: code })
 }
 
 export function putBondData(data: TableDataType) {

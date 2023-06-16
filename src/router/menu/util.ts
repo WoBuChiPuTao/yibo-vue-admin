@@ -3,6 +3,7 @@ import { isUrl } from '@/utils/is'
 import { findPath, treeMap } from '@/hooks/tree'
 import { cloneDeep } from 'lodash-es'
 import { AddRouteRecordRaw } from '../types'
+import { asyncRoutes } from '../routes'
 
 /**
  * @description 得到父级菜单路径
@@ -55,4 +56,39 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
     }
   })
   return cloneDeep(list) as Menu[]
+}
+
+/**
+ * @description 根据菜单的路径过滤路由
+ */
+export function filterRoutesFromMenu(menu: Menu[], routes = asyncRoutes) {
+  const cloneRoutes = cloneDeep(routes)
+  const menus = flatMenu(menu)
+  deleteRoutesFromMenu(menus, cloneRoutes)
+  return cloneRoutes
+}
+
+function deleteRoutesFromMenu(flatMenu: Omit<Menu[], 'children'>, route: AddRouteRecordRaw[]) {
+  flatMenu.forEach((menu) => {
+    const index = route.findIndex((item) => item.path === menu.path)
+    if (index === -1) {
+      route.splice(index, 1)
+    } else {
+      deleteRoutesFromMenu(flatMenu, route[index].children || [])
+    }
+  })
+}
+
+/**
+ * @description 扁平化菜单
+ */
+export function flatMenu(menus: Menu[]): Omit<Menu[], 'children'> {
+  const cloneMenu = cloneDeep(menus)
+  cloneMenu.forEach((menu) => {
+    if (menu.children) {
+      menus.push(...menu.children)
+      Reflect.deleteProperty(menu, 'children')
+    }
+  })
+  return cloneMenu
 }

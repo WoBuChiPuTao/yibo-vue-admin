@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { RoleEnum } from '@/enums/roleEnm'
 import { login, getUserInfo } from '@/api/sys/user'
 import { router } from '@/router'
 import { asyncRoutes } from '@/router/routes/modules/index'
@@ -28,7 +27,7 @@ export const useUserStore = defineStore({
     getToken(): string {
       return this.token || (WebCache.getLocal('TOKEN_') as string)
     },
-    getRoleList(): RoleEnum[] {
+    getRoleList(): string[] {
       return this.roleList.length > 0 ? this.roleList : []
     },
     getSessionTimeout(): boolean {
@@ -59,7 +58,7 @@ export const useUserStore = defineStore({
       }
       WebCache.setLocal('TOKEN_', info)
     },
-    setRoleList(roleList: RoleEnum[]) {
+    setRoleList(roleList: string[]) {
       this.roleList = roleList
     },
     setUserInfo(info: UserInfo | null) {
@@ -115,7 +114,7 @@ export const useUserStore = defineStore({
       const userInfo = await getUserInfo()
       const { roles = [] } = userInfo
       if (Array.isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[]
+        const roleList = roles.map((item) => item.value) as string[]
         this.setRoleList(roleList)
       } else {
         userInfo.roles = []

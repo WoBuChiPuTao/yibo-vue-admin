@@ -15,6 +15,9 @@
     <canvas ref="text" height="150" width="400">
       当前浏览器不支持canvas元素，请升级或更换浏览器！
     </canvas>
+    <canvas ref="backPic" height="150" width="400">
+      当前浏览器不支持canvas元素，请升级或更换浏览器！
+    </canvas>
   </div>
 </template>
 
@@ -26,6 +29,7 @@ const circle = ref<HTMLCanvasElement | null>(null)
 const curve = ref<HTMLCanvasElement | null>(null)
 const style = ref<HTMLCanvasElement | null>(null)
 const text = ref<HTMLCanvasElement | null>(null)
+const backPic = ref<HTMLCanvasElement | null>(null)
 
 function drawLine(canvasRef: Ref<HTMLCanvasElement | null>) {
   const canvas = unref(canvasRef)

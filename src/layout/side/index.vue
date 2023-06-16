@@ -26,7 +26,7 @@
 import AppLogo from '@/components/application/AppLogo.vue'
 import { ElDrawer } from 'element-plus'
 import { computed, CSSProperties, defineComponent, ref, unref, watch } from 'vue'
-import Menu from '@/components/menu/LayoutMenu.vue'
+import Menu from '@/layout/menu/LayoutMenu.vue'
 
 import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'

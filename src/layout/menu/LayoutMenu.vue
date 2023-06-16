@@ -3,8 +3,8 @@ import { computed, defineComponent, unref } from 'vue'
 import { useMenu } from './useMenu'
 import { ElScrollbar } from 'element-plus'
 import { useSiderSetting } from '@/hooks/setting/useSiderSetting'
-import SideMenu from './sideMenu/index.vue'
-import TopMenu from './topMenu/TopMenu.vue'
+import SideMenu from '@/components/menu/sideMenu/index.vue'
+import TopMenu from '@/components/menu/topMenu/TopMenu.vue'
 import { useAppInject } from '@/hooks/web/useAppInject'
 export default defineComponent({
   name: 'Menu',

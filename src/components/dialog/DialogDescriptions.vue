@@ -1,8 +1,10 @@
 <template>
   <ElDialog v-model="dialogVisible">
     <ElDescriptions :title="props.title" :border="true" :column="props.column">
-      <template v-for="key in keys" :key="key">
-        <ElDescriptionsItem :label="labelData[key]">{{ data[key] }}</ElDescriptionsItem>
+      <template v-for="item in labelData" :key="item.prop">
+        <ElDescriptionsItem :label="item.label" :min-width="item.minWidth" :align="item.align">
+          {{ data[item.prop] }}
+        </ElDescriptionsItem>
       </template>
     </ElDescriptions>
   </ElDialog>
@@ -10,7 +12,7 @@
 
 <script setup lang="ts">
 import { ElDialog, ElDescriptions, ElDescriptionsItem } from 'element-plus'
-import { computed } from 'vue'
+import { PropType, computed } from 'vue'
 
 const props = defineProps({
   modelValue: {
@@ -26,7 +28,7 @@ const props = defineProps({
     default: 2
   },
   labelData: {
-    type: Object,
+    type: Array as PropType<TableColumnInfo[]>,
     required: true
   },
   // labelData必须要和data属性一一对应
@@ -43,9 +45,5 @@ const dialogVisible = computed({
     emits('update:modelValue', val)
   },
   get: () => props.modelValue
-})
-
-const keys = computed(() => {
-  return Object.keys(props.labelData)
 })
 </script>

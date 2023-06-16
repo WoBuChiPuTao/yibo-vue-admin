@@ -1,6 +1,6 @@
 type TimeoutHandle = ReturnType<typeof setTimeout>
 
-declare type Fn<Args = any, Return = Args> = (...args: Args[]) => Return
+declare type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
 // declare interface Fn<T = any, R = T> {
 //   (...arg: T[]): R
 // }

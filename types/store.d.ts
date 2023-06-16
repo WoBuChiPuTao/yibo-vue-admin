@@ -40,7 +40,7 @@ export interface UserInfo {
 export interface UserState {
   userInfo: Nullable<UserInfo>
   token?: string
-  roleList: RoleEnum[]
+  roleList: string[]
   sessionTimeout?: boolean
   lastUpdateTime: number
   isDynamicAddedRoute: boolean

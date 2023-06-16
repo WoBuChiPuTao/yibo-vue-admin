@@ -9,7 +9,7 @@
           class="mr-4"
         >
         </ElInput>
-        <ElButton type="primary">
+        <ElButton type="primary" @click="handleSearch">
           <el-icon>
             <Search></Search>
           </el-icon>
@@ -17,7 +17,7 @@
         </ElButton>
       </div>
       <div>
-        <ElButton type="primary">
+        <ElButton type="primary" @click="handleCreate">
           <el-icon>
             <Plus></Plus>
           </el-icon>
@@ -25,71 +25,16 @@
         </ElButton>
       </div>
     </div>
-    <ElTable :data="tableData" :height="tableHeight" v-loading="loading">
-      <ElTableColumn
-        align="center"
-        prop="instCode"
-        :min-width="120"
-        label="产品代码"
-      ></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="instName"
-        :min-width="120"
-        label="产品名称"
-      ></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="bondType"
-        :min-width="120"
-        label="债券类型"
-      ></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="marketType"
-        :min-width="120"
-        label="市场类型"
-      ></ElTableColumn>
-      <ElTableColumn align="center" prop="market" :min-width="120" label="市场"></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="marketCode"
-        :min-width="120"
-        label="市场代码"
-      ></ElTableColumn>
-      <ElTableColumn align="center" prop="issuer" :min-width="120" label="发行人"></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="issuingDate"
-        :min-width="120"
-        label="发行时间"
-      ></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="issuePrice"
-        :min-width="120"
-        label="发行价格"
-      ></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="valueDate"
-        :min-width="120"
-        label="起息日"
-      ></ElTableColumn>
-      <ElTableColumn align="center" prop="dueDate" :min-width="120" label="到期日"></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="maturityPeriod"
-        :min-width="120"
-        label="到期期限"
-      ></ElTableColumn>
-      <ElTableColumn align="center" prop="coupon" :min-width="120" label="票面利率"></ElTableColumn>
-      <ElTableColumn
-        align="center"
-        prop="templateCode"
-        :min-width="120"
-        label="模板代码"
-      ></ElTableColumn>
+    <ElTable :data="tableData" :height="tableHeight" v-loading="tableLoading">
+      <template v-for="item in columnsInfo" :key="item.prop">
+        <ElTableColumn
+          :align="item.align"
+          :min-width="item.minWidth"
+          :prop="item.prop"
+          :label="item.label"
+        >
+        </ElTableColumn>
+      </template>
       <ElTableColumn align="center" fixed="right" :min-width="150" label="操作">
         <template #default="{ row }">
           <ElButton link size="small" @click="handleLook(row)">查看</ElButton>
@@ -115,107 +60,25 @@
     </div>
     <DialogDescriptions
       v-model="dialogVisible"
-      :label-data="labelData"
-      :data="descriptionsData"
+      :label-data="columnsInfo"
+      :data="rowData"
     ></DialogDescriptions>
-    <ElDrawer v-model="drawerVisible" :size="600">
-      <ElForm
-        ref="formEl"
-        :model="formData"
-        label-position="left"
-        label-width="100px"
-        @keypress.enter="handleSubmit"
-      >
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="产品代码" prop="instCode">
-              <ElInput v-model="formData.instCode" disabled></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="产品名称" prop="instName">
-              <ElInput v-model="formData.instName"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="债券类型" prop="bondType">
-              <ElInput v-model="formData.bondType"></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="市场类型" prop="marketType">
-              <ElInput v-model="formData.marketType"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="市场" prop="market">
-              <ElInput v-model="formData.market"></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="市场代码" prop="marketCode">
-              <ElInput v-model="formData.marketCode"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="发行人" prop="issuer">
-              <ElInput v-model="formData.issuer"></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="发行时间" prop="issuingDate">
-              <ElInput v-model="formData.issuingDate"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="发行价格" prop="issuePrice">
-              <ElInput v-model="formData.issuePrice"></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="起息日" prop="valueDate">
-              <ElInput v-model="formData.valueDate"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="到期日" prop="dueDate">
-              <ElInput v-model="formData.dueDate"></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="到期期限" prop="maturityPeriod">
-              <ElInput v-model="formData.maturityPeriod"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-        <ElRow :gutter="6">
-          <ElCol :span="12">
-            <ElFormItem label="票面利率" prop="coupon">
-              <ElInput v-model="formData.coupon"></ElInput>
-            </ElFormItem>
-          </ElCol>
-          <ElCol :span="12">
-            <ElFormItem label="模板代码" prop="templateCode">
-              <ElInput v-model="formData.templateCode"></ElInput>
-            </ElFormItem>
-          </ElCol>
-        </ElRow>
-        <div class="flex justify-center">
-          <el-button type="primary" @click="handleSubmit">保存</el-button>
-        </div>
-      </ElForm>
-    </ElDrawer>
+    <CruDrawer
+      v-model:model-value="drawerVisible"
+      :value="rowData"
+      :items-info="columnsInfo"
+      :event-type="eventType"
+      :formRules="rules"
+      :submit-func="handleSubmit"
+    >
+      <template #bondType="{ col, value }">
+        <ElSelect v-model="value[col.prop]">
+          <ElOption label="固息债" value="固息债"></ElOption>
+          <ElOption label="浮息债" value="浮息债"></ElOption>
+          <ElOption label="零息债" value="零息债"></ElOption>
+        </ElSelect>
+      </template>
+    </CruDrawer>
   </BasicContainer>
 </template>
 
@@ -223,22 +86,23 @@
 import {
   ElTable,
   ElTableColumn,
-  ElDrawer,
-  ElForm,
-  ElFormItem,
-  ElRow,
-  ElCol,
   ElInput,
   ElPagination,
   ElIcon,
-  ElMessage
+  ElMessage,
+  ElSelect,
+  ElOption
 } from 'element-plus'
 import { Search, Plus } from '@element-plus/icons-vue'
 import { defineComponent, reactive, ref } from 'vue'
 import { useTableHeight } from '@/components/table/useTableHeight'
 import DialogDescriptions from '@/components/dialog/DialogDescriptions.vue'
+import CruDrawer from '@/components/crud/CruDrawer.vue'
+import { columnsInfo, rules } from './info'
 import '&/bond'
 import { getBondData, putBondData, delBondData } from '@/api/bond/bond'
+import { formatDateOfObj } from '@/utils/dateFormat'
+import { CruEventEnum } from '@/enums/components'
 
 interface TableDataType {
   instCode: string
@@ -248,30 +112,13 @@ interface TableDataType {
   market: string
   marketCode: string
   issuer: string
-  issuingDate: string
+  issuingDate: string | null
   issuePrice: number
-  valueDate: string
-  dueDate: string
+  valueDate: string | null
+  dueDate: string | null
   maturityPeriod: string | null
   coupon: number
   templateCode: string
-}
-
-const labelData = {
-  instCode: '产品代码',
-  instName: '产品名称',
-  bondType: '债券类型',
-  marketType: '市场类型',
-  market: '市场',
-  marketCode: '市场代码',
-  issuer: '发行人',
-  issuingDate: '发行时间',
-  issuePrice: '发行价格',
-  valueDate: '起息日',
-  dueDate: '到期日',
-  maturityPeriod: '到期期限',
-  coupon: '票面利率',
-  templateCode: '模板代码'
 }
 
 export default defineComponent({
@@ -279,44 +126,26 @@ export default defineComponent({
   components: {
     ElTable,
     ElTableColumn,
-    ElDrawer,
-    ElForm,
-    ElFormItem,
-    ElRow,
-    ElCol,
     ElInput,
     ElPagination,
     ElIcon,
     Search,
     Plus,
-    DialogDescriptions
+    DialogDescriptions,
+    CruDrawer,
+    ElSelect,
+    ElOption
   },
   setup() {
-    const drawerVisible = ref(false)
     const dialogVisible = ref(false)
-    const loading = ref(false)
+    const searchButtonLoading = ref(false)
+    const tableLoading = ref(false)
     const formEl = ref(null)
     const tableData = reactive<TableDataType[]>([])
-    const descriptionsData = reactive<TableDataType>({
-      instCode: '',
-      instName: '',
-      bondType: '',
-      marketType: '',
-      market: '',
-      marketCode: '',
-      issuer: '',
-      issuingDate: '',
-      issuePrice: 0,
-      valueDate: '',
-      dueDate: '',
-      maturityPeriod: null,
-      coupon: 0,
-      templateCode: ''
-    })
     const searchInfo = reactive({ instCode: '' })
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
 
-    const formData = reactive<TableDataType>({
+    const rowData = reactive<TableDataType>({
       instCode: '',
       instName: '',
       bondType: '',
@@ -327,7 +156,7 @@ export default defineComponent({
       issuingDate: '',
       issuePrice: 0,
       valueDate: '',
-      dueDate: '',
+      dueDate: null,
       maturityPeriod: null,
       coupon: 0,
       templateCode: ''
@@ -335,17 +164,32 @@ export default defineComponent({
 
     const { tableHeight } = useTableHeight(formEl, tableData)
 
+    const drawerVisible = ref(false)
+    const eventType = ref<'view' | 'create' | 'update'>('view')
+
+    async function handleSearch() {
+      searchButtonLoading.value = true
+      await getTableData()
+      searchButtonLoading.value = false
+    }
+
     function handleLook(row: TableDataType) {
       Object.keys(row).forEach((key) => {
-        descriptionsData[key] = row[key]
+        rowData[key] = row[key]
       })
       dialogVisible.value = true
     }
 
     function handleEdit(row: TableDataType) {
       Object.keys(row).forEach((key) => {
-        formData[key] = row[key]
+        rowData[key] = row[key]
       })
+      eventType.value = 'update'
+      drawerVisible.value = true
+    }
+
+    function handleCreate() {
+      eventType.value = 'create'
       drawerVisible.value = true
     }
 
@@ -360,42 +204,51 @@ export default defineComponent({
     }
 
     async function getTableData() {
-      loading.value = true
+      tableLoading.value = true
       tableData.splice(0, tableData.length)
       const data = await getBondData()
-      tableData.push(...data)
+      const reg = new RegExp(`${searchInfo.instCode}`, 'g')
+      tableData.push(...data.filter((item) => reg.test(item.instCode)))
       pageInfo.total = tableData.length
-      loading.value = false
+      tableLoading.value = false
     }
 
-    async function handleSubmit() {
+    async function handleSubmit(value: TableDataType, eventType: CruEventEnum) {
+      console.log('val', value)
+      formatDateOfObj(value)
       try {
-        await putBondData(formData)
-        ElMessage.success('修改成功')
+        await putBondData(value)
+        eventType === CruEventEnum.update
+          ? ElMessage.success('修改成功')
+          : ElMessage.success('创建成功')
       } catch (error) {
         console.error(error)
       }
-      drawerVisible.value = false
+
       getTableData()
     }
 
     getTableData()
+
     return {
       drawerVisible,
       dialogVisible,
-      loading,
+      tableLoading,
       formEl,
       tableData,
-      descriptionsData,
+      rowData,
       searchInfo,
       pageInfo,
-      formData,
       tableHeight,
-      labelData,
+      columnsInfo,
+      handleSearch,
       handleLook,
       handleEdit,
       handleDelete,
-      handleSubmit
+      handleSubmit,
+      eventType,
+      handleCreate,
+      rules
     }
   }
 })

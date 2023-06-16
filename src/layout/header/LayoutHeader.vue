@@ -34,7 +34,7 @@ import { ElHeader } from 'element-plus'
 import { SiderTrigger, AppNotice, FullScreen, UserDropdown, BreadCrumb } from './components/index'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 import AppLogo from '@/components/application/AppLogo.vue'
-import Menu from '@/components/menu/LayoutMenu.vue'
+import Menu from '@/layout/menu/LayoutMenu.vue'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'
 

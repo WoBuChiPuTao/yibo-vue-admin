@@ -9,24 +9,21 @@ export interface MenuTag {
 }
 
 export interface Menu {
+  path: string
+
   name: string
+
+  orderNo: number
 
   icon?: { name: string; entity: IconifyIcon }
 
-  path: string
-
-  // path contains param, auto assignment.
-  paramPath?: string
-
-  disabled?: boolean
-
   children?: Menu[]
-
-  orderNo?: number
 
   hideMenu?: boolean
 
   meta?: RouteMeta
+  // 按钮权限
+  rights?: string[] | number[]
 }
 
 export interface DropMenu {

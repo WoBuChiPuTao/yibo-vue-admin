@@ -5,7 +5,7 @@ import { deepMerge } from '@/utils'
 import { WebCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
 
-interface AppAtate {
+interface AppState {
   themeMode?: ThemeEnum
   pageLoading: boolean
   projectSetting: ProjectConfig | null
@@ -16,7 +16,7 @@ let timeoutId: ReturnType<typeof setTimeout>
 
 export const useAppStore = defineStore({
   id: 'app',
-  state: (): AppAtate => ({
+  state: (): AppState => ({
     themeMode: undefined,
     pageLoading: false,
     projectSetting: WebCache.getLocal('PROJECT_SETTING') || {},
