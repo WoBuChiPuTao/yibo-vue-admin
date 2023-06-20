@@ -102,7 +102,6 @@ import { columnsInfo, rules } from './info'
 import '&/bond'
 import { getBondData, putBondData, delBondData } from '@/api/bond/bond'
 import { formatDateOfObj } from '@/utils/dateFormat'
-import { CruEventEnum } from '@/enums/components'
 
 interface TableDataType {
   instCode: string
@@ -165,7 +164,7 @@ export default defineComponent({
     const { tableHeight } = useTableHeight(formEl, tableData)
 
     const drawerVisible = ref(false)
-    const eventType = ref<'view' | 'create' | 'update'>('view')
+    const eventType = ref<CruEventType>('view')
 
     async function handleSearch() {
       searchButtonLoading.value = true
@@ -213,14 +212,12 @@ export default defineComponent({
       tableLoading.value = false
     }
 
-    async function handleSubmit(value: TableDataType, eventType: CruEventEnum) {
+    async function handleSubmit(value: TableDataType, eventType: CruEventType) {
       console.log('val', value)
       formatDateOfObj(value)
       try {
         await putBondData(value)
-        eventType === CruEventEnum.update
-          ? ElMessage.success('修改成功')
-          : ElMessage.success('创建成功')
+        eventType === 'update' ? ElMessage.success('修改成功') : ElMessage.success('创建成功')
       } catch (error) {
         console.error(error)
       }

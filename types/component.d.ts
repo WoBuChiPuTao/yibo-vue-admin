@@ -14,3 +14,5 @@ declare interface TableColumnInfo {
   disabled?: boolean
   rules?: FormItemRule | FormItemRule[]
 }
+
+declare type CruEventType = 'view' | 'create' | 'update'

@@ -58,7 +58,6 @@
 </template>
 
 <script setup lang="ts">
-import { CruEventEnum } from '@/enums/components'
 import { ElDrawer, ElForm, ElFormItem, ElRow, ElCol, ElInput, ElDatePicker } from 'element-plus'
 import type { FormInstance, FormItemProp, FormRules } from 'element-plus'
 import { PropType, computed, reactive, ref, unref } from 'vue'
@@ -71,7 +70,7 @@ const props = defineProps({
   },
   // 打开事件类型
   eventType: {
-    type: String as PropType<CruEventEnum>,
+    type: String as PropType<CruEventType>,
     default: 'view'
   },
   // 每行显示的列数
@@ -100,14 +99,14 @@ const props = defineProps({
   },
   // 保存按钮的执行函数
   submitFunc: {
-    type: Function as PropType<(value: Record<string, any>, type: string) => void>,
+    type: Function as PropType<(value: any, type: CruEventType) => void | Promise<void>>,
     required: true
   }
 })
 
 const emits = defineEmits(['update:modelValue', 'validate'])
 
-const visible = computed({
+const visible = computed<boolean>({
   get() {
     return props.modelValue
   },
@@ -160,7 +159,7 @@ function isDisabled(item: TableColumnInfo) {
   if (item.disabled) {
     return true
   }
-  if (item.notEdit && props.eventType === CruEventEnum.update) {
+  if (item.notEdit && props.eventType === 'update') {
     return true
   }
   return false
@@ -174,7 +173,7 @@ function drawerBeforeOpen() {
   const formEl = unref(formRef)
   if (!formEl) return
   formEl.clearValidate()
-  if (props.eventType === CruEventEnum.create) {
+  if (props.eventType === 'create') {
     for (const key of Object.keys(propsValue)) {
       propsValue[key] = null
     }
