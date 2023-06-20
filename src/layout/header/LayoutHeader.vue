@@ -8,7 +8,7 @@
       ></SiderTrigger>
       <BreadCrumb
         v-if="!getShowHeaderMenu && getShowBreadCrumb && !getIsMobile"
-        class="header-left-item"
+        class="flex items-center px-4"
       ></BreadCrumb>
     </div>
 

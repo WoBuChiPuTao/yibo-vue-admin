@@ -12,7 +12,7 @@
           </div>
           <ElDivider></ElDivider>
           <div class="flex justify-between">
-            <div class="w-2/3">
+            <div class="w-3/4">
               <ElInput v-model:model-value="server" class="mr-4" size="default" disabled>
                 <template #prepend> 连接地址 </template>
               </ElInput>
