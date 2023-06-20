@@ -13,9 +13,9 @@ export interface Menu {
 
   name: string
 
-  orderNo: number
+  orderNo?: number
 
-  icon?: { name: string; entity: IconifyIcon }
+  icon?: { name: string; entity?: IconifyIcon }
 
   children?: Menu[]
 

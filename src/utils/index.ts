@@ -1,18 +1,21 @@
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep, isEqual, mergeWith, unionWith } from 'lodash-es'
 import { isObject, isArray } from './is'
 
 /**
  * 将目标对象中的属性赋值给来源对象,返回一个新的来源对象
  */
-export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
-  let key: string
-  const res: any = cloneDeep(src)
-
-  for (key in target) {
-    res[key] =
-      isObject(res[key]) || isArray(res[key]) ? deepMerge(res[key], target[key]) : target[key]
-  }
-  return res
+export function deepMerge<T extends object | null | undefined, U extends object | null | undefined>(
+  target: T,
+  source: U
+): T & U {
+  return mergeWith(cloneDeep(target), source, (objValue, srcValue) => {
+    if (isObject(objValue) && isObject(srcValue)) {
+      return mergeWith(cloneDeep(objValue), srcValue, (prevValue, nextValue) => {
+        // 如果是数组，合并数组(去重)
+        return isArray(prevValue) ? unionWith(prevValue, nextValue, isEqual) : undefined
+      })
+    }
+  })
 }
 
 /**

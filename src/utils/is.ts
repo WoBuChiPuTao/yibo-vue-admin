@@ -26,6 +26,10 @@ export function isArray(val: any): val is Array<any> {
   return val && Array.isArray(val)
 }
 
+export function isObjOrArr(val: any): val is Array<any> | Record<any, any> {
+  return isObject(val) || isArray(val)
+}
+
 export function isString(val: unknown): val is string {
   return is(val, 'String')
 }

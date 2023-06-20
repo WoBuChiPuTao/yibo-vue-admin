@@ -1,6 +1,6 @@
 import { Menu } from '#/list'
 import { getMenuFromRole } from '@/api/sys/user'
-import { filterRoutesFromMenu } from '@/router/menu/util'
+import { filterRoutesFromMenu, routeToMenu } from '@/router/menu/util'
 import { deepMerge } from '@/utils'
 import { defineStore } from 'pinia'
 import { useUserStore } from './user'
@@ -34,7 +34,9 @@ export const usePermissionStore = defineStore({
       const menu = menuArr.reduce((pre, now) => {
         return deepMerge(pre, now)
       }, [])
-      return filterRoutesFromMenu(menu)
+      const routes = filterRoutesFromMenu(menu)
+      this.setMenuList(routeToMenu(routes))
+      return routes
     }
   }
 })

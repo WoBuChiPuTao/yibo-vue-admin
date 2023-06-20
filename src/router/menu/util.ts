@@ -63,20 +63,25 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
  */
 export function filterRoutesFromMenu(menu: Menu[], routes = asyncRoutes) {
   const cloneRoutes = cloneDeep(routes)
-  const menus = flatMenu(menu)
-  deleteRoutesFromMenu(menus, cloneRoutes)
-  return cloneRoutes
+  const menus = flatMenu(cloneDeep(menu))
+  const resRoutes = cloneRoutes.map((route) => {
+    return deleteRoutesFromMenu(menus, route)
+  })
+  return resRoutes.filter((item) => item) as AddRouteRecordRaw[]
 }
 
-function deleteRoutesFromMenu(flatMenu: Omit<Menu[], 'children'>, route: AddRouteRecordRaw[]) {
-  flatMenu.forEach((menu) => {
-    const index = route.findIndex((item) => item.path === menu.path)
-    if (index === -1) {
-      route.splice(index, 1)
-    } else {
-      deleteRoutesFromMenu(flatMenu, route[index].children || [])
-    }
-  })
+function deleteRoutesFromMenu(
+  flatMenu: Omit<Menu[], 'children'>,
+  route: AddRouteRecordRaw
+): AddRouteRecordRaw | undefined {
+  const index = flatMenu.findIndex((menu) => route.path === menu.path)
+  if (index === -1) {
+    return undefined
+  }
+  route.children = route.children
+    ?.map((item) => deleteRoutesFromMenu(flatMenu, item))
+    .filter((item) => item !== undefined) as AddRouteRecordRaw[]
+  return route
 }
 
 /**
@@ -86,7 +91,7 @@ export function flatMenu(menus: Menu[]): Omit<Menu[], 'children'> {
   const cloneMenu = cloneDeep(menus)
   cloneMenu.forEach((menu) => {
     if (menu.children) {
-      menus.push(...menu.children)
+      cloneMenu.push(...menu.children)
       Reflect.deleteProperty(menu, 'children')
     }
   })

@@ -57,7 +57,10 @@ export const useAppStore = defineStore({
       this.beforeMiniInfo = miniInfo
     },
     setProjectSetting(setting: DeepPartial<ProjectConfig>): void {
-      this.projectSetting = deepMerge(this.projectSetting || {}, setting)
+      this.projectSetting = deepMerge<ProjectConfig, DeepPartial<ProjectConfig>>(
+        this.projectSetting || ({} as ProjectConfig),
+        setting
+      )
       WebCache.setLocal('PROJECT_SETTING', this.projectSetting)
     },
 
