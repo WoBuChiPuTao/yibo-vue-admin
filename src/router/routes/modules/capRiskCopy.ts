@@ -10,7 +10,7 @@ const capRisk: AddRouteRecordRaw = {
   redirect: '/caprisk/onepage',
   meta: {
     title: t('routes.demo.capRisk.moduleName'),
-    orderNo: 1000,
+    orderNo: 2000,
     icon: {
       name: 'ion:copy-outline',
       entity: copyOutline

@@ -2,8 +2,23 @@
   <ElDialog v-model="dialogVisible">
     <ElDescriptions :title="props.title" :border="true" :column="props.column">
       <template v-for="item in labelData" :key="item.prop">
-        <ElDescriptionsItem :label="item.label" :min-width="item.minWidth" :align="item.align">
+        <ElDescriptionsItem
+          v-if="item.type !== 'array'"
+          :label="item.label"
+          :min-width="item.minWidth"
+          :align="item.align"
+        >
           {{ data[item.prop] }}
+        </ElDescriptionsItem>
+        <ElDescriptionsItem
+          v-else
+          :label="item.label"
+          :min-width="item.minWidth"
+          :align="item.align"
+        >
+          <ElTag class="mr-1" v-for="(role, index) in data[item.prop]" :key="index">{{
+            role
+          }}</ElTag>
         </ElDescriptionsItem>
       </template>
     </ElDescriptions>
@@ -11,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { ElDialog, ElDescriptions, ElDescriptionsItem } from 'element-plus'
+import { ElDialog, ElDescriptions, ElDescriptionsItem, ElTag } from 'element-plus'
 import { PropType, computed } from 'vue'
 
 const props = defineProps({

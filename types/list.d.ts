@@ -19,8 +19,6 @@ export interface Menu {
 
   children?: Menu[]
 
-  hideMenu?: boolean
-
   meta?: RouteMeta
   // 按钮权限
   rights?: string[] | number[]

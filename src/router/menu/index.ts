@@ -26,6 +26,8 @@ async function getAsyncMenus() {
   return filtermenu
 }
 
+getAsyncMenus().then((res) => console.log('getAsyncMenus', res))
+
 // 菜单排序
 function sortMenu(menus: Menu[]) {
   if (menus.length === 0) {

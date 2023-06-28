@@ -32,13 +32,12 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
   const cloneRouteList = cloneDeep(routes)
   const list = treeMap(cloneRouteList, {
     conversion: (node: AddRouteRecordRaw) => {
-      const { meta: { title, hideMenu = false } = {} } = node
+      const { meta: { title } = {} } = node
 
       return {
         ...(node.meta || {}),
         meta: node.meta,
         name: title,
-        hideMenu,
         path: node.path,
         ...(node.redirect ? { redirect: node.redirect } : {})
       }
@@ -74,8 +73,9 @@ function deleteRoutesFromMenu(
   flatMenu: Omit<Menu[], 'children'>,
   route: AddRouteRecordRaw
 ): AddRouteRecordRaw | undefined {
+  const { meta: { hideMenu = false } = {} } = route
   const index = flatMenu.findIndex((menu) => route.path === menu.path)
-  if (index === -1) {
+  if (index === -1 && !hideMenu) {
     return undefined
   }
   route.children = route.children
