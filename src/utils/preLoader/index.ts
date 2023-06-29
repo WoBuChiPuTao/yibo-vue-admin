@@ -1,3 +1,5 @@
+import { importIconify } from './injectIconify'
+
 function importAllSvgIcons() {
   try {
     const request: __WebpackModuleApi.RequireContext = require.context(
@@ -42,6 +44,7 @@ function importAllSvgIcons() {
 
 export async function preLoader() {
   importAllSvgIcons()
+  importIconify()
   // try {
   //   await imporAllImg()
   // } catch (error) {

@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '@/router/types'
 import { t } from '@/hooks/web/useI18n'
-import IconEntity from '@iconify-icons/ic/outline-design-services'
 const Layout = () => import('@/layout/index.vue')
 
 const graphics: AddRouteRecordRaw = {
@@ -11,8 +10,7 @@ const graphics: AddRouteRecordRaw = {
   meta: {
     orderNo: 30,
     icon: {
-      name: 'ic:outline-design-services',
-      entity: IconEntity
+      name: 'ic:outline-design-services'
     },
     title: t('routes.demo.graphics.moduleName')
   },

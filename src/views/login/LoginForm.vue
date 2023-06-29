@@ -57,11 +57,11 @@
     </el-row>
     <ElDivider class="enter-x">{{ t('sys.login.otherSignIn') }}</ElDivider>
     <div class="login-icon-container enter-x">
-      <EIcon icon="mdi:github" :post-icon="Github"></EIcon>
-      <EIcon icon="ic:baseline-wechat" :post-icon="baselineWechat"></EIcon>
-      <EIcon icon="ri:alipay-fill" :post-icon="alipayFill"></EIcon>
-      <EIcon icon="ph:google-logo-fill" :post-icon="googleLogoFill"></EIcon>
-      <EIcon icon="ic:baseline-facebook" :post-icon="baselineFacebook"></EIcon>
+      <EIcon icon="mdi:github"></EIcon>
+      <EIcon icon="ic:baseline-wechat"></EIcon>
+      <EIcon icon="ri:alipay-fill"></EIcon>
+      <EIcon icon="ph:google-logo-fill"></EIcon>
+      <EIcon icon="ic:baseline-facebook"></EIcon>
     </div>
   </template>
 </template>
@@ -85,11 +85,6 @@ import { useUserStore } from '@/store/modules/user'
 import { LoginStateEnum, useLoginState } from './useLogin'
 import { useI18n } from '@/hooks/web/useI18n'
 import EIcon from '@/components/icons/EIcon.vue'
-import baselineFacebook from '@iconify-icons/ic/baseline-facebook'
-import googleLogoFill from '@iconify-icons/ph/google-logo-fill'
-import Github from '@iconify-icons/mdi/github'
-import baselineWechat from '@iconify-icons/ic/baseline-wechat'
-import alipayFill from '@iconify-icons/ri/alipay-fill'
 
 const { getLoginState, setLoginState } = useLoginState()
 const { t } = useI18n()

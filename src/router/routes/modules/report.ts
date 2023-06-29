@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import mdiChartBoxOutline from '@iconify-icons/mdi/chart-box-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const reports: AddRouteRecordRaw = {
@@ -12,8 +11,7 @@ const reports: AddRouteRecordRaw = {
     title: t('routes.demo.report.moduleName'),
     orderNo: 5,
     icon: {
-      name: 'mdi:chart-box-outline',
-      entity: mdiChartBoxOutline
+      name: 'mdi:chart-box-outline'
     }
   },
   children: [

@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import settingsOutline from '@iconify-icons/ion/settings-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const system: AddRouteRecordRaw = {
@@ -11,7 +10,7 @@ const system: AddRouteRecordRaw = {
   meta: {
     title: t('routes.demo.system.moduleName'),
     // icon: 'ion:settings-outline',
-    icon: { name: 'ion:settings-outline', entity: settingsOutline },
+    icon: { name: 'ion:settings-outline' },
     orderNo: 1000
   },
   children: [

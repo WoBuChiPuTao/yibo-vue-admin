@@ -103,7 +103,8 @@ Mock.mock(`${domain}/user/menu`, 'post', ({ body }): Result<Menu[]> => {
           children: [
             {
               path: 'dashboard',
-              name: t('routes.home.dashboard')
+              name: t('routes.home.dashboard'),
+              rights: [{ id: 'www', name: '新增' }]
             }
           ]
         }

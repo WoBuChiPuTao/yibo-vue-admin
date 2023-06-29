@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import baselinePlayCircleOutline from '@iconify-icons/ic/baseline-play-circle-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const features: AddRouteRecordRaw = {
@@ -11,8 +10,7 @@ const features: AddRouteRecordRaw = {
   meta: {
     orderNo: 10,
     icon: {
-      name: 'ic:baseline-play-circle-outline',
-      entity: baselinePlayCircleOutline
+      name: 'ic:baseline-play-circle-outline'
     },
     title: t('routes.demo.feat.feat')
   },

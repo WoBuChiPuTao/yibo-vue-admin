@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import homeOutline from '@iconify-icons/material-symbols/home-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const home: AddRouteRecordRaw = {
@@ -11,8 +10,7 @@ const home: AddRouteRecordRaw = {
   meta: {
     title: t('routes.home.home'),
     icon: {
-      name: 'material-symbols:home-outline',
-      entity: homeOutline
+      name: 'material-symbols:home-outline'
     },
     orderNo: 1
   },

@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import statsChartOutline from '@iconify-icons/ion/stats-chart-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const charts: AddRouteRecordRaw = {
@@ -11,8 +10,7 @@ const charts: AddRouteRecordRaw = {
   meta: {
     orderNo: 100,
     icon: {
-      name: 'ion:stats-chart-outline',
-      entity: statsChartOutline
+      name: 'ion:stats-chart-outline'
     },
     title: t('routes.demo.charts.charts')
   },

@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import copyOutline from '@iconify-icons/ion/copy-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const capRisk: AddRouteRecordRaw = {
@@ -12,8 +11,7 @@ const capRisk: AddRouteRecordRaw = {
     title: t('routes.demo.capRisk.moduleName'),
     orderNo: 2000,
     icon: {
-      name: 'ion:copy-outline',
-      entity: copyOutline
+      name: 'ion:copy-outline'
     }
   },
   children: [

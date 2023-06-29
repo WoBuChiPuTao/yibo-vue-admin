@@ -4,6 +4,7 @@ import { findPath, treeMap } from '@/hooks/tree'
 import { cloneDeep } from 'lodash-es'
 import { AddRouteRecordRaw } from '../types'
 import { asyncRoutes } from '../routes'
+import { deepMerge } from '@/utils'
 
 /**
  * @description 得到父级菜单路径
@@ -78,6 +79,9 @@ function deleteRoutesFromMenu(
   if (index === -1 && !hideMenu) {
     return undefined
   }
+  // 按钮权限赋值
+  route.meta.rights = flatMenu[index].rights
+
   route.children = route.children
     ?.map((item) => deleteRoutesFromMenu(flatMenu, item))
     .filter((item) => item !== undefined) as AddRouteRecordRaw[]
@@ -91,7 +95,14 @@ export function flatMenu(menus: Menu[]): Omit<Menu[], 'children'> {
   const cloneMenu = cloneDeep(menus)
   cloneMenu.forEach((menu) => {
     if (menu.children) {
-      cloneMenu.push(...menu.children)
+      menu.children.forEach((childMenu) => {
+        const index = cloneMenu.findIndex((val) => val.path === childMenu.path)
+        if (index === -1) {
+          cloneMenu.push(childMenu)
+          return
+        }
+        cloneMenu[index] = deepMerge(cloneMenu[index], childMenu)
+      })
       Reflect.deleteProperty(menu, 'children')
     }
   })

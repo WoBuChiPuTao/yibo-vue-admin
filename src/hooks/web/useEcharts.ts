@@ -81,11 +81,13 @@ export function useEchart(
     if (!el || el?.offsetHeight === 0 || el?.offsetWidth === 0) {
       return
     }
-    chartInstance?.resize({
-      animation: {
-        duration: 300,
-        easing: 'quadraticIn'
-      }
+    requestAnimationFrame(() => {
+      chartInstance?.resize({
+        animation: {
+          duration: 300,
+          easing: 'quadraticIn'
+        }
+      })
     })
   }
 

@@ -1,6 +1,5 @@
 import { AddRouteRecordRaw } from '../../types'
 import { t } from '@/hooks/web/useI18n'
-import layersOutline from '@iconify-icons/ion/layers-outline'
 const Layout = () => import('@/layout/index.vue')
 
 const component: AddRouteRecordRaw = {
@@ -11,8 +10,7 @@ const component: AddRouteRecordRaw = {
   meta: {
     orderNo: 50,
     icon: {
-      name: 'ion:layers-outline',
-      entity: layersOutline
+      name: 'ion:layers-outline'
     },
     title: t('routes.demo.comp.comp')
   },
