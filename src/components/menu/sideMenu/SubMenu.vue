@@ -6,12 +6,7 @@
     :collapsed="collapsed"
   >
     <template #title>
-      <EIcon
-        v-if="getCeil"
-        class="menu-list-submenu-title-iconfont"
-        :icon="item.icon?.name"
-        :post-icon="item.icon?.entity"
-      ></EIcon>
+      <EIcon v-if="getCeil" class="menu-list-submenu-title-iconfont" :icon="item?.icon"></EIcon>
       <span class="menu-list-submenu-title-name" v-if="!collapsed"> {{ getI18nName }}</span>
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
@@ -19,12 +14,7 @@
     </template>
   </SubMenuItem>
   <MenuItem v-else :class="getLevelClass" :name="item.path" :collapsed="collapsed">
-    <EIcon
-      v-if="getCeil"
-      class="menu-list-item-iconfont"
-      :icon="item.icon?.name"
-      :post-icon="item.icon?.entity"
-    ></EIcon>
+    <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item?.icon"></EIcon>
     <span class="menu-list-item-name" v-if="!collapsed">{{ getI18nName }}</span>
   </MenuItem>
 </template>

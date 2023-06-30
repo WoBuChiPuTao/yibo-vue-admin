@@ -10,9 +10,7 @@ const capRisk: AddRouteRecordRaw = {
   meta: {
     title: t('routes.demo.capRisk.moduleName'),
     orderNo: 2000,
-    icon: {
-      name: 'ion:copy-outline'
-    }
+    icon: 'ion:copy-outline'
   },
   children: [
     {

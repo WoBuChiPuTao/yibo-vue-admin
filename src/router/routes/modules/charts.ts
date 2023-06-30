@@ -9,9 +9,7 @@ const charts: AddRouteRecordRaw = {
   redirect: '/charts/echarts/map',
   meta: {
     orderNo: 100,
-    icon: {
-      name: 'ion:stats-chart-outline'
-    },
+    icon: 'ion:stats-chart-outline',
     title: t('routes.demo.charts.charts')
   },
   children: [

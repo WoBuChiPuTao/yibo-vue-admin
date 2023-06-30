@@ -9,9 +9,7 @@ const features: AddRouteRecordRaw = {
   redirect: '/feat/ws',
   meta: {
     orderNo: 10,
-    icon: {
-      name: 'ic:baseline-play-circle-outline'
-    },
+    icon: 'ic:baseline-play-circle-outline',
     title: t('routes.demo.feat.feat')
   },
   children: [

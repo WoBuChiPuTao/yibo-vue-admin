@@ -9,9 +9,7 @@ const home: AddRouteRecordRaw = {
   redirect: '/home/dashboard',
   meta: {
     title: t('routes.home.home'),
-    icon: {
-      name: 'material-symbols:home-outline'
-    },
+    icon: 'material-symbols:home-outline',
     orderNo: 1
   },
   children: [

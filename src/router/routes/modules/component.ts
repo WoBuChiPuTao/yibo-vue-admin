@@ -9,9 +9,7 @@ const component: AddRouteRecordRaw = {
   redirect: '/comp/basic',
   meta: {
     orderNo: 50,
-    icon: {
-      name: 'ion:layers-outline'
-    },
+    icon: 'ion:layers-outline',
     title: t('routes.demo.comp.comp')
   },
 

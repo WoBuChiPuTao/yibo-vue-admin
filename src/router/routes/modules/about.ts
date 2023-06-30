@@ -11,9 +11,7 @@ const about: AddRouteRecordRaw = {
   meta: {
     title: t('routes.home.about'),
     orderNo: 1000000,
-    icon: {
-      name: 'ion:ellipsis-vertical-circle'
-    }
+    icon: 'ion:ellipsis-vertical-circle'
   },
   children: [
     {

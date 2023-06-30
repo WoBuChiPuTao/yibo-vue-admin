@@ -9,9 +9,7 @@ const graphics: AddRouteRecordRaw = {
   redirect: '/graphics/canvas',
   meta: {
     orderNo: 30,
-    icon: {
-      name: 'ic:outline-design-services'
-    },
+    icon: 'ic:outline-design-services',
     title: t('routes.demo.graphics.moduleName')
   },
   children: [

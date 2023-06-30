@@ -10,9 +10,7 @@ const reports: AddRouteRecordRaw = {
   meta: {
     title: t('routes.demo.report.moduleName'),
     orderNo: 5,
-    icon: {
-      name: 'mdi:chart-box-outline'
-    }
+    icon: 'mdi:chart-box-outline'
   },
   children: [
     {
