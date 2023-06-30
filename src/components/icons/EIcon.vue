@@ -14,7 +14,7 @@ export default defineComponent({
   components: { Icon, OIcon },
   props: {
     icon: {
-      type: Object as PropType<string | IconifyIcon>,
+      type: [Object, String] as PropType<string | IconifyIcon>,
       default: undefined
     },
     postIcon: {

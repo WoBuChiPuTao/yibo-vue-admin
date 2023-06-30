@@ -8,20 +8,33 @@ export interface MenuTag {
   dot?: boolean
 }
 
+export interface MenuButton {
+  id: string | number
+  name: string
+}
+
 export interface Menu {
   path: string
 
   name: string
+  // 路由名称
+  routeName: string
+  // 父级路径
+  parentPath?: string
+
+  redirect?: string
 
   orderNo?: number
 
-  icon?: { name: string; entity?: IconifyIcon }
+  icon?: string | IconifyIcon
 
   children?: Menu[]
 
   meta?: RouteMeta
   // 按钮权限
-  rights?: string[] | number[]
+  rights?: MenuButton[]
+
+  hideMenu?: boolean
 }
 
 export interface DropMenu {

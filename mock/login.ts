@@ -70,18 +70,19 @@ Mock.mock(`${domain}/user/menu`, 'post', ({ body }): Result<Menu[]> => {
       data: [
         {
           path: '/home',
+          routeName: 'Home',
           name: t('routes.home.home'),
           orderNo: 1,
-          icon: {
-            name: 'material-symbols:home-outline'
-          },
+          icon: 'material-symbols:home-outline',
           children: [
             {
               path: 'dashboard',
+              routeName: 'Dashboard',
               name: t('routes.home.dashboard')
             },
             {
               path: 'workbench',
+              routeName: 'Workbench',
               name: t('routes.home.workbench')
             }
           ]
@@ -95,14 +96,14 @@ Mock.mock(`${domain}/user/menu`, 'post', ({ body }): Result<Menu[]> => {
       data: [
         {
           path: '/home',
+          routeName: 'Home',
           name: t('routes.home.home'),
           orderNo: 1,
-          icon: {
-            name: 'material-symbols:home-outline'
-          },
+          icon: 'material-symbols:home-outline',
           children: [
             {
               path: 'dashboard',
+              routeName: 'Dashboard',
               name: t('routes.home.dashboard'),
               rights: [{ id: 'www', name: '新增' }]
             }

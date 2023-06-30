@@ -21,6 +21,8 @@ function joinParentPath(menus: Menu[], parentPath = '') {
     // 判断是否为根路由或地址
     if (!(menu.path.startsWith('/') || isUrl(menu.path))) {
       menu.path = `${parentPath}/${menu.path}`
+      // 父级菜单路径
+      menu.parentPath = parentPath
     }
     if (menu?.children?.length) {
       joinParentPath(menu.children, menu.path)
@@ -33,13 +35,16 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
   const cloneRouteList = cloneDeep(routes)
   const list = treeMap(cloneRouteList, {
     conversion: (node: AddRouteRecordRaw) => {
-      const { meta: { title } = {} } = node
+      const { meta: { title, icon, orderNo, hideMenu = false } = {} } = node
 
       return {
-        ...(node.meta || {}),
         meta: node.meta,
         name: title,
+        routeName: node.name,
         path: node.path,
+        icon,
+        orderNo,
+        hideMenu,
         ...(node.redirect ? { redirect: node.redirect } : {})
       }
     }
@@ -53,6 +58,7 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
       typeof item.redirect === 'string'
     ) {
       item.path = item.redirect
+      item.redirect = undefined
     }
   })
   return cloneDeep(list) as Menu[]
