@@ -111,7 +111,10 @@ export default defineComponent({
     const { t } = useI18n()
 
     function handleCreate() {
-      drawerVisible.value = !drawerVisible.value
+      Object.keys(rowData).forEach((key) => {
+        rowData[key] = undefined
+      })
+      drawerVisible.value = true
     }
 
     function handleEdit(row: Menu) {

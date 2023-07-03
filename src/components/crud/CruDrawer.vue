@@ -175,7 +175,7 @@ function drawerBeforeOpen() {
   formEl.clearValidate()
   if (props.eventType === 'create') {
     for (const key of Object.keys(propsValue)) {
-      propsValue[key] = null
+      propsValue[key] = undefined
     }
   }
 }

@@ -5,7 +5,7 @@
         <ElButton :size="'default'" type="primary"> 保存 </ElButton>
       </div>
     </template>
-    <ElForm :model="menuVal">
+    <ElForm ref="menuFormRef" :model="menuVal">
       <ElRow :gutter="12">
         <ElCol :span="24" class="mb-4">
           <ElRadioGroup v-model="isDirectory">
@@ -26,6 +26,7 @@
               v-model="menuVal.parentPath"
               :data="getTree"
               check-strictly
+              :default-expanded-keys="[menuVal.parentPath || '']"
             ></ElTreeSelect>
           </ElFormItem>
         </ElCol>
@@ -71,23 +72,39 @@
         </ElCol>
       </ElRow>
       <ElFormItem label="按钮" v-if="!isDirectory">
-        <ElScrollbar always class="w-3/4 ml-4">
-          <div class="flex items-center mb-3">
+        <ElScrollbar class="w-3/4 ml-4 translate-y-1">
+          <div class="flex items-center mb-3 h-9">
             <ElButton
               size="small"
               type="primary"
               bg
               text
-              class="mr-1"
+              class="mr-1 button"
               v-for="right in menuVal.rights"
               :key="right.id"
             >
               {{ right.name }}
+              <ElIcon @click="deleteButton(right)" class="ml-1 button-close"><Close /></ElIcon>
             </ElButton>
           </div>
         </ElScrollbar>
-        <ElButton class="absolute right-0" @click="addButton">添加按钮</ElButton>
+        <ElButton type="primary" class="absolute right-0" @click="addButton">添加按钮</ElButton>
       </ElFormItem>
+      <ElDrawer v-model="addButtonVisible" :size="300">
+        <template #header>
+          <div>
+            <ElButton :size="'default'" type="primary" @click="submitAddButton"> 保存 </ElButton>
+          </div>
+        </template>
+        <ElForm ref="buttonFormRef" :model="buttonVal" :rules="buttonFormRules">
+          <ElFormItem label="按钮标识" prop="id">
+            <ElInput v-model="buttonVal.id"></ElInput>
+          </ElFormItem>
+          <ElFormItem label="按钮名称" prop="name">
+            <ElInput v-model="buttonVal.name"></ElInput>
+          </ElFormItem>
+        </ElForm>
+      </ElDrawer>
     </ElForm>
   </ElDrawer>
 </template>
@@ -104,13 +121,18 @@ import {
   ElRadioGroup,
   ElRadioButton,
   ElScrollbar,
-  ElTreeSelect
+  ElTreeSelect,
+  ElIcon,
+  FormInstance,
+  FormRules
 } from 'element-plus'
-import { Menu } from '#/list'
-import { computed, PropType, reactive, ref, watch } from 'vue'
+import { Close } from '@element-plus/icons-vue'
+import { Menu, MenuButton } from '#/list'
+import { computed, PropType, reactive, ref, watch, unref } from 'vue'
 import IconPicker from '@/components/icons/IconPicker.vue'
 import { treeMap } from '@/hooks/tree'
 import { useI18n } from '@/hooks/web/useI18n'
+import { cloneDeep } from 'lodash-es'
 const props = defineProps({
   value: {
     type: Object as PropType<Menu>,
@@ -125,14 +147,36 @@ const emits = defineEmits(['update:value', 'update:visible'])
 const { t } = useI18n()
 
 const menuVal = reactive(props.value)
+const menuFormRef = ref<FormInstance>()
 
 const isDirectory = ref(true)
 
+const addButtonVisible = ref(false)
+// 按钮Form的校验规则
+const buttonFormRules: FormRules = {
+  id: [
+    { required: true, message: 'Please input Activity name', trigger: 'blur' },
+    {
+      validator: (rule, val, callback) => {
+        console.log('rules', rule)
+        const index = menuVal.rights?.findIndex((right) => right.id === val)
+        index !== -1 && callback(new Error('该按钮已存在'))
+      },
+      trigger: 'blur'
+    }
+  ],
+  name: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }]
+}
+const buttonFormRef = ref<FormInstance>()
+const buttonVal = reactive<MenuButton>({
+  id: '',
+  name: ''
+})
+
 watch(
-  () => props.value.redirect,
-  (val) => {
-    console.log('val', val)
-    isDirectory.value = !!val
+  () => props.visible,
+  () => {
+    isDirectory.value = !!props.value.redirect
   },
   { immediate: true }
 )
@@ -147,7 +191,7 @@ const drawerVisible = computed<boolean>({
 })
 
 const getTree = computed(() => {
-  return treeMap(props.menus || [], {
+  const tree = treeMap(props.menus || [], {
     conversion: (node: Menu) => {
       return {
         value: node.path,
@@ -155,9 +199,47 @@ const getTree = computed(() => {
       }
     }
   })
+  return tree
 })
 
+// 添加按钮事件
 function addButton() {
-  //
+  const buttonFormEl = unref(buttonFormRef)
+  buttonFormEl?.resetFields()
+  addButtonVisible.value = true
+}
+
+// 按钮提交保存事件
+function submitAddButton() {
+  if (menuVal.rights) {
+    menuVal.rights.push(cloneDeep(buttonVal))
+  } else {
+    menuVal.rights = [cloneDeep(buttonVal)]
+  }
+  addButtonVisible.value = false
+}
+
+//  按钮删除事件
+function deleteButton(button: MenuButton) {
+  menuVal.rights = menuVal.rights?.filter((right) => right.id !== button.id)
 }
 </script>
+
+<style lang="less" scoped>
+.button {
+  &-close {
+    border-radius: 50%;
+    transition: all var(--el-transition-duration) var(--el-transition-function-ease-in-out-bezier);
+    width: 0px;
+
+    &:hover {
+      background-color: var(--el-text-color-placeholder);
+      color: #fff;
+    }
+  }
+
+  &:hover &-close {
+    width: 1em;
+  }
+}
+</style>

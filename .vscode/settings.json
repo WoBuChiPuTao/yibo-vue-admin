@@ -18,7 +18,7 @@
     "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
     "*.env": "$(capture).env.*",
     "CHANGELOG.md": "CHANGELOG*",
-    "package.json": "package-lock.json,pnpm-lock.yaml,pnpm-workspace.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,README*,.npmrc,.browserslistrc",
+    "package.json": "package-lock.json,pnpm-lock.yaml,pnpm-workspace.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,.npmrc,.browserslistrc",
     ".eslintrc.js": ".eslintignore,.prettierignore,.stylelintignore,commitlint.config.js,.prettierrc.js,.stylelintrc.js",
     "babel.config.js": "postcss.config.js,stylelint.config.js,tailwind.config.js"
   },

@@ -1,5 +1,5 @@
 import { Menu } from '#/list'
-
+// table的列设置
 export const columnsInfo: TableColumnInfo[] = [
   {
     prop: 'name',
@@ -33,6 +33,7 @@ export const columnsInfo: TableColumnInfo[] = [
   }
 ]
 
+// 菜单数据
 export const menus: Menu[] = [
   {
     meta: {
@@ -70,20 +71,20 @@ export const menus: Menu[] = [
         parentPath: '/home',
         rights: [
           { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
-          { id: '111', name: '新增' },
+          { id: '22', name: '新增' },
+          { id: '33', name: '新增' },
+          { id: '44', name: '新增' },
+          { id: '55', name: '新增' },
+          { id: '66', name: '新增' },
+          { id: '77', name: '新增' },
+          { id: '88', name: '新增' },
+          { id: '99', name: '新增' },
+          { id: '313', name: '新增' },
+          { id: '11421', name: '新增' },
+          { id: '1321311', name: '新增' },
+          { id: '13', name: '新增' },
+          { id: '344', name: '新增' },
+          { id: '65', name: '新增' },
           { id: '222', name: '修改' }
         ]
       }
