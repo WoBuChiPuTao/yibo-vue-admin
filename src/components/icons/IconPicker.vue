@@ -1,8 +1,8 @@
 <template>
   <!-- 此图标选择选择器只适应在线环境 -->
-  <ElInput v-model="selectedIcon">
+  <ElInput v-model="selectedIcon" disabled>
     <template #append>
-      <ElPopover trigger="click" :width="250">
+      <ElPopover trigger="click" :width="250" @before-enter="resetInput">
         <template #reference>
           <EIcon
             class="cursor-pointer"
@@ -11,7 +11,8 @@
           ></EIcon>
         </template>
         <template #default>
-          <div v-if="getCurrentIcons.length">
+          <ElInput v-model="search"></ElInput>
+          <div class="mt-2" v-if="getCurrentIcons.length">
             <ElScrollbar :max-height="200" class="border border-t-0 border-solid">
               <ul class="flex flex-wrap justify-around px-2">
                 <li
@@ -41,8 +42,8 @@
               </ElPagination>
             </div>
           </div>
-          <template
-            ><div class="p-5"><ElEmpty /></div>
+          <template v-else>
+            <div class="p-5"><ElEmpty :image-size="80" /></div>
           </template>
         </template>
       </ElPopover>
@@ -52,7 +53,7 @@
 
 <script setup lang="ts">
 import { ElInput, ElPopover, ElPagination, ElEmpty, ElScrollbar } from 'element-plus'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import EIcon from './EIcon.vue'
 import antIcon from './data/ant-design-icon'
 
@@ -61,6 +62,8 @@ const props = defineProps({
 })
 
 const emits = defineEmits(['update:modelValue'])
+// 查询条件
+const search = ref('')
 
 const icons = getIcons()
 
@@ -74,7 +77,9 @@ const selectedIcon = computed({
 const pageInfo = reactive({ current: 1, size: 100, total: icons.length })
 
 const getCurrentIcons = computed(() => {
-  return icons.slice((pageInfo.current - 1) * pageInfo.size, pageInfo.current * pageInfo.size)
+  const reg = new RegExp(`${search.value}`, 'g')
+  const getIcons = icons.filter((val) => reg.test(val))
+  return getIcons.slice((pageInfo.current - 1) * pageInfo.size, pageInfo.current * pageInfo.size)
 })
 
 function getIcons() {
@@ -91,6 +96,10 @@ function getIcons() {
 
 function handleClick(icon: string) {
   emits('update:modelValue', icon)
+}
+
+function resetInput() {
+  search.value = ''
 }
 </script>
 
