@@ -1,7 +1,10 @@
-// tailwindcss样式引入
-import 'tailwindcss/tailwind.css'
 // element-plus样式引入
 import 'element-plus/dist/index.css'
+// tailwindcss样式引入
+import 'tailwindcss/tailwind.css'
+// 引入与element样式冲突的文件
+import './style/tailwindcss/preflight.css'
+
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import './style/index.less'
 

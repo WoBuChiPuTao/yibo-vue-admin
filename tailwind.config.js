@@ -4,6 +4,10 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   darkMode: 'class',
   content: ['./src/**/*.{vue,js,ts,jsx,tsx}', './public/*.html'],
+  corePlugins: {
+    // 与element样式冲突的文件，不导入
+    preflight: false
+  },
   theme: {
     extend: {}
   },
