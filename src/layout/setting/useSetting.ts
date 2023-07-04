@@ -19,8 +19,8 @@ export function useSiderSetting() {
       return
     }
     setSiderColorStorage(color)
-    color?.config.forEach((item) => {
-      setCssVar(item.name, item.value)
+    Object.keys(color?.config).forEach((key) => {
+      setCssVar(key, color?.config[key])
     })
   }
 
@@ -30,8 +30,8 @@ export function useSiderSetting() {
       return
     }
     setHeaderColorStorage(color)
-    color?.config.forEach((item) => {
-      setCssVar(item.name, item.value)
+    Object.keys(color?.config).forEach((key) => {
+      setCssVar(key, color?.config[key])
     })
   }
 
@@ -41,8 +41,8 @@ export function useSiderSetting() {
       return
     }
     setMainColorStorage(color)
-    color?.config.forEach((item) => {
-      setCssVar(item.name, item.value)
+    Object.keys(color?.config).forEach((key) => {
+      setCssVar(key, color?.config[key])
     })
   }
 

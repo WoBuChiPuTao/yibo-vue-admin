@@ -5,231 +5,235 @@ import { ColorSetting, SiderColorSetting, HeaderColorSetting } from '#/config'
 export const SIDE_COLOR_LIST: ColorSetting<SiderColorSetting>[] = [
   {
     theme: '#001529',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001529' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
-      { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#a4a4a4' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#001529',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#0c2135',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   },
   {
     theme: '#ec0000',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#ec0000' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#ec7e00' },
-      { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#272727' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#ec0000',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#ec7e00',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#272727',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   },
   {
     theme: '#212121',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#212121' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#2d2d2d' },
-      { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#a4a4a4' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#212121',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#2d2d2d',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   },
   {
     theme: '#273352',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#273352' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
-      { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#a4a4a4' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#273352',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#0c2135',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   },
   {
     theme: '#ffffff',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#ffffff' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#d1d0d0' },
-      { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#616161' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#000' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#ffffff',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#d1d0d0',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#616161',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#000'
+    }
   },
   {
     theme: '#191b24',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#191b24' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#191b24',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#0c2135',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   },
   {
     theme: '#304156',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#304156' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#304156',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#0c2135',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   },
   {
     theme: '#001628',
-    config: [
-      { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001628' },
-      { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
-      { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' }
-    ]
+    config: {
+      [SiderColorEnum.SIDER_BG_COLOR]: '#001628',
+      [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#0c2135',
+      [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+      [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+    }
   }
 ]
 
 export const HEADER_BG_COLOR_LIST: ColorSetting<HeaderColorSetting>[] = [
   {
     theme: '#ffffff',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#ffffff' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#ffffff',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#151515',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#151515' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#151515',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#009688',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#009688' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#009688',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#5172DC',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#5172DC' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#5172DC',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#018ffb',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#018ffb' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#018ffb',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#409eff',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#409eff' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#409eff',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#e74c3c',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#e74c3c' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#e74c3c',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   },
   {
     theme: '#24292e',
-    config: [
-      { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#24292e' },
-      { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-    ]
+    config: {
+      [HeaderColorEnum.HEADER_BG_COLOR]: '#24292e',
+      [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+    }
   }
 ]
 
 // 系统主题颜色
 // 通过element的css变量修改全局主题
-export const SYS_COLOR_LIST: ColorSetting<{ name: string; value: string }>[] = [
+export const SYS_COLOR_LIST: ColorSetting<Record<string, string>>[] = [
   {
     theme: '#409eff',
-    config: [
-      { name: '--el-color-primary', value: '#409eff' },
-      { name: '--el-color-primary-light-3', value: '#79bbff' },
-      { name: '--el-color-primary-light-5', value: '#a0cfff' },
-      { name: '--el-color-primary-light-7', value: '#c6e2ff' },
-      { name: '--el-color-primary-light-8', value: '#d9ecff' },
-      { name: '--el-color-primary-light-9', value: '#ecf5ff' },
-      { name: '--el-color-primary-dark-2', value: '#337ecc' }
-    ]
+    config: {
+      '--el-color-primary': '#409eff',
+      '--el-color-primary-light-3': '#79bbff',
+      '--el-color-primary-light-5': '#a0cfff',
+      '--el-color-primary-light-7': '#c6e2ff',
+      '--el-color-primary-light-8': '#d9ecff',
+      '--el-color-primary-light-9': '#ecf5ff',
+      '--el-color-primary-dark-2': '#337ecc'
+    }
   },
   {
     theme: '#0084f4',
-    config: [
-      { name: '--el-color-primary', value: '#0084f4' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' },
-      { name: '--el-color-primary-dark-2', value: '' }
-    ]
+    config: {
+      '--el-color-primary': '#0084f4',
+      '--el-color-primary-light-3': '',
+      '--el-color-primary-light-5': '',
+      '--el-color-primary-light-7': '',
+      '--el-color-primary-light-8': '',
+      '--el-color-primary-light-9': '',
+      '--el-color-primary-dark-2': ''
+    }
   },
   {
     theme: '#67c23a',
-    config: [
-      { name: '--el-color-primary', value: '#67c23a' },
-      { name: '--el-color-primary-light-3', value: '#95d475' },
-      { name: '--el-color-primary-light-5', value: '#b3e19d' },
-      { name: '--el-color-primary-light-7', value: '#d1edc4' },
-      { name: '--el-color-primary-light-8', value: '#e1f3d8' },
-      { name: '--el-color-primary-light-9', value: '#f0f9eb' },
-      { name: '--el-color-primary-dark-2', value: '#529b2e' }
-    ]
+    config: {
+      '--el-color-primary': '#67c23a',
+      '--el-color-primary-light-3': '#95d475',
+      '--el-color-primary-light-5': '#b3e19d',
+      '--el-color-primary-light-7': '#d1edc4',
+      '--el-color-primary-light-8': '#e1f3d8',
+      '--el-color-primary-light-9': '#f0f9eb',
+      '--el-color-primary-dark-2': '#529b2e'
+    }
   },
   {
     theme: '#e6a23c',
-    config: [
-      { name: '--el-color-primary', value: '#e6a23c' },
-      { name: '--el-color-primary-light-3', value: '#eebe77' },
-      { name: '--el-color-primary-light-5', value: '#f3d19e' },
-      { name: '--el-color-primary-light-7', value: '#f8e3c5' },
-      { name: '--el-color-primary-light-8', value: '#faecd8' },
-      { name: '--el-color-primary-light-9', value: '#fdf6ec' },
-      { name: '--el-color-primary-dark-2', value: '#b88230' }
-    ]
+    config: {
+      '--el-color-primary': '#e6a23c',
+      '--el-color-primary-light-3': '#eebe77',
+      '--el-color-primary-light-5': '#f3d19e',
+      '--el-color-primary-light-7': '#f8e3c5',
+      '--el-color-primary-light-8': '#faecd8',
+      '--el-color-primary-light-9': '#fdf6ec',
+      '--el-color-primary-dark-2': '#b88230'
+    }
   },
   {
     theme: '#ff5c93',
-    config: [
-      { name: '--el-color-primary', value: '#ff5c93' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' },
-      { name: '--el-color-primary-dark-2', value: '' }
-    ]
+    config: {
+      '--el-color-primary': '#ff5c93',
+      '--el-color-primary-light-3': '',
+      '--el-color-primary-light-5': '',
+      '--el-color-primary-light-7': '',
+      '--el-color-primary-light-8': '',
+      '--el-color-primary-light-9': '',
+      '--el-color-primary-dark-2': ''
+    }
   },
   {
     theme: '#f56c6c',
-    config: [
-      { name: '--el-color-primary', value: '#f56c6c' },
-      { name: '--el-color-primary-light-3', value: '#f89898' },
-      { name: '--el-color-primary-light-5', value: '#fab6b6' },
-      { name: '--el-color-primary-light-7', value: '#fcd3d3' },
-      { name: '--el-color-primary-light-8', value: '#fde2e2' },
-      { name: '--el-color-primary-light-9', value: '#fef0f0' },
-      { name: '--el-color-primary-dark-2', value: '#c45656' }
-    ]
+    config: {
+      '--el-color-primary': '#f56c6c',
+      '--el-color-primary-light-3': '#f89898',
+      '--el-color-primary-light-5': '#fab6b6',
+      '--el-color-primary-light-7': '#fcd3d3',
+      '--el-color-primary-light-8': '#fde2e2',
+      '--el-color-primary-light-9': '#fef0f0',
+      '--el-color-primary-dark-2': '#c45656'
+    }
   },
   {
     theme: '#9c27b0',
-    config: [
-      { name: '--el-color-primary', value: '#9c27b0' },
-      { name: '--el-color-primary-light-3', value: '' },
-      { name: '--el-color-primary-light-5', value: '' },
-      { name: '--el-color-primary-light-7', value: '' },
-      { name: '--el-color-primary-light-8', value: '' },
-      { name: '--el-color-primary-light-9', value: '' }
-    ]
+    config: {
+      '--el-color-primary': '#9c27b0',
+      '--el-color-primary-light-3': '',
+      '--el-color-primary-light-5': '',
+      '--el-color-primary-light-7': '',
+      '--el-color-primary-light-8': '',
+      '--el-color-primary-light-9': '',
+      '--el-color-primary-dark-2': ''
+    }
   },
   {
     theme: '#909399',
-    config: [
-      { name: '--el-color-primary', value: '#909399' },
-      { name: '--el-color-primary-light-3', value: '#b1b3b8' },
-      { name: '--el-color-primary-light-5', value: '#c8c9cc' },
-      { name: '--el-color-primary-light-7', value: '#dedfe0' },
-      { name: '--el-color-primary-light-8', value: '#e9e9eb' },
-      { name: '--el-color-primary-light-9', value: '#f4f4f5' },
-      { name: '--el-color-primary-dark-2', value: '#73767a' }
-    ]
+    config: {
+      '--el-color-primary': '#909399',
+      '--el-color-primary-light-3': '#b1b3b8',
+      '--el-color-primary-light-5': '#c8c9cc',
+      '--el-color-primary-light-7': '#dedfe0',
+      '--el-color-primary-light-8': '#e9e9eb',
+      '--el-color-primary-light-9': '#f4f4f5',
+      '--el-color-primary-dark-2': '#73767a'
+    }
   }
 ]
 

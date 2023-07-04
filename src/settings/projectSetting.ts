@@ -13,30 +13,31 @@ const setting: ProjectConfig = {
   themeColor: {
     mainColor: {
       theme: '#409eff',
-      config: [
-        { name: '--el-color-primary', value: '#409eff' },
-        { name: '--el-color-primary-light-3', value: '#79bbff' },
-        { name: '--el-color-primary-light-5', value: '#a0cfff' },
-        { name: '--el-color-primary-light-7', value: '#c6e2ff' },
-        { name: '--el-color-primary-light-8', value: '#d9ecff' },
-        { name: '--el-color-primary-light-9', value: '#ecf5ff' }
-      ]
+      config: {
+        '--el-color-primary': '#409eff',
+        '--el-color-primary-light-3': '#79bbff',
+        '--el-color-primary-light-5': '#a0cfff',
+        '--el-color-primary-light-7': '#c6e2ff',
+        '--el-color-primary-light-8': '#d9ecff',
+        '--el-color-primary-light-9': '#ecf5ff',
+        '--el-color-primary-dark-2': '#337ecc'
+      }
     },
     siderColor: {
       theme: '#001529',
-      config: [
-        { name: SiderColorEnum.SIDER_BG_COLOR, value: '#001529' },
-        { name: SiderColorEnum.SIDER_CHILD_BG_COLOR, value: '#0c2135' },
-        { name: SiderColorEnum.SIDER_TEXT_HOVER_COLOR, value: '#fff' },
-        { name: SiderColorEnum.SIDER_TEXT_COLOR, value: '#a4a4a4' }
-      ]
+      config: {
+        [SiderColorEnum.SIDER_BG_COLOR]: '#001529',
+        [SiderColorEnum.SIDER_CHILD_BG_COLOR]: '#0c2135',
+        [SiderColorEnum.SIDER_TEXT_COLOR]: '#a4a4a4',
+        [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: '#fff'
+      }
     },
     headerColor: {
       theme: '#ffffff',
-      config: [
-        { name: HeaderColorEnum.HEADER_BG_COLOR, value: '#ffffff' },
-        { name: HeaderColorEnum.HEADER_BG_HOVER_COLOR, value: '#f6f6f6' }
-      ]
+      config: {
+        [HeaderColorEnum.HEADER_BG_COLOR]: '#ffffff',
+        [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: '#f6f6f6'
+      }
     }
   },
   // Permission mode

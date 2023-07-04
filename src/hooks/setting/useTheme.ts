@@ -55,14 +55,14 @@ export function updateHtmlTheme(theme: ThemeEnum) {
     const siderColor = unref(getSiderColor)
     const headerColor = unref(getHeaderColor)
     const mainColor = unref(getMainColor)
-    siderColor.config.forEach((item) => {
-      setCssVar(item.name, item.value)
+    Object.keys(siderColor.config).forEach((key) => {
+      setCssVar(key, siderColor.config[key])
     })
-    headerColor.config.forEach((item) => {
-      setCssVar(item.name, item.value)
+    Object.keys(headerColor.config).forEach((key) => {
+      setCssVar(key, headerColor.config[key])
     })
-    mainColor.config.forEach((item) => {
-      setCssVar(item.name, item.value)
+    Object.keys(mainColor.config).forEach((key) => {
+      setCssVar(key, mainColor.config[key])
     })
     html?.setAttribute('data-theme', theme)
     htmlClass && removeClass(html, ThemeEnum.DARK)
