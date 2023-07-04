@@ -13,10 +13,9 @@ ul {
   }
 
   &-item {
-    padding: 14px 24px;
+    padding: 14px 0;
     cursor: pointer;
     width: 100%;
-    padding-left: 16px;
     white-space: nowrap;
     position: relative;
     box-sizing: border-box;
@@ -44,6 +43,13 @@ ul {
         content: '';
         background-color: var(--el-color-primary);
       }
+    }
+
+    &-tooltip {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &-iconfont {

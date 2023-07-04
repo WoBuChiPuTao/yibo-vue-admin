@@ -2,12 +2,6 @@ import type { RouteMeta } from 'vue-router'
 import { Component } from 'vue'
 import { IconifyIcon } from '@iconify/vue/dist/offline'
 
-export interface MenuTag {
-  type?: 'primary' | 'error' | 'warn' | 'success'
-  content?: string
-  dot?: boolean
-}
-
 export interface MenuButton {
   id: string | number
   name: string

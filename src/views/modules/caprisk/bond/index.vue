@@ -2,12 +2,7 @@
   <BasicContainer>
     <div class="flex justify-between mb-2">
       <div>
-        <ElInput
-          v-model="searchInfo.instCode"
-          placeholder="产品代码"
-          :style="{ width: '120px' }"
-          class="mr-4"
-        >
+        <ElInput v-model="searchInfo.instCode" placeholder="产品代码" class="w-32 mr-4 " size="default">
         </ElInput>
         <ElButton type="primary" @click="handleSearch">
           <el-icon>
@@ -25,7 +20,7 @@
         </ElButton>
       </div>
     </div>
-    <ElTable :data="tableData" :height="tableHeight" v-loading="tableLoading">
+    <ElTable ref="tableEl" :data="tableData" :height="tableHeight" v-loading="tableLoading">
       <template v-for="item in columnsInfo" :key="item.prop">
         <ElTableColumn
           :align="item.align"
@@ -139,7 +134,7 @@ export default defineComponent({
     const dialogVisible = ref(false)
     const searchButtonLoading = ref(false)
     const tableLoading = ref(false)
-    const formEl = ref(null)
+    const tableEl = ref(null)
     const tableData = reactive<TableDataType[]>([])
     const searchInfo = reactive({ instCode: '' })
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
@@ -161,7 +156,7 @@ export default defineComponent({
       templateCode: ''
     })
 
-    const { tableHeight } = useTableHeight(formEl, tableData)
+    const { tableHeight } = useTableHeight(tableEl, tableData)
 
     const drawerVisible = ref(false)
     const eventType = ref<CruEventType>('view')
@@ -231,7 +226,7 @@ export default defineComponent({
       drawerVisible,
       dialogVisible,
       tableLoading,
-      formEl,
+      tableEl,
       tableData,
       rowData,
       searchInfo,

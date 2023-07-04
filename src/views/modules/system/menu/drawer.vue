@@ -2,7 +2,7 @@
   <ElDrawer v-model="drawerVisible" :size="600" label-position="right">
     <template #header>
       <div>
-        <ElButton :size="'default'" type="primary"> 保存 </ElButton>
+        <ElButton :size="'default'" type="primary" @click="handleSave"> 保存 </ElButton>
       </div>
     </template>
     <ElForm ref="menuFormRef" :model="menuVal">
@@ -26,6 +26,7 @@
               v-model="menuVal.parentPath"
               :data="getTree"
               check-strictly
+              clearable
               :default-expanded-keys="[menuVal.parentPath || '']"
             ></ElTreeSelect>
           </ElFormItem>
@@ -142,11 +143,23 @@ const props = defineProps({
   visible: Boolean
 })
 
-const emits = defineEmits(['update:value', 'update:visible'])
+const emits = defineEmits<{
+  (e: 'save', menu: Menu, oldMenu: Menu): void
+  (e: 'update:visible', value: boolean): void
+}>()
+
+const drawerVisible = computed<boolean>({
+  get() {
+    return props.visible
+  },
+  set(val) {
+    emits('update:visible', val)
+  }
+})
 
 const { t } = useI18n()
 
-const menuVal = reactive(props.value)
+const menuVal = reactive(cloneDeep(props.value))
 const menuFormRef = ref<FormInstance>()
 
 const isDirectory = ref(true)
@@ -176,19 +189,12 @@ const buttonVal = reactive<MenuButton>({
 watch(
   () => props.visible,
   () => {
+    Object.keys(menuVal).forEach((key) => (menuVal[key] = props.value[key]))
+    menuVal.hideMenu = !!menuVal.hideMenu
     isDirectory.value = !!props.value.redirect
   },
   { immediate: true }
 )
-
-const drawerVisible = computed<boolean>({
-  get() {
-    return props.visible
-  },
-  set(val) {
-    emits('update:visible', val)
-  }
-})
 
 const getTree = computed(() => {
   const tree = treeMap(props.menus || [], {
@@ -222,6 +228,13 @@ function submitAddButton() {
 //  按钮删除事件
 function deleteButton(button: MenuButton) {
   menuVal.rights = menuVal.rights?.filter((right) => right.id !== button.id)
+}
+
+// drawer保存事件
+function handleSave() {
+  console.log('props', props.value)
+  emits('save', cloneDeep(menuVal), props.value)
+  drawerVisible.value = false
 }
 </script>
 

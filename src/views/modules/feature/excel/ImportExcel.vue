@@ -31,7 +31,8 @@ export default defineComponent({
 
     const { tableHeight } = useTableHeight(
       table,
-      computed(() => excelData.results)
+      computed(() => excelData.results),
+      32
     )
 
     function handleExcel(data: ExcelData[]) {

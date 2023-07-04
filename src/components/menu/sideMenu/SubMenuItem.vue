@@ -1,19 +1,47 @@
 <template>
   <li :class="getClass">
-    <div class="menu-list-submenu-title" @click.stop="handleClick" :style="getItemStyle">
-      <slot name="title"></slot>
-      <EIcon
-        v-if="!collapsed"
-        icon="eva:arrow-ios-downward-outline"
-        :post-icon="arrowIosDownwardOutline"
-        class="submenu-open-icon"
-      />
-    </div>
-    <CollapseTransition>
-      <ul v-show="opened">
-        <slot></slot>
-      </ul>
-    </CollapseTransition>
+    <template v-if="!collapsed">
+      <div class="menu-list-submenu-title" @click.stop="handleClick" :style="getItemStyle">
+        <slot name="title"></slot>
+        <EIcon
+          icon="eva:arrow-ios-downward-outline"
+          :post-icon="arrowIosDownwardOutline"
+          class="submenu-open-icon"
+        />
+      </div>
+      <CollapseTransition>
+        <ul v-show="opened">
+          <slot></slot>
+        </ul>
+      </CollapseTransition>
+    </template>
+
+    <ElPopover popper-class="side-menu-popover" v-else placement="right" trigger="click">
+      <template #reference>
+        <div
+          :class="[
+            {
+              'side-menu-popover-title': topParent
+            },
+            ' menu-list-submenu-title'
+          ]"
+          @click.stop="handleClick"
+        >
+          <slot name="title"></slot>
+          <EIcon
+            v-if="!topParent"
+            icon="eva:arrow-ios-downward-outline"
+            :post-icon="arrowIosDownwardOutline"
+            class="submenu-open-icon"
+          />
+        </div>
+      </template>
+      <div>
+        <ul>
+          <slot></slot>
+        </ul>
+      </div>
+    </ElPopover>
   </li>
 </template>
 
@@ -24,16 +52,18 @@ import EIcon from '@/components/icons/EIcon.vue'
 import CollapseTransition from '@/components/Transition/CollapseTransition.vue'
 import { useRootMenuContext } from './useMenuContext'
 import arrowIosDownwardOutline from '@iconify-icons/eva/arrow-ios-downward-outline'
+import { ElPopover } from 'element-plus'
 
 export default defineComponent({
   name: 'SubMenuItem',
-  components: { EIcon, CollapseTransition },
+  components: { EIcon, CollapseTransition, ElPopover },
   props: {
     name: {
       type: String,
       required: true
     },
-    collapsed: Boolean
+    collapsed: Boolean,
+    topParent: Boolean
   },
   setup(props) {
     // 多级菜单样式
@@ -101,3 +131,25 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="less">
+// popover样式
+.side-menu-popover.el-popover {
+  border: 0;
+  padding: 0;
+  background-color: var(--sider-child-bg-color);
+  .el-popper__arrow {
+    display: none;
+  }
+
+  .menu-list-item{
+    padding-left: 24px;
+  }
+}
+
+.side-menu-popover-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

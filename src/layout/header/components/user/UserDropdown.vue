@@ -45,8 +45,8 @@ async function toLogout() {
       () => h('span', t('sys.app.logoutMessage')),
       t('sys.app.logoutTip'),
       {
-        confirmButtonText: t('common.okText'),
-        cancelButtonText: t('common.cancelText'),
+        confirmButtonText: t('common.button.okText'),
+        cancelButtonText: t('common.button.cancelText'),
         type: 'warning'
       }
     )

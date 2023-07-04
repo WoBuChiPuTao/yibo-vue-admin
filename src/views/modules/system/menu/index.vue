@@ -63,7 +63,12 @@
         </template>
       </ElTableColumn>
     </ElTable>
-    <Drawer :value="rowData" :menus="tableData" v-model:visible="drawerVisible" />
+    <Drawer
+      :value="rowData"
+      :menus="tableData"
+      v-model:visible="drawerVisible"
+      @save="handleSave"
+    />
   </BasicContainer>
 </template>
 
@@ -124,6 +129,18 @@ export default defineComponent({
       drawerVisible.value = true
     }
 
+    function handleSave(menu: Menu) {
+      if (rowData.path === undefined) {
+        tableData.push(menu)
+        return
+      }
+      const findMenu = tableData.find((item) => item.path === rowData.path)
+      if (!findMenu) return
+      Object.keys(menu).forEach((key) => {
+        findMenu[key] = menu[key]
+      })
+    }
+
     return {
       tableLoading,
       drawerVisible,
@@ -132,7 +149,8 @@ export default defineComponent({
       columnsInfo,
       t,
       handleCreate,
-      handleEdit
+      handleEdit,
+      handleSave
     }
   }
 })

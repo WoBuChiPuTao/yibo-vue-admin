@@ -30,7 +30,8 @@ export default defineComponent({
     const table = ref()
     const { tableHeight } = useTableHeight(
       table,
-      computed(() => excelData)
+      computed(() => excelData),
+      40
     )
     function handleExport() {
       useExportXlsx({ data: excelData, header: excelHeader })

@@ -1,21 +1,36 @@
 <template>
-  <li :class="getClass" :style="getItemStyle" @click.stop="handleClickItem">
-    <slot></slot>
+  <li :class="getClass" :style="collapsed ? {} : getItemStyle" @click.stop="handleClickItem">
+    <ElTooltip v-if="getShowTooltip" effect="dark" placement="right" raw-content>
+      <div class="menu-list-item-tooltip">
+        <slot></slot>
+      </div>
+      <template #content>
+        <slot name="title"></slot>
+      </template>
+    </ElTooltip>
+
+    <template v-else>
+      <slot></slot>
+      <slot name="title"></slot>
+    </template>
   </li>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, ref, unref, watch } from 'vue'
 import { useMenuItem } from './useMenu'
+import { ElTooltip } from 'element-plus'
 import { useRootMenuContext } from './useMenuContext'
 
 export default defineComponent({
   name: 'MenuItem',
+  components: { ElTooltip },
   props: {
     name: {
       type: String,
       required: true
     },
+    topParent: Boolean,
     collapsed: Boolean
   },
   setup(props) {
@@ -45,6 +60,10 @@ export default defineComponent({
       }
     )
 
+    const getShowTooltip = computed(() => {
+      return props.topParent && props.collapsed
+    })
+
     const getClass = computed(() => {
       return [
         'menu-list-item',
@@ -62,6 +81,7 @@ export default defineComponent({
     return {
       getItemStyle,
       getClass,
+      getShowTooltip,
       handleClickItem
     }
   }

@@ -5,8 +5,7 @@
         <ElInput
           v-model="searchInfo.name"
           placeholder="名称"
-          :style="{ width: '120px' }"
-          class="mr-4"
+          class="w-32 mr-4 "
         >
         </ElInput>
         <ElButton type="primary" @click="handleSearch">
@@ -25,7 +24,7 @@
         </ElButton>
       </div>
     </div>
-    <ElTable :data="tableData" :height="tableHeight" v-loading="tableLoading">
+    <ElTable ref="tableEl" :data="tableData" :height="tableHeight" v-loading="tableLoading">
       <template v-for="item in columnsInfo" :key="item.prop">
         <ElTableColumn
           :align="item.align"
@@ -139,7 +138,7 @@ export default defineComponent({
     const dialogVisible = ref(false)
     const searchButtonLoading = ref(false)
     const tableLoading = ref(false)
-    const formEl = ref(null)
+    const tableEl = ref(null)
     const tableData = reactive<UserInfo[]>([])
     const searchInfo = reactive({ name: '' })
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
@@ -155,7 +154,7 @@ export default defineComponent({
       phone: ''
     })
 
-    const { tableHeight } = useTableHeight(formEl, tableData)
+    const { tableHeight } = useTableHeight(tableEl, tableData)
 
     const drawerVisible = ref(false)
     const eventType = ref<CruEventType>('view')
@@ -225,7 +224,7 @@ export default defineComponent({
       drawerVisible,
       dialogVisible,
       tableLoading,
-      formEl,
+      tableEl,
       tableData,
       rowData,
       searchInfo,

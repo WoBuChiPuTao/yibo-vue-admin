@@ -15,7 +15,7 @@
       </ElFormItem>
       <ElFormItem class="enter-x">
         <el-button type="primary" size="large" round class="back-fill">{{
-          t('common.resetText')
+          t('common.button.resetText')
         }}</el-button>
       </ElFormItem>
       <ElFormItem class="relative-box enter-x">

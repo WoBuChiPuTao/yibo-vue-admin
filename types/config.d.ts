@@ -9,17 +9,19 @@ import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 export interface ColorSetting<T> {
   theme: string
-  config: T[]
+  config: T
 }
 
 export interface SiderColorSetting {
-  name: SiderColorEnum
-  value: string
+  [SiderColorEnum.SIDER_BG_COLOR]: string
+  [SiderColorEnum.SIDER_CHILD_BG_COLOR]: string
+  [SiderColorEnum.SIDER_TEXT_COLOR]: string
+  [SiderColorEnum.SIDER_TEXT_HOVER_COLOR]: string
 }
 
 export interface HeaderColorSetting {
-  name: HeaderColorEnum
-  value: string
+  [HeaderColorEnum.HEADER_BG_COLOR]: string
+  [HeaderColorEnum.HEADER_BG_HOVER_COLOR]: string
 }
 
 export interface SiderSetting {
@@ -51,7 +53,7 @@ export interface HeaderSetting {
 export interface ProjectConfig {
   // 主题颜色
   themeColor: {
-    mainColor: ColorSetting<{ name: string; value: string }>
+    mainColor: ColorSetting<Record<string, string>>
     siderColor: ColorSetting<SiderColorSetting>
     headerColor: ColorSetting<HeaderColorSetting>
   }

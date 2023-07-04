@@ -26,6 +26,7 @@ module.exports = {
     'dot-notation': ['error', { allowPattern: '^[_a-z]+([_a-z]+)+$' }],
     'symbol-description': 'off',
     'no-undef': 'off',
-    '@typescript-eslint/no-var-requires': 'off'
+    '@typescript-eslint/no-var-requires': 'off',
+    'func-call-spacing': 'off'
   }
 }

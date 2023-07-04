@@ -1,17 +1,6 @@
 export default {
   appTitle: 'Yibo Admin',
-  okText: 'OK',
-  closeText: 'Close',
-  cancelText: 'Cancel',
   loadingText: 'Loading...',
-  saveText: 'Save',
-  delText: 'Delete',
-  resetText: 'Reset',
-  searchText: 'Search',
-  queryText: 'Search',
-
-  inputText: 'Please enter',
-  chooseText: 'Please choose',
 
   redo: 'Refresh',
   back: 'Back',
@@ -54,6 +43,18 @@ export default {
     minute: 'Minute'
   },
   button: {
-    view: 'View'
+    view: 'View',
+    saveText: 'Save',
+    delText: 'Delete',
+    resetText: 'Reset',
+    searchText: 'Search',
+    queryText: 'Search',
+    okText: 'OK',
+    closeText: 'Close',
+    cancelText: 'Cancel'
+  },
+  input: {
+    inputText: 'Please enter',
+    chooseText: 'Please choose'
   }
 }
