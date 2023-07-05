@@ -3,22 +3,20 @@
     v-if="hasChildrenMenu(item)"
     :class="getLevelClass"
     :name="item.path"
-    :collapsed="collapsed"
     :topParent="parent"
   >
     <template #title>
       <EIcon v-if="getCeil" class="menu-list-submenu-title-iconfont" :icon="item?.icon"></EIcon>
-      <span v-show="getShowSubTitle" class="menu-list-submenu-title-name"> {{ getI18nName }}</span>
+      <span  class="menu-list-submenu-title-name"> {{ getI18nName }}</span>
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
-      <SubMenu :item="childrenItem" :parent="false" :collapsed="collapsed"></SubMenu>
+      <SubMenu :item="childrenItem" :parent="false"></SubMenu>
     </template>
   </SubMenuItem>
   <MenuItem
     v-else
     :class="getLevelClass"
     :name="item.path"
-    :collapsed="collapsed"
     :topParent="parent"
   >
     <EIcon v-if="getCeil" class="menu-list-item-iconfont" :icon="item?.icon"></EIcon>
@@ -44,8 +42,7 @@ export default defineComponent({
       type: Object as PropType<Menu>,
       default: () => ({})
     },
-    parent: Boolean,
-    collapsed: Boolean
+    parent: Boolean
   },
   setup(props) {
     // 多国语言
@@ -58,14 +55,13 @@ export default defineComponent({
     const getCeil = computed(() => {
       return !!props.parent
     })
-    // collapse状态是否显示标题
-    const getShowSubTitle = computed(() => !props.collapsed || !props.parent)
+
     // 菜单层次样式
     const getLevelClass = computed(() => {
       return [
         {
-          'menu-parent': props.parent,
-          'menu-children': !props.parent
+          'menu-list-parent': props.parent,
+          'menu-list-children': !props.parent
         }
       ]
     })
@@ -81,8 +77,7 @@ export default defineComponent({
       hasChildrenMenu,
       getLevelClass,
       getCeil,
-      getI18nName,
-      getShowSubTitle
+      getI18nName
     }
   }
 })

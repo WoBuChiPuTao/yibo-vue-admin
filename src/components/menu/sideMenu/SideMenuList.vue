@@ -19,8 +19,7 @@ export default defineComponent({
     menus: {
       type: Array as PropType<Menu[]>,
       default: () => []
-    },
-    collapsed: Boolean
+    }
   },
   emits: ['selectMenuItem'],
   setup(props, { emit }) {
@@ -43,17 +42,6 @@ export default defineComponent({
         nextTick(() => {
           updateOpened()
         })
-      }
-    )
-
-    watch(
-      () => props.collapsed,
-      () => {
-        if (props.collapsed) {
-          openedNames.value = []
-        } else {
-          handleMenuChange()
-        }
       }
     )
 

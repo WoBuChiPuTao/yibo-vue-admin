@@ -8,7 +8,7 @@ ul {
   font-size: 14px;
   color: var(--sider-text-color);
 
-  .menu-children {
+  &-children {
     background-color: var(--sider-child-bg-color);
   }
 
@@ -28,28 +28,7 @@ ul {
 
     &-selected {
       color: var(--sider-text-hover-color);
-      background-color: var(--el-color-primary) !important;
-
-      &-collapsed {
-        background-color: var(--sider-bg-color) !important;
-      }
-
-      &-collapsed::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        content: '';
-        background-color: var(--el-color-primary);
-      }
-    }
-
-    &-tooltip {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: var(--el-color-primary);
     }
 
     &-iconfont {
@@ -108,8 +87,9 @@ ul {
     }
 
     &-child-active-collapsed > &-title {
-      // background-color: #00061a;
-      ::before {
+      // background-color: #6f90ff;
+      
+      .menu-list-submenu-title-iconfont::before {
         position: absolute;
         top: 0;
         left: 0;
