@@ -1,11 +1,11 @@
 <template>
-  <ElDrawer v-model="drawerVisible" :size="600" label-position="right">
+  <ElDrawer v-model="drawerVisible" :size="600">
     <template #header>
       <div>
         <ElButton :size="'default'" type="primary" @click="handleSave"> 保存 </ElButton>
       </div>
     </template>
-    <ElForm ref="menuFormRef" :model="menuVal">
+    <ElForm ref="menuFormRef" :model="menuVal" label-width="80px">
       <ElRow :gutter="12">
         <ElCol :span="24" class="mb-4">
           <ElRadioGroup v-model="isDirectory">
@@ -21,7 +21,7 @@
           </ElFormItem>
         </ElCol>
         <ElCol :span="12">
-          <ElFormItem label="上级菜单">
+          <ElFormItem label="上级目录">
             <ElTreeSelect
               v-model="menuVal.parentPath"
               :data="getTree"
@@ -73,7 +73,7 @@
         </ElCol>
       </ElRow>
       <ElFormItem label="按钮" v-if="!isDirectory">
-        <ElScrollbar class="w-3/4 ml-4 translate-y-1">
+        <ElScrollbar class="w-3/4">
           <div class="flex items-center mb-3 h-9">
             <ElButton
               size="small"
@@ -134,6 +134,7 @@ import IconPicker from '@/components/icons/IconPicker.vue'
 import { treeMap } from '@/hooks/tree'
 import { useI18n } from '@/hooks/web/useI18n'
 import { cloneDeep } from 'lodash-es'
+import { TreeSelectInfo } from './info'
 const props = defineProps({
   value: {
     type: Object as PropType<Menu>,
@@ -170,9 +171,10 @@ const buttonFormRules: FormRules = {
   id: [
     { required: true, message: 'Please input Activity name', trigger: 'blur' },
     {
-      validator: (rule, val, callback) => {
-        console.log('rules', rule)
-        const index = menuVal.rights?.findIndex((right) => right.id === val)
+      validator: (_rule, val, callback) => {
+        const rights = unref(getRights)
+        if (rights.length === 0) return
+        const index = rights.findIndex((right) => right.id === val)
         index !== -1 && callback(new Error('该按钮已存在'))
       },
       trigger: 'blur'
@@ -205,7 +207,21 @@ const getTree = computed(() => {
       }
     }
   })
-  return tree
+  return tree as unknown as TreeSelectInfo[]
+})
+
+// 所有按钮
+const getRights = computed(() => {
+  const buttons: MenuButton[] = []
+  treeMap(props.menus || [], {
+    conversion: (node: Menu) => {
+      if (node.rights && node.rights.length) {
+        buttons.push(...cloneDeep(node.rights))
+      }
+      return {}
+    }
+  })
+  return buttons
 })
 
 // 添加按钮事件

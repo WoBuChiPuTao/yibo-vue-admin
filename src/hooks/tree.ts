@@ -12,8 +12,7 @@ export function treeMapEach(
   data: any,
   { children = 'children', conversion }: { children?: string; conversion: Fn }
 ) {
-  const haveChildren =
-    Array.isArray(data[children]) && data[children].length > 0
+  const haveChildren = Array.isArray(data[children]) && data[children].length > 0
   const conversionData = conversion(data) || {}
   if (haveChildren) {
     return {
@@ -33,14 +32,38 @@ export function treeMapEach(
 }
 
 /**
+ * @description 过滤树中的空对象
+ */
+function filterTreeEach(data: any, children = 'children') {
+  const keys = Object.keys(data)
+  if (keys.length === 0 || (keys.length === 1 && keys.includes(children))) {
+    return undefined
+  }
+  const haveChildren = Array.isArray(data[children]) && data[children].length > 0
+  if (haveChildren) {
+    const childData = data[children]
+      .map((item: any) => filterTreeEach(item, children))
+      .filter((val: any) => val)
+    return {
+      ...data,
+      [children]: childData.length ? childData : undefined
+    }
+  } else {
+    return data
+  }
+}
+
+/**
  * @description: Extract tree specified structure
  * @description: 提取树指定结构
  */
 export function treeMap<T = any>(
   treeData: T[],
-  opt: { children?: string; conversion: Fn }
+  opt: { children?: string; conversion: Fn<T[]> }
 ): T[] {
-  return treeData.map((item) => treeMapEach(item, opt))
+  return treeData
+    .map((item) => filterTreeEach(treeMapEach(item, opt), opt.children))
+    .filter((val) => val)
 }
 
 /**
@@ -50,11 +73,7 @@ export function treeMap<T = any>(
  * @returns: 新数组
  * @description: 查找树节点路径
  */
-export function findPath<T = any>(
-  tree: any,
-  func: Fn,
-  children = 'children'
-): T | T[] | null {
+export function findPath<T = any>(tree: any, func: Fn, children = 'children'): T | T[] | null {
   const path: T[] = []
   const list = [...tree]
   const visitedSet = new Set()

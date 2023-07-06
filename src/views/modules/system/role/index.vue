@@ -11,7 +11,7 @@
         </ElButton>
       </div>
       <div>
-        <ElButton type="primary">
+        <ElButton type="primary" @click="handleCreate">
           <el-icon>
             <Plus></Plus>
           </el-icon>
@@ -40,8 +40,8 @@
         </ElTableColumn>
       </template>
       <ElTableColumn align="center" fixed="right" :min-width="120" label="操作">
-        <template #default>
-          <ElButton link type="primary" size="small">编辑</ElButton>
+        <template #default="{ row }">
+          <ElButton link type="primary" size="small" @click="handleEdit(row)">编辑</ElButton>
           <ElButton link type="danger" size="small">删除</ElButton>
         </template>
       </ElTableColumn>
@@ -59,6 +59,7 @@
       >
       </ElPagination>
     </div>
+    <Drawer v-model:visible="drawerVisible" :value="drawerData"></Drawer>
   </BasicContainer>
 </template>
 
@@ -68,10 +69,21 @@ import { ElIcon, ElInput, ElTable, ElTableColumn, ElPagination, ElSwitch } from 
 import { Plus, Search } from '@element-plus/icons-vue'
 import { useTableHeight } from '@/components/table/useTableHeight'
 import { RoleInfo, columnsInfo, roleData } from './info'
+import Drawer from './components/Drawer.vue'
 
 export default defineComponent({
   name: 'RoleManagament',
-  components: { Plus, Search, ElIcon, ElInput, ElTable, ElTableColumn, ElPagination, ElSwitch },
+  components: {
+    Plus,
+    Search,
+    ElIcon,
+    ElInput,
+    ElTable,
+    ElTableColumn,
+    ElPagination,
+    ElSwitch,
+    Drawer
+  },
   setup() {
     const tableEl = ref(null)
     const tableLoading = ref(false)
@@ -80,6 +92,16 @@ export default defineComponent({
     const searchInfo = reactive({ name: '', state: -1 })
 
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
+
+    const drawerVisible = ref(false)
+    const drawerData = reactive<RoleInfo>({
+      code: '',
+      name: '',
+      state: false,
+      createTime: '',
+      remarks: undefined,
+      menu: []
+    })
 
     const { tableHeight } = useTableHeight(tableEl, tableData)
 
@@ -99,6 +121,20 @@ export default defineComponent({
       tableLoading.value = false
     }
 
+    function handleCreate() {
+      Object.keys(drawerData).forEach((key) => {
+        drawerData[key] = undefined
+      })
+      drawerVisible.value = true
+    }
+
+    function handleEdit(row: RoleInfo) {
+      Object.keys(drawerData).forEach((key) => {
+        drawerData[key] = row[key]
+      })
+      drawerVisible.value = true
+    }
+
     getTableData()
     return {
       columnsInfo,
@@ -107,7 +143,11 @@ export default defineComponent({
       tableData,
       tableHeight,
       pageInfo,
-      changeRoleState
+      drawerVisible,
+      drawerData,
+      changeRoleState,
+      handleCreate,
+      handleEdit
     }
   }
 })

@@ -1,6 +1,6 @@
 type FormItemRule = import('element-plus').FormItemRule
 
-declare type ColumnItemType = 'date' | 'datetime' | 'string' | 'number' | 'array'
+declare type ColumnItemType = 'date' | 'datetime' | 'string' | 'number' | 'array' | 'textarea'
 
 declare interface TableColumnInfo {
   type?: ColumnItemType

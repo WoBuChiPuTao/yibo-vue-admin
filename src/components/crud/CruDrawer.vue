@@ -1,5 +1,5 @@
 <template>
-  <ElDrawer v-model="visible" :title="title" :size="600" @open="drawerBeforeOpen">
+  <ElDrawer v-model="visible" :title="title" :size="drawerWidth" @open="drawerBeforeOpen">
     <template #header>
       <slot v-if="$slots.header"></slot>
       <div v-else>
@@ -15,9 +15,8 @@
     </template>
     <ElForm
       ref="formRef"
-      label-position="right"
       :rules="formRules"
-      label-width="100px"
+      :label-width="labelWidth"
       :model="propsValue"
       @validate="validateFunc"
       status-icon
@@ -38,6 +37,13 @@
                 <ElInput
                   v-else-if="!$slots[col.prop] && isNum(col.type)"
                   v-model.number="propsValue[col.prop]"
+                  :disabled="isDisabled(col) || allDisabled"
+                >
+                </ElInput>
+                <ElInput
+                  v-else-if="!$slots[col.prop] && isTextarea(col.type)"
+                  :type="col.type"
+                  v-model="propsValue[col.prop]"
                   :disabled="isDisabled(col) || allDisabled"
                 >
                 </ElInput>
@@ -73,10 +79,20 @@ const props = defineProps({
     type: String as PropType<CruEventType>,
     default: 'view'
   },
+  // drawer宽度
+  drawerWidth: {
+    type: Number,
+    default: 500
+  },
   // 每行显示的列数
   column: {
     type: Number,
     default: 2
+  },
+  // label宽度
+  labelWidth: {
+    type: String,
+    default: '60px'
   },
   // 标题
   title: {
@@ -150,6 +166,14 @@ function isDate(item: ColumnItemType | undefined): item is 'date' | 'datetime' {
 function isNum(item: ColumnItemType | undefined): item is 'number' {
   if (!item) return false
   if (item === 'number') {
+    return true
+  }
+  return false
+}
+
+function isTextarea(item: ColumnItemType | undefined): item is 'textarea' {
+  if (!item) return false
+  if (item === 'textarea') {
     return true
   }
   return false

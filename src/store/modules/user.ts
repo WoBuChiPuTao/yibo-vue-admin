@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { login, getUserInfo } from '@/api/sys/user'
 import { router } from '@/router'
-// import { asyncRoutes } from '@/router/routes/modules/index'
+import { asyncRoutes } from '@/router/routes/modules/index'
 import { store } from '../index'
 import { WebCache } from '@/utils/cache'
 import { RouteRecordRaw } from 'vue-router'
@@ -9,7 +9,7 @@ import { flatMultiRoutes } from '@/hooks/route'
 import { PageEnum } from '@/enums/pageEnum'
 import { UserInfo, UserState } from '#/store'
 import { LoginParam } from '#/api'
-import { usePermissionStore } from './permission'
+// import { usePermissionStore } from './permission'
 
 export const useUserStore = defineStore({
   id: 'app-user',
@@ -95,9 +95,10 @@ export const useUserStore = defineStore({
       if (sessionTimeout) {
         this.setSessionTimeout(false)
       } else {
-        // 可以动态添加路由
-        const { buildRoutes } = usePermissionStore()
-        const routes = await buildRoutes()
+        // 动态添加路由
+        // const { buildRoutes } = usePermissionStore()
+        // const routes = await buildRoutes()
+        const routes = asyncRoutes
         // 构建路由
         // const flatRoutes = flatMultiRoutes(asyncRoutes as RouteRecordRaw[])
         const flatRoutes = flatMultiRoutes(routes as RouteRecordRaw[])

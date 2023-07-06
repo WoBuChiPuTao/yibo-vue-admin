@@ -12,7 +12,7 @@ export interface RoleInfo {
 export const columnsInfo: TableColumnInfo[] = [
   {
     prop: 'code',
-    label: '角色ID',
+    label: '角色代码',
     minWidth: 120,
     align: 'center'
   },
@@ -227,21 +227,6 @@ export const roleData: RoleInfo[] = [
             path: '/home/dashboard',
             hideMenu: false,
             parentPath: '/home'
-          },
-          {
-            meta: {
-              title: 'routes.home.workbench'
-            },
-            name: 'routes.home.workbench',
-            routeName: 'Workbench',
-            path: '/home/workbench',
-            hideMenu: false,
-            parentPath: '/home',
-            rights: [
-              { id: '111', name: '新增' },
-              { id: '222', name: '修改' },
-              { id: '333', name: '删除' }
-            ]
           }
         ]
       }

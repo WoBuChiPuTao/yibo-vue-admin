@@ -2,12 +2,7 @@
   <BasicContainer>
     <div class="flex justify-between mb-2">
       <div>
-        <ElInput
-          v-model="searchInfo.name"
-          placeholder="名称"
-          class="w-32 mr-4 "
-        >
-        </ElInput>
+        <ElInput v-model="searchInfo.account" placeholder="名称" class="w-32 mr-4"> </ElInput>
         <ElButton type="primary" @click="handleSearch">
           <el-icon>
             <Search></Search>
@@ -81,12 +76,19 @@
     <CruDrawer
       v-model:model-value="drawerVisible"
       :value="rowData"
+      :column="1"
       :items-info="columnsInfo"
       :event-type="eventType"
       :submit-func="handleSubmit"
     >
       <template #roles="{ col, value }">
-        <ElSelect v-model="value[col.prop]" multiple collapse-tags collapse-tags-tooltip>
+        <ElSelect
+          class="w-full"
+          v-model="value[col.prop]"
+          multiple
+          collapse-tags
+          collapse-tags-tooltip
+        >
           <ElOption label="老总" value="老总"></ElOption>
           <ElOption label="超级管理员" value="超级管理员"></ElOption>
           <ElOption label="测试" value="测试"></ElOption>
@@ -140,18 +142,18 @@ export default defineComponent({
     const tableLoading = ref(false)
     const tableEl = ref(null)
     const tableData = reactive<UserInfo[]>([])
-    const searchInfo = reactive({ name: '' })
+    const searchInfo = reactive({ account: '' })
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
 
     const rowData = reactive<UserInfo>({
-      id: '',
-      name: '',
+      account: '',
       alias: '',
       roles: [],
       department: '',
       position: '',
       email: '',
-      phone: ''
+      phone: '',
+      remarks: ''
     })
 
     const { tableHeight } = useTableHeight(tableEl, tableData)
@@ -166,14 +168,14 @@ export default defineComponent({
     }
 
     function handleLook(row: UserInfo) {
-      Object.keys(row).forEach((key) => {
+      Object.keys(rowData).forEach((key) => {
         rowData[key] = row[key]
       })
       dialogVisible.value = true
     }
 
     function handleEdit(row: UserInfo) {
-      Object.keys(row).forEach((key) => {
+      Object.keys(rowData).forEach((key) => {
         rowData[key] = row[key]
       })
       eventType.value = 'update'
@@ -199,8 +201,8 @@ export default defineComponent({
       tableLoading.value = true
       tableData.splice(0, tableData.length)
       const data = userData
-      const reg = new RegExp(`${searchInfo.name}`, 'g')
-      tableData.push(...data.filter((item) => reg.test(item.name)))
+      const reg = new RegExp(`${searchInfo.account}`, 'g')
+      tableData.push(...data.filter((item) => reg.test(item.account)))
       pageInfo.total = tableData.length
       tableLoading.value = false
     }

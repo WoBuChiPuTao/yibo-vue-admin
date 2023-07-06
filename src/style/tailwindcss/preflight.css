@@ -180,8 +180,9 @@ select {
 2. Remove default button styles.
 */
 
-// 与element的冲突的样式
+
 /*
+// 与element的冲突的样式
 button,[type='button'],[type='reset'],[type='submit'] {
    -webkit-appearance: button; // 1 
     background-color: transparent;  // 2 
