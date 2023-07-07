@@ -25,7 +25,12 @@
         <ElRow :gutter="12 / props.column">
           <template v-for="col in item" :key="col">
             <ElCol :span="24 / props.column">
-              <ElFormItem :label="col.label" :prop="col.prop" :rules="col.rules">
+              <ElFormItem
+                :label="col.label"
+                :label-width="col.labelWidth"
+                :prop="col.prop"
+                :rules="col.rules"
+              >
                 <ElDatePicker
                   v-if="!$slots[col.prop] && isDate(col.type)"
                   v-model="propsValue[col.prop]"
@@ -189,8 +194,8 @@ function isDisabled(item: TableColumnInfo) {
   return false
 }
 
-function validateFunc(prop: FormItemProp, isValid: boolean, message: string) {
-  emits('validate', prop, isValid, message)
+async function validateFunc(prop: FormItemProp, isValid: boolean, message: string) {
+  await emits('validate', prop, isValid, message)
 }
 
 function drawerBeforeOpen() {

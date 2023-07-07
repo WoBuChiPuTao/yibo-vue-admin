@@ -82,9 +82,9 @@
               text
               class="mr-1 button"
               v-for="right in menuVal.rights"
-              :key="right.id"
+              :key="right.buttonId"
             >
-              {{ right.name }}
+              {{ right.buttonName }}
               <ElIcon @click="deleteButton(right)" class="ml-1 button-close"><Close /></ElIcon>
             </ElButton>
           </div>
@@ -98,11 +98,11 @@
           </div>
         </template>
         <ElForm ref="buttonFormRef" :model="buttonVal" :rules="buttonFormRules">
-          <ElFormItem label="按钮标识" prop="id">
-            <ElInput v-model="buttonVal.id"></ElInput>
+          <ElFormItem label="按钮标识" prop="buttonId">
+            <ElInput v-model="buttonVal.buttonId"></ElInput>
           </ElFormItem>
-          <ElFormItem label="按钮名称" prop="name">
-            <ElInput v-model="buttonVal.name"></ElInput>
+          <ElFormItem label="按钮名称" prop="buttonName">
+            <ElInput v-model="buttonVal.buttonName"></ElInput>
           </ElFormItem>
         </ElForm>
       </ElDrawer>
@@ -168,24 +168,24 @@ const isDirectory = ref(true)
 const addButtonVisible = ref(false)
 // 按钮Form的校验规则
 const buttonFormRules: FormRules = {
-  id: [
+  buttonId: [
     { required: true, message: 'Please input Activity name', trigger: 'blur' },
     {
       validator: (_rule, val, callback) => {
         const rights = unref(getRights)
         if (rights.length === 0) return
-        const index = rights.findIndex((right) => right.id === val)
+        const index = rights.findIndex((right) => right.buttonId === val)
         index !== -1 && callback(new Error('该按钮已存在'))
       },
       trigger: 'blur'
     }
   ],
-  name: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }]
+  buttonName: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }]
 }
 const buttonFormRef = ref<FormInstance>()
 const buttonVal = reactive<MenuButton>({
-  id: '',
-  name: ''
+  buttonId: '',
+  buttonName: ''
 })
 
 watch(
@@ -243,7 +243,7 @@ function submitAddButton() {
 
 //  按钮删除事件
 function deleteButton(button: MenuButton) {
-  menuVal.rights = menuVal.rights?.filter((right) => right.id !== button.id)
+  menuVal.rights = menuVal.rights?.filter((right) => right.buttonId !== button.buttonId)
 }
 
 // drawer保存事件

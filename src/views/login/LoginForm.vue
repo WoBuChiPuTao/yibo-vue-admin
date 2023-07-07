@@ -79,7 +79,7 @@ import {
   ElNotification
 } from 'element-plus'
 // mock
-// import '&/login'
+import '&/login'
 import { ref, reactive, unref, computed } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import { LoginStateEnum, useLoginState } from './useLogin'
@@ -95,8 +95,8 @@ const rememberMe = ref(false)
 const loading = ref(false)
 
 const loginForm = reactive<{ account: string; password: string }>({
-  account: 'lyb01',
-  password: '123'
+  account: 'admin',
+  password: '123456'
 })
 
 const userStore = useUserStore()
@@ -105,7 +105,7 @@ async function handleLogin() {
   loading.value = true
   try {
     const userInfo = await userStore.toLogin({
-      username: loginForm.account,
+      userName: loginForm.account,
       password: loginForm.password
     })
     if (userInfo) {

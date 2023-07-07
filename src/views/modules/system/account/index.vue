@@ -33,13 +33,13 @@
               <ElTag v-for="(role, index) in row.roles" :key="index" class="mr-1">{{ role }}</ElTag>
             </template>
             <template v-else>
-              <ElTag class="mr-1">{{ row.roles[0] }}</ElTag>
-              <ElTag class="mr-1">{{ row.roles[1] }}</ElTag>
+              <ElTag class="mr-1">{{ row.roles[0].roleName }}</ElTag>
+              <ElTag class="mr-1">{{ row.roles[1].roleName }}</ElTag>
               <ElTooltip effect="light">
                 <ElTag>{{ '+' + (row.roles.length - 2) }}</ElTag>
                 <template #content>
                   <ElTag v-for="(role, index) in row.roles.slice(2)" :key="index" class="mr-1">{{
-                    role
+                    role.roleName
                   }}</ElTag>
                 </template>
               </ElTooltip>
@@ -71,8 +71,27 @@
     <DialogDescriptions
       v-model="dialogVisible"
       :label-data="columnsInfo"
+      width="60%"
       :data="rowData"
-    ></DialogDescriptions>
+    >
+      <template #roles="{ data }">
+        <template v-if="data.length < 3">
+          <ElTag v-for="(role, index) in data" :key="index" class="mr-1">{{ role }}</ElTag>
+        </template>
+        <template v-else>
+          <ElTag class="mr-1">{{ data[0].roleName }}</ElTag>
+          <ElTag class="mr-1">{{ data[1].roleName }}</ElTag>
+          <ElTooltip effect="light">
+            <ElTag>{{ '+' + (data.length - 2) }}</ElTag>
+            <template #content>
+              <ElTag v-for="(role, index) in data.slice(2)" :key="index" class="mr-1">{{
+                role.roleName
+              }}</ElTag>
+            </template>
+          </ElTooltip>
+        </template>
+      </template>
+    </DialogDescriptions>
     <CruDrawer
       v-model:model-value="drawerVisible"
       :value="rowData"
@@ -89,9 +108,10 @@
           collapse-tags
           collapse-tags-tooltip
         >
-          <ElOption label="老总" value="老总"></ElOption>
-          <ElOption label="超级管理员" value="超级管理员"></ElOption>
-          <ElOption label="测试" value="测试"></ElOption>
+          <ElOption label="超级管理员" value="111"></ElOption>
+          <ElOption label="测试" value="222"></ElOption>
+          <ElOption label="普通用户" value="333"></ElOption>
+          <ElOption label="访客" value="444"></ElOption>
         </ElSelect>
       </template>
     </CruDrawer>
@@ -117,7 +137,8 @@ import { useTableHeight } from '@/components/table/useTableHeight'
 import DialogDescriptions from '@/components/dialog/DialogDescriptions.vue'
 import CruDrawer from '@/components/crud/CruDrawer.vue'
 import { formatDateOfObj } from '@/utils/dateFormat'
-import { UserInfo, userData, columnsInfo } from './info'
+import { userData, columnsInfo, AddUserInfo } from './info'
+import { roleData } from '../role/info'
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -141,12 +162,13 @@ export default defineComponent({
     const searchButtonLoading = ref(false)
     const tableLoading = ref(false)
     const tableEl = ref(null)
-    const tableData = reactive<UserInfo[]>([])
+    const tableData = reactive<AddUserInfo[]>([])
     const searchInfo = reactive({ account: '' })
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
 
-    const rowData = reactive<UserInfo>({
-      account: '',
+    const rowData = reactive<AddUserInfo>({
+      userId: '',
+      userName: '',
       alias: '',
       roles: [],
       department: '',
@@ -167,14 +189,14 @@ export default defineComponent({
       searchButtonLoading.value = false
     }
 
-    function handleLook(row: UserInfo) {
+    function handleLook(row: AddUserInfo) {
       Object.keys(rowData).forEach((key) => {
         rowData[key] = row[key]
       })
       dialogVisible.value = true
     }
 
-    function handleEdit(row: UserInfo) {
+    function handleEdit(row: AddUserInfo) {
       Object.keys(rowData).forEach((key) => {
         rowData[key] = row[key]
       })
@@ -202,16 +224,21 @@ export default defineComponent({
       tableData.splice(0, tableData.length)
       const data = userData
       const reg = new RegExp(`${searchInfo.account}`, 'g')
-      tableData.push(...data.filter((item) => reg.test(item.account)))
+      tableData.push(...data.filter((item) => reg.test(item.userId)))
       pageInfo.total = tableData.length
       tableLoading.value = false
     }
 
-    async function handleSubmit(value: UserInfo, eventType: CruEventType) {
+    async function handleSubmit(value: AddUserInfo, eventType: CruEventType) {
       console.log('val', value)
       formatDateOfObj(value)
       try {
         // await putBondData(value)
+        const findUser = tableData.find((item) => item.userId === value.userId)
+        if (!findUser) return
+        Object.keys(value).forEach((key) => {
+          findUser[key] = value[key]
+        })
         eventType === 'update' ? ElMessage.success('修改成功') : ElMessage.success('创建成功')
       } catch (error) {
         console.error(error)
@@ -239,7 +266,8 @@ export default defineComponent({
       handleDelete,
       handleSubmit,
       eventType,
-      handleCreate
+      handleCreate,
+      roleData
     }
   }
 })

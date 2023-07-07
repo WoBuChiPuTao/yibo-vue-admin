@@ -34,12 +34,12 @@
             <template v-if="row.rights">
               <template v-if="row.rights.length < 3">
                 <ElTag v-for="(right, index) in row.rights" :key="index" class="mr-1">{{
-                  right.name
+                  right.buttonName
                 }}</ElTag>
               </template>
               <template v-else>
-                <ElTag class="mr-1">{{ row.rights[0].name }}</ElTag>
-                <ElTag class="mr-1">{{ row.rights[1].name }}</ElTag>
+                <ElTag class="mr-1">{{ row.rights[0].buttonName }}</ElTag>
+                <ElTag class="mr-1">{{ row.rights[1].buttonName }}</ElTag>
                 <ElTooltip effect="light">
                   <ElTag>{{ '+' + (row.rights.length - 2) }}</ElTag>
                   <template #content>
@@ -47,7 +47,7 @@
                       v-for="(right, index) in row.rights.slice(2)"
                       :key="index"
                       class="mr-1"
-                      >{{ right.name }}</ElTag
+                      >{{ right.buttonName }}</ElTag
                     >
                   </template>
                 </ElTooltip>

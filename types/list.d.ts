@@ -3,8 +3,8 @@ import { Component } from 'vue'
 import { IconifyIcon } from '@iconify/vue/dist/offline'
 
 export interface MenuButton {
-  id: string | number
-  name: string
+  buttonId: string | number
+  buttonName: string
 }
 
 export interface Menu {

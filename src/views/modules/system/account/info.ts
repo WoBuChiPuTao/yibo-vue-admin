@@ -1,17 +1,12 @@
-export interface UserInfo {
-  account: string
-  alias: string
+import { UserInfo } from '#/store'
+
+export interface AddUserInfo extends UserInfo {
   roles: string[]
-  department: string
-  position: string
-  email: string
-  phone: string
-  remarks?: string
 }
 
 export const columnsInfo: TableColumnInfo[] = [
   {
-    prop: 'account',
+    prop: 'userName',
     label: '名称',
     minWidth: 120,
     align: 'center'
@@ -62,56 +57,62 @@ export const columnsInfo: TableColumnInfo[] = [
   }
 ]
 
-export const userData: UserInfo[] = [
+export const userData: AddUserInfo[] = [
   {
-    account: '111a',
-    alias: '赖奕博',
-    roles: ['超级管理员', '老总'],
+    userId: '111a',
+    userName: '赖奕博',
+    alias: 'hahaha',
+    roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
     email: '1234654879@qq.com',
     phone: '12345678901'
   },
   {
-    account: '231',
+    userId: '231',
+    userName: '赖二博',
     alias: '赖二博',
-    roles: ['超级管理员', '老总', '测试'],
+    roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
     email: '1234654879@qq.com',
     phone: '12345678901'
   },
   {
-    account: '343',
+    userId: '343',
+    userName: '赖三博',
     alias: '赖三博',
-    roles: ['超级管理员', '老总'],
+    roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
     email: '1234654879@qq.com',
     phone: '12345678901'
   },
   {
-    account: '46464',
+    userId: '46464',
+    userName: '赖四博',
     alias: '赖四博',
-    roles: ['超级管理员', '老总'],
+    roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
     email: '1234654879@qq.com',
     phone: '12345678901'
   },
   {
-    account: '7877',
+    userId: '7877',
+    userName: '赖五博',
     alias: '赖五博',
-    roles: ['超级管理员', '老总'],
+    roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
     email: '1234654879@qq.com',
     phone: '12345678901'
   },
   {
-    account: '11090901a',
+    userId: '11090901a',
+    userName: '赖六博',
     alias: '赖六博',
-    roles: ['超级管理员', '老总'],
+    roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
     email: '1234654879@qq.com',

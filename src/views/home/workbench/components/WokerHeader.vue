@@ -3,7 +3,7 @@
     <div class="flex items-center">
       <ElAvatar :src="avatar || HeaderImg" :size="72"></ElAvatar>
       <h3 class="ml-4 text-xl font-medium"
-        >{{ t('sys.login.loginSuccessDesc') }} , {{ username }}</h3
+        >{{ t('sys.login.loginSuccessDesc') }} , {{ userName }}</h3
       >
     </div>
     <div class="flex">
@@ -32,5 +32,5 @@ const { t } = useI18n()
 
 const userStore = useUserStore()
 
-const { username, avatar } = userStore.getUserInfo
+const { userName, avatar } = userStore.getUserInfo
 </script>

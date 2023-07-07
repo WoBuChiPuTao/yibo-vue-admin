@@ -1,23 +1,14 @@
-import { Menu } from '#/list'
-
-export interface RoleInfo {
-  code: string
-  name: string
-  state: boolean
-  createTime: string
-  remarks?: string
-  menu: Menu[]
-}
+import { RoleInfo } from '#/store'
 
 export const columnsInfo: TableColumnInfo[] = [
   {
-    prop: 'code',
+    prop: 'roleId',
     label: '角色代码',
     minWidth: 120,
     align: 'center'
   },
   {
-    prop: 'name',
+    prop: 'roleName',
     label: '角色名称',
     minWidth: 120,
     align: 'center'
@@ -44,8 +35,8 @@ export const columnsInfo: TableColumnInfo[] = [
 
 export const roleData: RoleInfo[] = [
   {
-    code: '1111',
-    name: '超级管理员',
+    roleId: '1111',
+    roleName: '超级管理员',
     state: true,
     createTime: '1975-08-24 00:25:52',
     remarks: '大撒大撒大撒大大撒打算',
@@ -85,9 +76,9 @@ export const roleData: RoleInfo[] = [
             hideMenu: false,
             parentPath: '/home',
             rights: [
-              { id: '111', name: '新增' },
-              { id: '222', name: '修改' },
-              { id: '333', name: '删除' }
+              { buttonId: '111', buttonName: '新增' },
+              { buttonId: '222', buttonName: '修改' },
+              { buttonId: '333', buttonName: '删除' }
             ]
           }
         ]
@@ -95,8 +86,8 @@ export const roleData: RoleInfo[] = [
     ]
   },
   {
-    code: '222',
-    name: '测试',
+    roleId: '222',
+    roleName: '测试',
     state: true,
     createTime: '1975-08-24 00:25:52',
     remarks: '厄尔热舞企鹅恶气恶气',
@@ -136,9 +127,9 @@ export const roleData: RoleInfo[] = [
             hideMenu: false,
             parentPath: '/home',
             rights: [
-              { id: '111', name: '新增' },
-              { id: '222', name: '修改' },
-              { id: '333', name: '删除' }
+              { buttonId: '111', buttonName: '新增' },
+              { buttonId: '222', buttonName: '修改' },
+              { buttonId: '333', buttonName: '删除' }
             ]
           }
         ]
@@ -146,8 +137,8 @@ export const roleData: RoleInfo[] = [
     ]
   },
   {
-    code: '333',
-    name: '普通用户',
+    roleId: '333',
+    roleName: '普通用户',
     state: true,
     createTime: '1975-08-24 00:25:52',
     remarks: '她依然有人依然有人提议',
@@ -187,9 +178,9 @@ export const roleData: RoleInfo[] = [
             hideMenu: false,
             parentPath: '/home',
             rights: [
-              { id: '111', name: '新增' },
-              { id: '222', name: '修改' },
-              { id: '333', name: '删除' }
+              { buttonId: '111', buttonName: '新增' },
+              { buttonId: '222', buttonName: '修改' },
+              { buttonId: '333', buttonName: '删除' }
             ]
           }
         ]
@@ -197,8 +188,8 @@ export const roleData: RoleInfo[] = [
     ]
   },
   {
-    code: '444',
-    name: '访客',
+    roleId: '444',
+    roleName: '访客',
     state: true,
     createTime: '1975-08-24 00:25:52',
     remarks: '原图原图兔兔与图腾',

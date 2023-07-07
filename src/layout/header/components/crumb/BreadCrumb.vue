@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue'
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
-import { getMenus } from '@/router/menu/index'
+import { getAsyncMenus } from '@/router/menu/index'
 import { useRouter } from 'vue-router'
 import { useI18n } from '@/hooks/web/useI18n'
 import { getAllParentPath } from '@/router/menu/util'
@@ -27,7 +27,7 @@ export default defineComponent({
 
     watchEffect(async () => {
       if (currentRoute.value.name === 'Redirect') return
-      const menus = await getMenus()
+      const menus = await getAsyncMenus()
 
       const path = currentRoute.value.path
 

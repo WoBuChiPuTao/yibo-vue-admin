@@ -1,4 +1,4 @@
-import { RoleEnum } from '@/enums/roleEnm'
+type Menu = import('./list').Menu
 
 export type LocaleType = 'zh-CN' | 'en' | 'ru' | 'ja' | 'ko'
 
@@ -16,21 +16,28 @@ export interface LocaleSetting {
  * @description: 用户角色信息
  */
 export interface RoleInfo {
+  roleId: string
   roleName: string
-  value: string
+  state: boolean
+  createTime: string
+  remarks?: string
+  menu?: Menu[]
 }
 
 /**
  * @description: 用户信息
  */
 export interface UserInfo {
-  userId: string | number
-  username: string
-  realName: string
+  userId: string
+  userName: string
+  alias: string
   avatar?: string
-  desc?: string
   homePath?: string
-  roles: RoleInfo[]
+  department?: string
+  position?: string
+  email?: string
+  phone?: string
+  remarks?: string
 }
 
 /**

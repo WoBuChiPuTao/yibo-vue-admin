@@ -2,7 +2,12 @@
   <BasicContainer>
     <div class="flex justify-between mb-2">
       <div>
-        <ElInput v-model="searchInfo.instCode" placeholder="产品代码" class="w-32 mr-4 " size="default">
+        <ElInput
+          v-model="searchInfo.instCode"
+          placeholder="产品代码"
+          class="w-32 mr-4"
+          size="default"
+        >
         </ElInput>
         <ElButton type="primary" @click="handleSearch">
           <el-icon>
@@ -64,6 +69,7 @@
       :items-info="columnsInfo"
       :event-type="eventType"
       :formRules="rules"
+      label-width="80px"
       :submit-func="handleSubmit"
     >
       <template #bondType="{ col, value }">

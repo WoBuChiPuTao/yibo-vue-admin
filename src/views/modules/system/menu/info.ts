@@ -66,9 +66,9 @@ export const menus: Menu[] = [
         hideMenu: false,
         parentPath: '/home',
         rights: [
-          { id: '11', name: 'cccc' },
-          { id: '22', name: 'www' },
-          { id: '33', name: '2222' }
+          { buttonId: '11', buttonName: 'cccc' },
+          { buttonId: '22', buttonName: 'www' },
+          { buttonId: '33', buttonName: '2222' }
         ]
       },
       {
@@ -81,14 +81,14 @@ export const menus: Menu[] = [
         hideMenu: false,
         parentPath: '/home',
         rights: [
-          { id: '111', name: '新增' },
-          { id: '222', name: '修改' },
-          { id: '333', name: '删除' },
-          { id: '55', name: '新增' },
-          { id: '66', name: '新增' },
-          { id: '77', name: '新增' },
-          { id: '88', name: '新增' },
-          { id: '99', name: '新增' }
+          { buttonId: '111', buttonName: '新增' },
+          { buttonId: '222', buttonName: '修改' },
+          { buttonId: '333', buttonName: '删除' },
+          { buttonId: '55', buttonName: '新增' },
+          { buttonId: '66', buttonName: '新增' },
+          { buttonId: '77', buttonName: '新增' },
+          { buttonId: '88', buttonName: '新增' },
+          { buttonId: '99', buttonName: '新增' }
         ]
       }
     ]

@@ -1,13 +1,13 @@
 import { treeMap } from '@/hooks/tree'
 import { Menu } from '#/list'
-import { routeToMenu } from './util'
-import { asyncRoutes } from '../routes'
-// import { usePermissionStore } from '@/store/modules/permission'
+// import { routeToMenu } from './util'
+// import { asyncRoutes } from '../routes'
+import { usePermissionStore } from '@/store/modules/permission'
 
-async function getAsyncMenus() {
-  const menulist = routeToMenu(asyncRoutes)
+export async function getAsyncMenus() {
+  // const menulist = routeToMenu(asyncRoutes)
   // 动态菜单
-  // const menulist = usePermissionStore().getMenuList
+  const menulist = usePermissionStore().getMenuList
   // 剔除隐藏菜单
   const filtermenu = treeMap(menulist, {
     conversion: (node: Menu) => {
@@ -26,8 +26,6 @@ async function getAsyncMenus() {
   return filtermenu
 }
 
-getAsyncMenus().then((res) => console.log('getAsyncMenus', res))
-
 // 菜单排序
 function sortMenu(menus: Menu[]) {
   if (menus.length === 0) {
@@ -39,9 +37,4 @@ function sortMenu(menus: Menu[]) {
   menus.forEach((menu) => {
     sortMenu(menu.children || [])
   })
-}
-
-export const getMenus = async (): Promise<Menu[]> => {
-  const menus = await getAsyncMenus()
-  return menus
 }

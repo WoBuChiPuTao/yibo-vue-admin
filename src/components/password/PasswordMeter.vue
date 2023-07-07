@@ -1,5 +1,5 @@
 <template>
-  <div class="meter">
+  <div class="w-full meter">
     <ElInput
       v-if="showInput"
       v-model="inputValue"

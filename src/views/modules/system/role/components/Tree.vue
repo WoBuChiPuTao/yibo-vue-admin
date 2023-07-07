@@ -69,8 +69,8 @@ const getTree = computed(() => {
         return {
           ...node,
           children: node.rights.map((right) => ({
-            path: right.id,
-            name: right.name,
+            path: right.buttonId,
+            name: right.buttonName,
             type: 'button',
             parentPath: node.path
           }))
@@ -93,8 +93,8 @@ const getDefaultcheckedTree = computed(() => {
       if (!haveChildren && node.rights && node.rights.length) {
         checkedTree.push(
           ...node.rights.map((right) => ({
-            path: right.id,
-            name: right.name,
+            path: right.buttonId,
+            name: right.buttonName,
             type: 'button'
           }))
         )
@@ -171,7 +171,7 @@ function getCurrentMenus() {
             return (
               treeNodes.findIndex((node) => {
                 if (node.type === 'button') {
-                  return right.id === node.path
+                  return right.buttonId === node.path
                 }
                 return false
               }) !== -1

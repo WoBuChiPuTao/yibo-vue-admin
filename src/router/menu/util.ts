@@ -4,7 +4,6 @@ import { findPath, treeMap } from '@/hooks/tree'
 import { cloneDeep } from 'lodash-es'
 import { AddRouteRecordRaw } from '../types'
 import { asyncRoutes } from '../routes'
-import { deepMerge } from '@/utils'
 
 /**
  * @description 得到父级菜单路径
@@ -70,26 +69,32 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
 export function filterRoutesFromMenu(menu: Menu[], routes = asyncRoutes) {
   const cloneRoutes = cloneDeep(routes)
   const menus = flatMenu(cloneDeep(menu))
+
   const resRoutes = cloneRoutes.map((route) => {
     return deleteRoutesFromMenu(menus, route)
   })
-  return resRoutes.filter((item) => item) as AddRouteRecordRaw[]
+  const backRoutes = resRoutes.filter((item) => item) as AddRouteRecordRaw[]
+  return backRoutes
 }
 
 function deleteRoutesFromMenu(
   flatMenu: Omit<Menu[], 'children'>,
-  route: AddRouteRecordRaw
+  route: AddRouteRecordRaw,
+  parentPath = ''
 ): AddRouteRecordRaw | undefined {
-  const { meta: { hideMenu = false } = {} } = route
-  const index = flatMenu.findIndex((menu) => route.path === menu.path)
-  if (index === -1 && !hideMenu) {
+  const currentRoutePath = parentPath === '' ? route.path : parentPath + '/' + route.path
+  const reg = new RegExp(`${currentRoutePath}`, 'g')
+  const index = flatMenu.findIndex((menu) => reg.test(menu.path))
+  if (index === -1) {
     return undefined
   }
-  // 按钮权限赋值
-  route.meta.rights = flatMenu[index].rights
+  // meta赋值,包括按钮等等
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { name, meta, ...currentMenu } = flatMenu[index]
+  route.meta = { ...currentMenu, title: name }
 
   route.children = route.children
-    ?.map((item) => deleteRoutesFromMenu(flatMenu, item))
+    ?.map((item) => deleteRoutesFromMenu(flatMenu, item, currentRoutePath))
     .filter((item) => item !== undefined) as AddRouteRecordRaw[]
   return route
 }
@@ -99,18 +104,13 @@ function deleteRoutesFromMenu(
  */
 export function flatMenu(menus: Menu[]): Omit<Menu[], 'children'> {
   const cloneMenu = cloneDeep(menus)
-  cloneMenu.forEach((menu) => {
-    if (menu.children) {
-      menu.children.forEach((childMenu) => {
-        const index = cloneMenu.findIndex((val) => val.path === childMenu.path)
-        if (index === -1) {
-          cloneMenu.push(childMenu)
-          return
-        }
-        cloneMenu[index] = deepMerge(cloneMenu[index], childMenu)
-      })
-      Reflect.deleteProperty(menu, 'children')
+  const noChildMenus: Omit<Menu[], 'children'> = []
+  treeMap(cloneMenu, {
+    conversion: (menu: Menu) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { children, ...noChild } = menu
+      noChildMenus.push(noChild)
     }
   })
-  return cloneMenu
+  return noChildMenus
 }

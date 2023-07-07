@@ -8,6 +8,7 @@ declare interface TableColumnInfo {
   align?: 'left' | 'center' | 'right'
   prop: string
   label: string
+  labelWidth?: string | number
   minWidth?: number
   fixed?: 'left' | 'right'
   notEdit?: boolean

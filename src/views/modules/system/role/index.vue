@@ -68,8 +68,9 @@ import { defineComponent, reactive, ref } from 'vue'
 import { ElIcon, ElInput, ElTable, ElTableColumn, ElPagination, ElSwitch } from 'element-plus'
 import { Plus, Search } from '@element-plus/icons-vue'
 import { useTableHeight } from '@/components/table/useTableHeight'
-import { RoleInfo, columnsInfo, roleData } from './info'
+import { columnsInfo, roleData } from './info'
 import Drawer from './components/Drawer.vue'
+import { RoleInfo } from '#/store'
 
 export default defineComponent({
   name: 'RoleManagament',
@@ -95,8 +96,8 @@ export default defineComponent({
 
     const drawerVisible = ref(false)
     const drawerData = reactive<RoleInfo>({
-      code: '',
-      name: '',
+      roleId: '',
+      roleName: '',
       state: false,
       createTime: '',
       remarks: undefined,
@@ -106,7 +107,7 @@ export default defineComponent({
     const { tableHeight } = useTableHeight(tableEl, tableData)
 
     function changeRoleState(val: boolean, role: RoleInfo): void {
-      const findRole = tableData.find((item) => item.code === role.code)
+      const findRole = tableData.find((item) => item.roleId === role.roleId)
       if (!findRole) return
       findRole.state = val
     }
@@ -116,7 +117,7 @@ export default defineComponent({
       tableData.splice(0, tableData.length)
       const data = roleData
       const reg = new RegExp(`${searchInfo.name}`, 'g')
-      tableData.push(...data.filter((item) => reg.test(item.name)))
+      tableData.push(...data.filter((item) => reg.test(item.roleName)))
       pageInfo.total = tableData.length
       tableLoading.value = false
     }

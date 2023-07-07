@@ -3,7 +3,7 @@
     <span class="header-user-dropdown">
       <img :src="getUserInfo.avatar" alt="avatar" class="header-user-dropdown-avatar" />
       <span class="truncate header-user-dropdown-name">
-        {{ getUserInfo.username }}
+        {{ getUserInfo.userName }}
       </span>
     </span>
     <template #dropdown>
@@ -36,8 +36,8 @@ const userStore = useUserStore()
 const { t } = useI18n()
 
 const getUserInfo = computed(() => {
-  const { username, avatar, desc } = userStore.getUserInfo || {}
-  return { username, avatar: avatar || headerImg, desc }
+  const { userName, avatar, remarks } = userStore.getUserInfo || {}
+  return { userName, avatar: avatar || headerImg, remarks }
 })
 async function toLogout() {
   try {

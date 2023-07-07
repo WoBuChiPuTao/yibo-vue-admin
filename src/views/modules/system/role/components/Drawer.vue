@@ -7,10 +7,10 @@
     </template>
     <ElForm ref="formRef" :model="value" label-width="80px">
       <ElFormItem label="角色代码">
-        <ElInput v-model="roleVal.code"></ElInput>
+        <ElInput v-model="roleVal.roleId"></ElInput>
       </ElFormItem>
       <ElFormItem label="角色名称">
-        <ElInput v-model="roleVal.name"></ElInput>
+        <ElInput v-model="roleVal.roleName"></ElInput>
       </ElFormItem>
       <ElFormItem label="角色状态">
         <ElRadioGroup v-model="roleVal.state">
@@ -27,10 +27,10 @@
 </template>
 
 <script setup lang="ts">
+import { RoleInfo } from '#/store'
 import { ElDrawer, ElForm, ElFormItem, ElInput, ElRadioGroup, ElRadioButton } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
 import { computed, PropType, reactive, ref, unref, watch } from 'vue'
-import { RoleInfo } from '../info'
 import Tree from './Tree.vue'
 
 const props = defineProps({

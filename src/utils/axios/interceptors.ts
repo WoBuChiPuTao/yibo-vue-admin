@@ -1,4 +1,5 @@
 import { useI18n } from '@/hooks/web/useI18n'
+import { useUserStore } from '@/store/modules/user'
 import { AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import { AxiosInterceptorsConfig, Result } from './types'
@@ -6,6 +7,10 @@ import { AxiosInterceptorsConfig, Result } from './types'
 export const axiosInterceptors: AxiosInterceptorsConfig = {
   requestInterceptors: (config) => {
     // 添加请求头
+    const { getToken } = useUserStore()
+    if (getToken) {
+      (config.headers as Record<string, string>).auth = getToken
+    }
     // const conf = config as Recordable
     return config
   },

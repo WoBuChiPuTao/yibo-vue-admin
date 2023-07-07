@@ -1,4 +1,4 @@
-import { getMenus } from '@/router/menu'
+import { getAsyncMenus } from '@/router/menu'
 import { ref, watch } from 'vue'
 // import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
@@ -20,7 +20,7 @@ export function useMenu() {
   )
 
   async function useGetMenu() {
-    menuRef.value = await getMenus()
+    menuRef.value = await getAsyncMenus()
   }
 
   return { menuRef }

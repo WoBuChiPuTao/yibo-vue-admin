@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia'
-import { login, getUserInfo } from '@/api/sys/user'
+import { login } from '@/api/sys/user'
 import { router } from '@/router'
-import { asyncRoutes } from '@/router/routes/modules/index'
+// import { asyncRoutes } from '@/router/routes/modules/index'
 import { store } from '../index'
 import { WebCache } from '@/utils/cache'
 import { RouteRecordRaw } from 'vue-router'
 import { flatMultiRoutes } from '@/hooks/route'
 import { PageEnum } from '@/enums/pageEnum'
 import { UserInfo, UserState } from '#/store'
-import { LoginParam } from '#/api'
-// import { usePermissionStore } from './permission'
+import { LoginParam, LoginRes } from '#/api'
+import { usePermissionStore } from './permission'
 
 export const useUserStore = defineStore({
   id: 'app-user',
@@ -80,27 +80,25 @@ export const useUserStore = defineStore({
       try {
         const { ...loginParam } = params
         const data = await login(loginParam)
-        const { token } = data
-        // save token
-        this.setToken(token)
-        return this.afterLogin()
+        const userInfo = await this.handleLoginBack(data)
+        await this.afterLogin()
+        return userInfo
       } catch (error) {
         return Promise.reject(error)
       }
     },
-    async afterLogin(): Promise<UserInfo | null> {
+    async afterLogin() {
       if (!this.token) return null
-      const userInfo = await this.getUserInfoApi()
       const sessionTimeout = this.sessionTimeout
       if (sessionTimeout) {
         this.setSessionTimeout(false)
       } else {
         // 动态添加路由
-        // const { buildRoutes } = usePermissionStore()
-        // const routes = await buildRoutes()
-        const routes = asyncRoutes
+        const { buildRoutes } = usePermissionStore()
+        const routes = await buildRoutes()
+        console.log('routes', routes)
+        // const routes = asyncRoutes
         // 构建路由
-        // const flatRoutes = flatMultiRoutes(asyncRoutes as RouteRecordRaw[])
         const flatRoutes = flatMultiRoutes(routes as RouteRecordRaw[])
         flatRoutes.forEach((route) => {
           router.addRoute(route as unknown as RouteRecordRaw)
@@ -109,20 +107,18 @@ export const useUserStore = defineStore({
         this.setIsDynamicAddedRoute(true)
         await router.replace(PageEnum.BASE_HOME)
       }
-      return userInfo
     },
     /**
-     * @description: 得到用户信息
+     * @description: 处理登录返回信息，得到用户信息
      */
-    async getUserInfoApi(): Promise<UserInfo | null> {
-      if (!this.getToken) return null
-      const userInfo = await getUserInfo()
-      const { roles = [] } = userInfo
+    async handleLoginBack<T extends LoginRes>(data: T): Promise<UserInfo | null> {
+      const { token, roles = [], ...userInfo } = data
+      // save token
+      this.setToken(token)
       if (Array.isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as string[]
+        const roleList = roles.map((item) => item) as string[]
         this.setRoleList(roleList)
       } else {
-        userInfo.roles = []
         this.setRoleList([])
       }
       this.setUserInfo(userInfo)
