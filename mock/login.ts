@@ -6,7 +6,7 @@ import { Menu } from '#/list'
 
 const domain = '/api'
 
-const loginBack: Result<LoginRes> = {
+const superBack: Result<LoginRes> = {
   code: 200,
   message: 'success',
   data: {
@@ -21,12 +21,28 @@ const loginBack: Result<LoginRes> = {
   }
 }
 
+const simpleBack: Result<LoginRes> = {
+  code: 200,
+  message: 'success',
+  data: {
+    userId: 'admin',
+    userName: 'yibo Admin',
+    avatar: undefined,
+    remarks: 'sb',
+    alias: 'SB',
+    token: '666666',
+    roles: ['simple']
+  }
+}
+
 // 返回用户数据和token
 Mock.mock(`${domain}/user/login`, 'post', (params) => {
   const queryString = params.body
   const queryObj = JSON.parse(queryString)
   if (queryObj.userName === 'admin' && queryObj.password === '123456') {
-    return loginBack
+    return superBack
+  } else if (queryObj.userName === 'test' && queryObj.password === '123456') {
+    return simpleBack
   } else {
     return {
       code: 0,
