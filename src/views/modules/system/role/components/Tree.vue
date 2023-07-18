@@ -29,12 +29,13 @@
 <script setup lang="ts">
 import { ElTree, ElDivider, ElDropdown, ElDropdownMenu, ElDropdownItem, ElIcon } from 'element-plus'
 import { More } from '@element-plus/icons-vue'
-import { menus } from '../../menu/info'
 import { useI18n } from '@/hooks/web/useI18n'
 import EIcon from '@/components/icons/EIcon.vue'
-import { computed, nextTick, PropType, ref, unref, watch } from 'vue'
+import { computed, nextTick, PropType, reactive, ref, unref, watch } from 'vue'
 import { treeMap } from '@/hooks/tree'
 import { Menu } from '#/list'
+import { getAllMenu } from '@/api/sys/system'
+import '&/modules/system'
 
 const props = defineProps({
   selectedMenu: Array as PropType<Menu[]>,
@@ -45,6 +46,8 @@ defineExpose({ getCurrentMenus })
 
 const treeRef = ref<InstanceType<typeof ElTree>>()
 const strictly = ref(false)
+
+const allMenus = reactive<Menu[]>([])
 
 const { t } = useI18n()
 
@@ -61,7 +64,7 @@ watch(
 )
 
 const getTree = computed(() => {
-  const getMenusTree = treeMap(menus, {
+  const getMenusTree = treeMap(allMenus, {
     conversion: (node: Menu) => {
       // 如果无chldren,且有rights,将rights作为子节点加入
       const haveChildren = Array.isArray(node.children) && node.children.length > 0
@@ -105,6 +108,14 @@ const getDefaultcheckedTree = computed(() => {
   })
   return checkedTree
 })
+
+async function getMenus() {
+  const menus = await getAllMenu()
+  allMenus.splice(0, allMenus.length)
+  allMenus.push(...menus)
+}
+
+getMenus()
 
 // 折叠所有节点
 function setAllFold() {
@@ -157,7 +168,7 @@ function getCurrentMenus() {
   if (!treeEl) return
   const treeNodes = treeEl.getCheckedNodes()
 
-  return treeMap(menus, {
+  return treeMap(allMenus, {
     conversion: (menu: Menu) => {
       const reg = new RegExp(`${menu.path}`, 'g')
       const isExist =

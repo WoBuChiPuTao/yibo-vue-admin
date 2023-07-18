@@ -26,10 +26,14 @@ export const useUserStore = defineStore({
       return this.userInfo || WebCache.getLocal('USER_INFO') || ({} as UserInfo)
     },
     getToken(): string {
-      return this.token || (WebCache.getLocal('TOKEN_') as string)
+      return this.token || (WebCache.getLocal('TOKEN') as string)
     },
     getRoleList(): string[] {
-      return this.roleList.length > 0 ? this.roleList : []
+      if (this.roleList.length > 0) {
+        return this.roleList
+      }
+      const userInfo = (WebCache.getLocal('USER_INFO') || {}) as UserInfo
+      return userInfo.roles || []
     },
     getSessionTimeout(): boolean {
       return !!this.sessionTimeout
@@ -48,7 +52,7 @@ export const useUserStore = defineStore({
       this.roleList = []
       this.sessionTimeout = false
       this.isDynamicAddedRoute = false
-      WebCache.removeLocal('TOKEN_')
+      WebCache.removeLocal('TOKEN')
       WebCache.removeLocal('USER_INFO')
     },
     setToken(info: string | undefined) {
@@ -57,7 +61,7 @@ export const useUserStore = defineStore({
       } else {
         this.token = ''
       }
-      WebCache.setLocal('TOKEN_', info)
+      WebCache.setLocal('TOKEN', info)
     },
     setRoleList(roleList: string[]) {
       this.roleList = roleList
@@ -66,6 +70,7 @@ export const useUserStore = defineStore({
       this.userInfo = info
       this.lastUpdateTime = new Date().getTime()
       WebCache.setLocal('USER_INFO', info)
+      this.setRoleList(info?.roles || [])
     },
     setSessionTimeout(flag: boolean) {
       this.sessionTimeout = flag
@@ -112,15 +117,9 @@ export const useUserStore = defineStore({
      * @description: 处理登录返回信息，得到用户信息
      */
     async handleLoginBack<T extends LoginRes>(data: T): Promise<UserInfo | null> {
-      const { token, roles = [], ...userInfo } = data
+      const { token, ...userInfo } = data
       // save token
       this.setToken(token)
-      if (Array.isArray(roles)) {
-        const roleList = roles.map((item) => item) as string[]
-        this.setRoleList(roleList)
-      } else {
-        this.setRoleList([])
-      }
       this.setUserInfo(userInfo)
       return userInfo
     },

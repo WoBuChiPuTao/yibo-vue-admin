@@ -34,6 +34,7 @@ export const usePermissionStore = defineStore({
       const menu = menuArr.reduce((pre, now) => {
         return deepMerge(pre, now)
       }, [])
+
       const routes = filterRoutesFromMenu(menu)
       // this.setMenuList(routeToMenu(routes))
       this.setMenuList(menu)

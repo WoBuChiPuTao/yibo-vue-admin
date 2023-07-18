@@ -1,5 +1,4 @@
 import Mock from 'mockjs' // 引入mockjs
-// import qs from 'qs'
 import { Result } from '@/utils/axios/types'
 import { LoginRes } from '#/api'
 import { Menu } from '#/list'
@@ -14,7 +13,6 @@ const superBack: Result<LoginRes> = {
     userName: 'yibo Admin',
     avatar: undefined,
     remarks: 'sb',
-    alias: 'SB',
     token: '666666',
     roles: ['super', 'test']
     // roles: ['simple']
@@ -29,7 +27,6 @@ const simpleBack: Result<LoginRes> = {
     userName: 'yibo Admin',
     avatar: undefined,
     remarks: 'sb',
-    alias: 'SB',
     token: '666666',
     roles: ['simple']
   }
@@ -87,9 +84,9 @@ export const superMenus: Menu[] = [
     children: [
       {
         meta: {
-          title: 'routes.home.dashboard',
-          fixedTab: true
+          title: 'routes.home.dashboard'
         },
+        fixedTab: true,
         name: 'routes.home.dashboard',
         routeName: 'Dashboard',
         path: '/home/dashboard',
@@ -119,7 +116,6 @@ export const superMenus: Menu[] = [
     path: '/report/page',
     icon: 'mdi:chart-box-outline',
     orderNo: 5,
-    hideMenu: true,
     redirect: undefined,
     children: []
   },
@@ -511,9 +507,9 @@ const simpleMenus: Menu[] = [
     children: [
       {
         meta: {
-          title: 'routes.home.dashboard',
-          fixedTab: true
+          title: 'routes.home.dashboard'
         },
+        fixedTab: true,
         name: 'routes.home.dashboard',
         routeName: 'Dashboard',
         path: '/home/dashboard',
@@ -524,11 +520,47 @@ const simpleMenus: Menu[] = [
         meta: {
           title: 'routes.home.workbench'
         },
+        fixedTab: true,
         name: 'routes.home.workbench',
         routeName: 'Workbench',
         path: '/home/workbench',
         hideMenu: false,
         parentPath: '/home'
+      }
+    ]
+  },
+  {
+    meta: {
+      title: 'routes.demo.capRisk.moduleName',
+      orderNo: 2000,
+      icon: 'ion:copy-outline'
+    },
+    name: 'routes.demo.capRisk.moduleName',
+    routeName: 'CapRisk',
+    path: '/caprisk',
+    icon: 'ion:copy-outline',
+    orderNo: 2000,
+    hideMenu: false,
+    redirect: '/caprisk/onepage',
+    children: [
+      {
+        meta: {
+          title: 'routes.demo.capRisk.bond'
+        },
+        name: 'routes.demo.capRisk.bond',
+        routeName: 'Bond',
+        path: '/caprisk/bond',
+        hideMenu: false,
+        parentPath: '/caprisk',
+        rights: [
+          { buttonId: '111', buttonName: '新增' },
+          { buttonId: '222', buttonName: '修改' },
+          { buttonId: '333', buttonName: '删除' },
+          { buttonId: '444', buttonName: '计算' },
+          { buttonId: '66', buttonName: '导入' },
+          { buttonId: '77', buttonName: '导出' },
+          { buttonId: '88', buttonName: '查询' }
+        ]
       }
     ]
   }

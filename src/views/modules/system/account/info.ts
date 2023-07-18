@@ -61,7 +61,6 @@ export const userData: AddUserInfo[] = [
   {
     userId: '111a',
     userName: '赖奕博',
-    alias: 'hahaha',
     roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
@@ -71,7 +70,6 @@ export const userData: AddUserInfo[] = [
   {
     userId: '231',
     userName: '赖二博',
-    alias: '赖二博',
     roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
@@ -81,7 +79,6 @@ export const userData: AddUserInfo[] = [
   {
     userId: '343',
     userName: '赖三博',
-    alias: '赖三博',
     roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
@@ -91,7 +88,6 @@ export const userData: AddUserInfo[] = [
   {
     userId: '46464',
     userName: '赖四博',
-    alias: '赖四博',
     roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
@@ -101,7 +97,6 @@ export const userData: AddUserInfo[] = [
   {
     userId: '7877',
     userName: '赖五博',
-    alias: '赖五博',
     roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',
@@ -111,7 +106,6 @@ export const userData: AddUserInfo[] = [
   {
     userId: '11090901a',
     userName: '赖六博',
-    alias: '赖六博',
     roles: ['111', '2222', '3333'],
     department: '软件开发部',
     position: '开发',

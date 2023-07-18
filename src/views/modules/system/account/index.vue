@@ -33,13 +33,13 @@
               <ElTag v-for="(role, index) in row.roles" :key="index" class="mr-1">{{ role }}</ElTag>
             </template>
             <template v-else>
-              <ElTag class="mr-1">{{ row.roles[0].roleName }}</ElTag>
-              <ElTag class="mr-1">{{ row.roles[1].roleName }}</ElTag>
+              <ElTag class="mr-1">{{ row.roles[0] }}</ElTag>
+              <ElTag class="mr-1">{{ row.roles[1] }}</ElTag>
               <ElTooltip effect="light">
                 <ElTag>{{ '+' + (row.roles.length - 2) }}</ElTag>
                 <template #content>
                   <ElTag v-for="(role, index) in row.roles.slice(2)" :key="index" class="mr-1">{{
-                    role.roleName
+                    role
                   }}</ElTag>
                 </template>
               </ElTooltip>
@@ -169,7 +169,6 @@ export default defineComponent({
     const rowData = reactive<AddUserInfo>({
       userId: '',
       userName: '',
-      alias: '',
       roles: [],
       department: '',
       position: '',

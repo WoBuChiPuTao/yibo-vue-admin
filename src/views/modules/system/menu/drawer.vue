@@ -63,6 +63,14 @@
             <ElInput v-model="menuVal.redirect"></ElInput>
           </ElFormItem>
         </ElCol>
+        <ElCol v-else :span="12">
+          <ElFormItem label="固定菜单">
+            <ElRadioGroup v-model="menuVal.fixedTab">
+              <ElRadioButton :label="true">是</ElRadioButton>
+              <ElRadioButton :label="false">否</ElRadioButton>
+            </ElRadioGroup>
+          </ElFormItem>
+        </ElCol>
         <ElCol :span="12">
           <ElFormItem label="隐藏菜单">
             <ElRadioGroup v-model="menuVal.hideMenu">
@@ -193,6 +201,7 @@ watch(
   () => {
     Object.keys(menuVal).forEach((key) => (menuVal[key] = props.value[key]))
     menuVal.hideMenu = !!menuVal.hideMenu
+    menuVal.fixedTab = !!menuVal.fixedTab
     isDirectory.value = !!props.value.redirect
   },
   { immediate: true }

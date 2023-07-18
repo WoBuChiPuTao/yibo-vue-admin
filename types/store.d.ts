@@ -30,7 +30,7 @@ export interface RoleInfo {
 export interface UserInfo {
   userId: string
   userName: string
-  alias: string
+  roles: string[]
   avatar?: string
   homePath?: string
   department?: string

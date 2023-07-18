@@ -1,3 +1,4 @@
+import { toRaw } from 'vue'
 import { WebStorage } from './storage'
 
 const loaclStore = new WebStorage(localStorage)
@@ -9,7 +10,7 @@ export class WebCache {
   }
 
   static setLocal(key: string, value: any, expire?: number): void {
-    loaclStore.set(key, value, expire)
+    loaclStore.set(key, toRaw(value), expire)
   }
 
   static removeLocal(key: string) {
@@ -25,7 +26,7 @@ export class WebCache {
   }
 
   static setSession(key: string, value: any, expire?: number): void {
-    sessionStore.set(key, value, expire)
+    sessionStore.set(key, toRaw(value), expire)
   }
 
   static removeSession(key: string) {

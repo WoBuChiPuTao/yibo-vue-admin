@@ -103,6 +103,7 @@ import { columnsInfo, rules } from './info'
 import '&/bond'
 import { getBondData, putBondData, delBondData } from '@/api/bond/bond'
 import { formatDateOfObj } from '@/utils/dateFormat'
+import { useRights } from '@/hooks/useRights'
 
 interface TableDataType {
   instCode: string
@@ -163,6 +164,9 @@ export default defineComponent({
     })
 
     const { tableHeight } = useTableHeight(tableEl, tableData)
+    const getRights = useRights()
+
+    console.log('getRights', getRights.value)
 
     const drawerVisible = ref(false)
     const eventType = ref<CruEventType>('view')

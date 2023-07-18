@@ -29,6 +29,8 @@ export interface Menu {
   rights?: MenuButton[]
 
   hideMenu?: boolean
+
+  fixedTab?: boolean
 }
 
 export interface DropMenu {

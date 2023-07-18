@@ -12,6 +12,8 @@ export function getEloffset(element: Element) {
   const docScrollTop = doc.scrollTop
   const docClientLeft = doc.clientLeft
   const docClientTop = doc.clientTop
+  const clientWidth = doc.clientWidth
+  const clientHeight = doc.clientHeight
 
   const pageXOffset = window.pageXOffset
   const pageYOffset = window.pageYOffset
@@ -22,14 +24,12 @@ export function getEloffset(element: Element) {
 
   const scrollLeft = (pageXOffset || docScrollLeft) - (docClientLeft || 0)
   const scrollTop = (pageYOffset || docScrollTop) - (docClientTop || 0)
-  const offsetLeft = retLeft + pageXOffset
-  const offsetTop = rectTop + pageYOffset
+  const offsetLeft = retLeft + (pageXOffset || docScrollLeft)
+  const offsetTop = rectTop + (pageYOffset || docScrollTop)
 
   const left = offsetLeft - scrollLeft
   const top = offsetTop - scrollTop
 
-  const clientWidth = window.document.documentElement.clientWidth
-  const clientHeight = window.document.documentElement.clientHeight
   return {
     left: left,
     top: top,

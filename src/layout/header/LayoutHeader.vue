@@ -1,7 +1,7 @@
 <template>
   <ElHeader class="header" :style="getDomHeight">
     <div class="header-left">
-      <AppLogo v-if="getShowHeaderMenu" :show-text="!getIsMobile" />
+      <AppLogo v-if="getShowHeaderMenu" :show-text="!getIsMobile && !getShowHeaderMenu" />
       <SiderTrigger
         v-if="!getShowHeaderMenu || getIsMobile"
         class="header-left-item"

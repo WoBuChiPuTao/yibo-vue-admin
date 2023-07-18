@@ -77,10 +77,12 @@ import { defineComponent, reactive, ref } from 'vue'
 import { ElTable, ElTableColumn, ElIcon, ElTag, ElTooltip } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import EIcon from '@/components/icons/EIcon.vue'
-import { menus, columnsInfo } from './info'
+import { columnsInfo } from './info'
 import { Menu } from '#/list'
 import { useI18n } from '@/hooks/web/useI18n'
 import Drawer from './Drawer.vue'
+import { getAllMenu } from '@/api/sys/system'
+import '&/modules/system'
 
 export default defineComponent({
   name: 'MenuManagement',
@@ -98,7 +100,7 @@ export default defineComponent({
     const tableLoading = ref(false)
     const drawerVisible = ref(false)
 
-    const tableData = reactive<Menu[]>(menus)
+    const tableData = reactive<Menu[]>([])
 
     const rowData = reactive<Menu>({
       name: '',
@@ -110,10 +112,24 @@ export default defineComponent({
       redirect: undefined,
       children: undefined,
       rights: undefined,
-      hideMenu: undefined
+      hideMenu: undefined,
+      fixedTab: false
     })
 
     const { t } = useI18n()
+
+    async function getTableData() {
+      tableData.splice(0, tableData.length)
+      tableLoading.value = true
+      try {
+        const menus = await getAllMenu()
+        tableData.push(...menus)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        tableLoading.value = false
+      }
+    }
 
     function handleCreate() {
       Object.keys(rowData).forEach((key) => {
@@ -140,6 +156,8 @@ export default defineComponent({
         findMenu[key] = menu[key]
       })
     }
+
+    getTableData()
 
     return {
       tableLoading,
