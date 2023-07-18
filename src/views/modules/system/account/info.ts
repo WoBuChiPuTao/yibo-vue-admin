@@ -1,63 +1,62 @@
 import { UserInfo } from '#/store'
+import { useI18n } from '@/hooks/web/useI18n'
 
-export interface AddUserInfo extends UserInfo {
-  roles: string[]
-}
+const { t } = useI18n()
 
 export const columnsInfo: TableColumnInfo[] = [
   {
-    prop: 'userName',
-    label: '名称',
+    prop: 'userId',
+    label: t('module.system.accountId'),
     minWidth: 120,
     align: 'center'
   },
   {
-    prop: 'alias',
-    label: '昵称',
+    prop: 'userName',
+    label: t('module.system.userName'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'roles',
     type: 'array',
-    label: '角色',
+    label: t('module.system.role'),
     minWidth: 200,
     align: 'center'
   },
   {
     prop: 'department',
-    label: '部门',
+    label: t('module.system.department'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'position',
-    label: '职位',
+    label: t('module.system.position'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'email',
-    label: '邮箱',
+    label: t('module.system.mail'),
     minWidth: 180,
     align: 'center'
   },
   {
     prop: 'phone',
-    label: '电话',
+    label: t('module.system.phone'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'remarks',
     type: 'textarea',
-    label: '备注',
+    label: t('module.system.remarks'),
     minWidth: 210,
     align: 'center'
   }
 ]
 
-export const userData: AddUserInfo[] = [
+export const userData: UserInfo[] = [
   {
     userId: '111a',
     userName: '赖奕博',

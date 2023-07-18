@@ -1,3 +1,7 @@
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
+
 export interface TreeSelectInfo {
   label: string
   value: string
@@ -7,31 +11,31 @@ export interface TreeSelectInfo {
 export const columnsInfo: TableColumnInfo[] = [
   {
     prop: 'name',
-    label: '名称',
+    label: t('module.system.menuName'),
     minWidth: 180,
     align: 'left'
   },
   {
     prop: 'path',
-    label: '路径',
+    label: t('module.system.routePath'),
     minWidth: 150,
     align: 'center'
   },
   {
     prop: 'orderNo',
-    label: '权重',
+    label: t('module.system.weight'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'icon',
-    label: '图案',
+    label: t('module.system.icon'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'rights',
-    label: '按钮',
+    label: t('module.system.button'),
     minWidth: 180,
     align: 'center'
   }

@@ -45,6 +45,9 @@ export default {
   button: {
     view: 'View',
     saveText: 'Save',
+    editText: 'Edit',
+    modifyText: 'Modify',
+    addText: 'Add',
     delText: 'Delete',
     resetText: 'Reset',
     searchText: 'Search',
@@ -56,5 +59,24 @@ export default {
   input: {
     inputText: 'Please enter',
     chooseText: 'Please choose'
+  },
+  radio: {
+    enabled: 'Enabled',
+    disabled: 'Disabled',
+    enableText: 'Enable',
+    disableText: 'Disable',
+    trueText: 'True',
+    falseText: 'False'
+  },
+  table: {
+    operation: 'Operation'
+  },
+  message: {
+    modifySuccess: 'Modified successfully',
+    modifyFailed: 'Modification failed',
+    delSuccess: 'Successfully deleted',
+    delFailed: 'Delete failed',
+    addSuccess: 'Successfully added',
+    addFailed: 'Add failed'
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <BasicContainer>
     <div class="flex justify-between mb-2">
-      <div>
+      <div v-if="getRights.findIndex((right) => right.buttonId === '777') !== -1">
         <ElInput
           v-model="searchInfo.instCode"
           placeholder="产品代码"
@@ -16,7 +16,7 @@
           查询
         </ElButton>
       </div>
-      <div>
+      <div v-if="getRights.findIndex((right) => right.buttonId === '111') !== -1">
         <ElButton type="primary" @click="handleCreate">
           <el-icon>
             <Plus></Plus>
@@ -38,8 +38,20 @@
       <ElTableColumn align="center" fixed="right" :min-width="150" label="操作">
         <template #default="{ row }">
           <ElButton link size="small" @click="handleLook(row)">查看</ElButton>
-          <ElButton link type="primary" size="small" @click="handleEdit(row)">修改</ElButton>
-          <ElButton link type="danger" size="small" @click="handleDelete(row.instCode)"
+          <ElButton
+            v-if="getRights.findIndex((right) => right.buttonId === '222') !== -1"
+            link
+            type="primary"
+            size="small"
+            @click="handleEdit(row)"
+            >修改</ElButton
+          >
+          <ElButton
+            v-if="getRights.findIndex((right) => right.buttonId === '333') !== -1"
+            link
+            type="danger"
+            size="small"
+            @click="handleDelete(row.instCode)"
             >删除</ElButton
           >
         </template>
@@ -104,6 +116,7 @@ import '&/bond'
 import { getBondData, putBondData, delBondData } from '@/api/bond/bond'
 import { formatDateOfObj } from '@/utils/dateFormat'
 import { useRights } from '@/hooks/useRights'
+import { useI18n } from '@/hooks/web/useI18n'
 
 interface TableDataType {
   instCode: string
@@ -163,10 +176,9 @@ export default defineComponent({
       templateCode: ''
     })
 
+    const { t } = useI18n()
     const { tableHeight } = useTableHeight(tableEl, tableData)
     const getRights = useRights()
-
-    console.log('getRights', getRights.value)
 
     const drawerVisible = ref(false)
     const eventType = ref<CruEventType>('view')
@@ -200,8 +212,9 @@ export default defineComponent({
     async function handleDelete(instCode: string) {
       try {
         await delBondData(instCode)
-        ElMessage.success('删除成功')
+        ElMessage.success(t('common.message.delSuccess'))
       } catch (error) {
+        ElMessage.success(t('common.message.delFailed'))
         console.error(error)
       }
       getTableData()
@@ -222,9 +235,14 @@ export default defineComponent({
       formatDateOfObj(value)
       try {
         await putBondData(value)
-        eventType === 'update' ? ElMessage.success('修改成功') : ElMessage.success('创建成功')
+        eventType === 'update'
+          ? ElMessage.success(t('common.message.modifySuccess'))
+          : ElMessage.success(t('common.message.addSuccess'))
       } catch (error) {
         console.error(error)
+        eventType === 'update'
+          ? ElMessage.success(t('common.message.modifyFailed'))
+          : ElMessage.success(t('common.message.addFailed'))
       }
 
       getTableData()
@@ -250,7 +268,9 @@ export default defineComponent({
       handleSubmit,
       eventType,
       handleCreate,
-      rules
+      rules,
+      getRights,
+      t
     }
   }
 })

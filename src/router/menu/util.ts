@@ -39,7 +39,6 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
       return {
         meta: node.meta,
         name: title,
-        routeName: node.name,
         path: node.path,
         icon,
         orderNo,

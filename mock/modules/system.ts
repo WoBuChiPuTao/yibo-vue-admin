@@ -22,7 +22,6 @@ export const allMenus: Menu[] = [
       orderNo: 1
     },
     name: 'routes.home.home',
-    routeName: 'home',
     path: '/home',
     icon: 'material-symbols:home-outline',
     orderNo: 1,
@@ -35,7 +34,6 @@ export const allMenus: Menu[] = [
         },
         fixedTab: true,
         name: 'routes.home.dashboard',
-        routeName: 'Dashboard',
         path: '/home/dashboard',
         hideMenu: false,
         parentPath: '/home'
@@ -45,7 +43,6 @@ export const allMenus: Menu[] = [
           title: 'routes.home.workbench'
         },
         name: 'routes.home.workbench',
-        routeName: 'Workbench',
         path: '/home/workbench',
         hideMenu: false,
         parentPath: '/home'
@@ -59,7 +56,6 @@ export const allMenus: Menu[] = [
       icon: 'mdi:chart-box-outline'
     },
     name: 'routes.demo.report.moduleName',
-    routeName: 'Report',
     path: '/report/page',
     icon: 'mdi:chart-box-outline',
     orderNo: 5,
@@ -73,7 +69,6 @@ export const allMenus: Menu[] = [
       title: 'routes.demo.feat.feat'
     },
     name: 'routes.demo.feat.feat',
-    routeName: 'Feature',
     path: '/feat',
     icon: 'ic:baseline-play-circle-outline',
     orderNo: 10,
@@ -85,7 +80,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.feat.ws'
         },
         name: 'routes.demo.feat.ws',
-        routeName: 'WebSocket',
         path: '/feat/ws',
         hideMenu: false,
         parentPath: '/feat'
@@ -95,7 +89,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.excel.excel'
         },
         name: 'routes.demo.excel.excel',
-        routeName: 'Excel',
         path: '/feat/excel',
         hideMenu: false,
         redirect: '/feat/excel/importExcel',
@@ -105,7 +98,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.excel.importExcel'
             },
             name: 'routes.demo.excel.importExcel',
-            routeName: 'ImportExcel',
             path: '/feat/excel/importExcel',
             hideMenu: false,
             parentPath: '/feat/excel'
@@ -115,7 +107,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.excel.exportExcel'
             },
             name: 'routes.demo.excel.exportExcel',
-            routeName: 'ExportFile',
             path: '/feat/excel/exportFile',
             hideMenu: false,
             parentPath: '/feat/excel'
@@ -132,7 +123,6 @@ export const allMenus: Menu[] = [
       title: 'routes.demo.graphics.moduleName'
     },
     name: 'routes.demo.graphics.moduleName',
-    routeName: 'Graphics',
     path: '/graphics',
     icon: 'ic:outline-design-services',
     orderNo: 30,
@@ -144,7 +134,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.graphics.canvas'
         },
         name: 'routes.demo.graphics.canvas',
-        routeName: 'Canvas',
         path: '/graphics/canvas',
         hideMenu: false,
         parentPath: '/graphics'
@@ -158,7 +147,6 @@ export const allMenus: Menu[] = [
       title: 'routes.demo.comp.comp'
     },
     name: 'routes.demo.comp.comp',
-    routeName: 'component',
     path: '/comp',
     icon: 'ion:layers-outline',
     orderNo: 50,
@@ -170,7 +158,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.comp.basic'
         },
         name: 'routes.demo.comp.basic',
-        routeName: 'BasicDemo',
         path: '/comp/basic',
         hideMenu: false,
         parentPath: '/comp'
@@ -180,7 +167,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.comp.tree'
         },
         name: 'routes.demo.comp.tree',
-        routeName: 'TreeDemo',
         path: '/comp/tree',
         hideMenu: false,
         redirect: '/comp/tree/basic',
@@ -190,7 +176,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.comp.treeBasic'
             },
             name: 'routes.demo.comp.treeBasic',
-            routeName: 'BasicTreeDemo',
             path: '/comp/tree/basic',
             hideMenu: false,
             parentPath: '/comp/tree'
@@ -200,7 +185,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.comp.editTree'
             },
             name: 'routes.demo.comp.editTree',
-            routeName: 'EditTreeDemo',
             path: '/comp/tree/editTree',
             hideMenu: false,
             parentPath: '/comp/tree'
@@ -210,7 +194,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.comp.actionTree'
             },
             name: 'routes.demo.comp.actionTree',
-            routeName: 'ActionTreeDemo',
             path: '/comp/tree/actionTree',
             hideMenu: false,
             parentPath: '/comp/tree'
@@ -223,7 +206,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.comp.lazy'
         },
         name: 'routes.demo.comp.lazy',
-        routeName: 'LazyDemo',
         path: '/comp/lazy',
         hideMenu: false,
         parentPath: '/comp'
@@ -233,7 +215,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.comp.qrcode'
         },
         name: 'routes.demo.comp.qrcode',
-        routeName: 'QRcode',
         path: '/comp/qrcode',
         hideMenu: false,
         parentPath: '/comp'
@@ -243,7 +224,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.comp.virtualTable'
         },
         name: 'routes.demo.comp.virtualTable',
-        routeName: 'VitualTable',
         path: '/comp/vitual-table',
         hideMenu: false,
         parentPath: '/comp'
@@ -257,7 +237,6 @@ export const allMenus: Menu[] = [
       title: 'routes.demo.charts.charts'
     },
     name: 'routes.demo.charts.charts',
-    routeName: 'Charts',
     path: '/charts',
     icon: 'ion:stats-chart-outline',
     orderNo: 100,
@@ -269,7 +248,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.charts.aMap'
         },
         name: 'routes.demo.charts.aMap',
-        routeName: 'GaoDe',
         path: '/charts/gaode',
         hideMenu: false,
         parentPath: '/charts'
@@ -279,7 +257,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.charts.echarts'
         },
         name: 'routes.demo.charts.echarts',
-        routeName: 'Echarts',
         path: '/charts/echarts',
         hideMenu: false,
         redirect: '/charts/echarts/map',
@@ -289,7 +266,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.charts.map'
             },
             name: 'routes.demo.charts.map',
-            routeName: 'Map',
             path: '/charts/echarts/map',
             hideMenu: false,
             parentPath: '/charts/echarts'
@@ -299,7 +275,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.charts.line'
             },
             name: 'routes.demo.charts.line',
-            routeName: 'Line',
             path: '/charts/echarts/line',
             hideMenu: false,
             parentPath: '/charts/echarts'
@@ -309,7 +284,6 @@ export const allMenus: Menu[] = [
               title: 'routes.demo.charts.pie'
             },
             name: 'routes.demo.charts.pie',
-            routeName: 'Pie',
             path: '/charts/echarts/pie',
             hideMenu: false,
             parentPath: '/charts/echarts'
@@ -326,7 +300,6 @@ export const allMenus: Menu[] = [
       orderNo: 1000
     },
     name: 'routes.demo.system.moduleName',
-    routeName: 'System',
     path: '/system',
     icon: 'ion:settings-outline',
     orderNo: 1000,
@@ -338,7 +311,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.system.account'
         },
         name: 'routes.demo.system.account',
-        routeName: 'AccountManagement',
         path: '/system/account',
         hideMenu: false,
         parentPath: '/system'
@@ -348,7 +320,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.system.role'
         },
         name: 'routes.demo.system.role',
-        routeName: 'RoleManagement',
         path: '/system/role',
         hideMenu: false,
         parentPath: '/system'
@@ -358,7 +329,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.system.menu'
         },
         name: 'routes.demo.system.menu',
-        routeName: 'MenuManagement',
         path: '/system/menu',
         hideMenu: false,
         parentPath: '/system'
@@ -368,7 +338,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.system.dept'
         },
         name: 'routes.demo.system.dept',
-        routeName: 'DeptManagement',
         path: '/system/dept',
         hideMenu: false,
         parentPath: '/system'
@@ -378,7 +347,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.system.password'
         },
         name: 'routes.demo.system.password',
-        routeName: 'ChangePassword',
         path: '/system/changePassword',
         hideMenu: false,
         parentPath: '/system'
@@ -392,7 +360,6 @@ export const allMenus: Menu[] = [
       icon: 'ion:copy-outline'
     },
     name: 'routes.demo.capRisk.moduleName',
-    routeName: 'CapRisk',
     path: '/caprisk',
     icon: 'ion:copy-outline',
     orderNo: 2000,
@@ -404,7 +371,6 @@ export const allMenus: Menu[] = [
           title: 'routes.demo.capRisk.bond'
         },
         name: 'routes.demo.capRisk.bond',
-        routeName: 'Bond',
         path: '/caprisk/bond',
         hideMenu: false,
         parentPath: '/caprisk',
@@ -413,9 +379,9 @@ export const allMenus: Menu[] = [
           { buttonId: '222', buttonName: '修改' },
           { buttonId: '333', buttonName: '删除' },
           { buttonId: '444', buttonName: '计算' },
-          { buttonId: '66', buttonName: '导入' },
-          { buttonId: '77', buttonName: '导出' },
-          { buttonId: '88', buttonName: '查询' }
+          { buttonId: '555', buttonName: '导入' },
+          { buttonId: '666', buttonName: '导出' },
+          { buttonId: '777', buttonName: '查询' }
         ]
       }
     ]
@@ -427,7 +393,6 @@ export const allMenus: Menu[] = [
       icon: 'ion:ellipsis-vertical-circle'
     },
     name: 'routes.home.about',
-    routeName: 'About',
     path: '/about/page',
     icon: 'ion:ellipsis-vertical-circle',
     orderNo: 1000000,

@@ -6,7 +6,7 @@
           <el-icon>
             <Plus></Plus>
           </el-icon>
-          新增
+          {{ t('common.button.addText') }}
         </ElButton>
       </div>
     </div>
@@ -56,10 +56,10 @@
           </template>
         </ElTableColumn>
       </template>
-      <ElTableColumn align="center" fixed="right" :min-width="150" label="操作">
+      <ElTableColumn align="center" fixed="right" :min-width="150" :label="t('common.table.operation')">
         <template #default="{ row }">
-          <ElButton link type="primary" size="small" @click="handleEdit(row)">修改</ElButton>
-          <ElButton link type="danger" size="small">删除</ElButton>
+          <ElButton link type="primary" size="small" @click="handleEdit(row)">{{ t('common.button.editText') }}</ElButton>
+          <ElButton link type="danger" size="small">{{ t('common.button.delText') }}</ElButton>
         </template>
       </ElTableColumn>
     </ElTable>
@@ -105,7 +105,6 @@ export default defineComponent({
     const rowData = reactive<Menu>({
       name: '',
       path: '',
-      routeName: '',
       parentPath: undefined,
       orderNo: undefined,
       icon: undefined,

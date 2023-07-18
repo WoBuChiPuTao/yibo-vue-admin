@@ -1,0 +1,38 @@
+export default {
+  // 账号管理
+  accountId: 'Account',
+  userName: 'Name',
+  role: 'Role',
+  department: 'Department',
+  position: 'Position',
+  mail: 'Email',
+  phone: 'Phone',
+  remarks: 'Remarks',
+  // 角色管理
+  roleId: 'Role ID',
+  roleName: 'Role Name',
+  roleStatus: 'Role Status',
+  createTime: 'Create Time',
+  menuAssign: 'Menu Assign',
+  showMore: 'Show More',
+  collapseAll: 'Collapse All',
+  selectAll: 'Select All',
+  deselectAll: 'Deselect All',
+  levelAssociation: 'Hierarchical Association',
+  levelIndependence: 'Hierarchical Independence',
+  // 菜单管理
+  menu: 'Menu',
+  directory: 'Directory',
+  parentDirectory: 'Parent Directory',
+  menuName: 'Menu Name',
+  redirect: 'Redirect',
+  routePath: 'Route Path',
+  weight: 'Menu Weight',
+  icon: 'Menu Icon',
+  hideMenu: 'Hide Menu',
+  fixedMenu: 'Fixed Menu',
+  button: 'Button',
+  addButton: 'Add Button',
+  buttonId: 'Button ID',
+  buttonName: 'Button Name'
+}
