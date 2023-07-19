@@ -76,8 +76,8 @@
           </ElFormItem>
         </ElCol>
       </ElRow>
-      <ElRow>
-        <ElCol :span="24">
+      <ElRow v-if="!isDirectory">
+        <ElCol  :span="24">
           <ElFormItem :label="t('module.system.hideMenu')">
             <ElRadioGroup v-model="menuVal.hideMenu">
               <ElRadioButton :label="true">{{ t('common.radio.trueText') }}</ElRadioButton>

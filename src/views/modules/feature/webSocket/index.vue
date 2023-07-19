@@ -36,7 +36,7 @@
         <div class="flex flex-col w-7/12">
           <h1>消息框</h1>
           <ElDivider></ElDivider>
-          <div class="h-full overflow-y-auto bg-gray-100">
+          <div class="h-full overflow-y-auto whitespace-pre-wrap bg-slate-300">
             <ul>
               <li v-for="item in getList" :key="item.time" class="mb-4 ml-4">
                 <div class="text-xs">{{ formatTime(item.time) }}</div>

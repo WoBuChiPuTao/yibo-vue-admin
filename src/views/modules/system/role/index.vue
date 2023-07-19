@@ -2,7 +2,7 @@
   <BasicContainer>
     <div class="flex justify-between mb-2">
       <div>
-        <ElInput placeholder="角色名称" class="w-32 mr-4"> </ElInput>
+        <ElInput :placeholder="t('module.system.roleName')" class="w-32 mr-4"> </ElInput>
         <ElButton type="primary">
           <el-icon>
             <Search></Search>

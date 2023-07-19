@@ -37,10 +37,7 @@ export function useTabs(_router?: Router) {
     await tabStore.setTabTitle(title, targetTab)
   }
 
-  async function handleTabAction(
-    action: TableActionEnum,
-    tab?: RouteLocationNormalized
-  ) {
+  async function handleTabAction(action: TableActionEnum, tab?: RouteLocationNormalized) {
     const currentTab = getCurrentTab()
 
     switch (action) {
@@ -60,7 +57,6 @@ export function useTabs(_router?: Router) {
         await tabStore.removeOtherTabs(currentTab, router)
         break
       case TableActionEnum.CLOSE_CURRENT:
-      case TableActionEnum.CLOSE:
         await tabStore.removeTab(tab || currentTab, router)
         break
     }
@@ -72,12 +68,8 @@ export function useTabs(_router?: Router) {
     closeLeft: () => handleTabAction(TableActionEnum.CLOSE_LEFT),
     closeRight: () => handleTabAction(TableActionEnum.CLOSE_RIGHT),
     closeOther: () => handleTabAction(TableActionEnum.CLOSE_OTHER),
-    closeCurrent: () => handleTabAction(TableActionEnum.CLOSE_CURRENT),
-    close: (tab?: RouteLocationNormalized) =>
-      handleTabAction(TableActionEnum.CLOSE, tab),
-    setTitle: (title: string, tab?: RouteLocationNormalized) =>
-      updateTabTitle(title, tab),
-    updatePath: (fullPath: string, tab?: RouteLocationNormalized) =>
-      updateTabPath(fullPath, tab)
+    closeCurrent: (tab?: RouteLocationNormalized) => handleTabAction(TableActionEnum.CLOSE_CURRENT, tab),
+    setTitle: (title: string, tab?: RouteLocationNormalized) => updateTabTitle(title, tab),
+    updatePath: (fullPath: string, tab?: RouteLocationNormalized) => updateTabPath(fullPath, tab)
   }
 }
