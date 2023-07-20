@@ -15,7 +15,7 @@ declare module 'vue-router' {
     hideMenu?: boolean
     // 按钮
     rights?: MenuButton[]
-    /** 内嵌的`iframe`链接 `可选` */
+    // 内嵌的iframe链接
     frameSrc?: string
   }
 }

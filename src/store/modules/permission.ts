@@ -32,9 +32,17 @@ export const usePermissionStore = defineStore({
       const { getRoleList } = useUserStore()
       const menuArr = await Promise.all(getRoleList.map((role) => getMenuFromRole(role)))
       const menu = menuArr.reduce((pre, now) => {
-        return deepMerge(pre, now)
+        now.forEach((nowItem) => {
+          const index = pre.findIndex((preItem) => preItem.path === nowItem.path)
+          if (index === -1) {
+            pre.push(nowItem)
+          } else {
+            pre[index] = deepMerge(pre[index], nowItem)
+          }
+        })
+        return pre
       }, [])
-
+      console.log('menu', menu)
       const routes = filterRoutesFromMenu(menu)
       // this.setMenuList(routeToMenu(routes))
       this.setMenuList(menu)

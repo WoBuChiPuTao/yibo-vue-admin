@@ -61,6 +61,7 @@ module.exports = defineConfig({
     proxy: {
       '/api': {
         target: 'http://101.35.249.181/api',
+        // target: 'http://localhost:3300/',
         pathRewrite: { '^/api': '' },
         ws: true, // 用于支持websocket
         changeOrigin: true // 用于控制请求头中的host值

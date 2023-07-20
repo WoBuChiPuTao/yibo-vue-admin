@@ -9,7 +9,7 @@ export function deepMerge<T extends object | null | undefined, U extends object 
   source: U
 ): T & U {
   return mergeWith(cloneDeep(target), source, (objValue, srcValue) => {
-    if (isObject(objValue) && isObject(srcValue)) {
+    if (isObject(objValue) || isArray(objValue)) {
       return mergeWith(cloneDeep(objValue), srcValue, (prevValue, nextValue) => {
         // 如果是数组，合并数组(去重)
         return isArray(prevValue) ? unionWith(prevValue, nextValue, isEqual) : undefined

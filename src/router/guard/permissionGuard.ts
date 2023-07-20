@@ -4,7 +4,7 @@ import { useUserStoreOther } from '@/store/modules/user'
 import { flatMultiRoutes } from '@/hooks/route'
 import { usePermissionStore } from '@/store/modules/permission'
 // mock
-import '&/login'
+// import '&/login'
 
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreOther()
