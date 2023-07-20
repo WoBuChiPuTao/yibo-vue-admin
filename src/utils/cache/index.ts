@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash-es'
 import { toRaw } from 'vue'
 import { WebStorage } from './storage'
 
@@ -10,7 +11,7 @@ export class WebCache {
   }
 
   static setLocal(key: string, value: any, expire?: number): void {
-    loaclStore.set(key, toRaw(value), expire)
+    loaclStore.set(key, toRaw(cloneDeep(value)), expire)
   }
 
   static removeLocal(key: string) {
@@ -26,7 +27,7 @@ export class WebCache {
   }
 
   static setSession(key: string, value: any, expire?: number): void {
-    sessionStore.set(key, toRaw(value), expire)
+    sessionStore.set(key, toRaw(cloneDeep(value)), expire)
   }
 
   static removeSession(key: string) {

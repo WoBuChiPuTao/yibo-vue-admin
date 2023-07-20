@@ -112,11 +112,11 @@ import { useTableHeight } from '@/components/table/useTableHeight'
 import DialogDescriptions from '@/components/dialog/DialogDescriptions.vue'
 import CruDrawer from '@/components/crud/CruDrawer.vue'
 import { columnsInfo, rules } from './info'
-import '&/bond'
 import { getBondData, putBondData, delBondData } from '@/api/bond/bond'
 import { formatDateOfObj } from '@/utils/dateFormat'
 import { useRights } from '@/hooks/useRights'
 import { useI18n } from '@/hooks/web/useI18n'
+// import '&/bond'
 
 interface TableDataType {
   instCode: string
