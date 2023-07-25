@@ -16,6 +16,10 @@
       </div>
       <div class="flex justify-center">修改成功后会自动退出当前登录</div>
     </ElForm>
+    <div class="px-10">
+      <BasicDargVerify ref="verifyRef"></BasicDargVerify>
+    </div>
+    <div><ElButton @click="revertVerify">还原</ElButton></div>
   </BasicContainer>
 </template>
 
@@ -24,6 +28,7 @@ import { defineComponent, reactive, ref, unref } from 'vue'
 import PasswordMeter from '@/components/password/PasswordMeter.vue'
 import { ElForm, ElFormItem, ElInput, FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
+import { BasicDargVerify } from '@/components/verify'
 
 export const rules: FormRules = {
   oldPassword: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }],
@@ -33,7 +38,7 @@ export const rules: FormRules = {
 
 export default defineComponent({
   name: 'ModifyPassowrd',
-  components: { PasswordMeter, ElForm, ElFormItem, ElInput },
+  components: { PasswordMeter, ElForm, ElFormItem, ElInput, BasicDargVerify },
   setup() {
     const formRef = ref<FormInstance>()
 
@@ -60,7 +65,16 @@ export default defineComponent({
       if (!form) return
       form.resetFields()
     }
-    return { formRef, password, rules, resetPassword, confirmPassword }
+
+    const verifyRef = ref<InstanceType<typeof BasicDargVerify>>()
+
+    function revertVerify() {
+      const verifyEl = unref(verifyRef)
+      if (!verifyEl) return
+      verifyEl.revert()
+    }
+
+    return { formRef, password, rules, resetPassword, confirmPassword, verifyRef, revertVerify }
   }
 })
 </script>

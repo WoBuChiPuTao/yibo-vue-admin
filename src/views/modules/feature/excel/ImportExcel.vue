@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col items-center">
-    <ImportExcelComponent @success="handleExcel" class="mt-8 mb-8">
+    <ImportExcel @success="handleExcel" class="mt-8 mb-8">
       <ElButton type="primary">导入Excel</ElButton>
-    </ImportExcelComponent>
+    </ImportExcel>
     <ElTable ref="table" :data="excelData.results" :height="tableHeight">
       <template v-for="item in excelData.header" :key="item">
         <ElTableColumn :prop="item" in :label="item"></ElTableColumn>
@@ -14,13 +14,13 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue'
 import { ElButton, ElTable, ElTableColumn } from 'element-plus'
-import ImportExcelComponent from '@/components/excel/ImportExcel.vue'
-import { ExcelData } from '@/components/excel/type'
+import ImportExcel from '@/components/excel/ImportExcel.vue'
 import { useTableHeight } from '@/components/table/useTableHeight'
+import { ExcelData } from '@/components/excel/type'
 
 export default defineComponent({
-  name: 'ImportExcel',
-  components: { ImportExcelComponent, ElButton, ElTable, ElTableColumn },
+  name: 'ImportExcelExample',
+  components: { ElButton, ElTable, ElTableColumn, ImportExcel },
   setup() {
     const table = ref()
     const excelData = reactive<ExcelData>({

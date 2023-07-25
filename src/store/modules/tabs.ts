@@ -145,7 +145,6 @@ export const useTabStore = defineStore({
         this.tabList.push(route)
       }
       this.updateCacheTab()
-      console.log('this.tabList', this.tabList)
       cacheTabs && WebCache.setLocal('TABS', this.tabList)
     },
 

@@ -3,7 +3,7 @@ import { LocaleSetting, LocaleType } from '#/store'
 
 export const LOCALE: { [key: string]: LocaleType } = {
   ZH_CN: 'zh-CN',
-  EN_US: 'en'
+  EN_US: 'en-US'
 }
 
 // locale list

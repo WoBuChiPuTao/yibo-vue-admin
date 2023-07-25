@@ -1,6 +1,6 @@
 type Menu = import('./list').Menu
 
-export type LocaleType = 'zh-CN' | 'en' | 'ru' | 'ja' | 'ko'
+export type LocaleType = 'zh-CN' | 'en-US' | 'ru' | 'ja' | 'ko'
 
 export interface LocaleSetting {
   showPicker: boolean

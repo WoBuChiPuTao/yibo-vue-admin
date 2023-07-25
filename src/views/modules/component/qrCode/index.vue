@@ -5,33 +5,33 @@
   >
     <Card>
       <template #header> canvas示例 </template>
-      <QrCode :value="qrCodeUrl"></QrCode>
+      <QRCode :value="qrCodeUrl"></QRCode>
     </Card>
     <Card>
       <template #header> Image示例 </template>
-      <QrCode :value="qrCodeUrl" draw-type="img"></QrCode>
+      <QRCode :value="qrCodeUrl" draw-type="img"></QRCode>
     </Card>
     <Card>
       <template #header> 颜色示例 </template>
-      <QrCode :value="qrCodeUrl" :options="{ color: { dark: '#0059ff' } }"></QrCode>
+      <QRCode :value="qrCodeUrl" :options="{ color: { dark: '#0059ff' } }"></QRCode>
     </Card>
     <Card>
       <template #header> 插入图片示例 </template>
-      <QrCode :value="qrCodeUrl" :image="ImageSrc"></QrCode>
+      <QRCode :value="qrCodeUrl" :image="ImageSrc"></QRCode>
     </Card>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import QrCode from '@/components/QRcode/QrCode.vue'
+import { QRCode } from '@/components/QRcode'
 import Card from '@/components/card/Card.vue'
 import ImageSrc from '@/assets/img/logo.jpg'
 
 const qrCodeUrl = 'http://101.35.249.181/'
 export default defineComponent({
   name: 'QRcode',
-  components: { QrCode, Card },
+  components: { QRCode, Card },
   setup() {
     return {
       qrCodeUrl,

@@ -124,7 +124,7 @@ export const ExternalPage: AddRouteRecordRaw = {
       component: () => import(/* webpackChunkName: "iframe" */ '@/views/iframe/frameView.vue'),
       meta: {
         title: 'custom',
-        frameSrc: 'http://10.0.0.30:8848/'
+        frameSrc: 'http://47.100.161.138:8080/j2paas/login.go?app=project'
       }
     }
   ]

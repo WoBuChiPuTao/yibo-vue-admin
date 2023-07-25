@@ -4,8 +4,9 @@ import 'element-plus/dist/index.css'
 import 'tailwindcss/tailwind.css'
 // 引入与element样式冲突的文件
 import './style/tailwindcss/preflight.css'
-
+// 引入element主题样式文件
 import 'element-plus/theme-chalk/dark/css-vars.css'
+// 引入基本样式
 import './style/index.less'
 
 import { createApp } from 'vue'
