@@ -6,18 +6,27 @@
           <ElButton @click="handleExport">导出excel</ElButton>
         </div>
       </template>
-      <ElTable ref="table" :data="excelData" :height="tableHeight">
-        <template v-for="item in Object.keys(excelHeader)" :key="item">
-          <ElTableColumn :prop="item" :label="excelHeader[item]"></ElTableColumn>
-        </template>
-      </ElTable>
+      <div :style="{ height: tableHeight }">
+        <ElAutoResizer>
+          <template #default="{ width, height }">
+            <ElTableV2
+              ref="table"
+              :columns="columns"
+              :data="excelData"
+              :width="width"
+              :height="height"
+            >
+            </ElTableV2>
+          </template>
+        </ElAutoResizer>
+      </div>
     </Card>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { ElButton, ElTable, ElTableColumn } from 'element-plus'
+import { Column, ElButton, ElTableV2, ElAutoResizer } from 'element-plus'
 import { excelData, excelHeader } from './data'
 import Card from '@/components/card/Card.vue'
 import { useExportXlsx } from '@/components/excel/exportExcel'
@@ -25,14 +34,30 @@ import { useTableHeight } from '@/components/table/useTableHeight'
 
 export default defineComponent({
   name: 'ExportExcel',
-  components: { Card, ElButton, ElTable, ElTableColumn },
+  components: { Card, ElButton, ElTableV2, ElAutoResizer },
   setup() {
     const table = ref()
     const { tableHeight } = useTableHeight(
       table,
       computed(() => excelData),
-      40
+      40,
+      2
     )
+
+    const columns = computed(() => {
+      const arr: Column<any>[] = []
+      Object.keys(excelHeader).forEach((key) => {
+        arr.push({
+          key: key,
+          align: 'center',
+          title: excelHeader[key],
+          dataKey: key,
+          width: 120
+        })
+      })
+      return arr
+    })
+
     function handleExport() {
       useExportXlsx({ data: excelData, header: excelHeader })
     }
@@ -41,6 +66,7 @@ export default defineComponent({
       excelData,
       table,
       tableHeight,
+      columns,
       handleExport
     }
   }

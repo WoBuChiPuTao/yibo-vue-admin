@@ -6,7 +6,8 @@ import { ComputedRef, Ref, nextTick, ref, unref, watch } from 'vue'
 export function useTableHeight(
   tableRef: Ref<ElementRef>,
   getDataSourceRef: ComputedRef<Recordable[]> | Ref<Recordable[]> | Recordable[],
-  toBottom = 90
+  toBottom = 90,
+  version = 1 // ElTable 和 ElTableV2
 ) {
   const tableHeight = ref('100%')
 
@@ -40,20 +41,22 @@ export function useTableHeight(
     if (!tableEl) return
 
     if (!bodyEl) {
-      bodyEl = tableEl.querySelector('.el-table__body-wrapper')
+      bodyEl = tableEl.querySelector(
+        version === 1 ? '.el-table__body-wrapper' : '.el-table-v2__body'
+      )
       if (!bodyEl) return
     }
+    bodyEl!.style.height = 'unset'
 
     if (!unref(tableData) || tableData.length === 0) return
-
-    bodyEl!.style.height = 'unset'
     await nextTick()
 
-    const headEl = tableEl.querySelector('.el-table__header-wrapper')
-    if (!headEl) return
-
+    // const headEl = tableEl.querySelector(
+    //   version === 1 ? '.el-table__header-wrapper' : '.el-table-v2__header-wrapper'
+    // )
+    // if (!headEl) return
     // 头部距离可视页面底部和顶部距离
-    const { top, bottomToVisibleWindow } = getEloffset(headEl)
+    const { top, bottomToVisibleWindow } = getEloffset(tableEl)
     // 如果距离顶部为零则页面已缓存隐藏
     if (!top) {
       setTimeout(() => {
