@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center pt-4"> <ElDatePicker v-model="day"></ElDatePicker></div>
   <ElDivider></ElDivider>
-  <ElTable :data="stressTableData" row-key="name">
+  <ElTable :data="stressTableData" row-key="name" :height="300">
     <ElTableColumn prop="name" label="组合"></ElTableColumn>
     <ElTableColumn prop="present" label="现值"></ElTableColumn>
     <ElTableColumn prop="income" label="日损益"></ElTableColumn>

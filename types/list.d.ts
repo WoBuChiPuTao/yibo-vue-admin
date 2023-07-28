@@ -27,7 +27,7 @@ export interface Menu {
   rights?: MenuButton[]
 
   hideMenu?: boolean
-
+ // 固定菜单
   fixedTab?: boolean
 }
 

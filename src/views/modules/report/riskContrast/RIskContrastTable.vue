@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center pt-4"> <ElDatePicker v-model="day"></ElDatePicker></div>
   <ElDivider></ElDivider>
-  <ElTable :data="portfolioData">
+  <ElTable :data="portfolioData" :height="300">
     <ElTableColumn prop="name" label="组合"></ElTableColumn>
     <ElTableColumn prop="present" label="现值"></ElTableColumn>
     <ElTableColumn prop="var" label="VaR"></ElTableColumn>

@@ -95,6 +95,7 @@ export const superMenus: Menu[] = [
         meta: {
           title: 'routes.home.workbench'
         },
+        fixedTab: true,
         name: 'routes.home.workbench',
         path: '/home/workbench',
         hideMenu: false,

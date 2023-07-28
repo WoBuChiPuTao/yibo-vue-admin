@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center cursor-pointer justify-left" @click="goHome">
+  <div class="flex items-center cursor-pointer justify-left logo-contianer" @click="goHome">
     <img class="logo-size" src="../../assets/img/logo.jpg" />
-    <h2 v-show="props.showText" class="ml-5 font-bold truncate">{{ title }}</h2>
+    <h2 v-show="props.showText" class="ml-5 font-bold truncate logo-title">{{ title }}</h2>
   </div>
 </template>
 
@@ -25,8 +25,17 @@ function goHome() {
 </script>
 
 <style lang="less" scoped>
-.logo-size {
-  height: @logo-width;
-  width: @logo-width;
+.logo {
+  &-contianer {
+    transition: all 0.2s ease;
+  }
+  &-size {
+    height: @logo-width;
+    width: @logo-width;
+  }
+
+  &-title {
+    transition: all 0.5s;
+  }
 }
 </style>

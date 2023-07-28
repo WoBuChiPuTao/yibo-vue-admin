@@ -3,7 +3,7 @@
     <span class="mr-4 text-xl font-bold">{{ '回溯数据' }} </span>
   </div>
   <ElDivider></ElDivider>
-  <ElTable :data="retrospectiveData" :style="{ width: '100%' }">
+  <ElTable :data="retrospectiveData" :height="400">
     <ElTableColumn prop="date" label="日期"></ElTableColumn>
     <ElTableColumn prop="income" label="损益"></ElTableColumn>
     <ElTableColumn prop="var" label="VaR"></ElTableColumn>

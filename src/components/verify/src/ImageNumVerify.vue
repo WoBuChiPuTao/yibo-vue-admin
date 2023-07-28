@@ -3,17 +3,17 @@ import { watch } from 'vue'
 import { drawImageNum } from './hooks'
 
 interface Props {
-  code?: string
+  modelValue?: string
   width?: number
   height?: number
 }
 
 interface Emits {
-  (e: 'update:code', code: string): void
+  (e: 'update:modelValue', code: string): void
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  code: '',
+  modelValue: '',
   width: 120,
   height: 40
 })
@@ -23,14 +23,17 @@ const emit = defineEmits<Emits>()
 const { domRef, imgCode, setImgCode, getImgCode } = drawImageNum(props.width, props.height)
 
 watch(
-  () => props.code,
+  () => props.modelValue,
   (newValue) => {
     setImgCode(newValue)
   }
 )
-watch(imgCode, (newValue) => {
-  emit('update:code', newValue)
-})
+watch(
+  () => imgCode.value,
+  (newValue) => {
+    emit('update:modelValue', newValue)
+  }
+)
 
 defineExpose({ getImgCode })
 </script>

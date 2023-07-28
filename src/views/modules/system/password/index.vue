@@ -20,6 +20,7 @@
       <BasicDargVerify ref="verifyRef"></BasicDargVerify>
     </div>
     <div><ElButton @click="revertVerify">还原</ElButton></div>
+    <div><ImageNumVerify></ImageNumVerify></div>
   </BasicContainer>
 </template>
 
@@ -28,7 +29,7 @@ import { defineComponent, reactive, ref, unref } from 'vue'
 import PasswordMeter from '@/components/password/PasswordMeter.vue'
 import { ElForm, ElFormItem, ElInput, FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { BasicDargVerify } from '@/components/verify'
+import { BasicDargVerify, ImageNumVerify } from '@/components/verify'
 
 export const rules: FormRules = {
   oldPassword: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }],
@@ -38,7 +39,7 @@ export const rules: FormRules = {
 
 export default defineComponent({
   name: 'ModifyPassowrd',
-  components: { PasswordMeter, ElForm, ElFormItem, ElInput, BasicDargVerify },
+  components: { PasswordMeter, ElForm, ElFormItem, ElInput, BasicDargVerify, ImageNumVerify },
   setup() {
     const formRef = ref<FormInstance>()
 

@@ -49,7 +49,7 @@ function draw(dom: HTMLCanvasElement, width: number, height: number) {
 
   const ctx = dom.getContext('2d')
   if (!ctx) return imgCode
-
+  // 填充背景
   ctx.fillStyle = randomColor(180, 230)
   ctx.fillRect(0, 0, width, height)
   for (let i = 0; i < 4; i += 1) {
@@ -66,6 +66,7 @@ function draw(dom: HTMLCanvasElement, width: number, height: number) {
     ctx.fillText(text, -15 + 5, -15)
     ctx.restore()
   }
+  // 画线
   for (let i = 0; i < 5; i += 1) {
     ctx.beginPath()
     ctx.moveTo(randomNum(0, width), randomNum(0, height))
@@ -74,7 +75,8 @@ function draw(dom: HTMLCanvasElement, width: number, height: number) {
     ctx.closePath()
     ctx.stroke()
   }
-  for (let i = 0; i < 41; i += 1) {
+  // 画点
+  for (let i = 0; i < 50; i += 1) {
     ctx.beginPath()
     ctx.arc(randomNum(0, width), randomNum(0, height), 1, 0, 2 * Math.PI)
     ctx.closePath()

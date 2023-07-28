@@ -55,6 +55,7 @@ export function updateHtmlTheme(theme: ThemeEnum) {
     const siderColor = unref(getSiderColor)
     const headerColor = unref(getHeaderColor)
     const mainColor = unref(getMainColor)
+
     Object.keys(siderColor.config).forEach((key) => {
       setCssVar(key, siderColor.config[key])
     })
