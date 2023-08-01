@@ -51,10 +51,6 @@ export function useTableHeight(
     if (!unref(tableData) || tableData.length === 0) return
     await nextTick()
 
-    // const headEl = tableEl.querySelector(
-    //   version === 1 ? '.el-table__header-wrapper' : '.el-table-v2__header-wrapper'
-    // )
-    // if (!headEl) return
     // 头部距离可视页面底部和顶部距离
     const { top, bottomToVisibleWindow } = getEloffset(tableEl)
     // 如果距离顶部为零则页面已缓存隐藏
@@ -76,9 +72,6 @@ export function useTableHeight(
   useWindowSizeFn(calcTableHeight, 200)
   tryOnMounted(() => {
     debounceRedoHeight()
-    // nextTick(() => {
-    //   debounceRedoHeight()
-    // })
   })
   return { redoHeight, tableHeight }
 }

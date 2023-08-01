@@ -23,10 +23,13 @@ const getToTarget = (tabItem: RouteLocationNormalized) => {
   }
 }
 
-function handleGoPage(router: Router) {
-  const go = useGo(router)
-  go(unref(router.currentRoute).path, true)
-}
+// function handleGoPage(route: RouteLocationNormalized, router: Router) {
+//   const go = useGo(router)
+//   const { currentRoute } = router
+//   if (unref(currentRoute).fullPath !== route.fullPath) {
+//     go(route.path, true)
+//   }
+// }
 // 从初始设置拿到是否缓存
 const cacheTabs = setting.tabsSetting.cache
 
@@ -60,6 +63,7 @@ export const useTabStore = defineStore({
         cacheSet.add(name as string)
       }
       this.cacheList = cacheSet
+      cacheTabs && WebCache.setLocal('TABS', this.tabList)
     },
     /**
      * @description: 刷新页面
@@ -145,7 +149,6 @@ export const useTabStore = defineStore({
         this.tabList.push(route)
       }
       this.updateCacheTab()
-      cacheTabs && WebCache.setLocal('TABS', this.tabList)
     },
 
     async removeTab(tab: RouteLocationNormalized, router: Router) {
@@ -193,8 +196,8 @@ export const useTabStore = defineStore({
       await replace(toTarget)
     },
 
-    async removeTabByKey(key: string, router: Router) {
-      const index = this.tabList.findIndex((item) => (item.fullPath || item.path) === key)
+    async removeTabByKey(key: string, router: Router, goPage = true) {
+      const index = this.tabList.findIndex((item) => item.fullPath === key || item.path === key)
       if (index !== -1) {
         await this.removeTab(this.tabList[index], router)
         const { currentRoute, replace } = router
@@ -214,8 +217,11 @@ export const useTabStore = defineStore({
           }
           if (pageIndex >= 0) {
             const page = this.tabList[index - 1]
-            const toTarget = getToTarget(page)
-            await replace(toTarget)
+            // 是否跳转页面
+            if (goPage) {
+              const toTarget = getToTarget(page)
+              await replace(toTarget)
+            }
           }
         }
       }
@@ -224,8 +230,17 @@ export const useTabStore = defineStore({
     /**
      * remove tabs in bulk
      */
-    async bulkRemoveTabs(pathList: string[]) {
+    async bulkRemoveTabs(pathList: string[], route: RouteLocationNormalized, router: Router) {
       this.tabList = this.tabList.filter((item) => !pathList.includes(item.fullPath))
+      const { currentRoute, replace } = router
+      // 检查当前路由是否存在移除路由里
+      const isActivated = pathList.includes(unref(currentRoute).fullPath)
+      // 如果当前路由不存在于TabList中，尝试切换到其它路由
+      if (isActivated) {
+        const toTarget = getToTarget(route)
+        await replace(toTarget)
+      }
+      this.updateCacheTab()
     },
 
     /**
@@ -240,7 +255,6 @@ export const useTabStore = defineStore({
 
     async removeLeftTabs(route: RouteLocationNormalized, router: Router) {
       const index = this.tabList.findIndex((item) => item.path === route.path)
-
       if (index > 0) {
         const leftTabs = this.tabList.slice(0, index)
         const pathList: string[] = []
@@ -250,10 +264,8 @@ export const useTabStore = defineStore({
             pathList.push(item.fullPath)
           }
         }
-        this.bulkRemoveTabs(pathList)
+        this.bulkRemoveTabs(pathList, route, router)
       }
-      this.updateCacheTab()
-      handleGoPage(router)
     },
 
     async removeRightTabs(route: RouteLocationNormalized, router: Router) {
@@ -269,10 +281,8 @@ export const useTabStore = defineStore({
             pathList.push(item.fullPath)
           }
         }
-        this.bulkRemoveTabs(pathList)
+        this.bulkRemoveTabs(pathList, route, router)
       }
-      this.updateCacheTab()
-      handleGoPage(router)
     },
 
     async removeOtherTabs(route: RouteLocationNormalized, router: Router) {
@@ -292,9 +302,7 @@ export const useTabStore = defineStore({
           }
         }
       }
-      this.bulkRemoveTabs(pathList)
-      this.updateCacheTab()
-      handleGoPage(router)
+      this.bulkRemoveTabs(pathList, route, router)
     },
 
     async removeAllTabs(router: Router) {

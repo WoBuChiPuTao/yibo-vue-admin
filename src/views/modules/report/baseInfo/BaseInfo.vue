@@ -70,7 +70,7 @@
         :pager-count="7"
         background
         layout="total, sizes, prev, pager, next, jumper"
-        :page-sizes="[5, 10, 15, 20, 50]"
+        :page-sizes="[5, 10, 15, 20]"
       >
       </ElPagination>
     </div>

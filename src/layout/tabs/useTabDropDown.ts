@@ -46,11 +46,10 @@ export function useTabDropdown(tabContent: RouteLocationNormalized, isTab: Compu
     const isCurrentTab = curItem ? curItem.path === path : false
 
     const refreshDisabled = !isCurrentTab
-    const closeLeftDisabled = curIndex === 0 || !isCurrentTab
+    const closeLeftDisabled = curIndex === 0
     const closeAllDisabled = tabStore.getTabList.length === 1
     const closeRightDisabled =
-      !isCurrentTab ||
-      (curIndex === tabStore.getTabList.length - 1 && tabStore.getLastDragIndex >= 0)
+      curIndex === tabStore.getTabList.length - 1 && tabStore.getLastDragIndex >= 0
 
     const dropList: DropMenu[] = [
       {
@@ -84,7 +83,7 @@ export function useTabDropdown(tabContent: RouteLocationNormalized, isTab: Compu
         icon: Minus,
         event: MenuEventEnum.CLOSE_OTHER,
         text: t('common.tabDropdown.closeOther'),
-        disabled: closeAllDisabled || !isCurrentTab,
+        disabled: closeAllDisabled,
         divided: true
       },
       {
@@ -120,13 +119,13 @@ export function useTabDropdown(tabContent: RouteLocationNormalized, isTab: Compu
         closeCurrent(tabContent)
         break
       case MenuEventEnum.CLOSE_LEFT:
-        closeLeft()
+        closeLeft(tabContent)
         break
       case MenuEventEnum.CLOSE_RIGHT:
-        closeRight()
+        closeRight(tabContent)
         break
       case MenuEventEnum.CLOSE_OTHER:
-        closeOther()
+        closeOther(tabContent)
         break
       case MenuEventEnum.CLOSE_ALL:
         closeAll()

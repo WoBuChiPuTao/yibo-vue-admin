@@ -3,6 +3,9 @@ import { useUserStore } from '@/store/modules/user'
 import { AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import { AxiosInterceptorsConfig, Result } from './types'
+import { useGo } from '@/hooks/web/usePage'
+import { router } from '@/router'
+import { useTabStore } from '@/store/modules/tabs'
 
 export const axiosInterceptors: AxiosInterceptorsConfig = {
   requestInterceptors: (config) => {
@@ -31,6 +34,8 @@ export const axiosInterceptors: AxiosInterceptorsConfig = {
   },
   responseInterceptorsCatch: (error) => {
     const { t } = useI18n()
+    const go = useGo(router)
+    const tabStore = useTabStore()
     // 处理 HTTP 网络错误
     let errMessage = ''
     // HTTP 状态码
@@ -42,9 +47,12 @@ export const axiosInterceptors: AxiosInterceptorsConfig = {
         break
       case 403:
         errMessage = t('sys.api.errMsg403')
+        go('/error/403', true)
         break
       case 404:
         errMessage = t('sys.api.errMsg404')
+        tabStore.removeTabByKey(location.hash.replace('#', ''), router, false)
+        go('/error/404', true)
         break
       case 405:
         errMessage = t('sys.api.errMsg405')

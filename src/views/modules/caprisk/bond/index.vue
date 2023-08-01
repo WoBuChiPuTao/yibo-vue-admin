@@ -26,6 +26,9 @@
       </div>
     </div>
     <ElTable ref="tableEl" :data="tableData" :height="tableHeight" v-loading="tableLoading">
+      <template #empty>
+        <ElEmpty></ElEmpty>
+      </template>
       <template v-for="item in columnsInfo" :key="item.prop">
         <ElTableColumn
           :align="item.align"
@@ -104,7 +107,8 @@ import {
   ElIcon,
   ElMessage,
   ElSelect,
-  ElOption
+  ElOption,
+  ElEmpty
 } from 'element-plus'
 import { Search, Plus } from '@element-plus/icons-vue'
 import { defineComponent, reactive, ref } from 'vue'
@@ -148,7 +152,8 @@ export default defineComponent({
     DialogDescriptions,
     CruDrawer,
     ElSelect,
-    ElOption
+    ElOption,
+    ElEmpty
   },
   setup() {
     const dialogVisible = ref(false)
@@ -223,11 +228,16 @@ export default defineComponent({
     async function getTableData() {
       tableLoading.value = true
       tableData.splice(0, tableData.length)
-      const data = await getBondData()
-      const reg = new RegExp(`${searchInfo.instCode}`, 'g')
-      tableData.push(...data.filter((item) => reg.test(item.instCode)))
-      pageInfo.total = tableData.length
-      tableLoading.value = false
+      try {
+        const data = await getBondData()
+        const reg = new RegExp(`${searchInfo.instCode}`, 'g')
+        tableData.push(...data.filter((item) => reg.test(item.instCode)))
+        pageInfo.total = tableData.length
+      } catch (error) {
+        console.error('error', error)
+      } finally {
+        tableLoading.value = false
+      }
     }
 
     async function handleSubmit(value: TableDataType, eventType: CruEventType) {

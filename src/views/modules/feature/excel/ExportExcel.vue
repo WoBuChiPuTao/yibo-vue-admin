@@ -15,6 +15,7 @@
               :data="excelData"
               :width="width"
               :height="height"
+              fixed
             >
             </ElTableV2>
           </template>
@@ -52,7 +53,7 @@ export default defineComponent({
           align: 'center',
           title: excelHeader[key],
           dataKey: key,
-          width: 120
+          width: 150
         })
       })
       return arr
