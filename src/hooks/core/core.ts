@@ -50,7 +50,7 @@ type FnArgs<T> = T extends (...args: infer U) => any ? U : never
 
 export function useDebounceFn<T extends Fn>(fn: T, wait: number) {
   let timer: ReturnType<typeof setTimeout> | null = null
-  return function (this: any, ...args: FnArgs<T>) {
+  return function (this: unknown, ...args: FnArgs<T>) {
     timer && clearTimeout(timer)
     timer = setTimeout(() => {
       timer = null
@@ -61,7 +61,7 @@ export function useDebounceFn<T extends Fn>(fn: T, wait: number) {
 
 export function useThrottleFn<T extends Fn>(fn: T, wait: number) {
   let timer: ReturnType<typeof setTimeout> | null = null
-  return function (this: any, ...args: FnArgs<T>) {
+  return function (this: unknown, ...args: FnArgs<T>) {
     if (!timer) {
       fn.call(this, ...args)
       timer = setTimeout(() => {

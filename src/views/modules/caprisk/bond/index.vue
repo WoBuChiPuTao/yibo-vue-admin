@@ -182,7 +182,7 @@ export default defineComponent({
     })
 
     const { t } = useI18n()
-    const { tableHeight } = useTableHeight(tableEl, tableData)
+    const { tableHeight } = useTableHeight(tableEl)
     const getRights = useRights()
 
     const drawerVisible = ref(false)

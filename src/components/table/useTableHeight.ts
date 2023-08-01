@@ -1,25 +1,14 @@
 import { getEloffset } from '@/hooks/dom/useElOffset'
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 import { tryOnMounted, useDebounceFn } from '@vueuse/core'
-import { ComputedRef, Ref, nextTick, ref, unref, watch } from 'vue'
+import { Ref, nextTick, ref, unref } from 'vue'
 
 export function useTableHeight(
   tableRef: Ref<ElementRef>,
-  getDataSourceRef: ComputedRef<Recordable[]> | Ref<Recordable[]> | Recordable[],
   toBottom = 90,
   version = 1 // ElTable 和 ElTableV2
 ) {
   const tableHeight = ref('100%')
-
-  watch(
-    () => (unref(getDataSourceRef) as Recordable[])?.length,
-    () => {
-      debounceRedoHeight()
-    },
-    {
-      flush: 'post'
-    }
-  )
 
   const debounceRedoHeight = useDebounceFn(redoHeight, 100)
 
@@ -32,8 +21,6 @@ export function useTableHeight(
   let bodyEl: HTMLElement | null
 
   async function calcTableHeight() {
-    const tableData = unref(getDataSourceRef) as Recordable[]
-
     const table = unref(tableRef)
     if (!table) return
 
@@ -48,7 +35,6 @@ export function useTableHeight(
     }
     bodyEl!.style.height = 'unset'
 
-    if (!unref(tableData) || tableData.length === 0) return
     await nextTick()
 
     // 头部距离可视页面底部和顶部距离

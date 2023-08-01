@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { ElButton, ElTable, ElTableColumn } from 'element-plus'
 import ImportExcel from '@/components/excel/ImportExcel.vue'
 import { useTableHeight } from '@/components/table/useTableHeight'
@@ -29,11 +29,7 @@ export default defineComponent({
       sheetName: ''
     })
 
-    const { tableHeight } = useTableHeight(
-      table,
-      computed(() => excelData.results),
-      32
-    )
+    const { tableHeight } = useTableHeight(table, 32)
 
     function handleExcel(data: ExcelData[]) {
       console.log(data)

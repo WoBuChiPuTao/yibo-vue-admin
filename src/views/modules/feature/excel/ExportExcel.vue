@@ -38,12 +38,7 @@ export default defineComponent({
   components: { Card, ElButton, ElTableV2, ElAutoResizer },
   setup() {
     const table = ref()
-    const { tableHeight } = useTableHeight(
-      table,
-      computed(() => excelData),
-      40,
-      2
-    )
+    const { tableHeight } = useTableHeight(table, 40, 2)
 
     const columns = computed(() => {
       const arr: Column<any>[] = []

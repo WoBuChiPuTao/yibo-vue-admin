@@ -192,7 +192,7 @@ export default defineComponent({
     })
 
     const { t } = useI18n()
-    const { tableHeight } = useTableHeight(tableEl, tableData)
+    const { tableHeight } = useTableHeight(tableEl)
 
     const drawerVisible = ref(false)
     const eventType = ref<CruEventType>('view')

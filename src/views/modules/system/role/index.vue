@@ -110,7 +110,7 @@ export default defineComponent({
     const allMenus = reactive<Menu[]>([])
 
     const { t } = useI18n()
-    const { tableHeight } = useTableHeight(tableEl, tableData)
+    const { tableHeight } = useTableHeight(tableEl)
 
     function changeRoleState(val: boolean, role: RoleInfo): void {
       const findRole = tableData.find((item) => item.roleId === role.roleId)
