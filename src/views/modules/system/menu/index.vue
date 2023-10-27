@@ -80,7 +80,7 @@ import EIcon from '@/components/icons/EIcon.vue'
 import { menus, columnsInfo } from './info'
 import { Menu } from '#/list'
 import { useI18n } from '@/hooks/web/useI18n'
-import Drawer from './Drawer.vue'
+import Drawer from './drawer.vue'
 
 export default defineComponent({
   name: 'MenuManagement',
