@@ -4,7 +4,7 @@ import { getRawRoute } from '@/hooks/route'
 import { useRedo, useGo } from '@/hooks/web/usePage'
 import { unref, toRaw } from 'vue'
 import { PageEnum } from '@/enums/pageEnum'
-import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic'
+import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE, ERROR_PAGE } from '@/router/routes/basic'
 import { WebCache } from '@/utils/cache'
 import setting from '@/settings/projectSetting'
 
@@ -110,11 +110,16 @@ export const useTabStore = defineStore({
     async addTab(route: RouteLocationNormalized) {
       const { path, name, fullPath, params, query } = getRawRoute(route)
       // 404  The page does not need to add a tab
+      const ignoreRoute = [
+        REDIRECT_ROUTE.name,
+        PAGE_NOT_FOUND_ROUTE.name,
+        ...(ERROR_PAGE.children || []).map((item) => item.name)
+      ]
       if (
         path === PageEnum.ERROR_PAGE ||
         path === PageEnum.BASE_LOGIN ||
         !name ||
-        [REDIRECT_ROUTE.name, PAGE_NOT_FOUND_ROUTE.name].includes(name as string)
+        ignoreRoute.includes(name as string)
       ) {
         return
       }

@@ -3,6 +3,6 @@
  */
 export interface StorageCache<T = any> {
   time: number
-  expire: number
+  expire?: number
   value: T
 }

@@ -2,12 +2,12 @@
   <BasicContainer>
     <div class="flex justify-between mb-2">
       <div>
-        <ElInput placeholder="角色名称" class="w-32 mr-4"> </ElInput>
+        <ElInput :placeholder="t('module.system.roleName')" class="w-32 mr-4"> </ElInput>
         <ElButton type="primary">
           <el-icon>
             <Search></Search>
           </el-icon>
-          查询
+          {{ t('common.button.queryText') }}
         </ElButton>
       </div>
       <div>
@@ -15,7 +15,7 @@
           <el-icon>
             <Plus></Plus>
           </el-icon>
-          新增
+          {{ t('common.button.addText') }}
         </ElButton>
       </div>
     </div>
@@ -32,17 +32,24 @@
             <ElSwitch
               :model-value="row.state"
               inline-prompt
-              active-text="已启用"
-              inactive-text="已禁用"
+              :active-text="t('common.radio.enabled')"
+              :inactive-text="t('common.radio.disabled')"
               @change="(val) => changeRoleState(val as boolean, row)"
             ></ElSwitch>
           </template>
         </ElTableColumn>
       </template>
-      <ElTableColumn align="center" fixed="right" :min-width="120" label="操作">
+      <ElTableColumn
+        align="center"
+        fixed="right"
+        :min-width="120"
+        :label="t('common.table.operation')"
+      >
         <template #default="{ row }">
-          <ElButton link type="primary" size="small" @click="handleEdit(row)">编辑</ElButton>
-          <ElButton link type="danger" size="small">删除</ElButton>
+          <ElButton link type="primary" size="small" @click="handleEdit(row)">{{
+            t('common.button.editText')
+          }}</ElButton>
+          <ElButton link type="danger" size="small">{{ t('common.button.delText') }}</ElButton>
         </template>
       </ElTableColumn>
     </ElTable>
@@ -59,7 +66,7 @@
       >
       </ElPagination>
     </div>
-    <Drawer v-model:visible="drawerVisible" :value="drawerData"></Drawer>
+    <Drawer :menus="allMenus" v-model:visible="drawerVisible" :value="drawerData"></Drawer>
   </BasicContainer>
 </template>
 
@@ -71,6 +78,10 @@ import { useTableHeight } from '@/components/table/useTableHeight'
 import { columnsInfo, roleData } from './info'
 import Drawer from './components/Drawer.vue'
 import { RoleInfo } from '#/store'
+import { getAllMenu } from '@/api/sys/system'
+import '&/modules/system'
+import { Menu } from '#/list'
+import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'RoleManagament',
@@ -103,7 +114,9 @@ export default defineComponent({
       remarks: undefined,
       menu: []
     })
+    const allMenus = reactive<Menu[]>([])
 
+    const { t } = useI18n()
     const { tableHeight } = useTableHeight(tableEl, tableData)
 
     function changeRoleState(val: boolean, role: RoleInfo): void {
@@ -136,6 +149,18 @@ export default defineComponent({
       drawerVisible.value = true
     }
 
+    async function getMenus() {
+      try {
+        const menus = await getAllMenu()
+        allMenus.splice(0, allMenus.length)
+        allMenus.push(...menus)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    getMenus()
+
     getTableData()
     return {
       columnsInfo,
@@ -146,9 +171,11 @@ export default defineComponent({
       pageInfo,
       drawerVisible,
       drawerData,
+      allMenus,
       changeRoleState,
       handleCreate,
-      handleEdit
+      handleEdit,
+      t
     }
   }
 })

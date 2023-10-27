@@ -1,5 +1,11 @@
 import { AddRouteRecordRaw } from '../types'
-import { LOGIN_ROUTE, PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from './basic'
+import {
+  LOGIN_ROUTE,
+  PAGE_NOT_FOUND_ROUTE,
+  REDIRECT_ROUTE,
+  ERROR_PAGE,
+  ExternalPage
+} from './basic'
 import { asyncRoutes as syncRoutes } from './modules/index'
 
 // 根路由
@@ -15,8 +21,10 @@ export const RootRoute: AddRouteRecordRaw = {
 export const basicRoutes: Array<AddRouteRecordRaw> = [
   RootRoute,
   LOGIN_ROUTE,
+  ERROR_PAGE,
+  REDIRECT_ROUTE,
   PAGE_NOT_FOUND_ROUTE,
-  REDIRECT_ROUTE
+  ExternalPage
 ]
 
 export const asyncRoutes = syncRoutes

@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center h-full">
     <div class="flex flex-col items-center justify-center w-1/2 h-1/2">
-      <SvgIcon class="w-full h-full" name="404"></SvgIcon>
+      <SvgIcon class="w-full h-full" name="403"></SvgIcon>
       <ElButton type="primary" @click="handleClick">{{ t('sys.exception.backHome') }}</ElButton>
     </div>
   </div>

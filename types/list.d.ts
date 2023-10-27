@@ -11,8 +11,6 @@ export interface Menu {
   path: string
 
   name: string
-  // 路由名称
-  routeName: string
   // 父级路径
   parentPath?: string
 
@@ -29,6 +27,8 @@ export interface Menu {
   rights?: MenuButton[]
 
   hideMenu?: boolean
+
+  fixedTab?: boolean
 }
 
 export interface DropMenu {

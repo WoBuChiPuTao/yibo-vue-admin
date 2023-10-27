@@ -6,7 +6,7 @@
           <el-icon>
             <Plus></Plus>
           </el-icon>
-          新增
+          {{ t('common.button.addText') }}
         </ElButton>
       </div>
     </div>
@@ -56,10 +56,17 @@
           </template>
         </ElTableColumn>
       </template>
-      <ElTableColumn align="center" fixed="right" :min-width="150" label="操作">
+      <ElTableColumn
+        align="center"
+        fixed="right"
+        :min-width="150"
+        :label="t('common.table.operation')"
+      >
         <template #default="{ row }">
-          <ElButton link type="primary" size="small" @click="handleEdit(row)">修改</ElButton>
-          <ElButton link type="danger" size="small">删除</ElButton>
+          <ElButton link type="primary" size="small" @click="handleEdit(row)">{{
+            t('common.button.editText')
+          }}</ElButton>
+          <ElButton link type="danger" size="small">{{ t('common.button.delText') }}</ElButton>
         </template>
       </ElTableColumn>
     </ElTable>
@@ -77,10 +84,12 @@ import { defineComponent, reactive, ref } from 'vue'
 import { ElTable, ElTableColumn, ElIcon, ElTag, ElTooltip } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import EIcon from '@/components/icons/EIcon.vue'
-import { menus, columnsInfo } from './info'
+import { columnsInfo } from './info'
 import { Menu } from '#/list'
 import { useI18n } from '@/hooks/web/useI18n'
 import Drawer from './drawer.vue'
+import { getAllMenu } from '@/api/sys/system'
+import '&/modules/system'
 
 export default defineComponent({
   name: 'MenuManagement',
@@ -98,22 +107,35 @@ export default defineComponent({
     const tableLoading = ref(false)
     const drawerVisible = ref(false)
 
-    const tableData = reactive<Menu[]>(menus)
+    const tableData = reactive<Menu[]>([])
 
     const rowData = reactive<Menu>({
       name: '',
       path: '',
-      routeName: '',
       parentPath: undefined,
       orderNo: undefined,
       icon: undefined,
       redirect: undefined,
       children: undefined,
       rights: undefined,
-      hideMenu: undefined
+      hideMenu: undefined,
+      fixedTab: false
     })
 
     const { t } = useI18n()
+
+    async function getTableData() {
+      tableData.splice(0, tableData.length)
+      tableLoading.value = true
+      try {
+        const menus = await getAllMenu()
+        tableData.push(...menus)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        tableLoading.value = false
+      }
+    }
 
     function handleCreate() {
       Object.keys(rowData).forEach((key) => {
@@ -140,6 +162,8 @@ export default defineComponent({
         findMenu[key] = menu[key]
       })
     }
+
+    getTableData()
 
     return {
       tableLoading,

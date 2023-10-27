@@ -1,5 +1,5 @@
 <template>
-  <div>dsasdadadssa</div>
+  <div>redirect</div>
 </template>
 <script lang="ts" setup>
 import { unref } from 'vue'

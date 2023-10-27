@@ -9,7 +9,7 @@
           type="primary"
           :loading="buttonLoading"
           @click="onSubmit"
-          >保存</ElButton
+          >{{ t('common.button.saveText') }}</ElButton
         >
       </div>
     </template>
@@ -72,6 +72,7 @@
 import { ElDrawer, ElForm, ElFormItem, ElRow, ElCol, ElInput, ElDatePicker } from 'element-plus'
 import type { FormInstance, FormItemProp, FormRules } from 'element-plus'
 import { PropType, computed, reactive, ref, unref } from 'vue'
+import { useI18n } from '@/hooks/web/useI18n'
 
 const props = defineProps({
   // 是否显示drawer
@@ -96,7 +97,7 @@ const props = defineProps({
   },
   // label宽度
   labelWidth: {
-    type: String,
+    type: [String, Number],
     default: '60px'
   },
   // 标题
@@ -126,6 +127,8 @@ const props = defineProps({
 })
 
 const emits = defineEmits(['update:modelValue', 'validate'])
+
+const { t } = useI18n()
 
 const visible = computed<boolean>({
   get() {

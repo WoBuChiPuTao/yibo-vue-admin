@@ -14,9 +14,7 @@ function isMultipleRoute<T extends RouteRecordRaw>(route: T) {
   if (!route || !Reflect.has(route, 'children') || !route.children?.length) {
     return false
   }
-
   const children = route.children
-
   let flag = false
   for (let index = 0; index < children.length; index++) {
     const child = children[index]

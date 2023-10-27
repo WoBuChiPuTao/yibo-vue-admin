@@ -17,7 +17,6 @@ export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
   component: Layout,
   meta: {
     title: 'ErrorPage',
-    hideBreadcrumb: true,
     hideMenu: true
   },
   children: [
@@ -27,7 +26,6 @@ export const PAGE_NOT_FOUND_ROUTE: AddRouteRecordRaw = {
       component: () => import(/* webpackChunkName: "PageNotFound" */ '@/views/error/404.vue'),
       meta: {
         title: 'ErrorPage',
-        hideBreadcrumb: true,
         hideMenu: true
       }
     }
@@ -39,9 +37,7 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
   component: Layout,
   name: 'RedirectTo',
   meta: {
-    title: 'Redirect',
-    hideBreadcrumb: true,
-    hideMenu: true
+    title: 'Redirect'
   },
   children: [
     {
@@ -50,6 +46,85 @@ export const REDIRECT_ROUTE: AddRouteRecordRaw = {
       component: () => import(/* webpackChunkName: "Redirect" */ '@/layout/redirect/index.vue'),
       meta: {
         title: 'Redirect'
+      }
+    }
+  ]
+}
+
+export const ERROR_PAGE: AddRouteRecordRaw = {
+  path: '/error',
+  component: Layout,
+  name: 'Error',
+  redirect: '/error/404',
+  meta: {
+    title: 'Error',
+    hideMenu: true
+  },
+  children: [
+    {
+      path: '404',
+      name: 'PageNotFound',
+      component: () => import(/* webpackChunkName: "PageNotFound" */ '@/views/error/404.vue'),
+      meta: {
+        title: 'PageNotFound',
+        hideMenu: true
+      }
+    },
+    {
+      path: '403',
+      name: '403',
+      component: () => import(/* webpackChunkName: "403" */ '@/views/error/403.vue'),
+      meta: {
+        title: '403',
+        hideMenu: true
+      }
+    },
+    {
+      path: '500',
+      name: '500',
+      component: () => import(/* webpackChunkName: "500" */ '@/views/error/500.vue'),
+      meta: {
+        title: '500',
+        hideMenu: true
+      }
+    }
+  ]
+}
+
+export const ExternalPage: AddRouteRecordRaw = {
+  path: '/external',
+  name: 'external',
+  component: Layout,
+  redirect: '/external/element',
+  meta: {
+    title: 'external'
+  },
+  children: [
+    {
+      path: 'element',
+      name: 'Element',
+      component: () => import(/* webpackChunkName: "iframe" */ '@/views/iframe/frameView.vue'),
+      meta: {
+        title: 'Element',
+        frameSrc: 'https://element-plus.org/zh-CN/'
+      }
+    },
+    {
+      path: 'bilibili',
+      name: 'bilibili',
+      component: () => import(/* webpackChunkName: "iframe" */ '@/views/iframe/frameView.vue'),
+      meta: {
+        title: 'BiliBili',
+        frameSrc: 'https://bilibili.com/'
+      }
+    },
+    {
+      path: 'custom',
+      name: 'custom',
+      component: () => import(/* webpackChunkName: "iframe" */ '@/views/iframe/frameView.vue'),
+      meta: {
+        title: 'custom',
+        frameSrc: 'http://10.0.0.30:8848/'
       }
     }
   ]

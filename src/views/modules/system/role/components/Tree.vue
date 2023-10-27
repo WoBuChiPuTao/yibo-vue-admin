@@ -1,16 +1,28 @@
 <template>
   <div class="flex items-center justify-center">
-    菜单分配
+    {{ t('module.system.menuAssign') }}
     <ElDropdown>
       <ElIcon class="ml-1"><More /></ElIcon>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item @click="setAllExpand">展开全部</el-dropdown-item>
-          <el-dropdown-item @click="setAllFold">折叠全部</el-dropdown-item>
-          <el-dropdown-item @click="checkedAll" divided>选择全部</el-dropdown-item>
-          <el-dropdown-item @click="decheckedAll">取消选择</el-dropdown-item>
-          <el-dropdown-item @click="checkStrictly" divided>层级关联</el-dropdown-item>
-          <el-dropdown-item @click="checkUnStrictly">层级独立</el-dropdown-item>
+          <el-dropdown-item @click="setAllExpand">{{
+            t('module.system.showMore')
+          }}</el-dropdown-item>
+          <el-dropdown-item @click="setAllFold">{{
+            t('module.system.collapseAll')
+          }}</el-dropdown-item>
+          <el-dropdown-item @click="checkedAll" divided>{{
+            t('module.system.selectAll')
+          }}</el-dropdown-item>
+          <el-dropdown-item @click="decheckedAll">{{
+            t('module.system.deselectAll')
+          }}</el-dropdown-item>
+          <el-dropdown-item @click="checkStrictly" divided>{{
+            t('module.system.levelAssociation')
+          }}</el-dropdown-item>
+          <el-dropdown-item @click="checkUnStrictly">{{
+            t('module.system.levelIndependence')
+          }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </ElDropdown>
@@ -29,7 +41,6 @@
 <script setup lang="ts">
 import { ElTree, ElDivider, ElDropdown, ElDropdownMenu, ElDropdownItem, ElIcon } from 'element-plus'
 import { More } from '@element-plus/icons-vue'
-import { menus } from '../../menu/info'
 import { useI18n } from '@/hooks/web/useI18n'
 import EIcon from '@/components/icons/EIcon.vue'
 import { computed, nextTick, PropType, ref, unref, watch } from 'vue'
@@ -37,6 +48,10 @@ import { treeMap } from '@/hooks/tree'
 import { Menu } from '#/list'
 
 const props = defineProps({
+  menus: {
+    type: Array as PropType<Menu[]>,
+    default: () => []
+  },
   selectedMenu: Array as PropType<Menu[]>,
   visible: Boolean
 })
@@ -61,7 +76,7 @@ watch(
 )
 
 const getTree = computed(() => {
-  const getMenusTree = treeMap(menus, {
+  const getMenusTree = treeMap(props.menus, {
     conversion: (node: Menu) => {
       // 如果无chldren,且有rights,将rights作为子节点加入
       const haveChildren = Array.isArray(node.children) && node.children.length > 0
@@ -157,7 +172,7 @@ function getCurrentMenus() {
   if (!treeEl) return
   const treeNodes = treeEl.getCheckedNodes()
 
-  return treeMap(menus, {
+  return treeMap(props.menus, {
     conversion: (menu: Menu) => {
       const reg = new RegExp(`${menu.path}`, 'g')
       const isExist =

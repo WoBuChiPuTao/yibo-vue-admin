@@ -1,33 +1,36 @@
 import { RoleInfo } from '#/store'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 export const columnsInfo: TableColumnInfo[] = [
   {
     prop: 'roleId',
-    label: '角色代码',
+    label: t('module.system.roleId'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'roleName',
-    label: '角色名称',
+    label: t('module.system.roleName'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'state',
-    label: '角色状态',
+    label: t('module.system.roleStatus'),
     minWidth: 120,
     align: 'center'
   },
   {
     prop: 'createTime',
-    label: '创建时间',
+    label: t('module.system.createTime'),
     minWidth: 180,
     align: 'center'
   },
   {
     prop: 'remarks',
-    label: '备注',
+    label: t('module.system.remarks'),
     minWidth: 210,
     align: 'center'
   }
@@ -48,7 +51,6 @@ export const roleData: RoleInfo[] = [
           orderNo: 1
         },
         name: 'routes.home.home',
-        routeName: 'home',
         path: '/home',
         icon: 'material-symbols:home-outline',
         orderNo: 1,
@@ -61,7 +63,6 @@ export const roleData: RoleInfo[] = [
               fixedTab: true
             },
             name: 'routes.home.dashboard',
-            routeName: 'Dashboard',
             path: '/home/dashboard',
             hideMenu: false,
             parentPath: '/home'
@@ -71,7 +72,6 @@ export const roleData: RoleInfo[] = [
               title: 'routes.home.workbench'
             },
             name: 'routes.home.workbench',
-            routeName: 'Workbench',
             path: '/home/workbench',
             hideMenu: false,
             parentPath: '/home',
@@ -99,7 +99,6 @@ export const roleData: RoleInfo[] = [
           orderNo: 1
         },
         name: 'routes.home.home',
-        routeName: 'home',
         path: '/home',
         icon: 'material-symbols:home-outline',
         orderNo: 1,
@@ -112,7 +111,6 @@ export const roleData: RoleInfo[] = [
               fixedTab: true
             },
             name: 'routes.home.dashboard',
-            routeName: 'Dashboard',
             path: '/home/dashboard',
             hideMenu: false,
             parentPath: '/home'
@@ -122,15 +120,10 @@ export const roleData: RoleInfo[] = [
               title: 'routes.home.workbench'
             },
             name: 'routes.home.workbench',
-            routeName: 'Workbench',
             path: '/home/workbench',
             hideMenu: false,
             parentPath: '/home',
-            rights: [
-              { buttonId: '111', buttonName: '新增' },
-              { buttonId: '222', buttonName: '修改' },
-              { buttonId: '333', buttonName: '删除' }
-            ]
+            rights: [{ buttonId: '777', buttonName: '查询' }]
           }
         ]
       }
@@ -150,7 +143,6 @@ export const roleData: RoleInfo[] = [
           orderNo: 1
         },
         name: 'routes.home.home',
-        routeName: 'home',
         path: '/home',
         icon: 'material-symbols:home-outline',
         orderNo: 1,
@@ -163,7 +155,6 @@ export const roleData: RoleInfo[] = [
               fixedTab: true
             },
             name: 'routes.home.dashboard',
-            routeName: 'Dashboard',
             path: '/home/dashboard',
             hideMenu: false,
             parentPath: '/home'
@@ -173,7 +164,6 @@ export const roleData: RoleInfo[] = [
               title: 'routes.home.workbench'
             },
             name: 'routes.home.workbench',
-            routeName: 'Workbench',
             path: '/home/workbench',
             hideMenu: false,
             parentPath: '/home',
@@ -201,7 +191,6 @@ export const roleData: RoleInfo[] = [
           orderNo: 1
         },
         name: 'routes.home.home',
-        routeName: 'home',
         path: '/home',
         icon: 'material-symbols:home-outline',
         orderNo: 1,
@@ -214,7 +203,6 @@ export const roleData: RoleInfo[] = [
               fixedTab: true
             },
             name: 'routes.home.dashboard',
-            routeName: 'Dashboard',
             path: '/home/dashboard',
             hideMenu: false,
             parentPath: '/home'

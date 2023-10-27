@@ -1,7 +1,7 @@
 import { useTabs } from '@/hooks/web/useTabs'
 import { useTabStore } from '@/store/modules/tabs'
 import { computed, ComputedRef, reactive, unref } from 'vue'
-import { RouteLocationNormalized, useRouter } from 'vue-router'
+import { RouteLocationNormalized, useRoute } from 'vue-router'
 import { ArrowLeft, ArrowRight, Close, Minus, Refresh, RemoveFilled } from '@element-plus/icons-vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { DropMenu } from '#/list'
@@ -18,7 +18,7 @@ enum MenuEventEnum {
 export function useTabDropdown(tabContent: RouteLocationNormalized, isTab: ComputedRef<boolean>) {
   const { closeAll, closeOther, closeCurrent, closeLeft, closeRight, refreshPage } = useTabs()
   const tabStore = useTabStore()
-  const { currentRoute } = useRouter()
+  const currentRoute = useRoute()
   const { t } = useI18n()
 
   const state = reactive({
@@ -117,7 +117,7 @@ export function useTabDropdown(tabContent: RouteLocationNormalized, isTab: Compu
         refreshPage()
         break
       case MenuEventEnum.CLOSE_CURRENT:
-        closeCurrent()
+        closeCurrent(tabContent)
         break
       case MenuEventEnum.CLOSE_LEFT:
         closeLeft()

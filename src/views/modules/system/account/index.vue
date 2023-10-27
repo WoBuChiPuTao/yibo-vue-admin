@@ -7,7 +7,7 @@
           <el-icon>
             <Search></Search>
           </el-icon>
-          查询
+          {{ t('common.button.queryText') }}
         </ElButton>
       </div>
       <div>
@@ -15,7 +15,7 @@
           <el-icon>
             <Plus></Plus>
           </el-icon>
-          新增
+          {{ t('common.button.addText') }}
         </ElButton>
       </div>
     </div>
@@ -33,13 +33,13 @@
               <ElTag v-for="(role, index) in row.roles" :key="index" class="mr-1">{{ role }}</ElTag>
             </template>
             <template v-else>
-              <ElTag class="mr-1">{{ row.roles[0].roleName }}</ElTag>
-              <ElTag class="mr-1">{{ row.roles[1].roleName }}</ElTag>
+              <ElTag class="mr-1">{{ row.roles[0] }}</ElTag>
+              <ElTag class="mr-1">{{ row.roles[1] }}</ElTag>
               <ElTooltip effect="light">
                 <ElTag>{{ '+' + (row.roles.length - 2) }}</ElTag>
                 <template #content>
                   <ElTag v-for="(role, index) in row.roles.slice(2)" :key="index" class="mr-1">{{
-                    role.roleName
+                    role
                   }}</ElTag>
                 </template>
               </ElTooltip>
@@ -47,11 +47,22 @@
           </template>
         </ElTableColumn>
       </template>
-      <ElTableColumn align="center" fixed="right" :min-width="150" label="操作">
+      <ElTableColumn
+        align="center"
+        fixed="right"
+        :min-width="180"
+        :label="t('common.table.operation')"
+      >
         <template #default="{ row }">
-          <ElButton link size="small" @click="handleLook(row)">查看</ElButton>
-          <ElButton link type="primary" size="small" @click="handleEdit(row)">修改</ElButton>
-          <ElButton link type="danger" size="small" @click="handleDelete()">删除</ElButton>
+          <ElButton link size="small" @click="handleLook(row)">{{
+            t('common.button.view')
+          }}</ElButton>
+          <ElButton link type="primary" size="small" @click="handleEdit(row)">{{
+            t('common.button.editText')
+          }}</ElButton>
+          <ElButton link type="danger" size="small" @click="handleDelete()">{{
+            t('common.button.delText')
+          }}</ElButton>
         </template>
       </ElTableColumn>
     </ElTable>
@@ -96,6 +107,7 @@
       v-model:model-value="drawerVisible"
       :value="rowData"
       :column="1"
+      :label-width="80"
       :items-info="columnsInfo"
       :event-type="eventType"
       :submit-func="handleSubmit"
@@ -137,8 +149,10 @@ import { useTableHeight } from '@/components/table/useTableHeight'
 import DialogDescriptions from '@/components/dialog/DialogDescriptions.vue'
 import CruDrawer from '@/components/crud/CruDrawer.vue'
 import { formatDateOfObj } from '@/utils/dateFormat'
-import { userData, columnsInfo, AddUserInfo } from './info'
+import { userData, columnsInfo } from './info'
 import { roleData } from '../role/info'
+import { useI18n } from '@/hooks/web/useI18n'
+import { UserInfo } from '#/store'
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -162,14 +176,13 @@ export default defineComponent({
     const searchButtonLoading = ref(false)
     const tableLoading = ref(false)
     const tableEl = ref(null)
-    const tableData = reactive<AddUserInfo[]>([])
+    const tableData = reactive<UserInfo[]>([])
     const searchInfo = reactive({ account: '' })
     const pageInfo = reactive({ current: 1, size: 10, total: tableData.length })
 
-    const rowData = reactive<AddUserInfo>({
+    const rowData = reactive<UserInfo>({
       userId: '',
       userName: '',
-      alias: '',
       roles: [],
       department: '',
       position: '',
@@ -178,6 +191,7 @@ export default defineComponent({
       remarks: ''
     })
 
+    const { t } = useI18n()
     const { tableHeight } = useTableHeight(tableEl, tableData)
 
     const drawerVisible = ref(false)
@@ -189,14 +203,14 @@ export default defineComponent({
       searchButtonLoading.value = false
     }
 
-    function handleLook(row: AddUserInfo) {
+    function handleLook(row: UserInfo) {
       Object.keys(rowData).forEach((key) => {
         rowData[key] = row[key]
       })
       dialogVisible.value = true
     }
 
-    function handleEdit(row: AddUserInfo) {
+    function handleEdit(row: UserInfo) {
       Object.keys(rowData).forEach((key) => {
         rowData[key] = row[key]
       })
@@ -212,8 +226,9 @@ export default defineComponent({
     async function handleDelete() {
       try {
         //   await delBondData(instCode)
-        ElMessage.success('删除成功')
+        ElMessage.success(t('common.message.delSuccess'))
       } catch (error) {
+        ElMessage.success(t('common.message.delFailed'))
         console.error(error)
       }
       getTableData()
@@ -229,7 +244,7 @@ export default defineComponent({
       tableLoading.value = false
     }
 
-    async function handleSubmit(value: AddUserInfo, eventType: CruEventType) {
+    async function handleSubmit(value: UserInfo, eventType: CruEventType) {
       console.log('val', value)
       formatDateOfObj(value)
       try {
@@ -239,9 +254,14 @@ export default defineComponent({
         Object.keys(value).forEach((key) => {
           findUser[key] = value[key]
         })
-        eventType === 'update' ? ElMessage.success('修改成功') : ElMessage.success('创建成功')
+        eventType === 'update'
+          ? ElMessage.success(t('common.message.modifySuccess'))
+          : ElMessage.success(t('common.message.addSuccess'))
       } catch (error) {
         console.error(error)
+        eventType === 'update'
+          ? ElMessage.success(t('common.message.modifyFailed'))
+          : ElMessage.success(t('common.message.addFailed'))
       }
 
       getTableData()
@@ -267,7 +287,8 @@ export default defineComponent({
       handleSubmit,
       eventType,
       handleCreate,
-      roleData
+      roleData,
+      t
     }
   }
 })

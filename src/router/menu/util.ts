@@ -39,7 +39,6 @@ export function routeToMenu(routes: AddRouteRecordRaw[]) {
       return {
         meta: node.meta,
         name: title,
-        routeName: node.name,
         path: node.path,
         icon,
         orderNo,
@@ -89,9 +88,8 @@ function deleteRoutesFromMenu(
     return undefined
   }
   // meta赋值,包括按钮等等
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { name, meta, ...currentMenu } = flatMenu[index]
-  route.meta = { ...currentMenu, title: name }
+  const { meta, name, rights, icon, hideMenu = false, orderNo, fixedTab = false } = flatMenu[index]
+  route.meta = { ...meta, title: name, rights, icon, hideMenu, orderNo, fixedTab }
 
   route.children = route.children
     ?.map((item) => deleteRoutesFromMenu(flatMenu, item, currentRoutePath))

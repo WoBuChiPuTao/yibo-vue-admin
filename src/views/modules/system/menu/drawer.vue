@@ -2,77 +2,95 @@
   <ElDrawer v-model="drawerVisible" :size="600">
     <template #header>
       <div>
-        <ElButton :size="'default'" type="primary" @click="handleSave"> 保存 </ElButton>
+        <ElButton :size="'default'" type="primary" @click="handleSave">
+          {{ t('common.button.saveText') }}
+        </ElButton>
       </div>
     </template>
-    <ElForm ref="menuFormRef" :model="menuVal" label-width="80px">
-      <ElRow :gutter="12">
+    <ElForm ref="menuFormRef" :model="menuVal" label-width="140px">
+      <ElRow>
         <ElCol :span="24" class="mb-4">
           <ElRadioGroup v-model="isDirectory">
-            <ElRadioButton :label="true">目录</ElRadioButton>
-            <ElRadioButton :label="false">菜单</ElRadioButton>
+            <ElRadioButton :label="true">{{ t('module.system.directory') }}</ElRadioButton>
+            <ElRadioButton :label="false">{{ t('module.system.menu') }}</ElRadioButton>
           </ElRadioGroup>
         </ElCol>
       </ElRow>
-      <ElRow :gutter="12">
-        <ElCol :span="12">
-          <ElFormItem label="菜单名称">
+      <ElRow>
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.menuName')">
             <ElInput v-model="menuVal.name"></ElInput>
           </ElFormItem>
         </ElCol>
-        <ElCol :span="12">
-          <ElFormItem label="上级目录">
+      </ElRow>
+      <ElRow>
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.parentDirectory')">
             <ElTreeSelect
               v-model="menuVal.parentPath"
               :data="getTree"
               check-strictly
               clearable
               :default-expanded-keys="[menuVal.parentPath || '']"
+              :style="{ width: '100%' }"
             ></ElTreeSelect>
           </ElFormItem>
         </ElCol>
       </ElRow>
-      <ElRow :gutter="12">
-        <ElCol :span="12">
-          <ElFormItem label="路由地址">
+      <ElRow>
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.routePath')">
             <ElInput v-model="menuVal.path"></ElInput>
           </ElFormItem>
         </ElCol>
-        <ElCol :span="12">
-          <ElFormItem label="路由名称">
-            <ElInput v-model="menuVal.routeName"></ElInput>
-          </ElFormItem>
-        </ElCol>
       </ElRow>
-      <ElRow :gutter="12">
-        <ElCol :span="12">
-          <ElFormItem label="菜单权重">
+      <ElRow>
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.weight')">
             <ElInputNumber v-model="menuVal.orderNo" :style="{ width: '100%' }" />
           </ElFormItem>
         </ElCol>
-        <ElCol :span="12">
-          <ElFormItem label="菜单图案">
-            <IconPicker v-if="typeof menuVal.icon !== 'object'" v-model="menuVal.icon">
+      </ElRow>
+      <ElRow>
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.icon')">
+            <IconPicker
+              v-model="menuVal.icon"
+              v-if="typeof menuVal.icon !== 'object'"
+              :style="{ width: '100%' }"
+            >
             </IconPicker>
           </ElFormItem>
         </ElCol>
       </ElRow>
-      <ElRow :gutter="12">
-        <ElCol v-if="isDirectory" :span="12">
-          <ElFormItem label="重定向">
+      <ElRow v-if="isDirectory">
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.redirect')">
             <ElInput v-model="menuVal.redirect"></ElInput>
           </ElFormItem>
         </ElCol>
-        <ElCol :span="12">
-          <ElFormItem label="隐藏菜单">
-            <ElRadioGroup v-model="menuVal.hideMenu">
-              <ElRadioButton :label="true">是</ElRadioButton>
-              <ElRadioButton :label="false">否</ElRadioButton>
+      </ElRow>
+      <ElRow v-else>
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.fixedMenu')">
+            <ElRadioGroup v-model="menuVal.fixedTab">
+              <ElRadioButton :label="true">{{ t('common.radio.trueText') }}</ElRadioButton>
+              <ElRadioButton :label="false">{{ t('common.radio.falseText') }}</ElRadioButton>
             </ElRadioGroup>
           </ElFormItem>
         </ElCol>
       </ElRow>
-      <ElFormItem label="按钮" v-if="!isDirectory">
+      <ElRow v-if="!isDirectory">
+        <ElCol :span="24">
+          <ElFormItem :label="t('module.system.hideMenu')">
+            <ElRadioGroup v-model="menuVal.hideMenu">
+              <ElRadioButton :label="true">{{ t('common.radio.trueText') }}</ElRadioButton>
+              <ElRadioButton :label="false">{{ t('common.radio.falseText') }}</ElRadioButton>
+            </ElRadioGroup>
+          </ElFormItem>
+        </ElCol>
+      </ElRow>
+      <ElFormItem :label="t('module.system.button')" v-if="!isDirectory">
         <ElScrollbar class="w-3/4">
           <div class="flex items-center mb-3 h-9">
             <ElButton
@@ -84,24 +102,28 @@
               v-for="right in menuVal.rights"
               :key="right.buttonId"
             >
-              {{ right.buttonName }}
+              {{ t(right.buttonName) }}
               <ElIcon @click="deleteButton(right)" class="ml-1 button-close"><Close /></ElIcon>
             </ElButton>
           </div>
         </ElScrollbar>
-        <ElButton type="primary" class="absolute right-0" @click="addButton">添加按钮</ElButton>
+        <ElButton type="primary" class="absolute right-0" @click="addButton">{{
+          t('module.system.addButton')
+        }}</ElButton>
       </ElFormItem>
-      <ElDrawer v-model="addButtonVisible" :size="300">
+      <ElDrawer v-model="addButtonVisible" :size="360">
         <template #header>
           <div>
-            <ElButton :size="'default'" type="primary" @click="submitAddButton"> 保存 </ElButton>
+            <ElButton :size="'default'" type="primary" @click="submitAddButton">
+              {{ t('common.button.saveText') }}
+            </ElButton>
           </div>
         </template>
-        <ElForm ref="buttonFormRef" :model="buttonVal" :rules="buttonFormRules">
-          <ElFormItem label="按钮标识" prop="buttonId">
+        <ElForm ref="buttonFormRef" :model="buttonVal" :rules="buttonFormRules" label-width="120px">
+          <ElFormItem :label="t('module.system.buttonId')" prop="buttonId">
             <ElInput v-model="buttonVal.buttonId"></ElInput>
           </ElFormItem>
-          <ElFormItem label="按钮名称" prop="buttonName">
+          <ElFormItem :label="t('module.system.buttonName')" prop="buttonName">
             <ElInput v-model="buttonVal.buttonName"></ElInput>
           </ElFormItem>
         </ElForm>
@@ -193,6 +215,7 @@ watch(
   () => {
     Object.keys(menuVal).forEach((key) => (menuVal[key] = props.value[key]))
     menuVal.hideMenu = !!menuVal.hideMenu
+    menuVal.fixedTab = !!menuVal.fixedTab
     isDirectory.value = !!props.value.redirect
   },
   { immediate: true }

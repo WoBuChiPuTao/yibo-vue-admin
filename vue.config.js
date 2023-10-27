@@ -12,7 +12,7 @@ function resolve(dir) {
 // 不参与打包的文件，需要使用CDN
 const externals = []
 module.exports = defineConfig({
-  productionSourceMap: false, // 生产环境不生成资源映射map文件
+  productionSourceMap: true, // 生产环境不生成资源映射map文件
   configureWebpack: {
     entry: {
       app: './src/main.ts'
